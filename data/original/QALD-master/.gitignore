@@ -1,0 +1,9 @@
+*.swp
+*.log
+*.aux
+*.toc
+*.out
+*.pyc
+.htaccess
+statistics.txt
+.DS_Store
