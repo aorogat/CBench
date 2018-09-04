@@ -663,7 +663,7 @@
           "results": {
             "bindings": [
               {
-                "\"callret-0\"": {
+                "callret-0": {
                   "type": "literal",
                   "value": "14"
                 }
@@ -25977,7 +25977,7 @@
           "results": {
             "bindings": [
               {
-                "\"callret-0\"": {
+                "callret-0": {
                   "type": "literal",
                   "value": "4"
                 }
@@ -26150,7 +26150,7 @@
     },
     {
       "id": 36,
-      "answertype": "resource",
+      "answertype": "boolean",
       "aggregation": "false",
       "onlydbo": "true",
       "hybrid": "false",
@@ -29973,7 +29973,7 @@
           "results": {
             "bindings": [
               {
-                "\"callret-0\"": {
+                "callret-0": {
                   "type": "literal",
                   "value": "245"
                 }

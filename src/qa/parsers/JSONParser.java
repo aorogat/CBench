@@ -12,6 +12,7 @@ import qa.dataStructures.Question;
 public class JSONParser {
 	
 	/**
+	 * QALD-9 Parser for file qald-9-train-multilingual.json
 	 * 
 	 * @param fileDirectory the path to the file to be parsed
 	 * @param sourceString the string describing the source associated with these question
@@ -69,6 +70,8 @@ public class JSONParser {
 	}
 	
 	/**
+	 * QALD-8 Parser for file {qald-8-train-multilingual,
+	 * 							qald-8-test-multilingual.json}
 	 * 
 	 * @param fileDirectory the path to the file to be parsed
 	 * @param sourceString the string describing the source associated with these question
@@ -133,7 +136,8 @@ public class JSONParser {
 	
 	/**
 	 * QALD-7 Parser for files: {qald-7-test-multilingual.json,
-	 * 							qald-7-train-largescale.json}
+	 * 							qald-7-train-largescale.json,
+	 * 							qald-6-train-multilingual.json}
 	 * 
 	 * @param fileDirectory the path to the file to be parsed
 	 * @param sourceString the string describing the source associated with these question
@@ -159,6 +163,12 @@ public class JSONParser {
 					System.out.println("Question " + i + ": " + question.getQuestionString());
 					break;
 				}
+			}
+			// This case checks if there's no query in the data set
+			// This is encountered in the qald-6-train-multilingual.json file
+			if(currentQuestionObject.getJSONObject("query").isEmpty()) {
+				System.out.println("No query detected. Skipping this one!");
+				continue;
 			}
 			question.setQuestionQuery(currentQuestionObject.getJSONObject("query").getString("sparql"));
 			JSONArray answersArray = currentQuestionObject.getJSONArray("answers");

@@ -69209,14 +69209,13 @@
         }
       ],
       "query": {
-        "sparql": "SELECT DISTINCT ?uri ?x WHERE {  ?uri <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://dbpedia.org/ontology/Brewery> . { ?uri <http://dbpedia.org/ontology/location> <http://dbpedia.org/resource/Australia> . } UNION { ?uri <http://dbpedia.org/ontology/location> ?x .  ?x <http://dbpedia.org/ontology/country> <http://dbpedia.org/resource/Australia> . } } "
+        "sparql": "SELECT DISTINCT ?uri WHERE {  ?uri <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://dbpedia.org/ontology/Brewery> . { ?uri <http://dbpedia.org/ontology/location> <http://dbpedia.org/resource/Australia> . } UNION { ?uri <http://dbpedia.org/ontology/location> ?x .  ?x <http://dbpedia.org/ontology/country> <http://dbpedia.org/resource/Australia> . } } "
       },
       "answers": [
         {
           "head": {
             "vars": [
-              "uri",
-              "x"
+              "uri"
             ]
           },
           "results": {
@@ -69231,10 +69230,6 @@
                 "uri": {
                   "type": "uri",
                   "value": "http://dbpedia.org/resource/Cascade_Brewery"
-                },
-                "x": {
-                  "type": "uri",
-                  "value": "http://dbpedia.org/resource/Hobart"
                 }
               }
             ]
@@ -86001,7 +85996,7 @@
           "results": {
             "bindings": [
               {
-                "\"callret-0\"": {
+                "callret-0": {
                   "type": "literal",
                   "value": "237.0"
                 }
