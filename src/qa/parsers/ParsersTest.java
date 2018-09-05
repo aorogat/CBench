@@ -53,5 +53,17 @@ public class ParsersTest {
 				"QALD-6"));
 	    assertEquals(96, questionsList.size());
 	}
+	
+	@Test
+	public void testJSONParserQALD5() {
+		ArrayList<Question> questionsList = JSONParser.parseQald5("./data/original/QALD-master/5/data/qald-5_train.json",
+				"QALD-5");
+	    assertEquals(300, questionsList.size());
+	    
+	    questionsList.clear();
+	    questionsList.addAll(XMLParser.parseQald5("./data/original/QALD-master/5/data/qald-5_test.xml",
+	    		"QALD-5"));
+	    assertEquals(49, questionsList.size());
+	}
 
 }

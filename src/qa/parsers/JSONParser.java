@@ -207,4 +207,55 @@ public class JSONParser {
 		}
 		return questionsList;
 	}
+	
+	/**
+	 * QALD-5 Parser for files: {qald-5_train.json}
+	 * 
+	 * @param fileDirectory the path to the file to be parsed
+	 * @param sourceString the string describing the source associated with these question
+	 * @return ArrayList<Question> the list of questions parsed from file
+	 */
+	public static ArrayList<Question> parseQald5(String fileDirectory, String sourceString) {
+		ArrayList<Question> questionsList = new ArrayList<Question>();
+		System.out.println("Reading file " + fileDirectory + "...");
+		String fileContents = FileManager.readWholeFile(fileDirectory);
+		System.out.println("Parsing file...");
+		JSONObject obj = new JSONObject(fileContents);
+		JSONArray arr = obj.getJSONArray("questions");
+		for (int i = 0; i < arr.length(); i++) {
+			// Skip the hybrid questions 
+			if(arr.getJSONObject(i).getString("hybrid").compareTo("true") == 0)
+				continue;
+			Question question = new Question();
+			// The source is predefined
+			question.setQuestionSource(sourceString);
+			JSONObject currentQuestionObject = arr.getJSONObject(i);
+			String type = currentQuestionObject.getString("answertype");
+			JSONArray bodyArray =currentQuestionObject.getJSONArray("body");
+			for(int j = 0; j < bodyArray.length(); ++j) {
+				if(bodyArray.getJSONObject(j).getString("language").compareTo("en") == 0) {
+					question.setQuestionString(bodyArray.getJSONObject(j).getString("string"));
+					System.out.println("Question " + i + ": " + question.getQuestionString());
+					break;
+				}
+			}
+			question.setQuestionQuery(currentQuestionObject.getString("query"));
+			JSONArray answersArray = currentQuestionObject.getJSONArray("answers");
+			for(int j = 0; j < answersArray.length(); ++j) {
+				if(type.compareTo("boolean") == 0) {
+					if(answersArray.getJSONObject(j).getString("string").compareTo("true") == 0) {
+						question.addAnswer("Yes");
+					}
+					else {
+						question.addAnswer("No");
+					}
+				}
+				else {
+					question.addAnswer(answersArray.getJSONObject(j).getString("string"));
+				}
+			}
+			questionsList.add(question);
+		}
+		return questionsList;
+	}
 }

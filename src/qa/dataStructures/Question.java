@@ -2,6 +2,12 @@ package qa.dataStructures;
 
 import java.util.ArrayList;
 
+
+/**
+ * The data structure for the question
+ * @author ahmed
+ *
+ */
 public class Question {
 
 	private String questionString;
