@@ -14,13 +14,26 @@ public class Question {
 	private String questionQuery;
 	private String questionSource;
 	private ArrayList<String> answers;
+	private String database;
 	
 	public Question() {
+		answers = new ArrayList<String>();
+	}
+	public Question(String _questionString, String _questionQuery, String _questionSource) {
+		questionString = _questionString;
+		questionQuery = _questionQuery;
+		questionSource = _questionSource;
 		answers = new ArrayList<String>();
 	}
 	
 	public void addAnswer (String answer) {
 		answers.add(answer);
+	}
+	public void setDatabase (String newdatabase) {
+		database = newdatabase;
+	}
+	public String getDatabase() {
+		return database;
 	}
 	public String getQuestionString() {
 		return questionString;
