@@ -19,11 +19,11 @@ public class XMLParser {
 	         File inputFile = new File(fileDirectory);
 	         DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
 	         DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
-	         System.out.println("Reading file " + fileDirectory + "...");
+	         //System.out.println("Reading file " + fileDirectory + "...");
 	         Document doc = dBuilder.parse(inputFile);
-	         System.out.println("Parsing file...");
+	        // System.out.println("Parsing file...");
 	         doc.getDocumentElement().normalize();
-	         System.out.println("Root element :" + doc.getDocumentElement().getNodeName());
+	         //System.out.println("Root element :" + doc.getDocumentElement().getNodeName());
 	         NodeList nList = doc.getElementsByTagName("question");
 	         
 	         for (int i = 0; i < nList.getLength(); i++) {
@@ -35,6 +35,7 @@ public class XMLParser {
 	        	Question question = new Question();
 	        	question.setQuestionSource(sourceString);
 	        	question.setDatabase(endpoint);
+	        	question.setFilepath(fileDirectory);
 	            NodeList langList = element.getElementsByTagName("string");
 	            for(int j = 0; j < langList.getLength(); ++j) {
 	            	Element langElement = (Element) langList.item(j);
@@ -51,12 +52,11 @@ public class XMLParser {
 	            	
 	            	for(int j = 0; j < answersList.getLength(); ++j) {
 		            	
-		            	question.addAnswer(answersList.item(j).getTextContent());
+		            	question.addAnswer(answersList.item(j).getTextContent().replace("\n", ""));
 		            }
 	            }
 	            catch(Exception e)
 	            {
-	            	System.out.println("No answer found, use query");
 	            }
 	            
 	            
@@ -74,9 +74,9 @@ public class XMLParser {
 	         File inputFile = new File(fileDirectory);
 	         DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
 	         DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
-	         System.out.println("Reading file " + fileDirectory + "...");
+	        // System.out.println("Reading file " + fileDirectory + "...");
 	         Document doc = dBuilder.parse(inputFile);
-	         System.out.println("Parsing file...");
+	       //  System.out.println("Parsing file...");
 	         doc.getDocumentElement().normalize();
 //	         System.out.println("Root element :" + doc.getDocumentElement().getNodeName());
 	         NodeList nList = doc.getElementsByTagName("question");
@@ -89,6 +89,7 @@ public class XMLParser {
 	        	Question question = new Question();
 	        	question.setQuestionSource(sourceString);
 	        	question.setDatabase(endpoint);
+	        	question.setFilepath(fileDirectory);
 	            NodeList langList = element.getElementsByTagName("string");
 	            for(int j = 0; j < langList.getLength(); ++j) {
 	            	Element langElement = (Element) langList.item(j);

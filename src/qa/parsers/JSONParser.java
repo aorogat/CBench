@@ -28,9 +28,10 @@ public class JSONParser {
 		for (int i = 0; i < arr.length(); i++) {
 			Question question = new Question();
 			question.setDatabase(endpoint);
+			question.setFilepath(fileDirectory);
 			// The source is predefined
 			question.setQuestionSource(sourceString);
-			question.setDatabase(endpoint);
+
 			JSONObject currentQuestionObject = arr.getJSONObject(i);
 			JSONArray objectArr =currentQuestionObject.getJSONArray("question"); 
 		    // Finding question in English
@@ -105,6 +106,7 @@ public class JSONParser {
 			// The source is predefined
 			question.setQuestionSource(sourceString);
 			question.setDatabase(endpoint);
+			question.setFilepath(fileDirectory);
 			JSONObject currentQuestionObject = arr.getJSONObject(i);
 			JSONObject questionObject =currentQuestionObject.getJSONObject("question");
 			JSONArray languageArr = questionObject.getJSONArray("language");
@@ -164,6 +166,7 @@ public class JSONParser {
 			// The source is predefined
 			question.setQuestionSource(sourceString);
 			question.setDatabase(endpoint);
+			question.setFilepath(fileDirectory);
 			JSONObject currentQuestionObject = arr.getJSONObject(i);
 			String type = currentQuestionObject.getString("answertype");
 			JSONArray questionArray =currentQuestionObject.getJSONArray("question");
@@ -239,6 +242,7 @@ public class JSONParser {
 			// The source is predefined
 			question.setQuestionSource(sourceString);
 			question.setDatabase(endpoint);
+			question.setFilepath(fileDirectory);
 			JSONObject currQuestion = arr.getJSONObject(i).getJSONObject("question");
 			
 			for(int j = 0; j < currQuestion.getJSONArray("language").length(); j++) {
@@ -311,6 +315,7 @@ public class JSONParser {
 			// The source is predefined
 			question.setQuestionSource(sourceString);
 			question.setDatabase(endpoint);
+			question.setFilepath(fileDirectory);
 			JSONArray currQuestion = arr.getJSONObject(i).getJSONArray("question");
 			
 			for(int j = 0; j < currQuestion.length(); j++) {
@@ -385,6 +390,7 @@ public class JSONParser {
 			// The source is predefined
 			question.setQuestionSource(sourceString);
 			question.setDatabase(endpoint);
+			question.setFilepath(fileDirectory);
 			JSONObject currentQuestionObject = arr.getJSONObject(i);
 			String type = currentQuestionObject.getString("answertype");
 			JSONArray bodyArray =currentQuestionObject.getJSONArray("body");
