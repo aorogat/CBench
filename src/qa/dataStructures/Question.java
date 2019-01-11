@@ -15,6 +15,7 @@ public class Question {
 	private String questionSource;
 	private ArrayList<String> answers;
 	private String database;
+	private String filePath;
 	
 	public Question() {
 		answers = new ArrayList<String>();
@@ -28,6 +29,12 @@ public class Question {
 	
 	public void addAnswer (String answer) {
 		answers.add(answer);
+	}
+	public void setFilepath (String newFilePath) {
+		filePath = newFilePath;
+	}
+	public String getFilepath() {
+		return filePath;
 	}
 	public void setDatabase (String newdatabase) {
 		database = newdatabase;
