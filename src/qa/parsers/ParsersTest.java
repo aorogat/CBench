@@ -10,7 +10,7 @@ import java.util.ArrayList;
 
 public class ParsersTest {
 	
-	/*
+	
 	@Test
 	public void testJSONParserQALD9() {
 		ArrayList<Question> questionsList = JSONParser.parseQald9File("./data/original/QALD-master/9/data/qald-9-train-multilingual.json",
@@ -27,9 +27,8 @@ public class ParsersTest {
 	
 	@Test
 	public void testJSONParserQALD7() {
-		
 		ArrayList<Question> questionsList = JSONParser.parseQald7File1("./data/original/QALD-master/7/data/qald-7-train-multilingual-extended-json.json",
-				"QALD-7", false);
+				"QALD-7");
 	    assertEquals(215, questionsList.size());
 	    
 	    questionsList.clear();
@@ -41,9 +40,7 @@ public class ParsersTest {
 	    questionsList.addAll(JSONParser.parseQald7File2("./data/original/QALD-master/7/data/qald-7-train-largescale.json",
 				"QALD-7"));
 	    assertEquals(100, questionsList.size());
-	    
 	}
-	
 	
 	@Test
 	public void testJSONParserQALD6() {
@@ -68,5 +65,5 @@ public class ParsersTest {
 	    		"QALD-5"));
 	    assertEquals(49, questionsList.size());
 	}
-*/
+
 }
