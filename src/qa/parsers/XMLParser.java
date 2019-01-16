@@ -13,7 +13,9 @@ import qa.dataStructures.Question;
 
 public class XMLParser {
 
-	public static ArrayList<Question> parseQald4(String fileDirectory, String sourceString, String endpoint) {
+	
+	
+	public static ArrayList<Question> parseQald4(String fileDirectory, String sourceString, String endpoint, boolean multilingual) {
 		ArrayList<Question> questionsList = new ArrayList<Question>();
 		try {
 	         File inputFile = new File(fileDirectory);
@@ -32,6 +34,7 @@ public class XMLParser {
 	            if(element.getAttribute("hybrid").compareTo("true") == 0) {
 	            	continue;
 	            }
+	            
 	        	Question question = new Question();
 	        	question.setQuestionSource(sourceString);
 	        	question.setDatabase(endpoint);
@@ -39,24 +42,31 @@ public class XMLParser {
 	            NodeList langList = element.getElementsByTagName("string");
 	            for(int j = 0; j < langList.getLength(); ++j) {
 	            	Element langElement = (Element) langList.item(j);
-	            	if(langElement.getAttribute("lang").compareTo("en") == 0) {
-	            		question.setQuestionString(getCharacterDataFromElement(langElement));
-	            		break;
+	            	if(multilingual) {
+		            	if(langElement.getAttribute("lang").compareTo("en") == 0) {
+		            		question.setQuestionString(getCharacterDataFromElement(langElement).replace("\n", ""));
+		            		break;
+		            	}
+	            	}
+	            	else {
+	            		question.setQuestionString(getCharacterDataFromElement(langElement).replace("\n", ""));
 	            	}
 	            }
+	            System.out.println("");
 	            question.setQuestionQuery(getCharacterDataFromElement((Element)element.
 	            		getElementsByTagName("query").item(0)));
+	            
 	            Element answersNode = (Element) element.getElementsByTagName("answers").item(0);
 	            try {
 	            	NodeList answersList = answersNode.getElementsByTagName("answer");
 	            	
 	            	for(int j = 0; j < answersList.getLength(); ++j) {
-		            	
 		            	question.addAnswer(answersList.item(j).getTextContent().replace("\n", ""));
 		            }
 	            }
 	            catch(Exception e)
 	            {
+	            	System.out.println(e);
 	            }
 	            
 	            
@@ -94,7 +104,7 @@ public class XMLParser {
 	            for(int j = 0; j < langList.getLength(); ++j) {
 	            	Element langElement = (Element) langList.item(j);
 	            	if(langElement.getAttribute("lang").compareTo("en") == 0) {
-	            		question.setQuestionString(getCharacterDataFromElement(langElement));
+	            		question.setQuestionString(getCharacterDataFromElement(langElement).replace("\n", ""));
 	            		break;
 	            	}
 	            }

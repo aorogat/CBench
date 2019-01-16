@@ -38,7 +38,7 @@ public class JSONParser {
 			for(int j = 0; j < objectArr.length(); ++j) {
 		    	JSONObject currentQuestionLanguageObject = objectArr.getJSONObject(j);
 		    	if(currentQuestionLanguageObject.getString("language").compareTo("en") == 0) {
-		    		question.setQuestionString(currentQuestionLanguageObject.getString("string"));
+		    		question.setQuestionString(currentQuestionLanguageObject.getString("string").replace("\n", ""));
 		    		System.out.println("Question " + i + ": " + question.getQuestionString());
 		    		break;
 		    	}
@@ -113,7 +113,7 @@ public class JSONParser {
 			for(int j = 0; j < languageArr.length(); ++j) {
 				if(languageArr.getJSONObject(j).getString("language").compareTo("en") == 0) {
 					question.setQuestionQuery(languageArr.getJSONObject(j).getString("SPARQL"));
-					question.setQuestionString(languageArr.getJSONObject(j).getString("question"));
+					question.setQuestionString(languageArr.getJSONObject(j).getString("question").replace("\n", ""));
 					if(print)
 						System.out.println("Question " + i + ": " + question.getQuestionString());
 					break;
@@ -172,7 +172,7 @@ public class JSONParser {
 			JSONArray questionArray =currentQuestionObject.getJSONArray("question");
 			for(int j = 0; j < questionArray.length(); ++j) {
 				if(questionArray.getJSONObject(j).getString("language").compareTo("en") == 0) {
-					question.setQuestionString(questionArray.getJSONObject(j).getString("string"));
+					question.setQuestionString(questionArray.getJSONObject(j).getString("string").replace("\n", ""));
 					System.out.println("Question " + i + ": " + question.getQuestionString());
 					break;
 				}
@@ -258,7 +258,7 @@ public class JSONParser {
 						System.out.println("No query detected. Skipping this file!");
 						return questionsList;
 					}
-					question.setQuestionString(currQuestion.getJSONArray("language").getJSONObject(j).getString("question"));
+					question.setQuestionString(currQuestion.getJSONArray("language").getJSONObject(j).getString("question").replace("\n", ""));
 				}	
 			}
 			//Get answers
@@ -330,7 +330,7 @@ public class JSONParser {
 						System.out.println("No query detected. Skipping this file!");
 						return questionsList;
 					}
-					question.setQuestionString(currQuestion.getJSONObject(j).getString("string"));
+					question.setQuestionString(currQuestion.getJSONObject(j).getString("string").replace("\n", ""));
 			
 			}
 			//Get answers
@@ -396,7 +396,7 @@ public class JSONParser {
 			JSONArray bodyArray =currentQuestionObject.getJSONArray("body");
 			for(int j = 0; j < bodyArray.length(); ++j) {
 				if(bodyArray.getJSONObject(j).getString("language").compareTo("en") == 0) {
-					question.setQuestionString(bodyArray.getJSONObject(j).getString("string"));
+					question.setQuestionString(bodyArray.getJSONObject(j).getString("string").replace("\n", ""));
 					System.out.println("Question " + i + ": " + question.getQuestionString());
 					break;
 				}
@@ -416,6 +416,65 @@ public class JSONParser {
 					question.addAnswer(answersArray.getJSONObject(j).getString("string"));
 				}
 			}
+			questionsList.add(question);
+		}
+		return questionsList;
+	}
+	public static ArrayList<Question> parseQald7File6(String fileDirectory, String sourceString, String endpoint) {
+		ArrayList<Question> questionsList = new ArrayList<Question>();
+		System.out.println("Reading file " + fileDirectory + "...");
+		String fileContents = FileManager.readWholeFile(fileDirectory);
+		System.out.println("Parsing file...");
+		JSONObject obj = new JSONObject(fileContents);
+		JSONArray arr = obj.getJSONArray("questions");
+		for (int i = 0; i < arr.length(); i++) {
+			// Skip the hybrid questions 
+			if(arr.getJSONObject(i).getString("hybrid").compareTo("true") == 0)
+				continue;
+			Question question = new Question();
+			// The source is predefined
+			question.setQuestionSource(sourceString);
+			question.setDatabase(endpoint);
+			question.setFilepath(fileDirectory);
+			JSONObject currentQuestionObject = arr.getJSONObject(i);
+			String type = currentQuestionObject.getString("answertype");
+			JSONArray bodyArray =currentQuestionObject.getJSONArray("question");
+			
+			question.setQuestionString(bodyArray.getJSONObject(0).getString("string").replace("\n", ""));
+			System.out.println("Question " + i + ": " + question.getQuestionString());
+			
+			question.setQuestionQuery(currentQuestionObject.getJSONObject("query").getString("pseudo"));
+			JSONArray answersArray = currentQuestionObject.getJSONArray("answers");
+			ArrayList<String> answers = new ArrayList<String>();
+			if(arr.getJSONObject(i).getString("answertype").compareTo("resource") == 0) {
+				for(int j = 0; j < arr.getJSONObject(i).getJSONArray("answers").getJSONObject(0).getJSONObject("results").getJSONArray("bindings").length(); j++) {
+					answers.add(arr.getJSONObject(i).getJSONArray("answers").getJSONObject(0).getJSONObject("results").getJSONArray("bindings").getJSONObject(j).getJSONObject("uri").getString("value"));
+				}
+			}
+			
+			else if(arr.getJSONObject(i).getString("answertype").compareTo("boolean") == 0) {
+				if(arr.getJSONObject(i).getJSONArray("answers").getJSONObject(0).getBoolean("boolean"))
+					answers.add("true");
+				else
+					answers.add("false");
+			}
+			else if(arr.getJSONObject(i).getString("answertype").compareTo("date") == 0) {
+				for(int j = 0; j < arr.getJSONObject(i).getJSONArray("answers").getJSONObject(0).getJSONObject("results").getJSONArray("bindings").length(); j++) {
+					answers.add(arr.getJSONObject(i).getJSONArray("answers").getJSONObject(0).getJSONObject("results").getJSONArray("bindings").getJSONObject(j).getJSONObject("date").getString("value"));
+				}
+			}
+			else if(arr.getJSONObject(i).getString("answertype").compareTo("number") == 0) {
+				for(int j = 0; j < arr.getJSONObject(i).getJSONArray("answers").getJSONObject(0).getJSONObject("results").getJSONArray("bindings").length(); j++) {
+					answers.add(arr.getJSONObject(i).getJSONArray("answers").getJSONObject(0).getJSONObject("results").getJSONArray("bindings").getJSONObject(j).getJSONObject("c").getString("value"));
+				}
+			}
+			else if(arr.getJSONObject(i).getString("answertype").compareTo("string") == 0) {
+				for(int j = 0; j < arr.getJSONObject(i).getJSONArray("answers").getJSONObject(0).getJSONObject("results").getJSONArray("bindings").length(); j++) {
+					answers.add(arr.getJSONObject(i).getJSONArray("answers").getJSONObject(0).getJSONObject("results").getJSONArray("bindings").getJSONObject(j).getJSONObject("string").getString("value"));
+					}
+				}
+			
+			question.setAnswers(answers);
 			questionsList.add(question);
 		}
 		return questionsList;
