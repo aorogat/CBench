@@ -39,7 +39,7 @@ public class JSONParser {
 		    	JSONObject currentQuestionLanguageObject = objectArr.getJSONObject(j);
 		    	if(currentQuestionLanguageObject.getString("language").compareTo("en") == 0) {
 		    		question.setQuestionString(currentQuestionLanguageObject.getString("string").replace("\n", ""));
-		    		System.out.println("Question " + i + ": " + question.getQuestionString());
+		    		//System.out.println("Question " + i + ": " + question.getQuestionString());
 		    		break;
 		    	}
 		    }
@@ -115,7 +115,7 @@ public class JSONParser {
 					question.setQuestionQuery(languageArr.getJSONObject(j).getString("SPARQL"));
 					question.setQuestionString(languageArr.getJSONObject(j).getString("question").replace("\n", ""));
 					if(print)
-						System.out.println("Question " + i + ": " + question.getQuestionString());
+						//System.out.println("Question " + i + ": " + question.getQuestionString());
 					break;
 				}
 			}
@@ -173,7 +173,7 @@ public class JSONParser {
 			for(int j = 0; j < questionArray.length(); ++j) {
 				if(questionArray.getJSONObject(j).getString("language").compareTo("en") == 0) {
 					question.setQuestionString(questionArray.getJSONObject(j).getString("string").replace("\n", ""));
-					System.out.println("Question " + i + ": " + question.getQuestionString());
+					//System.out.println("Question " + i + ": " + question.getQuestionString());
 					break;
 				}
 			}
@@ -319,11 +319,19 @@ public class JSONParser {
 			JSONArray currQuestion = arr.getJSONObject(i).getJSONArray("question");
 			
 			for(int j = 0; j < currQuestion.length(); j++) {
+				
 					try {
 						//System.out.print(currQuestion.getJSONArray("language").getJSONObject(j).getString("question"));
 						if(arr.getJSONObject(i).getJSONObject("query").getString("pseudo").isEmpty()) {
 							System.out.println("No query detected. Skipping this one!");
 							continue;
+						}
+						else {
+							String queryTemp = arr.getJSONObject(i).getJSONObject("query").getString("pseudo");
+							if(queryTemp.charAt(0) == ' ') {
+								queryTemp.replaceFirst(" ", "");
+							}
+							question.setQuestionQuery(queryTemp);
 						}
 					}
 					catch(Exception e){
@@ -397,7 +405,7 @@ public class JSONParser {
 			for(int j = 0; j < bodyArray.length(); ++j) {
 				if(bodyArray.getJSONObject(j).getString("language").compareTo("en") == 0) {
 					question.setQuestionString(bodyArray.getJSONObject(j).getString("string").replace("\n", ""));
-					System.out.println("Question " + i + ": " + question.getQuestionString());
+					//System.out.println("Question " + i + ": " + question.getQuestionString());
 					break;
 				}
 			}
@@ -441,7 +449,7 @@ public class JSONParser {
 			JSONArray bodyArray =currentQuestionObject.getJSONArray("question");
 			
 			question.setQuestionString(bodyArray.getJSONObject(0).getString("string").replace("\n", ""));
-			System.out.println("Question " + i + ": " + question.getQuestionString());
+			//System.out.println("Question " + i + ": " + question.getQuestionString());
 			
 			question.setQuestionQuery(currentQuestionObject.getJSONObject("query").getString("pseudo"));
 			JSONArray answersArray = currentQuestionObject.getJSONArray("answers");
