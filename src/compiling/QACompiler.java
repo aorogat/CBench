@@ -33,6 +33,7 @@ public class QACompiler {
 	public static ArrayList<String> changeLogMessagesOther = new ArrayList<String>();
 	public static ArrayList<String> errorLogMessages = new ArrayList<String>();
 	public static int counter = 0;
+	public static int outdatedcounter = 0;
 	
 	public static void main(String[] args) {
         
@@ -90,7 +91,7 @@ public class QACompiler {
 		            e.printStackTrace();
 		        }
 				
-				try (FileWriter file = new FileWriter("./changeLogMessagesTimeout.tsv")) {
+				try (FileWriter file = new FileWriter("./changeLogMessagesTimeout.txt")) {
 					for(int i = 0; i < changeLogMessagesTimeout.size(); i++){
 						file.write(changeLogMessagesTimeout.get(i) +  "\t\n");
 					}
@@ -99,7 +100,7 @@ public class QACompiler {
 		            e.printStackTrace();
 		        }
 				
-				try (FileWriter file = new FileWriter("./changeLogMessagesException.tsv")) {
+				try (FileWriter file = new FileWriter("./changeLogMessagesException.txt")) {
 					for(int i = 0; i < changeLogMessagesException.size(); i++){
 						file.write(changeLogMessagesException.get(i) +  "\t\n");
 					}
@@ -108,7 +109,7 @@ public class QACompiler {
 		            e.printStackTrace();
 		        }
 				//changeLogMessagesOutdated
-				try (FileWriter file = new FileWriter("./changeLogMessagesOutdated.tsv")) {
+				try (FileWriter file = new FileWriter("./changeLogMessagesOutdated.txt")) {
 					for(int i = 0; i < changeLogMessagesOutdated.size(); i++){
 						file.write(changeLogMessagesOutdated.get(i) +  "\t\n");
 					}
@@ -117,7 +118,7 @@ public class QACompiler {
 		            e.printStackTrace();
 		        }
 				//changeLogMessagesDuplicate
-				try (FileWriter file = new FileWriter("./changeLogMessagesDuplicate.tsv")) {
+				try (FileWriter file = new FileWriter("./changeLogMessagesDuplicate.txt")) {
 					for(int i = 0; i < changeLogMessagesDuplicate.size(); i++){
 						file.write(changeLogMessagesDuplicate.get(i) +  "\t\n");
 					}
@@ -126,7 +127,7 @@ public class QACompiler {
 		            e.printStackTrace();
 		        }
 				//changeLogMessagesOther
-				try (FileWriter file = new FileWriter("./changeLogMessagesOther.tsv")) {
+				try (FileWriter file = new FileWriter("./changeLogMessagesOther.txt")) {
 					for(int i = 0; i < changeLogMessagesOther.size(); i++){
 						file.write(changeLogMessagesOther.get(i) +  "\t\n");
 					}
@@ -136,7 +137,7 @@ public class QACompiler {
 		        }
 				System.out.println("changeLogMessagesException: " + changeLogMessagesException.size());
 				System.out.println("changeLogMessagesTimeout: " + changeLogMessagesTimeout.size());
-				System.out.println("changeLogMessagesOutdated: " + changeLogMessagesOutdated.size());
+				System.out.println("changeLogMessagesOutdated: " + outdatedcounter);
 				System.out.println("changeLogMessagesDuplicate: " + changeLogMessagesDuplicate.size());
 				System.out.println("Total messages: " + (changeLogMessagesDuplicate.size()+changeLogMessagesOutdated.size()+changeLogMessagesTimeout.size()+changeLogMessagesException.size()));
 				System.out.println("Total queries: " + counter);
@@ -149,6 +150,7 @@ public class QACompiler {
 		JSONObject output = new JSONObject();
 		output.put("question", q.getQuestionString());
 		output.put("source", q.getQuestionSource());
+		output.put("query", q.getQuestionQuery());
 		output.put("answers", q.getAnswers());
 		return output;
 	}
@@ -172,8 +174,8 @@ public class QACompiler {
 		ArrayList<ArrayList<Question>> results = new ArrayList<ArrayList<Question>>();
 
 		//1
-				results.add(XMLParser.parseQald4("./data/original/QALD-master/1/data/dbpedia-test.xml", "QALD-1", "dbpedia", false));
-				results.add(XMLParser.parseQald4("./data/original/QALD-master/1/data/dbpedia-train.xml", "QALD-1", "dbpedia", false));
+				results.add(XMLParser.parseQald1("./data/original/QALD-master/1/data/dbpedia-test.xml", "QALD-1", "dbpedia", false));
+				results.add(XMLParser.parseQald1("./data/original/QALD-master/1/data/dbpedia-train.xml", "QALD-1", "dbpedia", false));
 				results.add(XMLParser.parseQald4("./data/original/QALD-master/1/data/dbpedia-train-CDATA.xml", "QALD-1", "dbpedia", false));
 				
 				//results.add(XMLParser.parseQald4("./data/original/QALD-master/1/data/musicbrainz-test.xml", "QALD-1", "musicbrainz", false));
@@ -183,13 +185,13 @@ public class QACompiler {
 				
 		//2
 		
-		results.add(XMLParser.parseQald4("./data/original/QALD-master/2/data/dbpedia-train-answers.xml", "QALD-2", "dbpedia", false));
+		results.add(XMLParser.parseQald1("./data/original/QALD-master/2/data/dbpedia-train-answers.xml", "QALD-2", "dbpedia", false));
 		
 		//Freez
 		//results.add(XMLParser.parseQald4("./data/original/QALD-master/2/data/musicbrainz-train-answers.xml", "QALD-2", "musicbrainz", false));
 		
 		
-		results.add(XMLParser.parseQald4("./data/original/QALD-master/2/data/participants-challenge-answers.xml", "QALD-2", "dbpedia", false));
+		results.add(XMLParser.parseQald1("./data/original/QALD-master/2/data/participants-challenge-answers.xml", "QALD-2", "dbpedia", false));
 		//3
 		
 		results.add(XMLParser.parseQald4("./data/original/QALD-master/3/data/dbpedia-test-answers.xml", "QALD-3", "dbpedia", true));
@@ -270,47 +272,8 @@ public class QACompiler {
 	static ArrayList<ArrayList<Question>> parseQuestionsBroken()
 	{
 		ArrayList<ArrayList<Question>> results = new ArrayList<ArrayList<Question>>();
-
-		
-		//2		
-		//Freeze
-		//results.add(XMLParser.parseQald4("./data/original/QALD-master/2/data/musicbrainz-train-answers.xml", "QALD-2", "musicbrainz", false));
-		
-		//3
-		
-		//Freeze
-		//results.add(XMLParser.parseQald4("./data/original/QALD-master/3/data/musicbrainz-test-answers.xml", "QALD-3", "musicbrainz", true));
-		//results.add(XMLParser.parseQald4("./data/original/QALD-master/3/data/musicbrainz-train-answers.xml", "QALD-3", "musicbrainz", true));
-		
-		//4 
-
-		//Down for maintenance
-		//results.add(XMLParser.parseQald4("./data/original/QALD-master/4/data/qald-4_biomedical_test.xml", "QALD-4"));
-		//results.add(XMLParser.parseQald4("./data/original/QALD-master/4/data/qald-4_biomedical_train.xml", "QALD-4"));
-		//results.add(XMLParser.parseQald4("./data/original/QALD-master/4/data/qald-4_biomedical_test_withanswers.xml", "QALD-4", "mannheimu"));
-		//results.add(XMLParser.parseQald4("./data/original/QALD-master/4/data/qald-4_biomedical_train_withanswers.xml", "QALD-4", "mannheimu"));
-		
-		//5
-		//NOT NEEDED?
-		//results.add(XMLParser.parseQald5("./data/original/QALD-master/5/data/qald-5_train.xml", "QALD-5"));
-		///QuestionAnswerBenchmark/data/original/QALD-master/5/data/qald-5_train.json
-		///QuestionAnswerBenchmark/data/original/QALD-master/5/data/qald-5_train.xml
-		
-		//6
-		//7
-		//Freezes at 6
-		//results.add(JSONParser.parseQald7File2("./data/original/QALD-master/7/data/qald-7-test-en-wikidata.json", "QALD-7", "wikidata"));
-		
-		//Freeze
-		//results.add(JSONParser.parseQald7File2("./data/original/QALD-master/7/data/qald-7-train-en-wikidata.json", "QALD-7", "wikidata"));
-		
-		//8
-		
-		//not
-		//results.add(JSONParser.parseQald7File2("./data/original/QALD-master/8/data/wikidata-train-7.json", "QALD-8", "wikidata"));
-		
-		//9 
-		
+		results.add(JSONParser.parseQald7File4("./data/original/QALD-master/7/data/qald-7-train-hybrid.json", "QALD-7", "dbpedia"));
+				
 		return results;
 	}
 	
@@ -399,7 +362,7 @@ public class QACompiler {
 	            //System.out.println("7");
 	            	//test.run();
 	            //System.out.println("current thread: " + Thread.currentThread().getName());
-	            	LOCK.wait(5000);
+	            	LOCK.wait(15000);
 	            }
 				//System.out.println("7");
 				if(resultsTemp[0] == null) {
@@ -431,16 +394,25 @@ public class QACompiler {
     	        return returnAnswers;
         	}
         	else if(e.getMessage().compareTo("SPARQL query timed out.")==0){
-        		changeLogMessagesTimeout.add(question.getFilepath()+ ";" + "'" + question.getQuestionString() + ";'Query times out when run. Stored answer is kept. ;"
-    					+ question.getQuestionQuery() + "\t\t");
+        		String expectedAnswers = "";
+        		for(int i = 0; i< question.getAnswers().size(); i++) {
+        			expectedAnswers = expectedAnswers + question.getAnswers().get(i) +"\n";
+        		}
+        		changeLogMessagesTimeout.add("File: " +question.getFilepath()+ "\n" + "Question: '" + question.getQuestionString() + "\nQuery: " + question.getQuestionQuery()+
+        				"\nExpected Answers: "+ expectedAnswers
+    					+ "\n Returned Answers: timeout\n\n");
         		returnAnswers = answers;
         		return returnAnswers;
         	}
         	
         	else
         	{
-        		changeLogMessagesException.add(question.getFilepath()+ ";" + "'" + question.getQuestionString() + ";"
-    					+ e+"\t\t");
+        		String expectedAnswers = "";
+        		for(int i = 0; i< question.getAnswers().size(); i++) {
+        			expectedAnswers = expectedAnswers + question.getAnswers().get(i) +"\n";
+        		}
+        		changeLogMessagesException.add("File: "+ question.getFilepath()+ "\n" + "Question: '" + question.getQuestionString() + "\nQuery: " + question.getQuestionQuery()+"\n"
+    					+ "Expected Answers: "+ expectedAnswers + "\nReturned Answers: "+ e +"\n\n");
         		returnAnswers = answers;
         		return returnAnswers;
         	}
@@ -452,38 +424,49 @@ public class QACompiler {
        // System.out.println("newAnswers.size(): " + newAnswers.size());    
         //System.out.println("answers.size(): " + answers.size()); 
         if(newAnswers.size() == answers.size()) {
+        	boolean outdated = false;
 	        	for(int i = 0; i < answers.size(); i++) {
 	        		String varName = newAnswers.get(i).varNames().next();
         			String fetched = newAnswers.get(i).get(varName).toString().split("\\^")[0];
 
 	        		if(answers.get(i).compareTo(fetched) != 0) {
-	        			changeLogMessagesOutdated.add(question.getFilepath()+ ";" + "'" + question.getQuestionString() + "' has an outdated answer. ;"
-	        					+ "Stored: " + answers.get(i) +";"
-	        					+ "Fetched: " + fetched +"\t\t");
+	        			changeLogMessagesOutdated.add("File: " + question.getFilepath()+ "\n" + "'" + question.getQuestionString() + "' has an outdated answer. \n"
+	        					+ "Stored: " + answers.get(i) +"\n"
+	        					+ "Fetched: " + fetched +"\n\n");
 	    				returnAnswers.add(fetched);
+	    				outdated=true;
+	    				
 	    			}
 	    			else {
 	    				//System.out.println("	Answer matches. Updating.");
 	    				returnAnswers.add(answers.get(i));
+	    				
 	    			}
-	    		}		
+	        		
+	        	}
+	        	if(!outdated) {
+        			outdatedcounter++;
+        		}
+	    			
 	        }
 	        else 
 	        {
 	        	if(newAnswers.size()>0)
 	        	{
-		        	changeLogMessagesOutdated.add(question.getFilepath() + ";" +"'" + question.getQuestionString() + "'" + ";Number of stored answers do not match number of answers found online. ;"
-		        			+ "Stored: "+ answers.size() + ";"
-		        			+ "Fetched: "+ newAnswers.size() +"\t ");
+		        	changeLogMessagesOutdated.add(question.getFilepath() + "\n" +"'" + question.getQuestionString() + "'" + "\nNumber of stored answers do not match number of answers found online.\n"
+		        			+ "Stored: "+ answers.size() + "\n"
+		        			+ "Fetched: "+ newAnswers.size() +"\n\n ");
 		        	for(int i = 0; i < newAnswers.size(); i++) {
 		        		String varName = newAnswers.get(i).varNames().next();
 		        		String fetched = newAnswers.get(i).get(varName).toString().split("\\^")[0];
 		        		returnAnswers.add(fetched);
+		        		return returnAnswers;
 		        	}
 	        	}
 	        	else {
-	        		changeLogMessagesOther.add(question.getFilepath() + ";" +"'" + question.getQuestionString() + "'" + ";;Query returns no answers. Keeping stored answers.\t\t");
+	        		changeLogMessagesOther.add(question.getFilepath() + "\n" +"'" + question.getQuestionString() + "'" + "\nQuery returns no answers. Keeping stored answers.\n" + question.getQuestionQuery() + "\n\n");
 	        		returnAnswers = answers;
+	        		return returnAnswers;
 	        	}
 	        }
         return returnAnswers;
