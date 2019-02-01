@@ -3,6 +3,8 @@ package compiling;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Dictionary;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
@@ -32,20 +34,24 @@ public class QACompiler {
 	public static ArrayList<String> changeLogMessagesDuplicate = new ArrayList<String>();
 	public static ArrayList<String> changeLogMessagesOther = new ArrayList<String>();
 	public static ArrayList<String> errorLogMessages = new ArrayList<String>();
+	public static HashMap<String, Integer> TypesofExceptionsCounters = new HashMap<String, Integer> ();
+	public static ArrayList<String> TypesofExceptions = new ArrayList<String>();
+	public static ArrayList<String> UnresolvedPrefixedNameExceptions = new ArrayList<String>();
+	public static ArrayList<String> LexicalErrorExceptions = new ArrayList<String>();
+	public static ArrayList<String> UnexpectedEncounterExceptions = new ArrayList<String>();
+	public static ArrayList<String> OtherExceptions = new ArrayList<String>();
+
 	public static int counter = 0;
 	public static int outdatedcounter = 0;
 	
 	public static void main(String[] args) {
-        
+	
         totalQuestions = parseQuestions();
         checkForRedundancy();
 		System.out.println("Check for valid answers");
 		validateAnswers();
 		System.out.print("Done. \n");
 		writeToFile();
-		
-		
-        
 	return;
 	}
 	
@@ -83,7 +89,11 @@ public class QACompiler {
 	//Create json file of questions/answers and txt file of changes.
 	static void writeToFile() {
 		//Write
-			//changeLogMessagesException
+			    for(int i =0; i< TypesofExceptions.size(); i++) {
+			    	System.out.println(TypesofExceptions.get(i) + ": " + TypesofExceptionsCounters.get(TypesofExceptions.get(i)));
+			    }
+			    System.out.println("\n");
+				System.out.println(TypesofExceptions.size());
 				try (FileWriter file = new FileWriter("./finalQuestionAnswerList.json")) {
 					file.write(QuestionArrayListToJSONArray(totalQuestions).toString(4));
 		            file.flush();
@@ -91,9 +101,48 @@ public class QACompiler {
 		            e.printStackTrace();
 		        }
 				
+				try (FileWriter file = new FileWriter("./UnresolvedPrefixedNameExceptionsList.txt")) {
+					file.write("Total: "+ UnresolvedPrefixedNameExceptions.size()+  "\n\n");
+					for(int i = 0; i < UnresolvedPrefixedNameExceptions.size(); i++){
+						file.write(UnresolvedPrefixedNameExceptions.get(i) +  "\n\n");
+					}
+		            file.flush();
+		        } catch (IOException e) {
+		            e.printStackTrace();
+		        }
+				
+				try (FileWriter file = new FileWriter("./OtherExceptionsList.txt")) {
+					file.write("Total: "+ OtherExceptions.size()+  "\n\n");
+					for(int i = 0; i < OtherExceptions.size(); i++){
+						file.write(OtherExceptions.get(i) +  "\n\n");
+					}
+		            file.flush();
+		        } catch (IOException e) {
+		            e.printStackTrace();
+		        }
+				try (FileWriter file = new FileWriter("./LexicalErrorExceptionsList.txt")) {
+					file.write("Total: "+ LexicalErrorExceptions.size()+  "\n\n");
+					for(int i = 0; i < LexicalErrorExceptions.size(); i++){
+						file.write(LexicalErrorExceptions.get(i) +  "\n\n");
+					}
+		            file.flush();
+		        } catch (IOException e) {
+		            e.printStackTrace();
+		        }
+				
+				try (FileWriter file = new FileWriter("./UnexpectedEncounterExceptionsList.txt")) {
+					file.write("Total: "+ UnexpectedEncounterExceptions.size()+  "\n\n");
+					for(int i = 0; i < UnexpectedEncounterExceptions.size(); i++){
+						file.write(UnexpectedEncounterExceptions.get(i) +  "\n\n");
+					}
+		            file.flush();
+		        } catch (IOException e) {
+		            e.printStackTrace();
+		        }
+				
 				try (FileWriter file = new FileWriter("./changeLogMessagesTimeout.txt")) {
 					for(int i = 0; i < changeLogMessagesTimeout.size(); i++){
-						file.write(changeLogMessagesTimeout.get(i) +  "\t\n");
+						file.write(changeLogMessagesTimeout.get(i) +  "\n\n");
 					}
 		            file.flush();
 		        } catch (IOException e) {
@@ -102,7 +151,7 @@ public class QACompiler {
 				
 				try (FileWriter file = new FileWriter("./changeLogMessagesException.txt")) {
 					for(int i = 0; i < changeLogMessagesException.size(); i++){
-						file.write(changeLogMessagesException.get(i) +  "\t\n");
+						file.write(changeLogMessagesException.get(i) +  "\n\n");
 					}
 		            file.flush();
 		        } catch (IOException e) {
@@ -111,7 +160,7 @@ public class QACompiler {
 				//changeLogMessagesOutdated
 				try (FileWriter file = new FileWriter("./changeLogMessagesOutdated.txt")) {
 					for(int i = 0; i < changeLogMessagesOutdated.size(); i++){
-						file.write(changeLogMessagesOutdated.get(i) +  "\t\n");
+						file.write(changeLogMessagesOutdated.get(i) +  "\n\n");
 					}
 		            file.flush();
 		        } catch (IOException e) {
@@ -120,7 +169,7 @@ public class QACompiler {
 				//changeLogMessagesDuplicate
 				try (FileWriter file = new FileWriter("./changeLogMessagesDuplicate.txt")) {
 					for(int i = 0; i < changeLogMessagesDuplicate.size(); i++){
-						file.write(changeLogMessagesDuplicate.get(i) +  "\t\n");
+						file.write(changeLogMessagesDuplicate.get(i) +  "\n\n");
 					}
 		            file.flush();
 		        } catch (IOException e) {
@@ -129,7 +178,7 @@ public class QACompiler {
 				//changeLogMessagesOther
 				try (FileWriter file = new FileWriter("./changeLogMessagesOther.txt")) {
 					for(int i = 0; i < changeLogMessagesOther.size(); i++){
-						file.write(changeLogMessagesOther.get(i) +  "\t\n");
+						file.write(changeLogMessagesOther.get(i) +  "\n\n");
 					}
 		            file.flush();
 		        } catch (IOException e) {
@@ -174,9 +223,9 @@ public class QACompiler {
 		ArrayList<ArrayList<Question>> results = new ArrayList<ArrayList<Question>>();
 
 		//1
-				results.add(XMLParser.parseQald1("./data/original/QALD-master/1/data/dbpedia-test.xml", "QALD-1", "dbpedia", false));
-				results.add(XMLParser.parseQald1("./data/original/QALD-master/1/data/dbpedia-train.xml", "QALD-1", "dbpedia", false));
-				results.add(XMLParser.parseQald4("./data/original/QALD-master/1/data/dbpedia-train-CDATA.xml", "QALD-1", "dbpedia", false));
+		results.add(XMLParser.parseQald1("./data/original/QALD-master/1/data/dbpedia-test.xml", "QALD-1", "dbpedia", false));
+		results.add(XMLParser.parseQald1("./data/original/QALD-master/1/data/dbpedia-train.xml", "QALD-1", "dbpedia", false));
+		results.add(XMLParser.parseQald4("./data/original/QALD-master/1/data/dbpedia-train-CDATA.xml", "QALD-1", "dbpedia", false));
 				
 				//results.add(XMLParser.parseQald4("./data/original/QALD-master/1/data/musicbrainz-test.xml", "QALD-1", "musicbrainz", false));
 				
@@ -318,7 +367,39 @@ public class QACompiler {
 		}
 		return input.next();
 	}
-	
+	static void addException(String exec, Question question) {
+		int temp = 0;
+		if(exec == null) { return; }
+		String exception = exec;
+		if(exception.contains("Unresolved prefixed name:")){
+			exception = "Unresolved prefixed name";
+			UnresolvedPrefixedNameExceptions.add("File: "+ question.getFilepath()+ "\n" + "Question: '" + question.getQuestionString() + "\nQuery: " + question.getQuestionQuery()+"\n"
+					+ "Exception: "+ exec +"\n\n");;
+		}
+		
+		else if(exception.contains("Was expecting one of:")){
+			exception = "Was expecting one of";
+			UnexpectedEncounterExceptions.add("File: "+ question.getFilepath()+ "\n" + "Question: '" + question.getQuestionString() + "\nQuery: " + question.getQuestionQuery()+"\n"
+					+ "Exception: "+ exec +"\n\n");;
+		}
+		else if(exception.contains("Lexical error at")){
+			exception = "Lexical error at";
+			LexicalErrorExceptions.add("File: "+ question.getFilepath()+ "\n" + "Question: '" + question.getQuestionString() + "\nQuery: " + question.getQuestionQuery()+"\n"
+					+ "Exception: "+ exec +"\n\n");;
+		}
+		else {
+			OtherExceptions.add("File: "+ question.getFilepath()+ "\n" + "Question: '" + question.getQuestionString() + "\nQuery: " + question.getQuestionQuery()+"\n"
+					+ "Exception: "+ exec +"\n\n");;
+		}
+		if(TypesofExceptionsCounters.get(exception) != null) {
+			temp = TypesofExceptionsCounters.get(exception);
+		}
+		else {
+			TypesofExceptions.add(exception);
+		}
+		TypesofExceptionsCounters.put(exception, temp+1);
+		
+	}
 
 	static ArrayList<String> getUpdatedAnswers(Question question){
 		ArrayList<String> returnAnswers = new ArrayList<String>();
@@ -334,23 +415,34 @@ public class QACompiler {
 
         	//System.out.println("2");
         	final ResultSet[] resultsTemp = new ResultSet[1];
+        	final int[] resultErrorCode = new int[1];
 
         	//System.out.println("3");
         	resultsTemp[0] = null;
+        	resultErrorCode[0] = -1;
         	//System.out.println("4");
         	ResultSet results = null;
         	//System.out.println("5");
         	Object LOCK = new Object();
         	//System.out.println("6");
         	//System.out.println("\n");
+        	
+        	
             Thread test = new Thread("test") {
             		public void run() {
             			synchronized(LOCK){
-            	//			System.out.println("	a");
-            				//System.out.println("other thread: " + Thread.currentThread().getName());
-	            			resultsTemp[0] = exec.execSelect();
-	            	//		System.out.println("	b");
+            				try {
+            					resultErrorCode[0] = -1;
+            					resultsTemp[0] = exec.execSelect();
+            					resultErrorCode[0] = 0;
+            				}
+            				catch(Exception e) {
+            					resultErrorCode[0] = -2;
+            					resultsTemp[0] = null;
+            				}
+            				
 	            			LOCK.notifyAll();
+            				
             			}
             		}
             };
@@ -359,38 +451,36 @@ public class QACompiler {
 	            
 	            synchronized(LOCK) {
 	            	test.start();
-	            //System.out.println("7");
-	            	//test.run();
-	            //System.out.println("current thread: " + Thread.currentThread().getName());
 	            	LOCK.wait(15000);
 	            }
-				//System.out.println("7");
-				if(resultsTemp[0] == null) {
+				if(resultErrorCode[0] == -1) {
 					test.getState();
+					
 					throw(new Exception("SPARQL query timed out."));
+				}
+				else if(resultErrorCode[0] == -2) {
+					return returnAnswers;
 				}
 				else {
 					results = resultsTemp[0];
 				}	
-			//System.out.println("Is thi null?" + results);
 	        newAnswers = ResultSetFormatter.toList(results);
-	        for(int i =0; i< newAnswers.size(); i++) {
-		//		System.out.println("	" + newAnswers.get(i));
-	            }
 		}
 		catch(Exception e) {
-			//System.out.println(e);
+			addException(e.getMessage(), question);
 			if(e.getMessage() == null) {
 				return answers;
 			}
         	if(e.getMessage().compareTo("Not a ResultSet result")==0){
-     
+                
+                /*
         		QueryExecution exec = QueryExecutionFactory.sparqlService(getDatabaseDomain(question.getDatabase()), qs.asQuery());
-    	        if(exec.execAsk())
+        		System.out.println(exec);
+        		if(exec.execAsk())
     	        	returnAnswers.add("true");
     	        else 
     	        	returnAnswers.add("false");
-    	        
+    	        */
     	        return returnAnswers;
         	}
         	else if(e.getMessage().compareTo("SPARQL query timed out.")==0){
