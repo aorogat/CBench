@@ -20,9 +20,9 @@ public class JSONParser {
 	 */
 	public static ArrayList<Question> parseQald9File(String fileDirectory, String sourceString, String endpoint) {
 		ArrayList<Question> questionsList = new ArrayList<Question>();
-		System.out.println("Reading file " + fileDirectory + "...");
+		//System.out.println("Reading file " + fileDirectory + "...");
 		String fileContents = FileManager.readWholeFile(fileDirectory);
-		System.out.println("Parsing file...");
+		//System.out.println("Parsing file...");
 		JSONObject obj = new JSONObject(fileContents);
 		JSONArray arr = obj.getJSONArray("questions");
 		for (int i = 0; i < arr.length(); i++) {
@@ -92,13 +92,13 @@ public class JSONParser {
 	 */
 	public static ArrayList<Question> parseQald7File1(String fileDirectory, String sourceString, boolean print, String endpoint) {
 		ArrayList<Question> questionsList = new ArrayList<Question>();
-		if(print)
-			System.out.println("Reading file " + fileDirectory + "...");
+		//if(print)
+			//System.out.println("Reading file " + fileDirectory + "...");
 		
 		String fileContents = FileManager.readWholeFile(fileDirectory);
 		
-		if(print)
-			System.out.println("Parsing file...");
+		//if(print)
+			//System.out.println("Parsing file...");
 		JSONObject obj = new JSONObject(fileContents);
 		JSONArray arr = obj.getJSONArray("questions");
 		for (int i = 0; i < arr.length(); i++) {
@@ -156,9 +156,9 @@ public class JSONParser {
 	 */
 	public static ArrayList<Question> parseQald7File2(String fileDirectory, String sourceString, String endpoint) {
 		ArrayList<Question> questionsList = new ArrayList<Question>();
-		System.out.println("Reading file " + fileDirectory + "...");
+		//System.out.println("Reading file " + fileDirectory + "...");
 		String fileContents = FileManager.readWholeFile(fileDirectory);
-		System.out.println("Parsing file...");
+		//System.out.println("Parsing file...");
 		JSONObject obj = new JSONObject(fileContents);
 		JSONArray arr = obj.getJSONArray("questions");
 		for (int i = 0; i < arr.length(); i++) {
@@ -180,7 +180,7 @@ public class JSONParser {
 			// This case checks if there's no query in the data set
 			// This is encountered in the qald-6-train-multilingual.json file
 			if(currentQuestionObject.getJSONObject("query").isEmpty()) {
-				System.out.println("No query detected. Skipping this one!");
+				//System.out.println("No query detected. Skipping this one!");
 				continue;
 			}
 			question.setQuestionQuery(currentQuestionObject.getJSONObject("query").getString("sparql"));
@@ -232,9 +232,9 @@ public class JSONParser {
 	 */
 	public static ArrayList<Question> parseQald7File3(String fileDirectory, String sourceString, String endpoint) {
 		ArrayList<Question> questionsList = new ArrayList<Question>();
-		System.out.println("Reading file " + fileDirectory + "...");
+		//System.out.println("Reading file " + fileDirectory + "...");
 		String fileContents = FileManager.readWholeFile(fileDirectory);
-		System.out.println("Parsing file...");
+		//System.out.println("Parsing file...");
 		JSONObject obj = new JSONObject(fileContents);
 		JSONArray arr = obj.getJSONArray("questions");
 		for (int i = 0; i < arr.length(); i++) {
@@ -250,12 +250,12 @@ public class JSONParser {
 					try {
 						//System.out.print(currQuestion.getJSONArray("language").getJSONObject(j).getString("question"));
 						if(currQuestion.getJSONArray("language").getJSONObject(j).getString("SPARQL").isEmpty()) {
-							System.out.println("No query detected. Skipping this one!");
+							//System.out.println("No query detected. Skipping this one!");
 							continue;
 						}
 					}
 					catch(Exception e){
-						System.out.println("No query detected. Skipping this file!");
+						//System.out.println("No query detected. Skipping this file!");
 						return questionsList;
 					}
 					question.setQuestionString(currQuestion.getJSONArray("language").getJSONObject(j).getString("question").replace("\n", ""));
@@ -305,9 +305,9 @@ public class JSONParser {
 	 */
 	public static ArrayList<Question> parseQald7File4(String fileDirectory, String sourceString, String endpoint) {
 		ArrayList<Question> questionsList = new ArrayList<Question>();
-		System.out.println("Reading file " + fileDirectory + "...");
+		//System.out.println("Reading file " + fileDirectory + "...");
 		String fileContents = FileManager.readWholeFile(fileDirectory);
-		System.out.println("Parsing file...");
+		//System.out.println("Parsing file...");
 		JSONObject obj = new JSONObject(fileContents);
 		JSONArray arr = obj.getJSONArray("questions");
 		for (int i = 0; i < arr.length(); i++) {
@@ -323,7 +323,7 @@ public class JSONParser {
 					try {
 						//System.out.print(currQuestion.getJSONArray("language").getJSONObject(j).getString("question"));
 						if(arr.getJSONObject(i).getJSONObject("query").getString("pseudo").isEmpty()) {
-							System.out.println("No query detected. Skipping this one!");
+							//System.out.println("No query detected. Skipping this one!");
 							continue;
 						}
 						else {
@@ -335,7 +335,7 @@ public class JSONParser {
 						}
 					}
 					catch(Exception e){
-						System.out.println("No query detected. Skipping this file!");
+						//System.out.println("No query detected. Skipping this file!");
 						return questionsList;
 					}
 					question.setQuestionString(currQuestion.getJSONObject(j).getString("string").replace("\n", ""));
@@ -385,9 +385,9 @@ public class JSONParser {
 	 */
 	public static ArrayList<Question> parseQald5(String fileDirectory, String sourceString, String endpoint) {
 		ArrayList<Question> questionsList = new ArrayList<Question>();
-		System.out.println("Reading file " + fileDirectory + "...");
+		//System.out.println("Reading file " + fileDirectory + "...");
 		String fileContents = FileManager.readWholeFile(fileDirectory);
-		System.out.println("Parsing file...");
+		//System.out.println("Parsing file...");
 		JSONObject obj = new JSONObject(fileContents);
 		JSONArray arr = obj.getJSONArray("questions");
 		for (int i = 0; i < arr.length(); i++) {
@@ -430,9 +430,9 @@ public class JSONParser {
 	}
 	public static ArrayList<Question> parseQald7File6(String fileDirectory, String sourceString, String endpoint) {
 		ArrayList<Question> questionsList = new ArrayList<Question>();
-		System.out.println("Reading file " + fileDirectory + "...");
+		//System.out.println("Reading file " + fileDirectory + "...");
 		String fileContents = FileManager.readWholeFile(fileDirectory);
-		System.out.println("Parsing file...");
+		//System.out.println("Parsing file...");
 		JSONObject obj = new JSONObject(fileContents);
 		JSONArray arr = obj.getJSONArray("questions");
 		for (int i = 0; i < arr.length(); i++) {
