@@ -5,8 +5,11 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Dictionary;
 import java.util.HashMap;
+import java.util.Hashtable;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map.Entry;
+import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
 import org.apache.jena.query.Dataset;
@@ -18,6 +21,7 @@ import org.apache.jena.query.QuerySolution;
 import org.apache.jena.query.ReadWrite;
 import org.apache.jena.query.ResultSet;
 import org.apache.jena.query.ResultSetFormatter;
+import org.apache.jena.rdf.model.Model;
 import org.apache.jena.rdf.model.RDFNode;
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -32,20 +36,37 @@ public class QACompiler {
 	public static ArrayList<String> changeLogMessagesException = new ArrayList<String>();
 	public static ArrayList<String> changeLogMessagesOutdated= new ArrayList<String>();
 	public static ArrayList<String> changeLogMessagesDuplicate = new ArrayList<String>();
+	public static ArrayList<String> changeLogMessagesNoAnswers = new ArrayList<String>();
 	public static ArrayList<String> changeLogMessagesOther = new ArrayList<String>();
+	public static ArrayList<String> changeLogMessagesRemoved = new ArrayList<String>();
 	public static ArrayList<String> errorLogMessages = new ArrayList<String>();
+	
 	public static HashMap<String, Integer> TypesofExceptionsCounters = new HashMap<String, Integer> ();
+	
 	public static ArrayList<String> TypesofExceptions = new ArrayList<String>();
 	public static ArrayList<String> UnresolvedPrefixedNameExceptions = new ArrayList<String>();
 	public static ArrayList<String> LexicalErrorExceptions = new ArrayList<String>();
 	public static ArrayList<String> UnexpectedEncounterExceptions = new ArrayList<String>();
+	public static ArrayList<String> EncounteredPname  = new ArrayList<String>();
 	public static ArrayList<String> OtherExceptions = new ArrayList<String>();
-
+	public static String[] keywords = {"select", "ask", "describe", "construct", "distinct", "limit", "offset", "order by", "filter", "and","union", "opt", "graph", "not exists", "minus", "exists", "count", "max","min", "avg", "sum", "group by", "having"};
+	public static Hashtable<String, Integer> keywordCount = new Hashtable<String, Integer>();
 	public static int counter = 0;
 	public static int outdatedcounter = 0;
+	public static int subqueriescounter = 0;
+	
+	//Shallow Analysis
+	public static Hashtable<Integer, Integer> tripleCounter = new Hashtable<Integer, Integer>();
+	public static Hashtable<String, Integer> operatorDistribution = new Hashtable<String, Integer>();
+	public static Hashtable<String, Integer> subqueryDistribution = new Hashtable<String, Integer>();
+	
+	public static Hashtable<Integer, Integer> tripleCounterFull = new Hashtable<Integer, Integer>();
+	public static Hashtable<String, Integer> operatorDistributionFull = new Hashtable<String, Integer>();
+	public static Hashtable<String, Integer> subqueryDistributionFull = new Hashtable<String, Integer>();
+	
 	
 	public static void main(String[] args) {
-	
+		initHashmaps();
         totalQuestions = parseQuestions();
         checkForRedundancy();
 		System.out.println("Check for valid answers");
@@ -54,7 +75,47 @@ public class QACompiler {
 		writeToFile();
 	return;
 	}
-	
+	public static void initHashmaps() {
+		operatorDistribution.put("None", 0);
+		operatorDistribution.put("And", 0);
+		operatorDistribution.put("Filter", 0);
+		operatorDistribution.put("And, Filter", 0);
+		operatorDistribution.put("Opt", 0);
+		operatorDistribution.put("Opt, Filter", 0);
+		operatorDistribution.put("And, Opt", 0);
+		operatorDistribution.put("And, Opt, Filter", 0);
+		operatorDistribution.put("Graph", 0);
+		operatorDistribution.put("Union", 0);
+		operatorDistribution.put("Union, Filter", 0);
+		operatorDistribution.put("And, Union", 0);
+		operatorDistribution.put("And, Union, Filter", 0);
+		operatorDistribution.put("And, Opt, Union, Filter", 0);
+		
+		operatorDistributionFull.put("None", 0);
+		operatorDistributionFull.put("And", 0);
+		operatorDistributionFull.put("Filter", 0);
+		operatorDistributionFull.put("And, Filter", 0);
+		operatorDistributionFull.put("Opt", 0);
+		operatorDistributionFull.put("Opt, Filter", 0);
+		operatorDistributionFull.put("And, Opt", 0);
+		operatorDistributionFull.put("And, Opt, Filter", 0);
+		operatorDistributionFull.put("Graph", 0);
+		operatorDistributionFull.put("Union", 0);
+		operatorDistributionFull.put("Union, Filter", 0);
+		operatorDistributionFull.put("And, Union", 0);
+		operatorDistributionFull.put("And, Union, Filter", 0);
+		operatorDistributionFull.put("And, Opt, Union, Filter", 0);
+		
+		for(int i = 0; i < keywords.length; i++) {
+			subqueryDistribution.put(keywords[i].replace(" ", ""), 0);
+		}
+		
+		for(int i = 0; i < keywords.length; i++) {
+			subqueryDistributionFull.put(keywords[i].replace(" ", ""), 0);
+		}
+
+
+	}
 	//Searchs and replaces redundant questions
 	static void checkForRedundancy() {
 		System.out.print("Checking for redundancy. \n");
@@ -85,17 +146,59 @@ public class QACompiler {
 			}
 		}
 	}
-	
+	static int getNumberOfTuples(String query) {
+		int ind = query.indexOf("{");
+		int result = 0;
+		//System.out.println(query.substring(ind)  + "\n");
+		String[] temp = query.substring(ind).split("         ");
+		
+		for(int i = 0; i< temp.length; i++) {
+			try {
+				//System.out.println(temp[i]);
+				if(temp[i].contains("{") && i==0) {
+					result ++;
+				}
+				else if(temp[i].substring(0, 1).contains("?")) {
+					result ++;
+				}
+			}
+			catch(Exception e) {}
+		}
+		return result;
+	}
 	//Create json file of questions/answers and txt file of changes.
 	static void writeToFile() {
 		//Write
 			    for(int i =0; i< TypesofExceptions.size(); i++) {
-			    	System.out.println(TypesofExceptions.get(i) + ": " + TypesofExceptionsCounters.get(TypesofExceptions.get(i)));
+			    	//System.out.println(TypesofExceptions.get(i) + ": " + TypesofExceptionsCounters.get(TypesofExceptions.get(i)));
 			    }
-			    System.out.println("\n");
-				System.out.println(TypesofExceptions.size());
+			    //System.out.println("\n");
+				//System.out.println(TypesofExceptions.size());
 				try (FileWriter file = new FileWriter("./finalQuestionAnswerList.json")) {
 					file.write(QuestionArrayListToJSONArray(totalQuestions).toString(4));
+		            file.flush();
+		        } catch (IOException e) {
+		            e.printStackTrace();
+		        }
+				
+				try (FileWriter file = new FileWriter("./KeywordList.txt")) {
+					file.write("Number of keywords: " + keywordCount.size()  + "\n");
+					int total = 0;
+					for(int i = 0; i < keywords.length; i++){
+						if(keywordCount.get(keywords[i]) != null) {
+							total = total + keywordCount.get(keywords[i]);
+						}
+					}
+					
+					file.write("Number of hits: " + total  + "\n\n");
+					
+					for(int i = 0; i < keywords.length; i++) {
+						if(keywordCount.get(keywords[i]) != null) {
+							int val = keywordCount.get(keywords[i]);
+							
+							file.write(keywords[i] + ": " + keywordCount.get(keywords[i]) + "\n");
+						}
+					}
 		            file.flush();
 		        } catch (IOException e) {
 		            e.printStackTrace();
@@ -111,6 +214,15 @@ public class QACompiler {
 		            e.printStackTrace();
 		        }
 				
+				try (FileWriter file = new FileWriter("./changeLogMessagesRemoved.txt")) {
+					file.write("Total: "+ changeLogMessagesRemoved.size()+  "\n\n");
+					for(int i = 0; i < changeLogMessagesRemoved.size(); i++){
+						file.write(changeLogMessagesRemoved.get(i) +  "\n\n");
+					}
+		            file.flush();
+		        } catch (IOException e) {
+		            e.printStackTrace();
+		        }
 				try (FileWriter file = new FileWriter("./OtherExceptionsList.txt")) {
 					file.write("Total: "+ OtherExceptions.size()+  "\n\n");
 					for(int i = 0; i < OtherExceptions.size(); i++){
@@ -140,7 +252,17 @@ public class QACompiler {
 		            e.printStackTrace();
 		        }
 				
-				try (FileWriter file = new FileWriter("./changeLogMessagesTimeout.txt")) {
+				
+				try (FileWriter file = new FileWriter("./log/changeLogMessagesNoAnswers.txt")) {
+					for(int i = 0; i < changeLogMessagesNoAnswers.size(); i++){
+						file.write(changeLogMessagesNoAnswers.get(i) +  "\n\n");
+					}
+		            file.flush();
+		        } catch (IOException e) {
+		            e.printStackTrace();
+		        }
+				
+				try (FileWriter file = new FileWriter("./log/changeLogMessagesTimeout.txt")) {
 					for(int i = 0; i < changeLogMessagesTimeout.size(); i++){
 						file.write(changeLogMessagesTimeout.get(i) +  "\n\n");
 					}
@@ -149,7 +271,7 @@ public class QACompiler {
 		            e.printStackTrace();
 		        }
 				
-				try (FileWriter file = new FileWriter("./changeLogMessagesException.txt")) {
+				try (FileWriter file = new FileWriter("./log/changeLogMessagesException.txt")) {
 					for(int i = 0; i < changeLogMessagesException.size(); i++){
 						file.write(changeLogMessagesException.get(i) +  "\n\n");
 					}
@@ -158,7 +280,7 @@ public class QACompiler {
 		            e.printStackTrace();
 		        }
 				//changeLogMessagesOutdated
-				try (FileWriter file = new FileWriter("./changeLogMessagesOutdated.txt")) {
+				try (FileWriter file = new FileWriter("./log/changeLogMessagesOutdated.txt")) {
 					for(int i = 0; i < changeLogMessagesOutdated.size(); i++){
 						file.write(changeLogMessagesOutdated.get(i) +  "\n\n");
 					}
@@ -167,7 +289,7 @@ public class QACompiler {
 		            e.printStackTrace();
 		        }
 				//changeLogMessagesDuplicate
-				try (FileWriter file = new FileWriter("./changeLogMessagesDuplicate.txt")) {
+				try (FileWriter file = new FileWriter("./log/changeLogMessagesDuplicate.txt")) {
 					for(int i = 0; i < changeLogMessagesDuplicate.size(); i++){
 						file.write(changeLogMessagesDuplicate.get(i) +  "\n\n");
 					}
@@ -176,7 +298,7 @@ public class QACompiler {
 		            e.printStackTrace();
 		        }
 				//changeLogMessagesOther
-				try (FileWriter file = new FileWriter("./changeLogMessagesOther.txt")) {
+				try (FileWriter file = new FileWriter("./log/changeLogMessagesOther.txt")) {
 					for(int i = 0; i < changeLogMessagesOther.size(); i++){
 						file.write(changeLogMessagesOther.get(i) +  "\n\n");
 					}
@@ -184,6 +306,108 @@ public class QACompiler {
 		        } catch (IOException e) {
 		            e.printStackTrace();
 		        }
+				
+				try (FileWriter file = new FileWriter("./log/TripleCounters.txt")) {
+			
+					Set<Entry<Integer, Integer>> tempSet = tripleCounter.entrySet();
+					Iterator<Entry<Integer, Integer>> iterator = tempSet.iterator();
+
+						while(iterator.hasNext()){
+							Integer curr = iterator.next().getKey();
+							file.write(curr + " triples: "+ tripleCounter.get(curr) +  "\n");
+						}
+					
+		            file.flush();
+		        } catch (IOException e) {
+		            e.printStackTrace();
+		        }
+				
+				try (FileWriter file = new FileWriter("./log/full/TripleCountersFull.txt")) {
+					
+					Set<Entry<Integer, Integer>> tempSet = tripleCounterFull.entrySet();
+					Iterator<Entry<Integer, Integer>> iterator = tempSet.iterator();
+
+						while(iterator.hasNext()){
+							Integer curr = iterator.next().getKey();
+							file.write(curr + " triples: "+ tripleCounterFull.get(curr) +  "\n");
+						}
+					
+		            file.flush();
+		        } catch (IOException e) {
+		            e.printStackTrace();
+		        }
+				
+				
+				try (FileWriter file = new FileWriter("./log/OperatorDistribution.txt")) {
+					
+					Set<Entry<String, Integer>> tempSet = operatorDistribution.entrySet();
+					Iterator<Entry<String, Integer>> iterator = tempSet.iterator();
+
+						while(iterator.hasNext()){
+							String curr = iterator.next().getKey();
+							if(operatorDistribution.get(curr) > 0)
+								file.write(curr + ": " + operatorDistribution.get(curr) +"\n");
+						}
+					
+		            file.flush();
+		        } catch (IOException e) {
+		            e.printStackTrace();
+		        }
+				
+				try (FileWriter file = new FileWriter("./log/full/OperatorDistributionFull.txt")) {
+					
+					Set<Entry<String, Integer>> tempSet = operatorDistributionFull.entrySet();
+					Iterator<Entry<String, Integer>> iterator = tempSet.iterator();
+
+						while(iterator.hasNext()){
+							String curr = iterator.next().getKey();
+							if(operatorDistributionFull.get(curr) > 0)
+								file.write(curr + ": " + operatorDistributionFull.get(curr) +"\n");
+						}
+					
+		            file.flush();
+		        } catch (IOException e) {
+		            e.printStackTrace();
+		        }
+				
+				try (FileWriter file = new FileWriter("./log/SubqueryDistribution.txt")) {
+					
+					Set<Entry<String, Integer>> tempSet = subqueryDistribution.entrySet();
+					Iterator<Entry<String, Integer>> iterator = tempSet.iterator();
+
+						while(iterator.hasNext()){
+							String curr = iterator.next().getKey();
+							if(subqueryDistribution.get(curr) > 0)
+								file.write(curr + ": " + subqueryDistribution.get(curr) +"\n");
+						}
+					
+					
+					file.flush();
+					
+		        } catch (IOException e) {
+		            e.printStackTrace();
+		        }
+				
+				try (FileWriter file = new FileWriter("./log/full/SubqueryDistributionFull.txt")) {
+					
+					Set<Entry<String, Integer>> tempSet = subqueryDistributionFull.entrySet();
+					Iterator<Entry<String, Integer>> iterator = tempSet.iterator();
+
+						while(iterator.hasNext()){
+							String curr = iterator.next().getKey();
+							if(subqueryDistributionFull.get(curr) > 0)
+								file.write(curr + ": " + subqueryDistributionFull.get(curr) +"\n");
+						}
+					
+					
+					file.flush();
+					
+		        } catch (IOException e) {
+		            e.printStackTrace();
+		        }
+				
+				
+				
 				System.out.println("changeLogMessagesException: " + changeLogMessagesException.size());
 				System.out.println("changeLogMessagesTimeout: " + changeLogMessagesTimeout.size());
 				System.out.println("changeLogMessagesOutdated: " + outdatedcounter);
@@ -194,13 +418,195 @@ public class QACompiler {
 	
 	}
 	
+	//https://stackoverflow.com/questions/767759/occurrences-of-substring-in-a-string
+	static int subQueries(Question q, boolean full) {
+		String curr = q.getQuestionQuery();
+		curr = curr.replace(" ", "").toLowerCase();
+		
+		for(int i = 0; i < keywords.length; i++) {
+			int lastIndex = 0;
+			int counter = 0;
+			
+			while(lastIndex != -1){
+
+			    lastIndex = curr.indexOf("{" + keywords[i].replace(" ", "").toLowerCase(),lastIndex);
+
+			    if(lastIndex != -1){
+			    	counter = counter + 1;
+			        lastIndex = lastIndex + curr.length();
+			    }
+			}
+			if(full) {
+				int temp = subqueryDistributionFull.get(keywords[i].replace(" ", ""));
+				temp = temp + counter;
+				subqueryDistributionFull.put(keywords[i], temp);
+			}
+			else {
+				int temp = subqueryDistribution.get(keywords[i].replace(" ", "").toLowerCase());
+				temp = temp + counter;
+				subqueryDistribution.put(keywords[i].toLowerCase(), temp);
+			}
+		}
+		
+		return counter;
+		
+	}
+	static void operatorDistribution(Question q, boolean full) {
+		String query = q.getQuestionQuery();
+		boolean filter, and, opt, graph, union;
+		filter = query.toLowerCase().contains("filter");
+		and = query.toLowerCase().contains("and");
+		opt = query.toLowerCase().contains("opt");
+		graph = query.toLowerCase().contains("graph");
+		union = query.toLowerCase().contains("union");
+		if(!filter && !and && !opt && !graph && !union) {
+			int temp = operatorDistribution.put("None", 0);
+			temp ++;
+			if(full)
+				operatorDistributionFull.put("None", temp);
+			else
+				operatorDistribution.put("None", temp);
+		}
+		else if(filter && !and && !opt && !graph && !union) {
+			int temp = operatorDistribution.put("Filter", 0);
+			temp ++;
+			if(full)
+				operatorDistributionFull.put("Filter", temp);
+			else
+				operatorDistribution.put("Filter", temp);
+		}
+		else if(!filter && and && !opt && !graph && !union) {
+			int temp = operatorDistribution.put("And", 0);
+			temp ++;
+			if(full)
+				operatorDistributionFull.put("And", temp);
+			else
+				operatorDistribution.put("And", temp);
+		}
+		else if(filter && and && !opt && !graph && !union) {
+			int temp = operatorDistribution.put("And, Filter", 0);
+			temp ++;
+			if(full)
+				operatorDistributionFull.put("And, Filter", temp);
+			else
+				operatorDistribution.put("And, Filter", temp);
+		}
+		else if(!filter && !and && opt && !graph && !union) {
+			int temp = operatorDistribution.put("Opt", 0);
+			temp ++;
+			if(full)
+				operatorDistributionFull.put("Opt", temp);
+			else
+				operatorDistribution.put("Opt", temp);
+		}
+		else if(filter && !and && opt && !graph && !union) {
+			int temp = operatorDistribution.put("Opt, Filter", 0);
+			temp ++;
+			if(full)
+				operatorDistributionFull.put("Opt, Filter", temp);
+			else
+				operatorDistribution.put("Opt, Filter", temp);
+		}
+		else if(!filter && and && opt && !graph && !union) {
+			int temp = operatorDistribution.put("And, Opt", 0);
+			temp ++;
+			if(full)
+				operatorDistributionFull.put("And, Opt", temp);
+			else
+				operatorDistribution.put("And, Opt", temp);
+		}
+		else if(filter && and && opt && !graph && !union) {
+			int temp = operatorDistribution.put("And, Opt, Filter", 0);
+			temp ++;
+			if(full)
+				operatorDistributionFull.put("And, Opt, Filter", temp);
+			else
+				operatorDistribution.put("And, Opt, Filter", temp);
+		}
+		else if(!filter && !and && !opt && graph && !union) {
+			int temp = operatorDistribution.put("Graph", 0);
+			temp ++;
+			if(full)
+				operatorDistributionFull.put("Graph", temp);
+			else
+				operatorDistribution.put("Graph", temp);
+		}
+		else if(!filter && !and && !opt && !graph && union) {
+			int temp = operatorDistribution.put("Union", 0);
+			temp ++;
+			if(full)
+				operatorDistributionFull.put("Union", temp);
+			else
+				operatorDistribution.put("Union", temp);
+		}
+		else if(filter && !and && !opt && !graph && union) {
+			int temp = operatorDistribution.put("Union, Filter", 0);
+			temp ++;
+			if(full)
+				operatorDistributionFull.put("Union, Filter", temp);
+			else
+				operatorDistribution.put("Union, Filter", temp);
+		}
+		else if(!filter && and && !opt && !graph && union) {
+			int temp = operatorDistribution.put("And, Union", 0);
+			temp ++;
+			if(full)
+				operatorDistributionFull.put("And, Union", temp);
+			else
+				operatorDistribution.put("And, Union", temp);
+		}
+		else if(filter && and && !opt && !graph && union) {
+			int temp = operatorDistribution.put("And, Union, Filter", 0);
+			temp ++;
+			if(full)
+				operatorDistributionFull.put("And, Union, Filter", temp);
+			else
+				operatorDistribution.put("And, Union, Filter", temp);
+		}
+		else if(filter && and && opt && !graph && union) {
+			int temp = operatorDistribution.put("And, Opt, Union, Filter", 0);
+			temp ++;
+			if(full)
+				operatorDistributionFull.put("And, Opt, Union, Filter", temp);
+			else
+				operatorDistribution.put("And, Opt, Union, Filter", temp);
+		}
+	}
+	
 	//Functiosn used to create JSONArray of questions that will be printed to file.
 	static JSONObject QuestionToJSON(Question q) {
 		JSONObject output = new JSONObject();
 		output.put("question", q.getQuestionString());
+		output.put("file", q.getFilepath());
 		output.put("source", q.getQuestionSource());
 		output.put("query", q.getQuestionQuery());
 		output.put("answers", q.getAnswers());
+		output.put("number of triples", getNumberOfTuples(q.getQuestionQuery()));
+		
+		int numberOfTriples = getNumberOfTuples(q.getQuestionQuery());
+		int currTripleCounter = 0;
+		if(tripleCounter.get(numberOfTriples) == null)
+			currTripleCounter = 1;
+		else
+			currTripleCounter = tripleCounter.get(numberOfTriples) + 1;
+		
+		tripleCounter.put(numberOfTriples, currTripleCounter);
+		for(int i = 0; i< keywords.length; i++) {
+			if(q.getQuestionQuery().toLowerCase().contains(keywords[i].toLowerCase())) {
+				if(keywordCount.containsKey(keywords[i])) {
+					int counter = keywordCount.get(keywords[i]);
+					counter  = counter + 1;
+					keywordCount.put(keywords[i], counter );
+				}
+				else {
+					keywordCount.put(keywords[i], 1);
+				}
+				
+			}
+		}
+		
+		operatorDistribution(q, false);
+		subqueriescounter = subQueries(q, false);
 		return output;
 	}
 	
@@ -221,9 +627,14 @@ public class QACompiler {
 	static ArrayList<ArrayList<Question>> parseQuestions()
 	{
 		ArrayList<ArrayList<Question>> results = new ArrayList<ArrayList<Question>>();
-
+		//quad    C:\Users\Gabe\eclipse-workspace\QuestionAnswerBenchmark\data\original\LC-QuAD-data
+		results.add(JSONParser.parseQuADFile("./data/original/LC-QuAD-data/test-data.json", "QUAD", "dbpedia"));
+		results.add(JSONParser.parseQuADFile("./data/original/LC-QuAD-data/train-data.json", "QUAD", "dbpedia"));
+		//qlad
 		//1
+		
 		results.add(XMLParser.parseQald1("./data/original/QALD-master/1/data/dbpedia-test.xml", "QALD-1", "dbpedia", false));
+		
 		results.add(XMLParser.parseQald1("./data/original/QALD-master/1/data/dbpedia-train.xml", "QALD-1", "dbpedia", false));
 		results.add(XMLParser.parseQald4("./data/original/QALD-master/1/data/dbpedia-train-CDATA.xml", "QALD-1", "dbpedia", false));
 				
@@ -289,6 +700,7 @@ public class QACompiler {
 
 		//7
 		//Freezes at 6
+		
 		results.add(JSONParser.parseQald7File2("./data/original/QALD-master/7/data/qald-7-test-en-wikidata.json", "QALD-7", "wikidata"));
 		
 		results.add(JSONParser.parseQald7File2("./data/original/QALD-master/7/data/qald-7-train-largescale.json", "QALD-7", "dbpedia"));
@@ -300,7 +712,9 @@ public class QACompiler {
 		results.add(JSONParser.parseQald7File3("./data/original/QALD-master/7/data/qald-7-train-hybrid-extended-json.json", "QALD-7", "dbpedia"));
 		results.add(JSONParser.parseQald7File4("./data/original/QALD-master/7/data/qald-7-train-hybrid.json", "QALD-7", "dbpedia"));
 		results.add(JSONParser.parseQald7File3("./data/original/QALD-master/7/data/qald-7-train-multilingual-extended-json.json", "QALD-7", "dbpedia"));
+		
 		results.add(JSONParser.parseQald7File2("./data/original/QALD-master/7/data/qald-7-test-multilingual.json", "QALD-7", "dbpedia"));
+		
 		results.add(JSONParser.parseQald7File2("./data/original/QALD-master/7/data/qald-7-train-largescale.json", "QALD-7", "dbpedia"));
 		
 		//8
@@ -346,16 +760,36 @@ public class QACompiler {
 		for(int i = 0; i < totalQuestions.size(); i++) {
 			System.out.println("File " + i + " of " + totalQuestions.size());
 			counter = counter + totalQuestions.get(i).size();
+			ArrayList<Question> questionsToRemove = new ArrayList<Question>();
 			for(int j = 0; j < totalQuestions.get(i).size(); j++) {
-				//System.out.println("    Question " + j + " of " + totalQuestions.get(i).size() + ". " + totalQuestions.get(i).get(j).getQuestionString());
-				
+
 				Question curr = totalQuestions.get(i).get(j);
-				ArrayList<String> temp = getUpdatedAnswers(curr);
-				//for(int k = 0; k < temp.size(); k++) {
-				//	System.out.println("    	"+ temp.get(k));
-				//}
+				operatorDistribution(curr, true);
+			
+				subQueries(curr, true);
+				int numberOfTriples = getNumberOfTuples(curr.getQuestionQuery());
+				int currTripleCounter = 0;
+				if(tripleCounterFull.get(numberOfTriples) == null)
+					currTripleCounter = 1;
+				else
+					currTripleCounter = tripleCounterFull.get(numberOfTriples) + 1;
 				
-				curr.setAnswers(temp);
+				tripleCounterFull.put(numberOfTriples, currTripleCounter);
+				
+				ArrayList<String> temp = getUpdatedAnswers(curr);
+				if(temp == null) {
+					//System.out.println("Does this get called");
+					questionsToRemove.add(curr);
+				}
+				else {
+					//System.out.println(temp.get(0));
+				    curr.setAnswers(temp);
+				}
+			}
+			
+			for(int k = 0; k < questionsToRemove.size(); k++) {
+			
+				totalQuestions.get(i).remove(questionsToRemove.get(k));
 			}
 		}
 	}
@@ -376,7 +810,12 @@ public class QACompiler {
 			UnresolvedPrefixedNameExceptions.add("File: "+ question.getFilepath()+ "\n" + "Question: '" + question.getQuestionString() + "\nQuery: " + question.getQuestionQuery()+"\n"
 					+ "Exception: "+ exec +"\n\n");;
 		}
-		
+		else if(exception.contains("<PNAME_NS>")){
+			exception = "Encountered <PNAME_NS>";
+			changeLogMessagesRemoved.add("File: "+ question.getFilepath()+ "\n" + "Question: '" + question.getQuestionString() + "\nQuery: " + question.getQuestionQuery()+"\n"
+					+ "\nExpected Answers: " + question.getAnswers()+"\n"
+					+ "Exception: "+ exec +"\n\n");
+		}
 		else if(exception.contains("Was expecting one of:")){
 			exception = "Was expecting one of";
 			UnexpectedEncounterExceptions.add("File: "+ question.getFilepath()+ "\n" + "Question: '" + question.getQuestionString() + "\nQuery: " + question.getQuestionQuery()+"\n"
@@ -389,7 +828,7 @@ public class QACompiler {
 		}
 		else {
 			OtherExceptions.add("File: "+ question.getFilepath()+ "\n" + "Question: '" + question.getQuestionString() + "\nQuery: " + question.getQuestionQuery()+"\n"
-					+ "Exception: "+ exec +"\n\n");;
+					+ "Exception: "+ exec +"\n\n");
 		}
 		if(TypesofExceptionsCounters.get(exception) != null) {
 			temp = TypesofExceptionsCounters.get(exception);
@@ -404,7 +843,8 @@ public class QACompiler {
 	static ArrayList<String> getUpdatedAnswers(Question question){
 		ArrayList<String> returnAnswers = new ArrayList<String>();
 		ArrayList<String> answers =  question.getAnswers();
-		String query = question.getQuestionQuery();
+		String query = question.getQuestionQuery().replace("\n", " ").replace("\t", " ");
+		question.setQuestionQuery(query);
 		ParameterizedSparqlString qs = new ParameterizedSparqlString(query);
 		//System.out.println(query);
         List<QuerySolution> newAnswers = null;
@@ -453,58 +893,53 @@ public class QACompiler {
 	            	test.start();
 	            	LOCK.wait(15000);
 	            }
+	            
 				if(resultErrorCode[0] == -1) {
 					test.getState();
-					
 					throw(new Exception("SPARQL query timed out."));
 				}
 				else if(resultErrorCode[0] == -2) {
+					try {
+					if(exec.execAsk())
+						returnAnswers.add("true");
+					else
+						returnAnswers.add("false");
 					return returnAnswers;
+					}
+					catch(Exception e) {
+						//System.out.println(question.getFilepath() + "\n" +"'" + question.getQuestionString() + "'" + "\nQuery returns no answers. Deleting question.\n" + question.getQuestionQuery() + "\n\n");
+						changeLogMessagesRemoved.add(question.getFilepath() + "\n" +"'" + question.getQuestionString() + "'" + "\nQuery returns no answers. Deleting question.\n" + question.getQuestionQuery() + "\n\n");
+						throw(new Exception("returns no answers"));
+					}
 				}
 				else {
 					results = resultsTemp[0];
-				}	
+				}
+			
 	        newAnswers = ResultSetFormatter.toList(results);
+	      
+	        if(newAnswers.size() == 0) {
+	        	//System.out.println(question.getQuestionString());
+	        	changeLogMessagesRemoved.add(question.getFilepath() + "\n" +"'" + question.getQuestionString() + "'" + "\nQuery returns no answers. Deleting question.\n" + question.getQuestionQuery() + "\n\n");
+	        	throw(new Exception("returns no answers"));
+	        }
 		}
 		catch(Exception e) {
 			addException(e.getMessage(), question);
 			if(e.getMessage() == null) {
 				return answers;
 			}
-        	if(e.getMessage().compareTo("Not a ResultSet result")==0){
-                
-                /*
-        		QueryExecution exec = QueryExecutionFactory.sparqlService(getDatabaseDomain(question.getDatabase()), qs.asQuery());
-        		System.out.println(exec);
-        		if(exec.execAsk())
-    	        	returnAnswers.add("true");
-    	        else 
-    	        	returnAnswers.add("false");
-    	        */
-    	        return returnAnswers;
-        	}
-        	else if(e.getMessage().compareTo("SPARQL query timed out.")==0){
-        		String expectedAnswers = "";
-        		for(int i = 0; i< question.getAnswers().size(); i++) {
-        			expectedAnswers = expectedAnswers + question.getAnswers().get(i) +"\n";
-        		}
-        		changeLogMessagesTimeout.add("File: " +question.getFilepath()+ "\n" + "Question: '" + question.getQuestionString() + "\nQuery: " + question.getQuestionQuery()+
-        				"\nExpected Answers: "+ expectedAnswers
-    					+ "\n Returned Answers: timeout\n\n");
-        		returnAnswers = answers;
-        		return returnAnswers;
-        	}
-        	
         	else
         	{
+        		/*
         		String expectedAnswers = "";
         		for(int i = 0; i< question.getAnswers().size(); i++) {
         			expectedAnswers = expectedAnswers + question.getAnswers().get(i) +"\n";
         		}
         		changeLogMessagesException.add("File: "+ question.getFilepath()+ "\n" + "Question: '" + question.getQuestionString() + "\nQuery: " + question.getQuestionQuery()+"\n"
     					+ "Expected Answers: "+ expectedAnswers + "\nReturned Answers: "+ e +"\n\n");
-        		returnAnswers = answers;
-        		return returnAnswers;
+        		returnAnswers = answers;*/
+        		return null;
         	}
         }
 		
@@ -554,9 +989,9 @@ public class QACompiler {
 		        	}
 	        	}
 	        	else {
-	        		changeLogMessagesOther.add(question.getFilepath() + "\n" +"'" + question.getQuestionString() + "'" + "\nQuery returns no answers. Keeping stored answers.\n" + question.getQuestionQuery() + "\n\n");
+	        		changeLogMessagesNoAnswers.add(question.getFilepath() + "\n" +"'" + question.getQuestionString() + "'" + "\nQuery returns no answers. Deleting question.\n" + question.getQuestionQuery() + "\n\n");
 	        		returnAnswers = answers;
-	        		return returnAnswers;
+	        		return null;
 	        	}
 	        }
         return returnAnswers;
