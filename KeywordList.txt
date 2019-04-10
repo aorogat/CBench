@@ -1,0 +1,23 @@
+Number of keywords: 20
+Number of hits: 5126
+
+select: 1925
+ask: 445
+construct: 1
+distinct: 1815
+limit: 47
+offset: 33
+order by: 43
+filter: 130
+and: 234
+union: 53
+opt: 98
+graph: 18
+not exists: 2
+exists: 2
+count: 181
+max: 1
+min: 86
+sum: 6
+group by: 3
+having: 3
