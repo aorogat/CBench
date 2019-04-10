@@ -1,0 +1,30 @@
+Total: 4
+
+File: ./data/original/QALD-master/1/data/dbpedia-train.xml
+Question: 'Which software has been developed by organizations founded in California?
+Query:  PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> PREFIX onto: <http://dbpedia.org/ontology/> PREFIX res: <http://dbpedia.org/resource/> SELECT ?uri WHERE {   ?company rdf:type onto:Organisation  .         ?company onto:foundationPlace res:California .         ?uri onto:developer ?company .         ?uri rdf:type onto:Software . } 
+Exception: Line 1, column 173: Unresolved prefixed name: rdf:type
+
+
+
+File: ./data/original/QALD-master/1/data/dbpedia-train.xml
+Question: 'Which companies are located in California, USA?
+Query:  PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> PREFIX onto: <http://dbpedia.org/ontology/> PREFIX res: <http://dbpedia.org/resource/> SELECT DISTINCT ?uri ?string WHERE {   ?uri rdf:type onto:Organisation .         ?uri onto:location res:California . } 
+Exception: Line 1, column 186: Unresolved prefixed name: rdf:type
+
+
+
+File: ./data/original/QALD-master/2/data/participants-challenge-answers.xml
+Question: 'Give me all anarcho punk bands that were formed in the 80s.
+Query:  PREFIX yago: <http://dbpedia.org/class/yago/> PREFIX bio: <http://purl.org/vocab/bio/0.1/> SELECT DISTINCT ?uri WHERE {   ?uri rdf:type yago:Anarcho-punkGroups .   ?uri owl:sameAs ?mb_band .   ?mb_band bio:event ?event .   ?event rdf:type bio:Birth .   ?event bio:date ?date .   { ?event bio:date ?date .     FILTER (?date <= '1989-12-31'^^xsd:date || ?date >= '1980-01-01'^^xsd:date ) }   UNION   { ?event bio:date ?date .     FILTER regex(?date,'^198') } } 
+Exception: Line 1, column 129: Unresolved prefixed name: rdf:type
+
+
+
+File: ./data/original/QALD-master/7/data/qald-7-train-hybrid.json
+Question: 'When was the European President known as the decider born?
+Query: PREFIX text: <http://jena.apache.org/text#>  PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> PREFIX dbo: <http://dbpedia.org/ontology/> SELECT DISTINCT ?proj WHERE { ?uri text:"the decider" . ?uri dbo:birthDate ?proj. ?uri rdf:type http://dbpedia.org/class/yago/PresidentsOfTheEuropeanCouncil . } 
+Exception: Line 1, column 243: Unresolved prefixed name: http:
+
+
+

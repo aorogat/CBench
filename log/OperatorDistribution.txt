@@ -1,0 +1,11 @@
+Opt, Filter: 76
+Filter: 27
+None: 1952
+Opt: 1
+And, Filter: 3
+And, Union: 3
+Union: 27
+Union, Filter: 3
+And: 222
+Graph: 13
+And, Opt, Filter: 1
