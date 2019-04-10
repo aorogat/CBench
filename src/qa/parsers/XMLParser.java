@@ -54,6 +54,9 @@ public class XMLParser {
 	            //System.out.println("");
 	            question.setQuestionQuery(getCharacterDataFromElement((Element)element.
 	            		getElementsByTagName("query").item(0)));
+	            if(question.getQuestionQuery().replaceAll("\n", "").replaceAll(" ", "").compareTo("OUTOFSCOPE") == 0) {
+	            	continue;
+	            }
 	            
 	            Element answersNode = (Element) element.getElementsByTagName("answers").item(0);
 	            try {
@@ -119,6 +122,12 @@ public class XMLParser {
 	            System.out.println("");
 	            question.setQuestionQuery(getCharacterDataFromElement((Element)element.
 	            		getElementsByTagName("query").item(0)));
+	            if(question.getQuestionQuery().compareTo("")==0) {
+	            	continue;
+	            }
+	            if(question.getQuestionQuery().replaceAll("\n", "").replaceAll(" ", "").compareTo("OUTOFSCOPE") == 0) {
+	            	continue;
+	            }
 	            
 	            Element answersNode = (Element) element.getElementsByTagName("answers").item(0);
 	            try {
@@ -174,6 +183,9 @@ public class XMLParser {
 	            }
 	            question.setQuestionQuery(getCharacterDataFromElement((Element)element.
 	            		getElementsByTagName("query").item(0)));
+	            if(question.getQuestionQuery().replaceAll("\n", "").replaceAll(" ", "").compareTo("OUTOFSCOPE") == 0) {
+	            	continue;
+	            }
 	            Element answersNode = (Element) element.getElementsByTagName("answers").item(0);
 	            NodeList answersList = answersNode.getElementsByTagName("answer");
 	            for(int j = 0; j < answersList.getLength(); ++j) {

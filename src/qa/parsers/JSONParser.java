@@ -18,6 +18,67 @@ public class JSONParser {
 	 * @param sourceString the string describing the source associated with these question
 	 * @return ArrayList<Question> the list of questions parsed from file
 	 */
+	public static ArrayList<Question> parseQuADFile(String fileDirectory, String sourceString, String endpoint) {
+		ArrayList<Question> questionsList = new ArrayList<Question>();
+		//System.out.println("Reading file " + fileDirectory + "...");
+		String fileContents = FileManager.readWholeFile(fileDirectory);
+		//System.out.println("Parsing file...");
+		JSONObject obj = new JSONObject(fileContents);
+		JSONArray arr = obj.getJSONArray("questions");
+		for (int i = 0; i < arr.length(); i++) {
+			
+			Question question = new Question();
+			question.setDatabase(endpoint);
+			question.setFilepath(fileDirectory);
+			// The source is predefined
+			question.setQuestionSource(sourceString);
+
+			JSONObject currentQuestionObject = arr.getJSONObject(i);
+			question.setQuestionString(currentQuestionObject.getString("corrected_question").replace("\n", ""));
+			
+		    // Finding question in English
+			/*
+			for(int j = 0; j < objectArr.length(); ++j) {
+		    	JSONObject currentQuestionLanguageObject = objectArr.getJSONObject(j);
+		    	if(currentQuestionLanguageObject.getString("language").compareTo("en") == 0) {
+		    		question.setQuestionString(currentQuestionLanguageObject.getString("string").replace("\n", ""));
+		    		//System.out.println("Question " + i + ": " + question.getQuestionString());
+		    		break;
+		    	}
+		    }
+		    */
+			// The question's SPARQL Query
+			question.setQuestionQuery(currentQuestionObject.getString("sparql_query"));
+			// The question's answers
+			/*
+			JSONArray answersArray = currentQuestionObject.getJSONArray("answers");
+			for(int j = 0; j < answersArray.length(); ++j) {
+				if(answersArray.getJSONObject(j).getJSONObject("results").isEmpty()) {
+					if(answersArray.getJSONObject(j).getBoolean("boolean") == true) {
+						question.addAnswer("Yes");
+					}
+					else {
+						question.addAnswer("No");
+					}
+					
+				}
+				else {
+					JSONArray resultsArray = answersArray.getJSONObject(j).getJSONObject("results").getJSONArray("bindings");
+					for(int k = 0; k < resultsArray.length(); ++ k) {
+						Set<String> keysSet = resultsArray.getJSONObject(k).keySet();
+						Iterator<String> it = keysSet.iterator();
+						question.addAnswer(resultsArray.getJSONObject(k).getJSONObject(it.next()).getString("value"));
+					}
+				}
+				
+			}
+			*/
+			questionsList.add(question);
+		}
+		return questionsList;
+	}
+	
+	
 	public static ArrayList<Question> parseQald9File(String fileDirectory, String sourceString, String endpoint) {
 		ArrayList<Question> questionsList = new ArrayList<Question>();
 		//System.out.println("Reading file " + fileDirectory + "...");
