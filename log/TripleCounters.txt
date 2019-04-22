@@ -1,0 +1,9 @@
+10 triples: 2
+8 triples: 2
+7 triples: 2
+6 triples: 6
+5 triples: 29
+4 triples: 38
+3 triples: 55
+2 triples: 965
+1 triples: 1256

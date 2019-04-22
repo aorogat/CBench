@@ -12,18 +12,136 @@ import org.w3c.dom.CharacterData;
 import qa.dataStructures.Question;
 
 public class XMLParser {
+
 	
-	public static ArrayList<Question> parseQald5(String fileDirectory, String sourceString) {
+	public static ArrayList<Question> parseQald1(String fileDirectory, String sourceString, String endpoint, boolean multilingual) {
 		ArrayList<Question> questionsList = new ArrayList<Question>();
 		try {
 	         File inputFile = new File(fileDirectory);
 	         DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
 	         DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
-	         System.out.println("Reading file " + fileDirectory + "...");
 	         Document doc = dBuilder.parse(inputFile);
-	         System.out.println("Parsing file...");
 	         doc.getDocumentElement().normalize();
-//	         System.out.println("Root element :" + doc.getDocumentElement().getNodeName());
+	         NodeList nList = doc.getElementsByTagName("question");
+	         
+	         for (int i = 0; i < nList.getLength(); i++) {
+	        	// Skip hybrid questions
+	        	Element element = (Element) nList.item(i);
+	            if(element.getAttribute("hybrid").compareTo("true") == 0) {
+	            	continue;
+	            }
+	            System.out.println(fileDirectory);
+	        	Question question = new Question();
+	        	question.setQuestionSource(sourceString);
+	        	question.setDatabase(endpoint);
+	        	question.setFilepath(fileDirectory);
+	            NodeList langList = element.getElementsByTagName("string");
+
+		        question.setQuestionString(getCharacterDataFromElement((Element)langList.item(0)).replace("\n", ""));
+
+	            question.setQuestionQuery(getCharacterDataFromElement((Element)element.
+	            		getElementsByTagName("query").item(0)));
+	            if(question.getQuestionQuery().replaceAll("\n", "").replaceAll(" ", "").compareTo("OUTOFSCOPE") == 0) {
+	            	continue;
+	            }
+	            
+	            Element answersNode = (Element) element.getElementsByTagName("answers").item(0);
+	            try {
+	            	NodeList answersList = answersNode.getElementsByTagName("answer");
+	            	
+	            	for(int j = 1; j < langList.getLength(); ++j) {
+	            		question.addAnswer(getCharacterDataFromElement((Element)langList.item(j)).replace("\n", ""));
+		            }
+	            }
+	            catch(Exception e)
+	            {
+	            	System.out.println(e);
+	            }
+	            
+	            
+	            questionsList.add(question);
+	         }
+	      } catch (Exception e) {
+	         e.printStackTrace();
+	      }
+		return questionsList;
+	}
+	
+	
+	public static ArrayList<Question> parseQald4(String fileDirectory, String sourceString, String endpoint, boolean multilingual) {
+		ArrayList<Question> questionsList = new ArrayList<Question>();
+		try {
+	         File inputFile = new File(fileDirectory);
+	         DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
+	         DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
+	         Document doc = dBuilder.parse(inputFile);
+	         doc.getDocumentElement().normalize();
+	         NodeList nList = doc.getElementsByTagName("question");
+	         
+	         for (int i = 0; i < nList.getLength(); i++) {
+	        	// Skip hybrid questions
+	        	Element element = (Element) nList.item(i);
+	            if(element.getAttribute("hybrid").compareTo("true") == 0) {
+	            	continue;
+	            }
+	            
+	        	Question question = new Question();
+	        	question.setQuestionSource(sourceString);
+	        	question.setDatabase(endpoint);
+	        	question.setFilepath(fileDirectory);
+	            NodeList langList = element.getElementsByTagName("string");
+	            for(int j = 0; j < langList.getLength(); ++j) {
+	            	Element langElement = (Element) langList.item(j);
+	            	if(multilingual) {
+		            	if(langElement.getAttribute("lang").compareTo("en") == 0) {
+		            		question.setQuestionString(getCharacterDataFromElement(langElement).replace("\n", ""));
+		            		break;
+		            	}
+	            	}
+	            	else {
+	            		question.setQuestionString(getCharacterDataFromElement(langElement).replace("\n", ""));
+	            	}
+	            }
+	            System.out.println("");
+	            question.setQuestionQuery(getCharacterDataFromElement((Element)element.
+	            		getElementsByTagName("query").item(0)));
+	            if(question.getQuestionQuery().compareTo("")==0) {
+	            	continue;
+	            }
+	            if(question.getQuestionQuery().replaceAll("\n", "").replaceAll(" ", "").compareTo("OUTOFSCOPE") == 0) {
+	            	continue;
+	            }
+	            
+	            Element answersNode = (Element) element.getElementsByTagName("answers").item(0);
+	            try {
+	            	NodeList answersList = answersNode.getElementsByTagName("answer");
+	            	
+	            	for(int j = 0; j < answersList.getLength(); ++j) {
+		            	question.addAnswer(answersList.item(j).getTextContent().replace("\n", ""));
+		            }
+	            }
+	            catch(Exception e)
+	            {
+	            	System.out.println(e);
+	            }
+	            
+	            
+	            questionsList.add(question);
+	         }
+	      } catch (Exception e) {
+	         e.printStackTrace();
+	      }
+		return questionsList;
+	}
+	
+	public static ArrayList<Question> parseQald5(String fileDirectory, String sourceString, String endpoint) {
+		ArrayList<Question> questionsList = new ArrayList<Question>();
+		try {
+	         File inputFile = new File(fileDirectory);
+	         DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
+	         DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
+	         Document doc = dBuilder.parse(inputFile);
+	         doc.getDocumentElement().normalize();
 	         NodeList nList = doc.getElementsByTagName("question");
 	         for (int i = 0; i < nList.getLength(); i++) {
 	        	// Skip hybrid questions
@@ -33,16 +151,21 @@ public class XMLParser {
 	            }
 	        	Question question = new Question();
 	        	question.setQuestionSource(sourceString);
+	        	question.setDatabase(endpoint);
+	        	question.setFilepath(fileDirectory);
 	            NodeList langList = element.getElementsByTagName("string");
 	            for(int j = 0; j < langList.getLength(); ++j) {
 	            	Element langElement = (Element) langList.item(j);
 	            	if(langElement.getAttribute("lang").compareTo("en") == 0) {
-	            		question.setQuestionString(getCharacterDataFromElement(langElement));
+	            		question.setQuestionString(getCharacterDataFromElement(langElement).replace("\n", ""));
 	            		break;
 	            	}
 	            }
 	            question.setQuestionQuery(getCharacterDataFromElement((Element)element.
 	            		getElementsByTagName("query").item(0)));
+	            if(question.getQuestionQuery().replaceAll("\n", "").replaceAll(" ", "").compareTo("OUTOFSCOPE") == 0) {
+	            	continue;
+	            }
 	            Element answersNode = (Element) element.getElementsByTagName("answers").item(0);
 	            NodeList answersList = answersNode.getElementsByTagName("answer");
 	            for(int j = 0; j < answersList.getLength(); ++j) {
