@@ -1,11 +1,44 @@
-Opt, Filter: 76
-Filter: 27
-None: 1952
-Opt: 1
-And, Filter: 3
-And, Union: 3
-Union: 27
-Union, Filter: 3
-And: 222
-Graph: 13
-And, Opt, Filter: 1
+TOTAL: 2355
+
+  minus   count: 5
+  offset  limit order by: 1
+  graph   minus: 1
+  order by limit offset asc(: 5
+     limit: 2
+  minus   sum: 2
+  filter   optional: 67
+     graph: 16
+  limit   graph: 1
+  offset  limit filter: 1
+  optional filter union count: 3
+ limit union offset order by desc(: 2
+none: 1902
+  order by   desc(: 2
+ limit minus offset order by desc(: 1
+  filter   not exists: 1
+  order by  limit asc(: 2
+  limit   order by: 1
+  optional  filter minus: 1
+  optional  filter count: 4
+limit offset not exists order by filter asc(: 1
+     union: 14
+  union   minus: 1
+  order by  limit desc(: 4
+  union   count: 12
+  group by union count having: 1
+ limit filter offset order by desc(: 1
+ limit count offset order by desc(: 2
+     minus: 75
+  union  filter optional: 17
+     count: 149
+     sum: 4
+  filter   union: 2
+ limit optional order by filter desc(: 4
+ limit count order by filter desc(: 1
+  union  filter count: 1
+  group by  count having: 1
+  order by limit offset desc(: 17
+  filter   count: 1
+     filter: 24
+ filter group by optional count having: 1
+  limit   offset: 2

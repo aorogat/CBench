@@ -1,4 +1,4 @@
-Total: 2788
+Total: 2786
 
 File: ./data/original/LC-QuAD-data/test-data.json
 Question: 'Which architect of Marine Corps Air Station Kaneohe Bay was also tenant of New Sanno hotel /'
@@ -18901,13 +18901,6 @@ Exception: Non-group key variable in SELECT: ?uri
 
 
 File: ./data/original/QALD-master/4/data/qald-4_multilingual_test.xml
-Question: 'What are the top-10 action role-playing video games according to IGN?
-Query:  PREFIX dbo: <http://dbpedia.org/ontology/> PREFIX dbp: <http://dbpedia.org/property/> PREFIX res: <http://dbpedia.org/resource/> SELECT DISTINCT ?uri  WHERE {         ?uri <http://purl.org/dc/terms/subject> <http://dbpedia.org/resource/Category:Action_role-playing_video_games> .         ?uri dbp:ign ?score . }  ORDER BY DESC(?score)  LIMIT 10 
-Exception: returns no answers
-
-
-
-File: ./data/original/QALD-master/4/data/qald-4_multilingual_test.xml
 Question: 'Give me the capitals of all countries that the Himalayas run through.
 Query:  PREFIX dbp: <http://dbpedia.org/property/> PREFIX dbo: <http://dbpedia.org/ontology/> PREFIX res: <http://dbpedia.org/resource/> SELECT DISTINCT ?uri WHERE {          res:Himalayas dbp:country ?country .           ?country dbo:capital ?uri . }   
 Exception: returns no answers
@@ -19484,13 +19477,6 @@ Exception: returns no answers
 File: ./data/original/QALD-master/7/data/qald-7-test-multilingual.json
 Question: 'What were the original 13 British colonies?
 Query: PREFIX dct: <http://purl.org/dc/terms/> PREFIX dbc: <http://dbpedia.org/resource/Category:> select distinct ?uri where { ?uri dct:subject dbc:Former_British_colonies. ?uri dct:subject dbc:Thirteen_Colonies. }
-Exception: returns no answers
-
-
-
-File: ./data/original/QALD-master/7/data/qald-7-test-multilingual.json
-Question: 'Which American presidents were in office during the Vietnam War?
-Query: PREFIX res: <http://dbpedia.org/resource/> PREFIX dbo: <http://dbpedia.org/ontology/> PREFIX dct: <http://purl.org/dc/terms/> PREFIX dbc: <http://dbpedia.org/resource/Category:> select distinct ?uri where { res:Vietnam_War dbo:commander ?uri . ?uri dct:subject dbc:Presidents_of_the_United_States . }
 Exception: returns no answers
 
 

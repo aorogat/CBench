@@ -12672,6 +12672,14 @@ Fetched: 4
  
 
 ./data/original/QALD-master/4/data/qald-4_multilingual_test.xml
+'What are the top-10 action role-playing video games according to IGN?'
+Number of stored answers do not match number of answers found online.
+Stored: 0
+Fetched: 10
+
+ 
+
+./data/original/QALD-master/4/data/qald-4_multilingual_test.xml
 'Give me all actors who were born in Berlin.'
 Number of stored answers do not match number of answers found online.
 Stored: 0
@@ -14882,6 +14890,27 @@ Stored: 1
 Fetched: 2
 
  
+
+File: ./data/original/QALD-master/7/data/qald-7-test-multilingual.json
+'Which American presidents were in office during the Vietnam War?' has an outdated answer. 
+Stored: http://dbpedia.org/resource/Richard_Nixon
+Fetched: http://dbpedia.org/resource/Lyndon_B._Johnson
+
+
+
+File: ./data/original/QALD-master/7/data/qald-7-test-multilingual.json
+'Which American presidents were in office during the Vietnam War?' has an outdated answer. 
+Stored: http://dbpedia.org/resource/John_F._Kennedy
+Fetched: http://dbpedia.org/resource/Richard_Nixon
+
+
+
+File: ./data/original/QALD-master/7/data/qald-7-test-multilingual.json
+'Which American presidents were in office during the Vietnam War?' has an outdated answer. 
+Stored: http://dbpedia.org/resource/Lyndon_B._Johnson
+Fetched: http://dbpedia.org/resource/John_F._Kennedy
+
+
 
 ./data/original/QALD-master/7/data/qald-7-test-multilingual.json
 'Which holidays are celebrated around the world?'
@@ -30300,3 +30329,5 @@ Fetched: http://dbpedia.org/resource/Pokemon20
 
 
 
+Questions with different fetched sizes: 1603
+Questions with outdated answers: 2501

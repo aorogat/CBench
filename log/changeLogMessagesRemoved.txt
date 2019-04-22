@@ -1,5 +1,6 @@
-Total: 2856
-
+Questions removed: 2854
+Total questions after reduncany: 5913
+Oringal questions: 8418
 ./data/original/LC-QuAD-data/test-data.json
 'Which architect of Marine Corps Air Station Kaneohe Bay was also tenant of New Sanno hotel /''
 Query returns no answers. Deleting question.
@@ -18962,13 +18963,6 @@ Was expecting:
 
 
 
-./data/original/QALD-master/4/data/qald-4_multilingual_test.xml
-'What are the top-10 action role-playing video games according to IGN?'
-Query returns no answers. Deleting question.
- PREFIX dbo: <http://dbpedia.org/ontology/> PREFIX dbp: <http://dbpedia.org/property/> PREFIX res: <http://dbpedia.org/resource/> SELECT DISTINCT ?uri  WHERE {         ?uri <http://purl.org/dc/terms/subject> <http://dbpedia.org/resource/Category:Action_role-playing_video_games> .         ?uri dbp:ign ?score . }  ORDER BY DESC(?score)  LIMIT 10 
-
-
-
 File: ./data/original/QALD-master/4/data/qald-4_multilingual_test.xml
 Question: 'Give me all actors who were born in Paris after 1950.
 Query:  PREFIX dbo: <http://dbpedia.org/ontology/> PREFIX res: <http://dbpedia.org/resource/> PREFIX xsd:dateTime: <http://www.w3.org/2001/XMLSchema#dateTime> PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> SELECT DISTINCT ?uri  WHERE {         ?uri rdf:type dbo:Actor .         ?uri dbo:birthPlace res:Paris .         ?uri dbo:birthDate ?date .         FILTER ( ?date >= xsd:dateTime("1950-12-31T00:00:00Z"))  }  
@@ -20956,13 +20950,6 @@ PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> PREFIX dbo: <http://db
 'What were the original 13 British colonies?'
 Query returns no answers. Deleting question.
 PREFIX dct: <http://purl.org/dc/terms/> PREFIX dbc: <http://dbpedia.org/resource/Category:> select distinct ?uri where { ?uri dct:subject dbc:Former_British_colonies. ?uri dct:subject dbc:Thirteen_Colonies. }
-
-
-
-./data/original/QALD-master/7/data/qald-7-test-multilingual.json
-'Which American presidents were in office during the Vietnam War?'
-Query returns no answers. Deleting question.
-PREFIX res: <http://dbpedia.org/resource/> PREFIX dbo: <http://dbpedia.org/ontology/> PREFIX dct: <http://purl.org/dc/terms/> PREFIX dbc: <http://dbpedia.org/resource/Category:> select distinct ?uri where { res:Vietnam_War dbo:commander ?uri . ?uri dct:subject dbc:Presidents_of_the_United_States . }
 
 
 
