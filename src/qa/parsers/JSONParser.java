@@ -36,43 +36,9 @@ public class JSONParser {
 			JSONObject currentQuestionObject = arr.getJSONObject(i);
 			question.setQuestionString(currentQuestionObject.getString("corrected_question").replace("\n", ""));
 			
-		    // Finding question in English
-			/*
-			for(int j = 0; j < objectArr.length(); ++j) {
-		    	JSONObject currentQuestionLanguageObject = objectArr.getJSONObject(j);
-		    	if(currentQuestionLanguageObject.getString("language").compareTo("en") == 0) {
-		    		question.setQuestionString(currentQuestionLanguageObject.getString("string").replace("\n", ""));
-		    		//System.out.println("Question " + i + ": " + question.getQuestionString());
-		    		break;
-		    	}
-		    }
-		    */
 			// The question's SPARQL Query
 			question.setQuestionQuery(currentQuestionObject.getString("sparql_query"));
-			// The question's answers
-			/*
-			JSONArray answersArray = currentQuestionObject.getJSONArray("answers");
-			for(int j = 0; j < answersArray.length(); ++j) {
-				if(answersArray.getJSONObject(j).getJSONObject("results").isEmpty()) {
-					if(answersArray.getJSONObject(j).getBoolean("boolean") == true) {
-						question.addAnswer("Yes");
-					}
-					else {
-						question.addAnswer("No");
-					}
-					
-				}
-				else {
-					JSONArray resultsArray = answersArray.getJSONObject(j).getJSONObject("results").getJSONArray("bindings");
-					for(int k = 0; k < resultsArray.length(); ++ k) {
-						Set<String> keysSet = resultsArray.getJSONObject(k).keySet();
-						Iterator<String> it = keysSet.iterator();
-						question.addAnswer(resultsArray.getJSONObject(k).getJSONObject(it.next()).getString("value"));
-					}
-				}
-				
-			}
-			*/
+
 			questionsList.add(question);
 		}
 		return questionsList;
@@ -100,7 +66,6 @@ public class JSONParser {
 		    	JSONObject currentQuestionLanguageObject = objectArr.getJSONObject(j);
 		    	if(currentQuestionLanguageObject.getString("language").compareTo("en") == 0) {
 		    		question.setQuestionString(currentQuestionLanguageObject.getString("string").replace("\n", ""));
-		    		//System.out.println("Question " + i + ": " + question.getQuestionString());
 		    		break;
 		    	}
 		    }
@@ -151,7 +116,7 @@ public class JSONParser {
 	 * @param sourceString the string describing the source associated with these question
 	 * @return ArrayList<Question> the list of questions parsed from file
 	 */
-	public static ArrayList<Question> parseQald7File1(String fileDirectory, String sourceString, boolean print, String endpoint) {
+	public static ArrayList<Question> parseQald7File1(String fileDirectory, String sourceString, String endpoint) {
 		ArrayList<Question> questionsList = new ArrayList<Question>();
 		//if(print)
 			//System.out.println("Reading file " + fileDirectory + "...");
@@ -175,8 +140,7 @@ public class JSONParser {
 				if(languageArr.getJSONObject(j).getString("language").compareTo("en") == 0) {
 					question.setQuestionQuery(languageArr.getJSONObject(j).getString("SPARQL"));
 					question.setQuestionString(languageArr.getJSONObject(j).getString("question").replace("\n", ""));
-					if(print)
-						//System.out.println("Question " + i + ": " + question.getQuestionString());
+
 					break;
 				}
 			}
@@ -234,14 +198,12 @@ public class JSONParser {
 			for(int j = 0; j < questionArray.length(); ++j) {
 				if(questionArray.getJSONObject(j).getString("language").compareTo("en") == 0) {
 					question.setQuestionString(questionArray.getJSONObject(j).getString("string").replace("\n", ""));
-					//System.out.println("Question " + i + ": " + question.getQuestionString());
 					break;
 				}
 			}
 			// This case checks if there's no query in the data set
 			// This is encountered in the qald-6-train-multilingual.json file
 			if(currentQuestionObject.getJSONObject("query").isEmpty()) {
-				//System.out.println("No query detected. Skipping this one!");
 				continue;
 			}
 			question.setQuestionQuery(currentQuestionObject.getJSONObject("query").getString("sparql"));
@@ -309,14 +271,11 @@ public class JSONParser {
 			for(int j = 0; j < currQuestion.getJSONArray("language").length(); j++) {
 				if(currQuestion.getJSONArray("language").getJSONObject(j).getString("language").compareTo("en") == 0) {
 					try {
-						//System.out.print(currQuestion.getJSONArray("language").getJSONObject(j).getString("question"));
 						if(currQuestion.getJSONArray("language").getJSONObject(j).getString("SPARQL").isEmpty()) {
-							//System.out.println("No query detected. Skipping this one!");
 							continue;
 						}
 					}
 					catch(Exception e){
-						//System.out.println("No query detected. Skipping this file!");
 						return questionsList;
 					}
 					question.setQuestionString(currQuestion.getJSONArray("language").getJSONObject(j).getString("question").replace("\n", ""));
@@ -366,9 +325,7 @@ public class JSONParser {
 	 */
 	public static ArrayList<Question> parseQald7File4(String fileDirectory, String sourceString, String endpoint) {
 		ArrayList<Question> questionsList = new ArrayList<Question>();
-		//System.out.println("Reading file " + fileDirectory + "...");
 		String fileContents = FileManager.readWholeFile(fileDirectory);
-		//System.out.println("Parsing file...");
 		JSONObject obj = new JSONObject(fileContents);
 		JSONArray arr = obj.getJSONArray("questions");
 		for (int i = 0; i < arr.length(); i++) {
@@ -380,11 +337,8 @@ public class JSONParser {
 			JSONArray currQuestion = arr.getJSONObject(i).getJSONArray("question");
 			
 			for(int j = 0; j < currQuestion.length(); j++) {
-				
 					try {
-						//System.out.print(currQuestion.getJSONArray("language").getJSONObject(j).getString("question"));
 						if(arr.getJSONObject(i).getJSONObject("query").getString("pseudo").isEmpty()) {
-							//System.out.println("No query detected. Skipping this one!");
 							continue;
 						}
 						else {
@@ -396,7 +350,6 @@ public class JSONParser {
 						}
 					}
 					catch(Exception e){
-						//System.out.println("No query detected. Skipping this file!");
 						return questionsList;
 					}
 					question.setQuestionString(currQuestion.getJSONObject(j).getString("string").replace("\n", ""));
@@ -466,7 +419,6 @@ public class JSONParser {
 			for(int j = 0; j < bodyArray.length(); ++j) {
 				if(bodyArray.getJSONObject(j).getString("language").compareTo("en") == 0) {
 					question.setQuestionString(bodyArray.getJSONObject(j).getString("string").replace("\n", ""));
-					//System.out.println("Question " + i + ": " + question.getQuestionString());
 					break;
 				}
 			}
@@ -491,7 +443,6 @@ public class JSONParser {
 	}
 	public static ArrayList<Question> parseQald7File6(String fileDirectory, String sourceString, String endpoint) {
 		ArrayList<Question> questionsList = new ArrayList<Question>();
-		//System.out.println("Reading file " + fileDirectory + "...");
 		String fileContents = FileManager.readWholeFile(fileDirectory);
 		//System.out.println("Parsing file...");
 		JSONObject obj = new JSONObject(fileContents);
@@ -510,7 +461,6 @@ public class JSONParser {
 			JSONArray bodyArray =currentQuestionObject.getJSONArray("question");
 			
 			question.setQuestionString(bodyArray.getJSONObject(0).getString("string").replace("\n", ""));
-			//System.out.println("Question " + i + ": " + question.getQuestionString());
 			
 			question.setQuestionQuery(currentQuestionObject.getJSONObject("query").getString("pseudo"));
 			JSONArray answersArray = currentQuestionObject.getJSONArray("answers");
