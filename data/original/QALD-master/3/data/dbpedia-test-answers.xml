@@ -16,6 +16,7 @@
 <query><![CDATA[PREFIX dbo: <http://dbpedia.org/ontology/>
 PREFIX res: <http://dbpedia.org/resource/>
 PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX xsd:date: <http://www.w3.org/2001/XMLSchema#date>
 SELECT DISTINCT ?uri 
 WHERE {
 	?uri rdf:type dbo:Book .
@@ -6481,7 +6482,7 @@ WHERE {
 <keywords lang="nl"><![CDATA[ruimtereis, hoeveel]]></keywords>
 <query><![CDATA[PREFIX dbo: <http://dbpedia.org/ontology/>
 PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
-SELECT COUNT(DISTINCT ?uri) 
+SELECT (COUNT(DISTINCT ?uri) as ?count) 
 WHERE {
 	?uri rdf:type dbo:SpaceMission .
 }]]></query>
@@ -7984,7 +7985,7 @@ WHERE {
 <keywords lang="nl"><![CDATA[Benjamin Franklin, kinderen, hoeveel]]></keywords>
 <query><![CDATA[PREFIX res: <http://dbpedia.org/resource/>
 PREFIX dbo: <http://dbpedia.org/ontology/>
-SELECT COUNT(DISTINCT ?uri) 
+SELECT (COUNT(DISTINCT ?uri) as ?count) 
 WHERE {
 	res:Benjamin_Franklin dbo:child ?uri .
 }]]></query>
@@ -8126,7 +8127,7 @@ SELECT DISTINCT ?uri
 WHERE {
 	?uri rdf:type dbo:WorldHeritageSite .
 	?uri dbp:year ?x .
-	FILTER ( ?x >= 2008^^xsd:integer)
+	FILTER ( ?x >= 2008)
 }]]></query>
 <answers>
 <answer>
@@ -8443,7 +8444,7 @@ WHERE {
 <keywords lang="nl"><![CDATA[Hoe vaak, Nicole Kidman, getrouwd]]></keywords>
 <query><![CDATA[PREFIX dbo: <http://dbpedia.org/ontology/>
 PREFIX res: <http://dbpedia.org/resource/>
-SELECT COUNT(DISTINCT ?x) 
+SELECT (COUNT(DISTINCT ?x) as ?count) 
 WHERE {       
         res:Nicole_Kidman dbo:spouse ?x .
 }]]></query>
@@ -10357,7 +10358,7 @@ ORDER BY DESC(?x) OFFSET 0 LIMIT 1]]></query>
 <keywords lang="nl"><![CDATA[Hoeveel, officiële taal, Seychellen]]></keywords>
 <query><![CDATA[PREFIX dbo: <http://dbpedia.org/ontology/>
 PREFIX res: <http://dbpedia.org/resource/>
-SELECT COUNT(DISTINCT ?x) 
+SELECT (COUNT(DISTINCT ?x) as ?count) 
 WHERE {
         res:Seychelles dbo:officialLanguage ?x .
 }]]></query>
@@ -10383,6 +10384,7 @@ WHERE {
 <query><![CDATA[PREFIX dbo:  <http://dbpedia.org/ontology/>
 PREFIX res:  <http://dbpedia.org/resource/>
 PREFIX yago: <http://dbpedia.org/class/yago/>
+PREFIX xsd:date: <http://www.w3.org/2001/XMLSchema#date>
 PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 SELECT DISTINCT ?uri 
 WHERE {

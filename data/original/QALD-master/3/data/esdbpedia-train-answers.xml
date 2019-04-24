@@ -930,7 +930,7 @@ PREFIX dbo: <http://dbpedia.org/ontology/>
 PREFIX esdbp: <http://es.dbpedia.org/property/> 
 PREFIX esres: <http://es.dbpedia.org/resource/> 
 PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
-SELECT COUNT(DISTINCT ?uri)
+SELECT (COUNT(DISTINCT ?uri) as ?count)
 WHERE {
   ?uri rdf:type dbo:Film .
   ?uri esdbp:producción esres:Pedro_Almodóvar . 
@@ -994,7 +994,7 @@ WHERE {
 <query><![CDATA[
 PREFIX esdbp: <http://es.dbpedia.org/property/> 
 PREFIX esres: <http://es.dbpedia.org/resource/> 
-SELECT COUNT(DISTINCT ?uri)
+SELECT (COUNT(DISTINCT ?uri) as ?count)
 WHERE { 
    esres:Níger esdbp:idiomasOficiales ?uri . 
 }
