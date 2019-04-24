@@ -176,7 +176,7 @@ How many monarchical countries are there in Europe?
 PREFIX onto: &lt;http://dbpedia.org/ontology/&gt;
 PREFIX yago: &lt;http://dbpedia.org/class/yago/&gt;
 PREFIX rdf: &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#&gt;
-SELECT COUNT(DISTINCT ?uri)
+SELECT (COUNT (DISTINCT ?uri) as ?count)
 WHERE 
 {
 	?uri rdf:type yago:EuropeanCountries .
@@ -250,6 +250,7 @@ Which states of Germany are governed by the Social Democratic Party?
 PREFIX onto: &lt;http://dbpedia.org/ontology/&gt;
 PREFIX rdf: &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#&gt;
 PREFIX rdfs: &lt;http://www.w3.org/2000/01/rdf-schema#&gt;
+PREFIX res: &lt;http://dbpedia.org/resource/&gt;
 PREFIX yago: &lt;http://dbpedia.org/class/yago/&gt;
 SELECT DISTINCT ?uri ?string 
 WHERE
@@ -1034,7 +1035,7 @@ Which states border Utah?
 PREFIX res: &lt;http://dbpedia.org/resource/&gt;
 PREFIX dbpedia2: &lt;http://dbpedia.org/property/&gt;
 PREFIX yago: &lt;http://dbpedia.org/class/yago/&gt;
-SELECT DISTINCT ?uri ?string
+SELECT DISTINCT ?uri 
 WHERE 
 {
          {res:Kansas dbpedia2:north ?string.}
@@ -1048,8 +1049,6 @@ WHERE
          {res:Kansas dbpedia2:east ?string.}
          UNION
          {res:Kansas dbpedia2:west ?string.}
-         OPTIONAL { ?uri rdf:type yago:StatesOfTheUnitedStates .
-                    ?uri dbpedia2:name ?string . }
 }
 </query>
 <answers>
@@ -8314,11 +8313,10 @@ What did Bruce Carver die from?
 <query>
 PREFIX res: &lt;http://dbpedia.org/resource/&gt;
 PREFIX onto: &lt;http://dbpedia.org/ontology/&gt;
-SELECT ?uri ?string
+SELECT ?uri
 WHERE 
 {       
         res:Bruce_Carver onto:deathCause ?uri .     
-        OPTIONAL {?uri rdfs:label ?string. FILTER (lang(?string) = 'en') }
 }
 </query>
 <answers>

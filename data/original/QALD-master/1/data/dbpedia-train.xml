@@ -6400,13 +6400,12 @@ PREFIX rdfs: &lt;http://www.w3.org/2000/01/rdf-schema#&gt;
 PREFIX rdf: &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#&gt;
 PREFIX foaf: &lt;http://xmlns.com/foaf/0.1/&gt;
 PREFIX onto: &lt;http://dbpedia.org/ontology/&gt;
-SELECT ?uri ?string
+SELECT ?uri 
 WHERE 
 {
 	?film rdf:type onto:Film .
         ?film onto:starring ?uri .
         ?film foaf:name 'Batman Begins'@en .
-	OPTIONAL {?uri rdfs:label ?string . FILTER (lang(?string) = 'en') } 
 }
 </query>
 <answers>
@@ -6476,14 +6475,13 @@ Which software has been developed by organizations founded in California?
 PREFIX rdfs: &lt;http://www.w3.org/2000/01/rdf-schema#&gt;
 PREFIX onto: &lt;http://dbpedia.org/ontology/&gt;
 PREFIX res: &lt;http://dbpedia.org/resource/&gt;
-SELECT ?uri ?string
+SELECT ?uri
 WHERE
 { 
 	?company rdf:type onto:Organisation  .
         ?company onto:foundationPlace res:California .
         ?uri onto:developer ?company .
         ?uri rdf:type onto:Software .
-	OPTIONAL {?uri rdfs:label ?string . FILTER (lang(?string) = 'en') }
 }
 </query>
 <answers>
@@ -7087,6 +7085,7 @@ Is Christian Bale starring in Batman Begins?
 PREFIX rdf: &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#&gt;
 PREFIX foaf: &lt;http://xmlns.com/foaf/0.1/&gt;
 PREFIX onto: &lt;http://dbpedia.org/ontology/&gt;
+PREFIX rdfs:label: &lt;http://www.w3.org/2000/01/rdf-schema#labelgt;
 ASK
 WHERE 
 {
@@ -20367,7 +20366,6 @@ WHERE
 { 
 	?uri rdf:type onto:Organisation .
         ?uri onto:location res:California .
-        OPTIONAL {?uri rdfs:label ?string . FILTER (lang(?string) = 'en') }
 }
 </query>
 <answers>
@@ -26278,7 +26276,7 @@ How many films did Leonardo DiCaprio star in?
 PREFIX rdf: &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#&gt;
 PREFIX foaf: &lt;http://xmlns.com/foaf/0.1/&gt;
 PREFIX onto: &lt;http://dbpedia.org/ontology/&gt;
-SELECT COUNT(?film)
+SELECT (COUNT(?film) as ?count)
 WHERE 
 {
 	?film rdf:type onto:Film .

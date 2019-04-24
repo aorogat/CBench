@@ -275,29 +275,7 @@ The Indiana Jones Trilogy: New Recordings of the Classic Scores
 </answer>
 </answers>
 </question>
-<question id="40">
-<string>
-Did Kurt Cobain have children?
-</string>
-<query>
-PREFIX dc: &lt;http://purl.org/dc/elements/1.1/&gt;
-PREFIX ar: &lt;http://musicbrainz.org/ar/ar-1.0#&gt;
-ASK
-WHERE {
-  ?artist ar:isParent $parenthood .
-  ?parenthood ar:toArtist ?child .
-  ?child dc:title ?name .
-  ?artist dc:title 'Kurt Cobain' .
-}
-</query>
-<answers>
-<answer>
-<boolean>
-false
-</boolean>
-</answer>
-</answers>
-</question>
+
 <question id="25">
 <string>
 How many members does the largest group have?
