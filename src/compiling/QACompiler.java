@@ -46,7 +46,7 @@ public class QACompiler {
 		initHashmaps();
         totalQuestions = parseQuestions();
         checkForRedundancy();
-		System.out.println("Check for valid answers");
+		System.out.println("Check for vavfvfvfvlid answers");
 		cleanEmptyFiles();
 		validateAnswers();
 		cleanEmptyFiles();
@@ -65,34 +65,17 @@ public class QACompiler {
 						for(int m = l+1; m < SparqlInfo.keywords.length; m++) {
 							for(int n = m+1; n < SparqlInfo.keywords.length; n++) {
 								SparqlInfo.commonkeywordscombo.add(SparqlInfo.keywords[i]+" "
-												+SparqlInfo.keywords[j]+" "
-												+SparqlInfo.keywords[m]+" "
-												+SparqlInfo.keywords[k]+" "
-												+SparqlInfo.keywords[l]+" "
-												+SparqlInfo.keywords[n]);									
+												+SparqlInfo.keywords[j].toLowerCase()+" "
+												+SparqlInfo.keywords[m].toLowerCase()+" "
+												+SparqlInfo.keywords[k].toLowerCase()+" "
+												+SparqlInfo.keywords[l].toLowerCase()+" "
+												+SparqlInfo.keywords[n].toLowerCase());									
 							}
 						}
 					}
 				}
 			}
 		}
-		
-		
-		/*
-		for(int i = 0; i < SparqlInfo.commonkeywords.length; i++) {
-			for(int j =0; j < temp.size(); j++) {
-				
-				if((temp.get(j).split(" ")[0]).compareTo(SparqlInfo.commonkeywords[i]) != 0 && (temp.get(j).split(" ")[1]).compareTo(SparqlInfo.commonkeywords[i]) != 0) {
-					SparqlInfo.commonkeywordscombo.add(SparqlInfo.commonkeywords[i] + " " + temp.get(j));
-				}
-			}	
-		}
-		
-		for(int i = 0; i < temp.size(); i++) {	
-			
-			SparqlInfo.commonkeywordscombo.add(temp.get(i));
-		}
-		*/
 		
 		CompilerLogs.operatorDistribution.put("none", 0);
 		for(int i = 0; i < SparqlInfo.commonkeywordscombo.size(); i++) {	
@@ -452,7 +435,7 @@ public class QACompiler {
 		
 		CompilerLogs.tripleCounter.put(numberOfTriples, currTripleCounter);
 		for(int i = 0; i< SparqlInfo.keywords.length; i++) {
-			if(q.getQuestionQuery().toLowerCase().contains(SparqlInfo.keywords[i].toLowerCase())) {
+			if(q.getQuestionQuery().contains(SparqlInfo.keywords[i])) {
 				if(CompilerLogs.keywordCount.containsKey(SparqlInfo.keywords[i])) {
 					int counter = CompilerLogs.keywordCount.get(SparqlInfo.keywords[i]);
 					counter  = counter + 1;

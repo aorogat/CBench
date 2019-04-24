@@ -3,7 +3,7 @@ package compiling;
 import java.util.ArrayList;
 
 public class SparqlInfo {
-	public static String[] keywords = {"","", "", "", "","", "select", "ask", "describe", "construct", "distinct", "limit", "offset", "order by", "filter", " and ","union", "optional", "graph", "not exists", "minus", "count", "max","min", "avg", "sum", "group by", "having", "asc(", "desc("};
-	public static String[] commonkeywords = {"filter", "limit", "opt", "min", "union"};
+	public static String[] keywords = {"","", "", "", "","", "SELECT", "ASK ", "DESCRIBE", "CONSTRUCT", "DISTINCT", "LIMIT", "OFFSET", "ORDER BY", "FILTER", " AND ","UNION", "OPTIONAL", "GRAPH", "NOT EXISTS", "MINUS", "COUNT", "MAX","MIN", "AVG", "SUM", "GROUP BY", "HAVING", "ASC(", "DESC("};
+
 	public static ArrayList<String> commonkeywordscombo = new ArrayList<String>();
 }
