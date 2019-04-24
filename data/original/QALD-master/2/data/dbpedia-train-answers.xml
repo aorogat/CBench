@@ -598,7 +598,7 @@ How many films did Hal Roach produce?
 <query><![CDATA[
 PREFIX dbo: <http://dbpedia.org/ontology/>
 PREFIX res:  <http://dbpedia.org/resource/>
-SELECT COUNT(DISTINCT ?uri) 
+SELECT (COUNT(DISTINCT ?uri) as ?count)
 WHERE {
       ?uri dbo:producer res:Hal_Roach .
 }

@@ -9,6 +9,7 @@ Was the Cracow Klezmer Band founded before DJ Tomekk was born?
 PREFIX dbo: <http://dbpedia.org/ontology/>
 PREFIX res: <http://dbpedia.org/resource/>
 PREFIX bio: <http://purl.org/vocab/bio/0.1/>
+PREFIX rdf:type: &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#type&lt;
 PREFIX foaf: <http://xmlns.com/foaf/0.1/>
 PREFIX mo: <http://purl.org/ontology/mo/>
 ASK
@@ -39,7 +40,8 @@ PREFIX dbo: <http://dbpedia.org/ontology/>
 PREFIX res: <http://dbpedia.org/resource/>
 PREFIX foaf: <http://xmlns.com/foaf/0.1/>
 PREFIX mo: <http://purl.org/ontology/mo/>
-SELECT COUNT(DISTINCT ?uri) 
+PREFIX rdf:type: <http://www.w3.org/1999/02/22-rdf-syntax-ns#type>
+SELECT (COUNT(DISTINCT ?uri) as ?count)
 WHERE {
   ?dbp_band rdf:type dbo:Band .
   ?dbp_band dbo:recordLabel res:Roadrunner_Records .
@@ -67,7 +69,7 @@ PREFIX dbo: <http://dbpedia.org/ontology/>
 PREFIX foaf: <http://xmlns.com/foaf/0.1/>
 PREFIX dc: <http://purl.org/dc/elements/1.1/>
 PREFIX mo: <http://purl.org/ontology/mo/>
-SELECT DISTINCT ?uri ?string 
+SELECT DISTINCT
 WHERE {
   ?album rdf:type mo:Record .
   ?album dc:title 'Drunken Lullabies' .
@@ -78,7 +80,6 @@ WHERE {
   ?dbp_singer dbo:birthPlace ?city .
   ?city dbo:country ?uri .
   ?uri rdf:type dbo:Country .
-  OPTIONAL { ?uri rdfs:label ?string . FILTER (lang(?string) = 'en') }
 }
 ]]></query>
 <answers>
@@ -103,6 +104,7 @@ PREFIX dbp: <http://dbpedia.org/property/>
 PREFIX res: <http://dbpedia.org/resource/>
 PREFIX foaf: <http://xmlns.com/foaf/0.1/>
 PREFIX mo: <http://purl.org/ontology/mo/>
+PREFIX owl:sameAs: <http://www.w3.org/2002/07/owl#sameAs>
 SELECT DISTINCT ?uri ?string
 WHERE {
   ?label dbp:parent res:Sony_Music_Entertainment .
@@ -55590,6 +55592,7 @@ Give me all people that wrote lyrics for bands from Seattle.
 PREFIX dbo: <http://dbpedia.org/ontology/>
 PREFIX res: <http://dbpedia.org/resource/>
 PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+PREFIX owl:sameAs: <http://www.w3.org/2002/07/owl#sameAs>
 PREFIX mo: <http://purl.org/ontology/mo/>
 SELECT DISTINCT ?uri ?string 
 WHERE {
@@ -55644,6 +55647,7 @@ Give me all records that were released during the lifetime of John F. Kennedy.
 PREFIX dbo: <http://dbpedia.org/ontology/>
 PREFIX res: <http://dbpedia.org/resource/>
 PREFIX mo: <http://purl.org/ontology/mo/>
+PREFIX rdf:type: &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#type&lt;
 SELECT DISTINCT ?uri ?string 
 WHERE {
    ?uri rdf:type mo:Record . 
@@ -55906,7 +55910,7 @@ Give me all anarcho punk bands that were formed in the 80s.
 <query><![CDATA[
 PREFIX yago: <http://dbpedia.org/class/yago/>
 PREFIX bio: <http://purl.org/vocab/bio/0.1/>
-SELECT DISTINCT ?uri ?string
+SELECT DISTINCT ?uri
 WHERE {
   ?uri rdf:type yago:Anarcho-punkGroups .
   ?uri owl:sameAs ?mb_band .
@@ -55918,7 +55922,6 @@ WHERE {
   UNION
   { ?event bio:date ?date .
     FILTER regex(?date,'^198') }
-  OPTIONAL { ?uri rdfs:label ?string . FILTER (lang(?string) = 'en') }
 }
 ]]></query>
 <answers>
