@@ -13,7 +13,7 @@
       "string" : "Who plays Phileas Fogg in the adaptation of Around the World in 80 Days directed by Buzz Kulik?"
     } ],
     "query" : {
-      "pseudo" : "PREFIX dbo:  <http://dbpedia.org/ontology/>\nPREFIX res:  <http://dbpedia.org/resource/>\nPREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>\nSELECT DISTINCT ?uri \nWHERE {\n        ?x rdfs:label ?l .\n        FILTER regex(?l,\"Around the World in 80 Days\",\"i\")\n        ?x dbo:director res:Buzz_Kulik .\n        ?x dbo:starring ?uri .\n        ?uri text:\"plays\" text:\"Phileas Fogg\" .\n}"
+      "pseudo" : "PREFIX text: <http://jena.apache.org/text#> \nPREFIX dbo:  <http://dbpedia.org/ontology/>\nPREFIX res:  <http://dbpedia.org/resource/>\nPREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>\nSELECT DISTINCT ?uri \nWHERE {\n        ?x rdfs:label ?l .\n        FILTER regex(?l,\"Around the World in 80 Days\",\"i\")\n        ?x dbo:director res:Buzz_Kulik .\n        ?x dbo:starring ?uri .\n        ?uri text:\"plays\" text:\"Phileas Fogg\" .\n}"
     },
     "answers" : [ {
       "head" : {
@@ -39,7 +39,7 @@
       "string" : "At which college did the only American actor that received the César Award study?"
     } ],
     "query" : {
-      "pseudo" : "PREFIX dbo: <http://dbpedia.org/ontology/>\nPREFIX res: <http://dbpedia.org/resource/>\nSELECT DISTINCT ?string\nWHERE {\n        ?x text:\"is\" text:\"the only American actor that received the César Award\" .\n        ?x dbo:almaMater ?uri .\n}"
+      "pseudo" : "PREFIX text: <http://jena.apache.org/text#> \nPREFIX dbo: <http://dbpedia.org/ontology/>\nPREFIX res: <http://dbpedia.org/resource/>\nSELECT DISTINCT ?string\nWHERE {\n        ?x text:\"is\" text:\"the only American actor that received the César Award\" .\n        ?x dbo:almaMater ?uri .\n}"
     },
     "answers" : [ {
       "head" : {
@@ -65,7 +65,7 @@
       "string" : "Where did the first man in space die?"
     } ],
     "query" : {
-      "pseudo" : "PREFIX dbo: <http://dbpedia.org/ontology/>\nPREFIX res: <http://dbpedia.org/resource/>\nSELECT DISTINCT ?uri\nWHERE {\n        ?x text:\"is\" text:\"first man in space\" .\n        ?x dbo:deathPlace ?uri .\n}"
+      "pseudo" : "PREFIX text: <http://jena.apache.org/text#> \nPREFIX dbo: <http://dbpedia.org/ontology/>\nPREFIX res: <http://dbpedia.org/resource/>\nSELECT DISTINCT ?uri\nWHERE {\n        ?x text:\"is\" text:\"first man in space\" .\n        ?x dbo:deathPlace ?uri .\n}"
     },
     "answers" : [ {
       "head" : {
@@ -91,7 +91,7 @@
       "string" : "Which Chinese-speaking country is a former Portguese colony?"
     } ],
     "query" : {
-      "pseudo" : "PREFIX dbo: <http://dbpedia.org/ontology/>\nPREFIX res: <http://dbpedia.org/resource/>\nSELECT DISTINCT ?uri \nWHERE { \n        res:Chinese_language dbo:spokenIn ?uri . \n        ?uri text:\"is\" text:\"former Portuguese colony\" . \n}"
+      "pseudo" : "PREFIX text: <http://jena.apache.org/text#> \nPREFIX dbo: <http://dbpedia.org/ontology/>\nPREFIX res: <http://dbpedia.org/resource/>\nSELECT DISTINCT ?uri \nWHERE { \n        res:Chinese_language dbo:spokenIn ?uri . \n        ?uri text:\"is\" text:\"former Portuguese colony\" . \n}"
     },
     "answers" : [ {
       "head" : {
@@ -117,7 +117,7 @@
       "string" : "What is the largest city in the county in which Faulkner spent most of his life?"
     } ],
     "query" : {
-      "pseudo" : "PREFIX dbo: <http://dbpedia.org/ontology/>\nPREFIX res: <http://dbpedia.org/resource/>\nSELECT DISTINCT ?uri \nWHERE { \n        res:William_Faulkner text:\"spent most of his life in\" ?x . \n        ?x dbo:largestCity ?uri . \n}"
+      "pseudo" : "PREFIX text: <http://jena.apache.org/text#> \nPREFIX dbo: <http://dbpedia.org/ontology/>\nPREFIX res: <http://dbpedia.org/resource/>\nSELECT DISTINCT ?uri \nWHERE { \n        res:William_Faulkner text:\"spent most of his life in\" ?x . \n        ?x dbo:largestCity ?uri . \n}"
     },
     "answers" : [ {
       "head" : {
@@ -143,7 +143,7 @@
       "string" : "Which movie by the Coen brothers stars John Turturro in the role of a New York City playwright?"
     } ],
     "query" : {
-      "pseudo" : "PREFIX dbo: <http://dbpedia.org/ontology/>\nPREFIX res: <http://dbpedia.org/resource/>\nSELECT DISTINCT ?uri \nWHERE {\n        ?uri rdf:type dbo:Film . \n        ?uri dbo:director res:Coen_brothers .\n        ?uri dbo:starring res:John_Turturro .\n        res:John_Turturro text:\"role\" text:\"New York City playwright\" .\n}"
+      "pseudo" : "PREFIX rdf:type: <http://www.w3.org/1999/02/22-rdf-syntax-ns#type>\nPREFIX dbo: <http://dbpedia.org/ontology/>\nPREFIX res: <http://dbpedia.org/resource/>\nSELECT DISTINCT ?uri \nWHERE {\n        ?uri rdf:type dbo:Film . \n        ?uri dbo:director res:Coen_brothers .\n        ?uri dbo:starring res:John_Turturro .\n        res:John_Turturro text:\"role\" text:\"New York City playwright\" .\n}"
     },
     "answers" : [ {
       "head" : {
@@ -169,7 +169,7 @@
       "string" : "Dakar is the capital of which country member of the African Union?"
     } ],
     "query" : {
-      "pseudo" : "PREFIX dbo: <http://dbpedia.org/ontology/>\nPREFIX res: <http://dbpedia.org/resource/>\nSELECT DISTINCT ?uri \nWHERE {\n\t?uri text:\"member of\" text:\"the African Union\" .\t\n\t?uri dbo:capital res:Dakar .\n}"
+      "pseudo" : "PREFIX text: <http://jena.apache.org/text#> \nPREFIX dbo: <http://dbpedia.org/ontology/>\nPREFIX res: <http://dbpedia.org/resource/>\nSELECT DISTINCT ?uri \nWHERE {\n\t?uri text:\"member of\" text:\"the African Union\" .\t\n\t?uri dbo:capital res:Dakar .\n}"
     },
     "answers" : [ {
       "head" : {
@@ -195,7 +195,7 @@
       "string" : "Which city does the first person to climb all 14 eight-thousanders come from?"
     } ],
     "query" : {
-      "pseudo" : "PREFIX dbo: <http://dbpedia.org/ontology/>\nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> \nSELECT DISTINCT ?uri\nWHERE {\n        ?x text:\"is\" text:\"first person to climb all fourteen eight-thousanders\" .\n        ?x dbo:birthPlace ?uri .\n        ?uri rdf:type dbo:Settlement .\n}"
+      "pseudo" : "PREFIX text: <http://jena.apache.org/text#> \nPREFIX dbo: <http://dbpedia.org/ontology/>\nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> \nSELECT DISTINCT ?uri\nWHERE {\n        ?x text:\"is\" text:\"first person to climb all fourteen eight-thousanders\" .\n        ?x dbo:birthPlace ?uri .\n        ?uri rdf:type dbo:Settlement .\n}"
     },
     "answers" : [ {
       "head" : {
@@ -221,7 +221,7 @@
       "string" : "Under which king did the British prime minister that signed the Munich agreement serve?"
     } ],
     "query" : {
-      "pseudo" : "PREFIX dbo: <http://dbpedia.org/ontology/>\nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nPREFIX yago: <http://dbpedia.org/class/yago/>\nSELECT DISTINCT ?uri \nWHERE {\n        ?x rdf:type yago:PrimeMinistersOfTheUnitedKingdom .\n        ?x text:\"sign\" text:\"Munich Agreement\" .\n        ?x dbo:monarch ?uri .\n}"
+      "pseudo" : "PREFIX text: <http://jena.apache.org/text#> \nPREFIX dbo: <http://dbpedia.org/ontology/>\nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nPREFIX yago: <http://dbpedia.org/class/yago/>\nSELECT DISTINCT ?uri \nWHERE {\n        ?x rdf:type yago:PrimeMinistersOfTheUnitedKingdom .\n        ?x text:\"sign\" text:\"Munich Agreement\" .\n        ?x dbo:monarch ?uri .\n}"
     },
     "answers" : [ {
       "head" : {
@@ -247,7 +247,7 @@
       "string" : "Who succeeded the pope that reigned only 33 days?"
     } ],
     "query" : {
-      "pseudo" : "PREFIX dbo: <http://dbpedia.org/ontology/>\nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nPREFIX yago: <http://dbpedia.org/class/yago/>\nSELECT DISTINCT ?uri \nWHERE {\n        ?x rdf:type yago:Popes .\n        ?x text:\"reign\" text:\"33 days\" .\n        ?x dbo:successor ?uri .\n}"
+      "pseudo" : "PREFIX text: <http://jena.apache.org/text#> \nPREFIX dbo: <http://dbpedia.org/ontology/>\nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nPREFIX yago: <http://dbpedia.org/class/yago/>\nSELECT DISTINCT ?uri \nWHERE {\n        ?x rdf:type yago:Popes .\n        ?x text:\"reign\" text:\"33 days\" .\n        ?x dbo:successor ?uri .\n}"
     },
     "answers" : [ {
       "head" : {
@@ -273,7 +273,7 @@
       "string" : "A landmark of which city is the home of the Mona Lisa?"
     } ],
     "query" : {
-      "pseudo" : "PREFIX dbo: <http://dbpedia.org/ontology/>\nPREFIX res: <http://dbpedia.org/resource/>\nSELECT DISTINCT ?uri\nWHERE {\n        res:Mona_Lisa dbo:museum ?x .\n        ?x text:\"landmark in\" ?uri .\n}"
+      "pseudo" : "PREFIX text: <http://jena.apache.org/text#> \nPREFIX dbo: <http://dbpedia.org/ontology/>\nPREFIX res: <http://dbpedia.org/resource/>\nSELECT DISTINCT ?uri\nWHERE {\n        res:Mona_Lisa dbo:museum ?x .\n        ?x text:\"landmark in\" ?uri .\n}"
     },
     "answers" : [ {
       "head" : {
@@ -299,7 +299,7 @@
       "string" : "Which street basketball player was diagnosed with Sarcoidosis?"
     } ],
     "query" : {
-      "pseudo" : "PREFIX dbo: <http://dbpedia.org/ontology/>\nPREFIX yago: <http://dbpedia.org/class/yago/>\nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nSELECT DISTINCT ?uri \nWHERE {\n  ?uri rdf:type yago:StreetBasketballPlayers .\n  ?uri text:\"diagnosed with\" text:\"Sarcoidosis\".\n}"
+      "pseudo" : "PREFIX text: <http://jena.apache.org/text#> \nPREFIX dbo: <http://dbpedia.org/ontology/>\nPREFIX yago: <http://dbpedia.org/class/yago/>\nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nSELECT DISTINCT ?uri \nWHERE {\n  ?uri rdf:type yago:StreetBasketballPlayers .\n  ?uri text:\"diagnosed with\" text:\"Sarcoidosis\".\n}"
     },
     "answers" : [ {
       "head" : {
@@ -325,7 +325,7 @@
       "string" : "When was the composer of the opera Madame Butterfly born?"
     } ],
     "query" : {
-      "pseudo" : "PREFIX dbo: <http://dbpedia.org/ontology/>\nPREFIX res: <http://dbpedia.org/resource/>\nSELECT DISTINCT ?date \nWHERE {\n    res:Madama_Butterfly text:\"composer\" ?x .\n    ?x dbo:birthDate ?date .\n}"
+      "pseudo" : "PREFIX text: <http://jena.apache.org/text#> \nPREFIX dbo: <http://dbpedia.org/ontology/>\nPREFIX res: <http://dbpedia.org/resource/>\nSELECT DISTINCT ?date \nWHERE {\n    res:Madama_Butterfly text:\"composer\" ?x .\n    ?x dbo:birthDate ?date .\n}"
     },
     "answers" : [ {
       "head" : {
@@ -351,7 +351,7 @@
       "string" : "Which anti-apartheid activist graduated from the University of South Africa?"
     } ],
     "query" : {
-      "pseudo" : "PREFIX dbo: <http://dbpedia.org/ontology/>\nPREFIX res: <http://dbpedia.org/resource/>\nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nSELECT DISTINCT ?uri \nWHERE {\n\t?uri rdf:type text:\"anti-apartheid activist\" .\n        ?uri dbo:almaMater res:University_of_South_Africa .\n}"
+      "pseudo" : "PREFIX text: <http://jena.apache.org/text#> \nPREFIX dbo: <http://dbpedia.org/ontology/>\nPREFIX res: <http://dbpedia.org/resource/>\nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nSELECT DISTINCT ?uri \nWHERE {\n\t?uri rdf:type text:\"anti-apartheid activist\" .\n        ?uri dbo:almaMater res:University_of_South_Africa .\n}"
     },
     "answers" : [ {
       "head" : {
@@ -377,7 +377,7 @@
       "string" : "Who is the front man of the band that wrote Coffee & TV?"
     } ],
     "query" : {
-      "pseudo" : "PREFIX dbo: <http://dbpedia.org/ontology/>\nSELECT DISTINCT ?uri \nWHERE {\n        <http://dbpedia.org/page/Coffee_&_TV> dbo:musicalArtist ?x .\n        ?x dbo:bandMember ?uri .\n        ?uri text:\"is\" text:\"frontman\" .\n}"
+      "pseudo" : "PREFIX text: <http://jena.apache.org/text#> \nPREFIX dbo: <http://dbpedia.org/ontology/>\nSELECT DISTINCT ?uri \nWHERE {\n        <http://dbpedia.org/page/Coffee_&_TV> dbo:musicalArtist ?x .\n        ?x dbo:bandMember ?uri .\n        ?uri text:\"is\" text:\"frontman\" .\n}"
     },
     "answers" : [ {
       "head" : {
@@ -403,7 +403,7 @@
       "string" : "Which recipients of the Victoria Cross died in the Battle of Arnhem?"
     } ],
     "query" : {
-      "pseudo" : "PREFIX dbo: <http://dbpedia.org/ontology/>\nPREFIX res: <http://dbpedia.org/resource/>\nSELECT DISTINCT ?uri \nWHERE {\n\t?uri dbo:award res:Victoria_Cross .\n\t?uri text:\"died in\" text:\"Battle of Arnhem\" .\n}"
+      "pseudo" : "PREFIX text: <http://jena.apache.org/text#> \nPREFIX dbo: <http://dbpedia.org/ontology/>\nPREFIX res: <http://dbpedia.org/resource/>\nSELECT DISTINCT ?uri \nWHERE {\n\t?uri dbo:award res:Victoria_Cross .\n\t?uri text:\"died in\" text:\"Battle of Arnhem\" .\n}"
     },
     "answers" : [ {
       "head" : {
@@ -434,7 +434,7 @@
       "string" : "Gaborone is the capital of which country member of the African Union?"
     } ],
     "query" : {
-      "pseudo" : "PREFIX dbo: <http://dbpedia.org/ontology/>\nPREFIX res: <http://dbpedia.org/resource/>\nSELECT DISTINCT ?uri \nWHERE {\n    ?uri text:\"member of\" text:\"African Union\" .    \n    ?uri dbo:capital res:Gaborone .\n}"
+      "pseudo" : "PREFIX text: <http://jena.apache.org/text#> \nPREFIX dbo: <http://dbpedia.org/ontology/>\nPREFIX res: <http://dbpedia.org/resource/>\nSELECT DISTINCT ?uri \nWHERE {\n    ?uri text:\"member of\" text:\"African Union\" .    \n    ?uri dbo:capital res:Gaborone .\n}"
     },
     "answers" : [ {
       "head" : {
@@ -460,7 +460,7 @@
       "string" : "Which German mathematicians were members of the von Braun rocket group?"
     } ],
     "query" : {
-      "pseudo" : "PREFIX dbo: <http://dbpedia.org/ontology/>\nPREFIX res: <http://dbpedia.org/resource/>\nSELECT DISTINCT ?uri ?abstract\nWHERE {\n        ?uri dbo:field res:Mathematics .\n        ?uri dbo:birthPlace res:Germany .\n        ?uri text:\"member of\" text:\"von Braun rocket group\" .\n}"
+      "pseudo" : "PREFIX text: <http://jena.apache.org/text#> \nPREFIX dbo: <http://dbpedia.org/ontology/>\nPREFIX res: <http://dbpedia.org/resource/>\nSELECT DISTINCT ?uri ?abstract\nWHERE {\n        ?uri dbo:field res:Mathematics .\n        ?uri dbo:birthPlace res:Germany .\n        ?uri text:\"member of\" text:\"von Braun rocket group\" .\n}"
     },
     "answers" : [ {
       "head" : {
@@ -491,7 +491,7 @@
       "string" : "Are there man-made lakes in Australia that are deeper than 100 meters?"
     } ],
     "query" : {
-      "pseudo" : "PREFIX dbo: <http://dbpedia.org/ontology/>\nPREFIX res: <http://dbpedia.org/resource/>\nASK\nWHERE {\n        ?uri rdf:type dbo:Lake . \n        ?uri dbo:country res:Australia . \n        ?uri text:\"is\" text:\"man-made\" . \n        ?uri dbo:depth ?num . \n        FILTER(?num > 100.0)\n}"
+      "pseudo" : "PREFIX rdf:type: <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> \nPREFIX dbo: <http://dbpedia.org/ontology/>\nPREFIX res: <http://dbpedia.org/resource/>\nASK\nWHERE {\n        ?uri rdf:type dbo:Lake . \n        ?uri dbo:country res:Australia . \n        ?uri text:\"is\" text:\"man-made\" . \n        ?uri dbo:depth ?num . \n        FILTER(?num > 100.0)\n}"
     },
     "answers" : [ {
       "head" : { },
@@ -509,7 +509,7 @@
       "string" : "Which Secretary of State policies lead to the United States' acquisition of Pacific colonies?"
     } ],
     "query" : {
-      "pseudo" : "SELECT DISTINCT ?uri WHERE { ?uri <http://dbpedia.org/ontology/office> \"United States Secretary of State\" . ?uri text:\"policies lead\" text:\"United States' acquisition of Pacific colonies\" . }"
+      "pseudo" : "PREFIX text: <http://jena.apache.org/text#> \nSELECT DISTINCT ?uri WHERE { ?uri <http://dbpedia.org/ontology/office> \"United States Secretary of State\" . ?uri text:\"policies lead\" text:\"United States' acquisition of Pacific colonies\" . }"
     },
     "answers" : [ {
       "head" : {
@@ -535,7 +535,7 @@
       "string" : "Which Secretary of State was significantly involved in the United States' dominance of the Caribbean?"
     } ],
     "query" : {
-      "pseudo" : "PREFIX dbo: <http://dbpedia.org/ontology/>\nPREFIX res: <http://dbpedia.org/resource/>\nSELECT DISTINCT ?uri \nWHERE {\n        ?uri dbo:office \"United States Secretary of State\" . \n        ?uri text:\"significiantly involved in\" text:\"United States' dominance of the Caribbean\" .\n}"
+      "pseudo" : "PREFIX text: <http://jena.apache.org/text#> \nPREFIX dbo: <http://dbpedia.org/ontology/>\nPREFIX res: <http://dbpedia.org/resource/>\nSELECT DISTINCT ?uri \nWHERE {\n        ?uri dbo:office \"United States Secretary of State\" . \n        ?uri text:\"significiantly involved in\" text:\"United States' dominance of the Caribbean\" .\n}"
     },
     "answers" : [ {
       "head" : {
@@ -561,7 +561,7 @@
       "string" : "Who played the drums in the band that wrote Complete Control?"
     } ],
     "query" : {
-      "pseudo" : "PREFIX dbo: <http://dbpedia.org/ontology/>\nPREFIX res: <http://dbpedia.org/resource/>\nSELECT DISTINCT ?uri \nWHERE {\n        res:Complete_Control dbo:musicalArtist ?x .\n        ?x dbo:bandMember ?uri .\n        ?uri text:\"plays\" text:\"drums\" .\n}"
+      "pseudo" : "PREFIX text: <http://jena.apache.org/text#> \nPREFIX dbo: <http://dbpedia.org/ontology/>\nPREFIX res: <http://dbpedia.org/resource/>\nSELECT DISTINCT ?uri \nWHERE {\n        res:Complete_Control dbo:musicalArtist ?x .\n        ?x dbo:bandMember ?uri .\n        ?uri text:\"plays\" text:\"drums\" .\n}"
     },
     "answers" : [ {
       "head" : {
@@ -587,7 +587,7 @@
       "string" : "Which horses did The Long Fellow ride?"
     } ],
     "query" : {
-      "pseudo" : "PREFIX dbo: <http://dbpedia.org/ontology/>\nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nSELECT DISTINCT ?uri \nWHERE {\n        ?x text:\"known as\" text:\"The Long Fellow\" .\n        ?x dbo:raceHorse ?uri .\n}"
+      "pseudo" : "PREFIX text: <http://jena.apache.org/text#> \nPREFIX dbo: <http://dbpedia.org/ontology/>\nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nSELECT DISTINCT ?uri \nWHERE {\n        ?x text:\"known as\" text:\"The Long Fellow\" .\n        ?x dbo:raceHorse ?uri .\n}"
     },
     "answers" : [ {
       "head" : {
@@ -663,7 +663,7 @@
       "string" : "How many awards achieved the creator of the world's most famous equation?"
     } ],
     "query" : {
-      "pseudo" : " PREFIX dbo: <http://dbpedia.org/ontology/> SELECT COUNT(?proj) WHERE { ?uri text:\"the world's most famous equation\" . ?uri dbo:awards ?proj . } "
+      "pseudo" : " PREFIX dbo: <http://dbpedia.org/ontology/> (SELECT COUNT(?proj) as ?count) WHERE { ?uri text:\"the world's most famous equation\" . ?uri dbo:awards ?proj . } "
     },
     "answers" : [ {
       "head" : {
@@ -689,7 +689,7 @@
       "string" : "Of the people that died of radiation in Los Alamos, whose death was an accident?"
     } ],
     "query" : {
-      "pseudo" : "PREFIX dbo: <http://dbpedia.org/ontology/>\nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nSELECT DISTINCT ?uri \nWHERE {\n        ?rui dbo:deathPlace <http://dbpedia.org/resource/Los_Alamos,_New_Mexico> .\n        ?uri dbo:deathCause res:Acute_radiation_syndrome .\n        ?uri text:\"death circumstance\" text:\"accident\" .\n}"
+      "pseudo" : "PREFIX res:Acute_radiation_syndrome: <http://dbpedia.org/resource/Acute_radiation_syndrome> \nPREFIX text: <http://jena.apache.org/text#> \nPREFIX dbo: <http://dbpedia.org/ontology/>\nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nSELECT DISTINCT ?uri \nWHERE {\n        ?rui dbo:deathPlace <http://dbpedia.org/resource/Los_Alamos,_New_Mexico> .\n        ?uri dbo:deathCause res:Acute_radiation_syndrome .\n        ?uri text:\"death circumstance\" text:\"accident\" .\n}"
     },
     "answers" : [ {
       "head" : {
@@ -720,7 +720,7 @@
       "string" : "Which writers converted to Islam?"
     } ],
     "query" : {
-      "pseudo" : "PREFIX dbo: <http://dbpedia.org/ontology/>\nPREFIX res: <http://dbpedia.org/resource/>\nSELECT DISTINCT ?uri\nWHERE {\n        ?uri rdf:type dbo:Writer . \n        ?uri text:\"converted to\" text:\"Islam\" . \n}"
+      "pseudo" : "PREFIX rdf:type: <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> \nPREFIX dbo: <http://dbpedia.org/ontology/>\nPREFIX res: <http://dbpedia.org/resource/>\nSELECT DISTINCT ?uri\nWHERE {\n        ?uri rdf:type dbo:Writer . \n        ?uri text:\"converted to\" text:\"Islam\" . \n}"
     },
     "answers" : [ {
       "head" : {
@@ -766,7 +766,7 @@
       "string" : "Under which pseudonym did Charles Dickens publish some of his books?"
     } ],
     "query" : {
-      "pseudo" : "PREFIX dbo: <http://dbpedia.org/ontology/>\nPREFIX res: <http://dbpedia.org/resource/>\nSELECT DISTINCT ?s\nWHERE { \n        ?x dbo:author res:Charles_Dickens . \n        ?x text:\"published under pseudonyn\" ?s . \n}"
+      "pseudo" : "PREFIX text: <http://jena.apache.org/text#> \nPREFIX dbo: <http://dbpedia.org/ontology/>\nPREFIX res: <http://dbpedia.org/resource/>\nSELECT DISTINCT ?s\nWHERE { \n        ?x dbo:author res:Charles_Dickens . \n        ?x text:\"published under pseudonyn\" ?s . \n}"
     },
     "answers" : [ {
       "head" : {
@@ -792,7 +792,7 @@
       "string" : "For which movie did the daughter of Francis Ford Coppola receive an Oscar?"
     } ],
     "query" : {
-      "pseudo" : "PREFIX dbo: <http://dbpedia.org/ontology/>\nPREFIX res: <http://dbpedia.org/resource/>\nSELECT DISTINCT ?uri\nWHERE {\n        res:Francis_Ford_Coppola dbo:child ?x .\n        ?x text:\"receive Oscar for\" ?uri .\n}"
+      "pseudo" : "PREFIX text: <http://jena.apache.org/text#> \nPREFIX dbo: <http://dbpedia.org/ontology/>\nPREFIX res: <http://dbpedia.org/resource/>\nSELECT DISTINCT ?uri\nWHERE {\n        res:Francis_Ford_Coppola dbo:child ?x .\n        ?x text:\"receive Oscar for\" ?uri .\n}"
     },
     "answers" : [ {
       "head" : {
@@ -818,7 +818,7 @@
       "string" : "Who is the president by whom 20 million Americans had gained health insurance?"
     } ],
     "query" : {
-      "pseudo" : " PREFIX dbp: <http://dbpedia.org/property/> SELECT DISTINCT ?proj WHERE { ?uri text:\"20 million Americans had gained health insurance\" . ?uri dbp:signedPresident ?proj . } "
+      "pseudo" : "PREFIX text: <http://jena.apache.org/text#> \nPREFIX dbp: <http://dbpedia.org/property/> SELECT DISTINCT ?proj WHERE { ?uri text:\"20 million Americans had gained health insurance\" . ?uri dbp:signedPresident ?proj . } "
     },
     "answers" : [ {
       "head" : {
@@ -844,7 +844,7 @@
       "string" : "Who invented the World Wide Web?"
     } ],
     "query" : {
-      "pseudo" : "PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>   SELECT DISTINCT ?proj WHERE { ?proj text:\"world wide web\" . ?proj rdf:type <http://dbpedia.org/class/yago/Inventor110214637> . }"
+      "pseudo" : "PREFIX text: <http://jena.apache.org/text#> \nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>   SELECT DISTINCT ?proj WHERE { ?proj text:\"world wide web\" . ?proj rdf:type <http://dbpedia.org/class/yago/Inventor110214637> . }"
     },
     "answers" : [ {
       "head" : {
@@ -870,7 +870,7 @@
       "string" : "Which astronauts died at the Columbia disaster also known as STS-107?"
     } ],
     "query" : {
-      "pseudo" : " PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> PREFIX dbo: <http://dbpedia.org/ontology/> SELECT DISTINCT ?proj WHERE { { ?uri text:\"Columbia disaster\" . } UNION { ?uri text:\"STS-107\" }  ?proj rdf:type dbo:Astronaut . ?proj dbo:deathDate ?date. FILTER (bound (?date))}"
+      "pseudo" : "PREFIX text: <http://jena.apache.org/text#> \nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> PREFIX dbo: <http://dbpedia.org/ontology/> SELECT DISTINCT ?proj WHERE { { ?uri text:\"Columbia disaster\" . } UNION { ?uri text:\"STS-107\" }  ?proj rdf:type dbo:Astronaut . ?proj dbo:deathDate ?date. FILTER (bound (?date))}"
     },
     "answers" : [ {
       "head" : {
@@ -952,7 +952,7 @@
       "string" : "What is the name of the Viennese newspaper founded by the creator of the croissant?"
     } ],
     "query" : {
-      "pseudo" : "PREFIX dbo: <http://dbpedia.org/ontology/>\nPREFIX res: <http://dbpedia.org/resource/>\nSELECT DISTINCT ?name \nWHERE {\n        res:Croissant dbo:creator ?x .\n        ?x text:\"founder of\" ?name . \n}"
+      "pseudo" : "PREFIX text: <http://jena.apache.org/text#> \nPREFIX dbo: <http://dbpedia.org/ontology/>\nPREFIX res: <http://dbpedia.org/resource/>\nSELECT DISTINCT ?name \nWHERE {\n        res:Croissant dbo:creator ?x .\n        ?x text:\"founder of\" ?name . \n}"
     },
     "answers" : [ {
       "head" : {
@@ -978,7 +978,7 @@
       "string" : "Which members of the Wu-Tang Clan took their stage name from a movie?"
     } ],
     "query" : {
-      "pseudo" : "PREFIX dbo: <http://dbpedia.org/ontology/>\nPREFIX res: <http://dbpedia.org/resource/>\nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nSELECT DISTINCT ?uri \nWHERE {\n        res:Wu-Tang_Clan dbo:bandMember ?uri .\n        ?uri text:\"stage name\" ?x .\n        ?x text:\"from\" text:\"movie\" .\n}"
+      "pseudo" : "PREFIX text: <http://jena.apache.org/text#> \nPREFIX dbo: <http://dbpedia.org/ontology/>\nPREFIX res: <http://dbpedia.org/resource/>\nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nSELECT DISTINCT ?uri \nWHERE {\n        res:Wu-Tang_Clan dbo:bandMember ?uri .\n        ?uri text:\"stage name\" ?x .\n        ?x text:\"from\" text:\"movie\" .\n}"
     },
     "answers" : [ {
       "head" : {
@@ -1009,7 +1009,7 @@
       "string" : "Which actress starring in the TV series Friends owns the production company Coquette Productions?"
     } ],
     "query" : {
-      "pseudo" : "PREFIX dbo: <http://dbpedia.org/ontology/>\nPREFIX res: <http://dbpedia.org/resource/>\nSELECT DISTINCT ?uri \nWHERE {\n\tres:Friends dbo:starring ?uri .\t\n\t?uri text:\"own\" text:\"the production company Coquette Productions\" .\n}"
+      "pseudo" : "PREFIX text: <http://jena.apache.org/text#> \nPREFIX dbo: <http://dbpedia.org/ontology/>\nPREFIX res: <http://dbpedia.org/resource/>\nSELECT DISTINCT ?uri \nWHERE {\n\tres:Friends dbo:starring ?uri .\t\n\t?uri text:\"own\" text:\"the production company Coquette Productions\" .\n}"
     },
     "answers" : [ {
       "head" : {
@@ -1035,7 +1035,7 @@
       "string" : "Who of those resting in Westminster Abbey wrote a book set in London and Paris?"
     } ],
     "query" : {
-      "pseudo" : " PREFIX dbo: <http://dbpedia.org/ontology/> PREFIX dbr: <http://dbpedia.org/resource/> SELECT DISTINCT ?uri WHERE { ?uri text:\"set in London and Paris\" . dbr:Westminster_Abbey dbo:restingPlace ?uri . } "
+      "pseudo" : "PREFIX text: <http://jena.apache.org/text#> \nPREFIX dbo: <http://dbpedia.org/ontology/> PREFIX dbr: <http://dbpedia.org/resource/> SELECT DISTINCT ?uri WHERE { ?uri text:\"set in London and Paris\" . dbr:Westminster_Abbey dbo:restingPlace ?uri . } "
     },
     "answers" : [ {
       "head" : {
@@ -1061,7 +1061,7 @@
       "string" : "List all the battles commanded by the lover of Cleopatra."
     } ],
     "query" : {
-      "pseudo" : "PREFIX dbo: <http://dbpedia.org/ontology/>\nPREFIX res: <http://dbpedia.org/resource/>\nSELECT DISTINCT ?uri \nWHERE { \n    ?x text:\"lover\" text:\"Cleopatra\".   \n    ?uri dbo:commander ?x .\n}"
+      "pseudo" : "PREFIX text: <http://jena.apache.org/text#> \nPREFIX dbo: <http://dbpedia.org/ontology/>\nPREFIX res: <http://dbpedia.org/resource/>\nSELECT DISTINCT ?uri \nWHERE { \n    ?x text:\"lover\" text:\"Cleopatra\".   \n    ?uri dbo:commander ?x .\n}"
     },
     "answers" : [ {
       "head" : {
@@ -1192,7 +1192,7 @@
       "string" : "Who was vice president under the president who authorized atomic weapons against Japan during World War II?"
     } ],
     "query" : {
-      "pseudo" : "PREFIX dbo: <http://dbpedia.org/ontology/>\nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nSELECT DISTINCT ?uri\nWHERE {\n        ?x text:\"authorized\" text:\"atomic weapons against Japan\" .\n        ?x dbo:vicePresident ?uri .\n}"
+      "pseudo" : "PREFIX text: <http://jena.apache.org/text#> \nPREFIX dbo: <http://dbpedia.org/ontology/>\nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nSELECT DISTINCT ?uri\nWHERE {\n        ?x text:\"authorized\" text:\"atomic weapons against Japan\" .\n        ?x dbo:vicePresident ?uri .\n}"
     },
     "answers" : [ {
       "head" : {
@@ -1218,7 +1218,7 @@
       "string" : "Daniel Craig"
     } ],
     "query" : {
-      "pseudo" : "PREFIX dbo: <http://dbpedia.org/ontology/>\nPREFIX res: <http://dbpedia.org/resource/>\nSELECT DISTINCT ?string \nWHERE {\n        res:James_Bond dbo:lastAppearance ?x .\n        ?x text:\"feature as James Bond\" ?string .\n}"
+      "pseudo" : "PREFIX text: <http://jena.apache.org/text#> \nPREFIX dbo: <http://dbpedia.org/ontology/>\nPREFIX res: <http://dbpedia.org/resource/>\nSELECT DISTINCT ?string \nWHERE {\n        res:James_Bond dbo:lastAppearance ?x .\n        ?x text:\"feature as James Bond\" ?string .\n}"
     },
     "answers" : [ {
       "head" : {
@@ -1244,7 +1244,7 @@
       "string" : "Which anti-apartheid activist was born in Mvezo?"
     } ],
     "query" : {
-      "pseudo" : "PREFIX dbo: <http://dbpedia.org/ontology/>\nPREFIX res: <http://dbpedia.org/resource/>\nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nSELECT DISTINCT ?uri \nWHERE {\n        ?uri rdf:type text:\"anti-apartheid activist\" .\n        ?uri dbo:birthPlace res:Mvezo .\n}"
+      "pseudo" : "PREFIX text: <http://jena.apache.org/text#> \nPREFIX dbo: <http://dbpedia.org/ontology/>\nPREFIX res: <http://dbpedia.org/resource/>\nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nSELECT DISTINCT ?uri \nWHERE {\n        ?uri rdf:type text:\"anti-apartheid activist\" .\n        ?uri dbo:birthPlace res:Mvezo .\n}"
     },
     "answers" : [ {
       "head" : {
@@ -1270,7 +1270,7 @@
       "string" : "The home of the Mona Lisa is a landmark of which city?"
     } ],
     "query" : {
-      "pseudo" : "SELECT DISTINCT ?uri WHERE { <http://dbpedia.org/resource/Mona_Lisa> <http://dbpedia.org/ontology/museum> ?x . ?x text:\"landmark of\" ?uri . }"
+      "pseudo" : "PREFIX text: <http://jena.apache.org/text#> \nSELECT DISTINCT ?uri WHERE { <http://dbpedia.org/resource/Mona_Lisa> <http://dbpedia.org/ontology/museum> ?x . ?x text:\"landmark of\" ?uri . }"
     },
     "answers" : [ {
       "head" : {
@@ -1296,7 +1296,7 @@
       "string" : "On which island did the national poet of Greece die?"
     } ],
     "query" : {
-      "pseudo" : "PREFIX dbo: <http://dbpedia.org/ontology/>\nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nPREFIX yago: <http://dbpedia.org/class/yago/>\nSELECT DISTINCT ?uri \nWHERE {\n        ?x text:\"considered\" text:\"national poet of Greece\" .\n        ?x dbo:deathPlace ?uri .\n        ?uri rdf:type yago:Island109316454 .\n}"
+      "pseudo" : "PREFIX text: <http://jena.apache.org/text#> \nPREFIX dbo: <http://dbpedia.org/ontology/>\nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nPREFIX yago: <http://dbpedia.org/class/yago/>\nSELECT DISTINCT ?uri \nWHERE {\n        ?x text:\"considered\" text:\"national poet of Greece\" .\n        ?x dbo:deathPlace ?uri .\n        ?uri rdf:type yago:Island109316454 .\n}"
     },
     "answers" : [ {
       "head" : {
@@ -1322,7 +1322,7 @@
       "string" : "Which books of the laureate of American lowlife are published by Black Sparrow Books?"
     } ],
     "query" : {
-      "pseudo" : " PREFIX dbo: <http://dbpedia.org/ontology/> SELECT DISTINCT ?proj WHERE { ?uri text:\"laureate of American lowlife\" . ?proj dbo:author ?uri . ?proj dbo:publisher dbr:Black_Sparrow_Books . }"
+      "pseudo" : "PREFIX dbr:Black_Sparrow_Books: <http://dbpedia.org/resource/Black_Sparrow_Books> \nPREFIX text: <http://jena.apache.org/text#> \nPREFIX dbo: <http://dbpedia.org/ontology/> SELECT DISTINCT ?proj WHERE { ?uri text:\"laureate of American lowlife\" . ?proj dbo:author ?uri . ?proj dbo:publisher dbr:Black_Sparrow_Books . }"
     },
     "answers" : [ {
       "head" : {
@@ -1373,7 +1373,7 @@
       "string" : "How many floors does the world's only 7 star hotel have?"
     } ],
     "query" : {
-      "pseudo" : " PREFIX dbo: <http://dbpedia.org/ontology/> SELECT DISTINCT ?proj WHERE { ?uri text:\"world's only 7 star hotel\" . ?uri dbo:floorCount ?proj . } "
+      "pseudo" : "PREFIX text: <http://jena.apache.org/text#> \nPREFIX dbo: <http://dbpedia.org/ontology/> SELECT DISTINCT ?proj WHERE { ?uri text:\"world's only 7 star hotel\" . ?uri dbo:floorCount ?proj . } "
     },
     "answers" : [ {
       "head" : {
@@ -1399,7 +1399,7 @@
       "string" : "How many children does the actor who plays Dan White in Milk have?"
     } ],
     "query" : {
-      "pseudo" : "SELECT ?n WHERE { <http://dbpedia.org/resource/Milk_(film)> <http://dbpedia.org/ontology/starring> ?uri . ?uri text:\"play\" text:\"Dan White\" . ?uri <http://dbpedia.org/property/children> ?n . }"
+      "pseudo" : "PREFIX text: <http://jena.apache.org/text#> \nSELECT ?n WHERE { <http://dbpedia.org/resource/Milk_(film)> <http://dbpedia.org/ontology/starring> ?uri . ?uri text:\"play\" text:\"Dan White\" . ?uri <http://dbpedia.org/property/children> ?n . }"
     },
     "answers" : [ {
       "head" : {
@@ -1425,7 +1425,7 @@
       "string" : "Who are the architects of the tallest building in Japan?"
     } ],
     "query" : {
-      "pseudo" : "SELECT DISTINCT ?uri WHERE { text:\"tallest building in Japan\" <http:/dbpedia.org/ontology/architect> ?uri . }"
+      "pseudo" : "PREFIX text: <http://jena.apache.org/text#> \nSELECT DISTINCT ?uri WHERE { text:\"tallest building in Japan\" <http:/dbpedia.org/ontology/architect> ?uri . }"
     },
     "answers" : [ {
       "head" : {
@@ -1456,7 +1456,7 @@
       "string" : "Which recipients of the Victoria Cross fought in the Battle of Arnhem?"
     } ],
     "query" : {
-      "pseudo" : " PREFIX dbo: <http://dbpedia.org/ontology/> PREFIX res: <http://dbpedia.org/resource/> SELECT DISTINCT ?uri WHERE {     ?uri dbo:award res:Victoria_Cross .    { ?uri text:\"fought in\" text:\"Battle of Arnhem\" . } UNION {?uri text:\"went into action\" text:\"Battle of Arnhem\"} } "
+      "pseudo" : "PREFIX text: <http://jena.apache.org/text#> \nPREFIX dbo: <http://dbpedia.org/ontology/> PREFIX res: <http://dbpedia.org/resource/> SELECT DISTINCT ?uri WHERE {     ?uri dbo:award res:Victoria_Cross .    { ?uri text:\"fought in\" text:\"Battle of Arnhem\" . } UNION {?uri text:\"went into action\" text:\"Battle of Arnhem\"} } "
     },
     "answers" : [ {
       "head" : {
@@ -1528,7 +1528,7 @@
       "string" : "Which country did the first known photographer of snowflakes come from?"
     } ],
     "query" : {
-      "pseudo" : "PREFIX dbo: <http://dbpedia.org/ontology/>\nPREFIX res: <http://dbpedia.org/resource/>\nSELECT DISTINCT ?uri \nWHERE {\n\t?uri text:\"is\" text:\"first known photographer of snowflakes\" .\n\t?uri dbo:birthPlace ?x .\n        ?x rdf:type dbo:Country .\t\n}"
+      "pseudo" : "PREFIX text: <http://jena.apache.org/text#> \nPREFIX dbo: <http://dbpedia.org/ontology/>\nPREFIX res: <http://dbpedia.org/resource/>\nSELECT DISTINCT ?uri \nWHERE {\n\t?uri text:\"is\" text:\"first known photographer of snowflakes\" .\n\t?uri dbo:birthPlace ?x .\n        ?x rdf:type dbo:Country .\t\n}"
     },
     "answers" : [ {
       "head" : {
@@ -1551,10 +1551,10 @@
     "hybrid" : true,
     "question" : [ {
       "language" : "en",
-      "string" : "What is the Answer to The Ultimate Question of Life, the Universe, and Everything?"
+      "string" : "PREFIX text: <http://jena.apache.org/text#> \nWhat is the Answer to The Ultimate Question of Life, the Universe, and Everything?"
     } ],
     "query" : {
-      "pseudo" : " SELECT DISTINCT ?proj WHERE { ?uri text:\"Answer to The Ultimate Question of Life, the Universe, and Everything\" . } "
+      "pseudo" : "PREFIX text: <http://jena.apache.org/text#> \nSELECT DISTINCT ?proj WHERE { ?uri text:\"Answer to The Ultimate Question of Life, the Universe, and Everything\" . } "
     },
     "answers" : [ {
       "head" : {
@@ -1580,7 +1580,7 @@
       "string" : "Which building owned by the Bank of America was featured in the TV series MegaStructures?"
     } ],
     "query" : {
-      "pseudo" : "PREFIX dbo: <http://dbpedia.org/ontology/>\nPREFIX res: <http://dbpedia.org/resource/>\nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nSELECT ?uri \nWHERE {\n        ?uri rdf:type dbo:Building.\n        ?uri dbo:owner res:Bank_of_America . \n        ?uri text:\"featured in\" text:\"MegaStructures\" .\n}"
+      "pseudo" : "PREFIX text: <http://jena.apache.org/text#> \nPREFIX dbo: <http://dbpedia.org/ontology/>\nPREFIX res: <http://dbpedia.org/resource/>\nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nSELECT ?uri \nWHERE {\n        ?uri rdf:type dbo:Building.\n        ?uri dbo:owner res:Bank_of_America . \n        ?uri text:\"featured in\" text:\"MegaStructures\" .\n}"
     },
     "answers" : [ {
       "head" : {
@@ -1606,7 +1606,7 @@
       "string" : "How old is James Bond in the latest Bond book by William Boyd?"
     } ],
     "query" : {
-      "pseudo" : "PREFIX dbo: <http://dbpedia.org/ontology/>\nPREFIX res: <http://dbpedia.org/resource/>\nSELECT DISTINCT ?uri \nWHERE {\n        res:James_Bond dbo:lastAppearance ?x .\n        ?x dbo:author <http://dbpedia.org/resource/William_Boyd_(writer)> .\n        ?x text:\"age of Bond\" ?n .\n}"
+      "pseudo" : "PREFIX text: <http://jena.apache.org/text#> \nPREFIX dbo: <http://dbpedia.org/ontology/>\nPREFIX res: <http://dbpedia.org/resource/>\nSELECT DISTINCT ?uri \nWHERE {\n        res:James_Bond dbo:lastAppearance ?x .\n        ?x dbo:author <http://dbpedia.org/resource/William_Boyd_(writer)> .\n        ?x text:\"age of Bond\" ?n .\n}"
     },
     "answers" : [ {
       "head" : {
@@ -1632,7 +1632,7 @@
       "string" : "Which of the volcanoes that erupted in 1550 was named after an explorer?"
     } ],
     "query" : {
-      "pseudo" : "SELECT DISTINCT ?uri WHERE { ?uri <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http:/dbpedia.org/ontology/Volcano> . ?uri <http:/dbpedia.org/ontology/eruptionYear> ?y . ?uri text:\"named after\" text:\"explorer\" . FILTER (year(?y) = 1550)  }"
+      "pseudo" : "PREFIX text: <http://jena.apache.org/text#> \nSELECT DISTINCT ?uri WHERE { ?uri <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http:/dbpedia.org/ontology/Volcano> . ?uri <http:/dbpedia.org/ontology/eruptionYear> ?y . ?uri text:\"named after\" text:\"explorer\" . FILTER (year(?y) = 1550)  }"
     },
     "answers" : [ {
       "head" : {
@@ -1658,7 +1658,7 @@
       "string" : "In which British territories was the \"Father of Singapore\" born?"
     } ],
     "query" : {
-      "pseudo" : "SELECT DISTINCT ?uri WHERE { text:\"Father of modern Singapore\" <http://dbpedia.org/ontology/birthPlace> ?uri . ?uri rdf:type text:\"British territories\" . }"
+      "pseudo" : "PREFIX text: <http://jena.apache.org/text#> \nSELECT DISTINCT ?uri WHERE { text:\"Father of modern Singapore\" <http://dbpedia.org/ontology/birthPlace> ?uri . ?uri rdf:type text:\"British territories\" . }"
     },
     "answers" : [ {
       "head" : {
@@ -1684,7 +1684,7 @@
       "string" : "How many Golden Globe awards did the daughter of Henry Fonda win?"
     } ],
     "query" : {
-      "pseudo" : "PREFIX dbo: <http://dbpedia.org/ontology/>\nPREFIX res: <http://dbpedia.org/resource/>\nSELECT ?n\nWHERE {\n        ?uri dbo:parent res:Henry_Fonda .\n        ?uri text:\"number of Golden Globe awards\" ?n .\n}"
+      "pseudo" : "PREFIX text: <http://jena.apache.org/text#> \nPREFIX dbo: <http://dbpedia.org/ontology/>\nPREFIX res: <http://dbpedia.org/resource/>\nSELECT ?n\nWHERE {\n        ?uri dbo:parent res:Henry_Fonda .\n        ?uri text:\"number of Golden Globe awards\" ?n .\n}"
     },
     "answers" : [ {
       "head" : {
@@ -1710,7 +1710,7 @@
       "string" : "Who are the sons of the songwriter of the Beatles?"
     } ],
     "query" : {
-      "pseudo" : " PREFIX dbo: <http://dbpedia.org/ontology/> PREFIX dbr: <http://dbpedia.org/resource/> SELECT ?proj WHERE { ?uri text:\"songwriter\" . dbr:The_Beatles dbo:bandMember ?uri. ?uri dbo:child ?proj . } "
+      "pseudo" : " PREFIX text: <http://jena.apache.org/text#> \nPREFIX dbo: <http://dbpedia.org/ontology/> PREFIX dbr: <http://dbpedia.org/resource/> SELECT ?proj WHERE { ?uri text:\"songwriter\" . dbr:The_Beatles dbo:bandMember ?uri. ?uri dbo:child ?proj . } "
     },
     "answers" : [ {
       "head" : {
@@ -1741,7 +1741,7 @@
       "string" : "Where did the first human in space die?"
     } ],
     "query" : {
-      "pseudo" : " PREFIX dbo: <http://dbpedia.org/ontology/> PREFIX dbp: <http://dbpedia.org/property/> PREFIX res: <http://dbpedia.org/resource/> SELECT DISTINCT ?uri WHERE {         ?x dbp:type text:\"first human in space\" .         ?x dbo:deathPlace ?uri . } "
+      "pseudo" : "PREFIX text: <http://jena.apache.org/text#> \nPREFIX dbo: <http://dbpedia.org/ontology/> PREFIX dbp: <http://dbpedia.org/property/> PREFIX res: <http://dbpedia.org/resource/> SELECT DISTINCT ?uri WHERE {         ?x dbp:type text:\"first human in space\" .         ?x dbo:deathPlace ?uri . } "
     },
     "answers" : [ {
       "head" : {
@@ -1767,7 +1767,7 @@
       "string" : "Which daughter of Francis Ford Coppola received an Academy Award for Lost in Translation?"
     } ],
     "query" : {
-      "pseudo" : "SELECT DISTINCT ?uri WHERE { <http://dbpedia.org/resource/Francis_Ford_Coppola> <http://dbpedia.org/ontology/child> ?x . ?x text:\"receive the Academy Award  for\" text:\"Lost in Translation\" . }"
+      "pseudo" : "PREFIX text: <http://jena.apache.org/text#> \nSELECT DISTINCT ?uri WHERE { <http://dbpedia.org/resource/Francis_Ford_Coppola> <http://dbpedia.org/ontology/child> ?x . ?x text:\"receive the Academy Award  for\" text:\"Lost in Translation\" . }"
     },
     "answers" : [ {
       "head" : {
@@ -1793,7 +1793,7 @@
       "string" : "In which year did the Hungarian-American actor called \"The King of Horror\" make his first film?"
     } ],
     "query" : {
-      "pseudo" : "PREFIX dbo: <http://dbpedia.org/ontology/>\nSELECT DISTINCT ?year\nWHERE {\n        ?x rdf:type dbo:Actor .\n        ?x dbo:alias \"The King Of Horror\" .\n        ?x text:\"made his first movie in\" ?year ."
+      "pseudo" : "PREFIX rdf:type: <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> PREFIX dbo: <http://dbpedia.org/ontology/>\nSELECT DISTINCT ?year\nWHERE {\n        ?x rdf:type dbo:Actor .\n        ?x dbo:alias \"The King Of Horror\" .\n        ?x text:\"made his first movie in\" ?year ."
     },
     "answers" : [ {
       "head" : {
@@ -1819,7 +1819,7 @@
       "string" : "What is the native city of Hollywood's highest-paid actress?"
     } ],
     "query" : {
-      "pseudo" : "PREFIX dbo: <http://dbpedia.org/ontology/>\nPREFIX res: <http://dbpedia.org/resource/>\nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> \nSELECT DISTINCT ?uri \nWHERE {\n        ?x text:\"is\" text:\"Hollywood's highest-paid actress\" .\n        ?x dbo:birthPlace ?uri .\n        ?x rdf:type dbo:City .\n}"
+      "pseudo" : "PREFIX text: <http://jena.apache.org/text#> \nPREFIX dbo: <http://dbpedia.org/ontology/>\nPREFIX res: <http://dbpedia.org/resource/>\nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> \nSELECT DISTINCT ?uri \nWHERE {\n        ?x text:\"is\" text:\"Hollywood's highest-paid actress\" .\n        ?x dbo:birthPlace ?uri .\n        ?x rdf:type dbo:City .\n}"
     },
     "answers" : [ {
       "head" : {
@@ -1845,7 +1845,7 @@
       "string" : "Give me the currencies of all G8 countries."
     } ],
     "query" : {
-      "pseudo" : "PREFIX dbo: <http://dbpedia.org/ontology/>\nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nSELECT DISTINCT ?uri\nWHERE {\n        ?x text:\"member of\" text:\"G8\" . \n        ?x dbo:currency ?uri . \n}"
+      "pseudo" : "PREFIX text: <http://jena.apache.org/text#> \nPREFIX dbo: <http://dbpedia.org/ontology/>\nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nSELECT DISTINCT ?uri\nWHERE {\n        ?x text:\"member of\" text:\"G8\" . \n        ?x dbo:currency ?uri . \n}"
     },
     "answers" : [ {
       "head" : {
@@ -1901,7 +1901,7 @@
       "string" : "Did Napoleon's first wife die in France?"
     } ],
     "query" : {
-      "pseudo" : "PREFIX dbo: <http://dbpedia.org/ontology/>\nPREFIX res: <http://dbpedia.org/resource/>\nASK \nWHERE {\n        ?x text:\"first wife of\" text:\"Napoleon\" .\n        ?x dbo:deathPlace res:France .\t\n}"
+      "pseudo" : "PREFIX text: <http://jena.apache.org/text#> \nPREFIX dbo: <http://dbpedia.org/ontology/>\nPREFIX res: <http://dbpedia.org/resource/>\nASK \nWHERE {\n        ?x text:\"first wife of\" text:\"Napoleon\" .\n        ?x dbo:deathPlace res:France .\t\n}"
     },
     "answers" : [ {
       "head" : { },
@@ -1919,7 +1919,7 @@
       "string" : "In which city does the leader of the Xposé girls live?"
     } ],
     "query" : {
-      "pseudo" : "PREFIX dbo: <http://dbpedia.org/ontology/>\nPREFIX res: <http://dbpedia.org/resource/>\nSELECT DISTINCT ?uri \nWHERE {\n        ?x text:\"is\" text:\"leader of the Xposé girls\" .\n        ?x dbo:residence ?uri ."
+      "pseudo" : "PREFIX text: <http://jena.apache.org/text#> \nPREFIX dbo: <http://dbpedia.org/ontology/>\nPREFIX res: <http://dbpedia.org/resource/>\nSELECT DISTINCT ?uri \nWHERE {\n        ?x text:\"is\" text:\"leader of the Xposé girls\" .\n        ?x dbo:residence ?uri ."
     },
     "answers" : [ {
       "head" : {
@@ -1945,7 +1945,7 @@
       "string" : "When was the composer of the opera Madama Butterfly born?"
     } ],
     "query" : {
-      "pseudo" : "PREFIX dbo: <http://dbpedia.org/ontology/>\nPREFIX res: <http://dbpedia.org/resource/>\nSELECT DISTINCT ?date \nWHERE {\n\tres:Madama_Butterfly text:\"composer\" ?x .\n\t?x dbo:birthDate ?date .\n}"
+      "pseudo" : "PREFIX text: <http://jena.apache.org/text#> \nPREFIX dbo: <http://dbpedia.org/ontology/>\nPREFIX res: <http://dbpedia.org/resource/>\nSELECT DISTINCT ?date \nWHERE {\n\tres:Madama_Butterfly text:\"composer\" ?x .\n\t?x dbo:birthDate ?date .\n}"
     },
     "answers" : [ {
       "head" : {
@@ -1971,7 +1971,7 @@
       "string" : "How many Golden Globe awards did the husband of Katie Holmes win?"
     } ],
     "query" : {
-      "pseudo" : "PREFIX dbo: <http://dbpedia.org/ontology/>\nPREFIX dbp: <http://dbpedia.org/property/>\nPREFIX res: <http://dbpedia.org/resource/>\nSELECT COUNT(DISTINCT ?awards)\nWHERE {\n\tres:Katie_Holmes dbp:spouse ?uri .\n \t?uri text:\"win\" ?award .\n        ?award rdf:type text:\"Golden Globe\" .\n}"
+      "pseudo" : "PREFIX text: <http://jena.apache.org/text#>\nPREFIX dbo: <http://dbpedia.org/ontology/>\nPREFIX dbp: <http://dbpedia.org/property/>\nPREFIX res: <http://dbpedia.org/resource/>\nSELECT (COUNT(DISTINCT ?awards) as ?count)\nWHERE {\n\tres:Katie_Holmes dbp:spouse ?uri .\n \t?uri text:\"win\" ?award .\n        ?award rdf:type text:\"Golden Globe\" .\n}"
     },
     "answers" : [ {
       "head" : {
@@ -1997,7 +1997,7 @@
       "string" : "Are the Rosetta Stone and the Gayer-Andersen cat exhibited in the same museum?"
     } ],
     "query" : {
-      "pseudo" : "PREFIX dbo: <http://dbpedia.org/ontology/>\nPREFIX res: <http://dbpedia.org/resource/>\nASK\nWHERE {\n\t?m1 text:\"exhibits\" res:Rosetta_Stone .\t\n\tres:Gayer-Anderson_Cat dbo:museum ?x .\n        ?m2 rdfs:label ?m2 .\n        FILTER (?m1=?m2)\n}"
+      "pseudo" : "PREFIX text: <http://jena.apache.org/text#> \nPREFIX dbo: <http://dbpedia.org/ontology/>\nPREFIX res: <http://dbpedia.org/resource/>\nASK\nWHERE {\n\t?m1 text:\"exhibits\" res:Rosetta_Stone .\t\n\tres:Gayer-Anderson_Cat dbo:museum ?x .\n        ?m2 rdfs:label ?m2 .\n        FILTER (?m1=?m2)\n}"
     },
     "answers" : [ {
       "head" : {
@@ -2023,7 +2023,7 @@
       "string" : "In which city was the mother of Bill Gates born?"
     } ],
     "query" : {
-      "pseudo" : "PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> PREFIX dbo: <http://dbpedia.org/ontology/> PREFIX dbr: <http://dbpedia.org/resource/> SELECT DISTINCT ?proj WHERE { ?mother text:\"mother\" . ?mother rdf:type dbo:Person . ?mother dbo:child dbr:Bill_Gates . ?mother dbo:birthPlace ?proj . }"
+      "pseudo" : "PREFIX text: <http://jena.apache.org/text#> \nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> PREFIX dbo: <http://dbpedia.org/ontology/> PREFIX dbr: <http://dbpedia.org/resource/> SELECT DISTINCT ?proj WHERE { ?mother text:\"mother\" . ?mother rdf:type dbo:Person . ?mother dbo:child dbr:Bill_Gates . ?mother dbo:birthPlace ?proj . }"
     },
     "answers" : [ {
       "head" : {
@@ -2049,7 +2049,7 @@
       "string" : "What eating disorder is characterized by an appetite for substances such as clay and sand?"
     } ],
     "query" : {
-      "pseudo" : "PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> \nPREFIX yago: <http://dbpedia.org/class/yago/>\nSELECT ?uri WHERE\n{\n  ?uri rdf:type yago:EatingDisorders .\n  ?uri text:\"characterized by\" \"appetite for clay and sand\" .\n}"
+      "pseudo" : "PREFIX text: <http://jena.apache.org/text#> \nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> \nPREFIX yago: <http://dbpedia.org/class/yago/>\nSELECT ?uri WHERE\n{\n  ?uri rdf:type yago:EatingDisorders .\n  ?uri text:\"characterized by\" \"appetite for clay and sand\" .\n}"
     },
     "answers" : [ {
       "head" : {
@@ -2075,7 +2075,7 @@
       "string" : "Lost in Translation"
     } ],
     "query" : {
-      "pseudo" : "PREFIX dbo: <http://dbpedia.org/ontology/>\nPREFIX res: <http://dbpedia.org/resource/>\nSELECT DISTINCT ?string\nWHERE {\n        res:Francis_Ford_Coppola dbo:child ?x .\n        ?x text:\"receive Oscar for\" ?string .\n}"
+      "pseudo" : "PREFIX text: <http://jena.apache.org/text#> \nPREFIX dbo: <http://dbpedia.org/ontology/>\nPREFIX res: <http://dbpedia.org/resource/>\nSELECT DISTINCT ?string\nWHERE {\n        res:Francis_Ford_Coppola dbo:child ?x .\n        ?x text:\"receive Oscar for\" ?string .\n}"
     },
     "answers" : [ {
       "head" : {
@@ -2101,7 +2101,7 @@
       "string" : "Which movie established a second carrier for Bill Murray?"
     } ],
     "query" : {
-      "pseudo" : "PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> PREFIX dbo: <http://dbpedia.org/ontology/> SELECT DISTINCT ?uri WHERE { ?uri text:\"second carrier\" . ?uri rdf:type dbo:Film . ?uri dbo:starring dbr:Bill_Murray . } "
+      "pseudo" : "PREFIX dbr:Bill_Murray: <http://dbpedia.org/resource/Bill_Murray> \nPREFIX text: <http://jena.apache.org/text#> \nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> PREFIX dbo: <http://dbpedia.org/ontology/> SELECT DISTINCT ?uri WHERE { ?uri text:\"second carrier\" . ?uri rdf:type dbo:Film . ?uri dbo:starring dbr:Bill_Murray . } "
     },
     "answers" : [ {
       "head" : {
@@ -2127,7 +2127,7 @@
       "string" : "Which anti-apartheid revolutionary was born in Mvezo?"
     } ],
     "query" : {
-      "pseudo" : " PREFIX dbo: <http://dbpedia.org/ontology/> PREFIX res: <http://dbpedia.org/resource/> PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> SELECT DISTINCT ?uri WHERE {         ?uri text:\"was a\" text:\"anti-apartheid revolutionary\" .         ?uri dbo:birthPlace res:Mvezo . } "
+      "pseudo" : " PREFIX text: <http://jena.apache.org/text#> \nPREFIX dbo: <http://dbpedia.org/ontology/> PREFIX res: <http://dbpedia.org/resource/> PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> SELECT DISTINCT ?uri WHERE {         ?uri text:\"was a\" text:\"anti-apartheid revolutionary\" .         ?uri dbo:birthPlace res:Mvezo . } "
     },
     "answers" : [ {
       "head" : {
@@ -2179,7 +2179,7 @@
       "string" : "Under which king did the British prime minister that had a reputation as a playboy serve?"
     } ],
     "query" : {
-      "pseudo" : " PREFIX dbo: <http://dbpedia.org/ontology/> PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> PREFIX yago: <http://dbpedia.org/class/yago/> SELECT DISTINCT ?uri WHERE {         ?x rdf:type yago:PrimeMinistersOfTheUnitedKingdom .         ?x text:\"reputation as a\" text:\"playboy\" .         ?x dbo:monarch ?uri . } "
+      "pseudo" : " PREFIX text: <http://jena.apache.org/text#> \nPREFIX dbo: <http://dbpedia.org/ontology/> PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> PREFIX yago: <http://dbpedia.org/class/yago/> SELECT DISTINCT ?uri WHERE {         ?x rdf:type yago:PrimeMinistersOfTheUnitedKingdom .         ?x text:\"reputation as a\" text:\"playboy\" .         ?x dbo:monarch ?uri . } "
     },
     "answers" : [ {
       "head" : {
@@ -2205,7 +2205,7 @@
       "string" : "How old was Steve Job's sister when she first met him?"
     } ],
     "query" : {
-      "pseudo" : "PREFIX dbo: <http://dbpedia.org/ontology/>\nPREFIX res: <http://dbpedia.org/resource/>\nSELECT ?n \nWHERE {\n        res:Steve_Jobs dbo:relative ?uri .\n        ?uri text:\"did not meet until she was\" ?n .\n}"
+      "pseudo" : "PREFIX text: <http://jena.apache.org/text#> \nPREFIX dbo: <http://dbpedia.org/ontology/>\nPREFIX res: <http://dbpedia.org/resource/>\nSELECT ?n \nWHERE {\n        res:Steve_Jobs dbo:relative ?uri .\n        ?uri text:\"did not meet until she was\" ?n .\n}"
     },
     "answers" : [ {
       "head" : {
@@ -2231,7 +2231,7 @@
       "string" : "When was the the greatest composer of Italian opera after Verdi born?"
     } ],
     "query" : {
-      "pseudo" : "SELECT DISTINCT ?date WHERE { <http:/dbpedia.org/resource/Madama_Butterfly> text:\"called\" text:\"the greatest composer of Italian opera after Verdi\" . ?x <http:/dbpedia.org/ontology/birthDate> ?date . }"
+      "pseudo" : "PREFIX text: <http://jena.apache.org/text#> \nSELECT DISTINCT ?date WHERE { <http:/dbpedia.org/resource/Madama_Butterfly> text:\"called\" text:\"the greatest composer of Italian opera after Verdi\" . ?x <http:/dbpedia.org/ontology/birthDate> ?date . }"
     },
     "answers" : [ {
       "head" : {
@@ -2257,7 +2257,7 @@
       "string" : "Who composed the music for the film that depicts the early life of Jane Austen?"
     } ],
     "query" : {
-      "pseudo" : " PREFIX dbo: <http://dbpedia.org/ontology/> PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> SELECT DISTINCT ?uri WHERE {         ?x rdf:type dbo:Film .         ?x text:\"depicts the early life of\" text:\"Jane Austen\" .         ?x dbo:musicComposer ?uri . } "
+      "pseudo" : " PREFIX text: <http://jena.apache.org/text#> \nPREFIX dbo: <http://dbpedia.org/ontology/> PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> SELECT DISTINCT ?uri WHERE {         ?x rdf:type dbo:Film .         ?x text:\"depicts the early life of\" text:\"Jane Austen\" .         ?x dbo:musicComposer ?uri . } "
     },
     "answers" : [ {
       "head" : {
@@ -2283,7 +2283,7 @@
       "string" : "Which writers had influenced the philosopher that refused a Nobel Prize?"
     } ],
     "query" : {
-      "pseudo" : "PREFIX dbo: <http://dbpedia.org/ontology/>\nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nSELECT DISTINCT ?uri \nWHERE {\n        ?x rdf:type dbo:Philosopher .\n        ?x text:\"refuse\" text:\"Nobel Prize\" .\n        ?x dbo:influencedBy ?uri .\n        ?uri rdf:type dbo:Writer .\n}"
+      "pseudo" : "PREFIX text: <http://jena.apache.org/text#> \nPREFIX dbo: <http://dbpedia.org/ontology/>\nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nSELECT DISTINCT ?uri \nWHERE {\n        ?x rdf:type dbo:Philosopher .\n        ?x text:\"refuse\" text:\"Nobel Prize\" .\n        ?x dbo:influencedBy ?uri .\n        ?uri rdf:type dbo:Writer .\n}"
     },
     "answers" : [ {
       "head" : {
@@ -2329,7 +2329,7 @@
       "string" : "Who composed the music for the film that depicts the early life of Jane Austin?"
     } ],
     "query" : {
-      "pseudo" : "PREFIX dbo: <http://dbpedia.org/ontology/>\nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nSELECT DISTINCT ?uri \nWHERE {\n        ?x rdf:type dbo:Film .\n        ?x text:\"depicts the early life of\" text:\"Jane Austin\" .\n        ?x dbo:musicComposer ?uri .\n}"
+      "pseudo" : "PREFIX text: <http://jena.apache.org/text#> \nPREFIX dbo: <http://dbpedia.org/ontology/>\nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nSELECT DISTINCT ?uri \nWHERE {\n        ?x rdf:type dbo:Film .\n        ?x text:\"depicts the early life of\" text:\"Jane Austin\" .\n        ?x dbo:musicComposer ?uri .\n}"
     },
     "answers" : [ {
       "head" : {
@@ -2355,7 +2355,7 @@
       "string" : "Under which pseudonym did Charles Dickens write some of his books?"
     } ],
     "query" : {
-      "pseudo" : "SELECT DISTINCT ?string WHERE { ?x <http://dbpedia.org/ontology/author> <http://dbpedia.org/resource/Charles_Dickens> . ?x text:\"writing under the pseudonym of\" ?string . }"
+      "pseudo" : "PREFIX text: <http://jena.apache.org/text#> \nSELECT DISTINCT ?string WHERE { ?x <http://dbpedia.org/ontology/author> <http://dbpedia.org/resource/Charles_Dickens> . ?x text:\"writing under the pseudonym of\" ?string . }"
     },
     "answers" : [ {
       "head" : {
@@ -2381,7 +2381,7 @@
       "string" : "Which princess died in a car crash in Paris?"
     } ],
     "query" : {
-      "pseudo" : "PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> PREFIX dbo: <http://dbpedia.org/ontology/> PREFIX dbr: <http://dbpedia.org/resource/> SELECT DISTINCT ?proj WHERE { ?proj text:\"car crash\" . ?proj rdf:type dbo:Royalty . ?proj dbo:deathPlace dbr:Paris }"
+      "pseudo" : "PREFIX text: <http://jena.apache.org/text#> \nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> PREFIX dbo: <http://dbpedia.org/ontology/> PREFIX dbr: <http://dbpedia.org/resource/> SELECT DISTINCT ?proj WHERE { ?proj text:\"car crash\" . ?proj rdf:type dbo:Royalty . ?proj dbo:deathPlace dbr:Paris }"
     },
     "answers" : [ {
       "head" : {
@@ -2407,7 +2407,7 @@
       "string" : "Which birds are protected under the National Parks and Wildlife Act?"
     } ],
     "query" : {
-      "pseudo" : "PREFIX dbo: <http://dbpedia.org/ontology/>\nPREFIX res: <http://dbpedia.org/resource/>\nSELECT DISTINCT ?uri \nWHERE {\n\t?uri rdf:type dbo:Bird .\t\n\t?uri text:\"protected under\" text:\"National Parks and Wildlife Act\".\n\t\n}"
+      "pseudo" : "PREFIX text: <http://jena.apache.org/text#> \nPREFIX rdf:type: <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> \nPREFIX dbo: <http://dbpedia.org/ontology/>\nPREFIX res: <http://dbpedia.org/resource/>\nSELECT DISTINCT ?uri \nWHERE {\n\t?uri rdf:type dbo:Bird .\t\n\t?uri text:\"protected under\" text:\"National Parks and Wildlife Act\".\n\t\n}"
     },
     "answers" : [ {
       "head" : {
@@ -2453,7 +2453,7 @@
       "string" : "List all the battles fought by the lover of Cleopatra."
     } ],
     "query" : {
-      "pseudo" : "PREFIX dbo: <http://dbpedia.org/ontology/>\nPREFIX res: <http://dbpedia.org/resource/>\nSELECT DISTINCT ?uri \nWHERE {\t\n\t?x text:\"lover\" text:\"Cleopatra\".\t\n\t?x dbo:battle ?uri .\t\t\n}"
+      "pseudo" : "PREFIX text: <http://jena.apache.org/text#> \nPREFIX dbo: <http://dbpedia.org/ontology/>\nPREFIX res: <http://dbpedia.org/resource/>\nSELECT DISTINCT ?uri \nWHERE {\t\n\t?x text:\"lover\" text:\"Cleopatra\".\t\n\t?x dbo:battle ?uri .\t\t\n}"
     },
     "answers" : [ {
       "head" : {
@@ -2524,7 +2524,7 @@
       "string" : "Who is the founder of the Turkish Republic?"
     } ],
     "query" : {
-      "pseudo" : "PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>   SELECT DISTINCT ?proj WHERE { ?proj text:\"founder\" . ?proj rdf:type <http://dbpedia.org/class/yago/PresidentsOfTurkey> . }"
+      "pseudo" : "PREFIX text: <http://jena.apache.org/text#> \nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>   SELECT DISTINCT ?proj WHERE { ?proj text:\"founder\" . ?proj rdf:type <http://dbpedia.org/class/yago/PresidentsOfTurkey> . }"
     },
     "answers" : [ {
       "head" : {
@@ -2550,7 +2550,7 @@
       "string" : "Which buildings owned by the crown overlook the North Sea?"
     } ],
     "query" : {
-      "pseudo" : "PREFIX dbo: <http://dbpedia.org/ontology/>\nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nSELECT ?uri \nWHERE {\n        ?uri rdf:type dbo:Building.\n        ?uri dbo:owner res:The_Crown . \n        ?uri text:\"overlook\" text:\"North Sea\" .\n}"
+      "pseudo" : "PREFIX res:The_Crown: <http://dbpedia.org/resource/The_Crown> \nPREFIX text: <http://jena.apache.org/text#> \nPREFIX dbo: <http://dbpedia.org/ontology/>\nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nSELECT ?uri \nWHERE {\n        ?uri rdf:type dbo:Building.\n        ?uri dbo:owner res:The_Crown . \n        ?uri text:\"overlook\" text:\"North Sea\" .\n}"
     },
     "answers" : [ {
       "head" : {
@@ -2576,7 +2576,7 @@
       "string" : "Which of the volcanoes that erupted in 1550 is still active?"
     } ],
     "query" : {
-      "pseudo" : "PREFIX dbo: <http://dbpedia.org/ontology/>\nPREFIX res: <http://dbpedia.org/resource/>\nSELECT DISTINCT ?uri \nWHERE {\n        ?uri rdf:type dbo:Volcano . \n        ?uri dbo:eruptionYear ?y .\n        FILTER (year(?y) = 1550)\n        ?uri text:\"is\" text:\"active\" . \n}"
+      "pseudo" : "PREFIX rdf:type: <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> PREFIX dbo: <http://dbpedia.org/ontology/>\nPREFIX res: <http://dbpedia.org/resource/>\nSELECT DISTINCT ?uri \nWHERE {\n        ?uri rdf:type dbo:Volcano . \n        ?uri dbo:eruptionYear ?y .\n        FILTER (year(?y) = 1550)\n        ?uri text:\"is\" text:\"active\" . \n}"
     },
     "answers" : [ {
       "head" : {
@@ -2602,7 +2602,7 @@
       "string" : "Where was the \"Father of Singapore\" born?"
     } ],
     "query" : {
-      "pseudo" : "PREFIX dbo: <http://dbpedia.org/ontology/>\nSELECT DISTINCT ?uri \nWHERE {\n        text:\"Father of Singapore\" dbo:birthPlace ?uri .\n}"
+      "pseudo" : "PREFIX text: <http://jena.apache.org/text#> \nPREFIX dbo: <http://dbpedia.org/ontology/>\nSELECT DISTINCT ?uri \nWHERE {\n        text:\"Father of Singapore\" dbo:birthPlace ?uri .\n}"
     },
     "answers" : [ {
       "head" : {
@@ -2628,7 +2628,7 @@
       "string" : "Who was the president of the USSR during the cold war?"
     } ],
     "query" : {
-      "pseudo" : "PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> PREFIX dbo: <http://dbpedia.org/ontology/> PREFIX dbp: <http://dbpedia.org/property/> PREFIX dbr: <http://dbpedia.org/resource/> SELECT DISTINCT ?proj WHERE { ?proj text:\"cold war\" . ?proj rdf:type dbo:Person . ?proj dbp:title dbr:President_of_the_Soviet_Union . }"
+      "pseudo" : "PREFIX text: <http://jena.apache.org/text#> \nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> PREFIX dbo: <http://dbpedia.org/ontology/> PREFIX dbp: <http://dbpedia.org/property/> PREFIX dbr: <http://dbpedia.org/resource/> SELECT DISTINCT ?proj WHERE { ?proj text:\"cold war\" . ?proj rdf:type dbo:Person . ?proj dbp:title dbr:President_of_the_Soviet_Union . }"
     },
     "answers" : [ {
       "head" : {
@@ -2654,7 +2654,7 @@
       "string" : "What is the birth place of Hollywood's highest-paid actress?"
     } ],
     "query" : {
-      "pseudo" : "PREFIX dbo: <http://dbpedia.org/ontology/>\nPREFIX res: <http://dbpedia.org/resource/>\nSELECT DISTINCT ?uri \nWHERE {\n        ?x text:\"is\" text:\"Hollywood's highest-paid actress\" .\n        ?x dbo:birthPlace ?uri .\n}"
+      "pseudo" : "PREFIX text: <http://jena.apache.org/text#> \nPREFIX dbo: <http://dbpedia.org/ontology/>\nPREFIX res: <http://dbpedia.org/resource/>\nSELECT DISTINCT ?uri \nWHERE {\n        ?x text:\"is\" text:\"Hollywood's highest-paid actress\" .\n        ?x dbo:birthPlace ?uri .\n}"
     },
     "answers" : [ {
       "head" : {
@@ -2680,7 +2680,7 @@
       "string" : "Where was the first race for the greatest Formula One driver of all times?"
     } ],
     "query" : {
-      "pseudo" : " PREFIX dbo: <http://dbpedia.org/ontology/> SELECT DISTINCT ?proj WHERE { ?uri text:\"greatest Formula One driver of all times\" . ?uri dbo:firstRace ?proj . }"
+      "pseudo" : " PREFIX text: <http://jena.apache.org/text#> \nPREFIX dbo: <http://dbpedia.org/ontology/> SELECT DISTINCT ?proj WHERE { ?uri text:\"greatest Formula One driver of all times\" . ?uri dbo:firstRace ?proj . }"
     },
     "answers" : [ {
       "head" : {
@@ -2706,7 +2706,7 @@
       "string" : "Who is the wife of the creator of the César Award?"
     } ],
     "query" : {
-      "pseudo" : "SELECT DISTINCT ?uri WHERE { <http://dbpedia.org/resource/César_Award> text:\"created by\" <http://dbpedia.org/resource/Georges_Cravenne> . <http://dbpedia.org/resource/Georges_Cravenne> <http://dbpedia.org/ontology/spouse> ?uri . }"
+      "pseudo" : "PREFIX text: <http://jena.apache.org/text#> \nPREFIX text: <http://jena.apache.org/text#> \nSELECT DISTINCT ?uri WHERE { <http://dbpedia.org/resource/César_Award> text:\"created by\" <http://dbpedia.org/resource/Georges_Cravenne> . <http://dbpedia.org/resource/Georges_Cravenne> <http://dbpedia.org/ontology/spouse> ?uri . }"
     },
     "answers" : [ {
       "head" : {
@@ -2732,7 +2732,7 @@
       "string" : "Who were generals of the battle of gettysburg?"
     } ],
     "query" : {
-      "pseudo" : "PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> PREFIX dbo: <http://dbpedia.org/ontology/> PREFIX dbp: <http://dbpedia.org/property/> PREFIX dbr: <http://dbpedia.org/resource/> SELECT DISTINCT ?proj WHERE { ?proj text:\"general\" . ?proj rdf:type dbo:Person . ?proj dbo:battle dbr:Battle_of_Gettysburg . }"
+      "pseudo" : "PREFIX text: <http://jena.apache.org/text#> \nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> PREFIX dbo: <http://dbpedia.org/ontology/> PREFIX dbp: <http://dbpedia.org/property/> PREFIX dbr: <http://dbpedia.org/resource/> SELECT DISTINCT ?proj WHERE { ?proj text:\"general\" . ?proj rdf:type dbo:Person . ?proj dbo:battle dbr:Battle_of_Gettysburg . }"
     },
     "answers" : [ {
       "head" : {
@@ -3328,7 +3328,7 @@
       "string" : "In which city where Charlie Chaplin's half brothers born?"
     } ],
     "query" : {
-      "pseudo" : "PREFIX dbo: <http://dbpedia.org/ontology/>\nPREFIX res: <http://dbpedia.org/resource/>\nASK \nWHERE {\n        res:Charlie_Chaplin dbo:relative ?x . \n        ?x text:\"half brother of\" ?res:Charlie_Chaplin . \n        ?x dbo:birthPlace ?y . \n        ?y text:\"is a\" text:\"city\" .\n}"
+      "pseudo" : "PREFIX text: <http://jena.apache.org/text#> \nPREFIX dbo: <http://dbpedia.org/ontology/>\nPREFIX res: <http://dbpedia.org/resource/>\nASK \nWHERE {\n        res:Charlie_Chaplin dbo:relative ?x . \n        ?x text:\"half brother of\" ?res:Charlie_Chaplin . \n        ?x dbo:birthPlace ?y . \n        ?y text:\"is a\" text:\"city\" .\n}"
     },
     "answers" : [ {
       "head" : {
@@ -3354,7 +3354,7 @@
       "string" : "Who was the mayor of London during the olympic games?"
     } ],
     "query" : {
-      "pseudo" : "PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> PREFIX dbo: <http://dbpedia.org/ontology/> PREFIX dbp: <http://dbpedia.org/property/> PREFIX dbr: <http://dbpedia.org/resource/> SELECT DISTINCT ?proj WHERE { ?proj text:\"Olympic Games\" . ?proj rdf:type dbo:Person . ?proj dbp:office dbr:Mayor_of_London . }"
+      "pseudo" : "PREFIX text: <http://jena.apache.org/text#> \nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> PREFIX dbo: <http://dbpedia.org/ontology/> PREFIX dbp: <http://dbpedia.org/property/> PREFIX dbr: <http://dbpedia.org/resource/> SELECT DISTINCT ?proj WHERE { ?proj text:\"Olympic Games\" . ?proj rdf:type dbo:Person . ?proj dbp:office dbr:Mayor_of_London . }"
     },
     "answers" : [ {
       "head" : {
@@ -3380,7 +3380,7 @@
       "string" : "Who is the architect of the tallest building in Japan?"
     } ],
     "query" : {
-      "pseudo" : "PREFIX dbo: <http://dbpedia.org/ontology/>\nPREFIX res: <http://dbpedia.org/resource/>\nSELECT DISTINCT ?name \nWHERE {\n        text:\"tallest building in Japan\" dbo:architect ?uri .  \n}"
+      "pseudo" : "PREFIX text: <http://jena.apache.org/text#> \nPREFIX dbo: <http://dbpedia.org/ontology/>\nPREFIX res: <http://dbpedia.org/resource/>\nSELECT DISTINCT ?name \nWHERE {\n        text:\"tallest building in Japan\" dbo:architect ?uri .  \n}"
     },
     "answers" : [ {
       "head" : {
@@ -3406,7 +3406,7 @@
       "string" : "In which city does the sports commentator know as Memory Man live?"
     } ],
     "query" : {
-      "pseudo" : "SELECT DISTINCT ?uri WHERE { ?x text:\"is\" text:\"sports commentator\" . ?x text:\"known as\" text:\"Memory Man\" . ?x <http:/dbpedia.org/ontology/residence> ?uri ."
+      "pseudo" : "PREFIX text: <http://jena.apache.org/text#> \nSELECT DISTINCT ?uri WHERE { ?x text:\"is\" text:\"sports commentator\" . ?x text:\"known as\" text:\"Memory Man\" . ?x <http:/dbpedia.org/ontology/residence> ?uri ."
     },
     "answers" : [ {
       "head" : {
@@ -3432,7 +3432,7 @@
       "string" : "When was the European President known as the decider born?"
     } ],
     "query" : {
-      "pseudo" : " PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> PREFIX dbo: <http://dbpedia.org/ontology/> SELECT DISTINCT ?proj WHERE { ?uri text:\"the decider\" . ?uri dbo:birthDate ?proj. ?uri rdf:type http://dbpedia.org/class/yago/PresidentsOfTheEuropeanCouncil . } "
+      "pseudo" : "PREFIX text: <http://jena.apache.org/text#> \nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> PREFIX dbo: <http://dbpedia.org/ontology/> SELECT DISTINCT ?proj WHERE { ?uri text:\"the decider\" . ?uri dbo:birthDate ?proj. ?uri rdf:type http://dbpedia.org/class/yago/PresidentsOfTheEuropeanCouncil . } "
     },
     "answers" : [ {
       "head" : {
@@ -3458,7 +3458,7 @@
       "string" : "How old was Steve Jobs' sister when she first met him?"
     } ],
     "query" : {
-      "pseudo" : "PREFIX dbo: <http://dbpedia.org/ontology/>\nPREFIX res: <http://dbpedia.org/resource/>\nSELECT ?n \nWHERE {\n        res:Steve_Jobs dbo:relative ?uri .\n        ?uri text:\"first met him when she was\" ?n .\n}"
+      "pseudo" : "PREFIX text: <http://jena.apache.org/text#> \nPREFIX dbo: <http://dbpedia.org/ontology/>\nPREFIX res: <http://dbpedia.org/resource/>\nSELECT ?n \nWHERE {\n        res:Steve_Jobs dbo:relative ?uri .\n        ?uri text:\"first met him when she was\" ?n .\n}"
     },
     "answers" : [ {
       "head" : {
@@ -3484,7 +3484,7 @@
       "string" : "Who was vice president under the president who approved the use of atomic weapons against Japan during World War II?"
     } ],
     "query" : {
-      "pseudo" : " PREFIX dbo: <http://dbpedia.org/ontology/> PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> SELECT DISTINCT ?uri WHERE { ?x text:\"approved the use of\" text:\"atomic weapons against Japan\" . ?x dbo:vicePresident ?uri . } "
+      "pseudo" : " PREFIX text: <http://jena.apache.org/text#> \nPREFIX dbo: <http://dbpedia.org/ontology/> PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> SELECT DISTINCT ?uri WHERE { ?x text:\"approved the use of\" text:\"atomic weapons against Japan\" . ?x dbo:vicePresident ?uri . } "
     },
     "answers" : [ {
       "head" : {
@@ -3510,7 +3510,7 @@
       "string" : "What eating disorder is characterized by eating substances such as clay and sand?"
     } ],
     "query" : {
-      "pseudo" : "PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> \nPREFIX yago: <http://dbpedia.org/class/yago/>\nSELECT ?uri WHERE\n{\n  ?uri rdf:type yago:EatingDisorders .\n  ?uri text:\"characterized by\" \"appetite for clay and sand\" .\n}"
+      "pseudo" : "PREFIX text: <http://jena.apache.org/text#> \nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> \nPREFIX yago: <http://dbpedia.org/class/yago/>\nSELECT ?uri WHERE\n{\n  ?uri rdf:type yago:EatingDisorders .\n  ?uri text:\"characterized by\" \"appetite for clay and sand\" .\n}"
     },
     "answers" : [ {
       "head" : {
@@ -3536,7 +3536,7 @@
       "string" : "Who first deciphered the Egyptian hieroglyphs?"
     } ],
     "query" : {
-      "pseudo" : "PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> PREFIX dbo: <http://dbpedia.org/ontology/> PREFIX dbp: <http://dbpedia.org/property/> PREFIX dbr: <http://dbpedia.org/resource/> SELECT DISTINCT ?proj WHERE { ?proj text:\"first deciphered\" . ?proj rdf:type dbo:Person . ?mother dbp:field dbr:Egyptian_hieroglyphs . }"
+      "pseudo" : "PREFIX text: <http://jena.apache.org/text#> \nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> PREFIX dbo: <http://dbpedia.org/ontology/> PREFIX dbp: <http://dbpedia.org/property/> PREFIX dbr: <http://dbpedia.org/resource/> SELECT DISTINCT ?proj WHERE { ?proj text:\"first deciphered\" . ?proj rdf:type dbo:Person . ?mother dbp:field dbr:Egyptian_hieroglyphs . }"
     },
     "answers" : [ {
       "head" : {
@@ -3562,7 +3562,7 @@
       "string" : "In which city does the former main presenter of the Xposé girls live?"
     } ],
     "query" : {
-      "pseudo" : "PREFIX dbo: <http://dbpedia.org/ontology/>\nPREFIX res: <http://dbpedia.org/resource/>\nSELECT DISTINCT ?uri \nWHERE {\n        ?x text:\"is\" text:\"former presenter of the Xposé girls\" .\n        ?x dbo:residence ?uri ."
+      "pseudo" : "PREFIX text: <http://jena.apache.org/text#> \nPREFIX dbo: <http://dbpedia.org/ontology/>\nPREFIX res: <http://dbpedia.org/resource/>\nSELECT DISTINCT ?uri \nWHERE {\n        ?x text:\"is\" text:\"former presenter of the Xposé girls\" .\n        ?x dbo:residence ?uri ."
     },
     "answers" : [ {
       "head" : {

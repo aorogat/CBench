@@ -58,6 +58,60 @@
     }
   }, {
     "question" : {
+      "id" : "0",
+      "answertype" : "date",
+      "language" : [ {
+        "language" : "en",
+        "question" : "When was the Battle of Gettysburg?",
+        "keywords" : "Battle of Gettysburg",
+        "SPARQL" : "PREFIX dbo: <http://dbpedia.org/ontology/>\nPREFIX res: <http://dbpedia.org/resource/>\nSELECT DISTINCT ?date \nWHERE { \n       res:Battle_of_Gettysburg dbo:date ?date .\n}"
+      }, {
+        "language" : "de",
+        "question" : "Wann fand die Schlacht von Gettysburg statt?",
+        "keywords" : "Schlacht von Gettysburg",
+        "SPARQL" : "PREFIX dbo: <http://dbpedia.org/ontology/>\nPREFIX res: <http://dbpedia.org/resource/>\nSELECT DISTINCT ?date \nWHERE { \n       res:Battle_of_Gettysburg dbo:date ?date .\n}"
+      }, {
+        "language" : "es",
+        "question" : "¿Cuándo tuvo lugar la batalla de Gettysburg?",
+        "keywords" : "batalla de Gettysburg",
+        "SPARQL" : "PREFIX dbo: <http://dbpedia.org/ontology/>\nPREFIX res: <http://dbpedia.org/resource/>\nSELECT DISTINCT ?date \nWHERE { \n       res:Battle_of_Gettysburg dbo:date ?date .\n}"
+      }, {
+        "language" : "it",
+        "question" : "Quando ha avuto luogo la battaglia di Gettysburg?",
+        "keywords" : "battaglia di Gettysburg",
+        "SPARQL" : "PREFIX dbo: <http://dbpedia.org/ontology/>\nPREFIX res: <http://dbpedia.org/resource/>\nSELECT DISTINCT ?date \nWHERE { \n       res:Battle_of_Gettysburg dbo:date ?date .\n}"
+      }, {
+        "language" : "fr",
+        "question" : "Quand se déroula la bataille de Gettysburg?",
+        "keywords" : "bataille de Gettysburg,quand",
+        "SPARQL" : "PREFIX dbo: <http://dbpedia.org/ontology/>\nPREFIX res: <http://dbpedia.org/resource/>\nSELECT DISTINCT ?date \nWHERE { \n       res:Battle_of_Gettysburg dbo:date ?date .\n}"
+      }, {
+        "language" : "nl",
+        "question" : "Wanneer was de Slag bij Gettysburg?",
+        "keywords" : "Slag bij Gettysburg",
+        "SPARQL" : "PREFIX dbo: <http://dbpedia.org/ontology/>\nPREFIX res: <http://dbpedia.org/resource/>\nSELECT DISTINCT ?date \nWHERE { \n       res:Battle_of_Gettysburg dbo:date ?date .\n}"
+      } ],
+      "answers" : {
+        "head" : {
+          "vars" : [ "date" ]
+        },
+        "results" : {
+          "bindings" : [ {
+            "date" : {
+              "type" : "literal",
+              "value" : "1863-07-03"
+            }
+          } ]
+        }
+      },
+      "metadata" : {
+        "aggregation" : false,
+        "onlydbo" : true,
+        "hybrid" : false
+      }
+    }
+  },{
+    "question" : {
       "id" : "1",
       "answertype" : "resource",
       "language" : [ {

@@ -73,6 +73,7 @@ WHERE {
 <string lang="en">Which movie by the Coen brothers stars John Turturro in the role of a New York City playwright?</string>
 <pseudoquery>PREFIX dbo: &lt;http://dbpedia.org/ontology/&gt;
 PREFIX res: &lt;http://dbpedia.org/resource/&gt;
+PREFIX rdf:type: &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#type&gt;
 SELECT DISTINCT ?uri 
 WHERE {
         ?uri rdf:type dbo:Film . 
@@ -254,6 +255,8 @@ WHERE {
 <string lang="en">Are there man-made lakes in Australia that are deeper than 100 meters?</string>
 <pseudoquery>PREFIX dbo: &lt;http://dbpedia.org/ontology/&gt;
 PREFIX res: &lt;http://dbpedia.org/resource/&gt;
+PREFIX rdf:type: &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#type&gt;
+PREFIX rdf:type: &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#type&gt;
 ASK
 WHERE {
         ?uri rdf:type dbo:Lake . 
@@ -349,6 +352,7 @@ WHERE {
 <string lang="en">Which writers converted to Islam?</string>
 <pseudoquery>PREFIX dbo: &lt;http://dbpedia.org/ontology/&gt;
 PREFIX res: &lt;http://dbpedia.org/resource/&gt;
+PREFIX rdf:type: &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#type&gt;
 SELECT DISTINCT ?uri
 WHERE {
         ?uri rdf:type dbo:Writer . 
@@ -738,6 +742,7 @@ WHERE {
 <question aggregation="false" answertype="number" hybrid="true" id="60" onlydbo="true">
 <string lang="en">In which year did the Hungarian-American actor called "The King of Horror" make his first film?</string>
 <pseudoquery>PREFIX dbo: &lt;http://dbpedia.org/ontology/&gt;
+PREFIX rdf:type: &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#type&gt;
 SELECT DISTINCT ?year
 WHERE {
         ?x rdf:type dbo:Actor .
@@ -988,6 +993,7 @@ WHERE {
 <string lang="en">Which birds are protected under the National Parks and Wildlife Act?</string>
 <pseudoquery>PREFIX dbo: &lt;http://dbpedia.org/ontology/&gt;
 PREFIX res: &lt;http://dbpedia.org/resource/&gt;
+PREFIX rdf:type: &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#type&gt;
 SELECT DISTINCT ?uri 
 WHERE {
 	?uri rdf:type dbo:Bird .	
@@ -1049,6 +1055,7 @@ WHERE {
 <string lang="en">Which of the volcanoes that erupted in 1550 is still active?</string>
 <pseudoquery>PREFIX dbo: &lt;http://dbpedia.org/ontology/&gt;
 PREFIX res: &lt;http://dbpedia.org/resource/&gt;
+PREFIX rdf:type: &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#type&gt;
 SELECT DISTINCT ?uri 
 WHERE {
         ?uri rdf:type dbo:Volcano . 
