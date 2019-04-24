@@ -46,7 +46,9 @@ WHERE {
 <query><![CDATA[
 PREFIX dbo: <http://dbpedia.org/ontology/>
 PREFIX res: <http://dbpedia.org/resource/>
-SELECT COUNT(DISTINCT ?uri) 
+PREFIX res: <http://dbpedia.org/resource/>
+PREFIX rdf:type: <http://www.w3.org/1999/02/22-rdf-syntax-ns#type>
+SELECT (COUNT(DISTINCT ?uri) as ?count) 
 WHERE {
         ?uri rdf:type dbo:Language . 
         res:Colombia dbo:language ?uri .
@@ -102,7 +104,7 @@ OFFSET 0 LIMIT 1
 <query><![CDATA[
 PREFIX dbo: <http://dbpedia.org/ontology/>
 PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
-SELECT COUNT(DISTINCT ?uri)
+SELECT (COUNT(DISTINCT ?uri) as ?count)
 WHERE {
         ?uri rdf:type dbo:ProgrammingLanguage .
 }
@@ -477,6 +479,7 @@ OFFSET 0 LIMIT 1
 <query><![CDATA[
 PREFIX dbo: <http://dbpedia.org/ontology/>
 PREFIX res: <http://dbpedia.org/resource/>
+PREFIX xsd:double: <http://www.w3.org/2001/XMLSchema#double>
 PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 SELECT DISTINCT ?uri 
 WHERE {
@@ -736,6 +739,7 @@ WHERE {
 <query><![CDATA[
 PREFIX dbo: <http://dbpedia.org/ontology/>
 PREFIX res: <http://dbpedia.org/resource/>
+PREFIX xsd:dateTime: <http://www.w3.org/2001/XMLSchema#dateTime>
 PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 SELECT DISTINCT ?uri 
 WHERE {
@@ -1041,7 +1045,7 @@ LIMIT 1
 <query><![CDATA[
 PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 PREFIX yago: <http://dbpedia.org/class/yago/> 
-SELECT COUNT(DISTINCT ?uri) 
+SELECT (COUNT(DISTINCT ?uri) as ?count) 
 WHERE {
         ?uri rdf:type yago:JamesBondFilms . 
 } 
@@ -1120,6 +1124,7 @@ WHERE {
 <query><![CDATA[
 PREFIX dbo: <http://dbpedia.org/ontology/>
 PREFIX res: <http://dbpedia.org/resource/>
+PREFIX rdf:type: &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#type&lt;
 SELECT DISTINCT ?uri
 WHERE {
         ?uri rdf:type dbo:Writer .
@@ -1278,6 +1283,7 @@ WHERE {
 PREFIX dbo:  <http://dbpedia.org/ontology/>
 PREFIX res:  <http://dbpedia.org/resource/>
 PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+PREFIX rdf:type: &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#type&lt;
 SELECT DISTINCT ?uri
 WHERE {
         ?uri foaf:surname "Baldwin"@en . 

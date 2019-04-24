@@ -837,7 +837,7 @@ OFFSET 0 LIMIT 1
 <query><![CDATA[ 
 PREFIX dbo: <http://dbpedia.org/ontology/> 
 PREFIX res: <http://dbpedia.org/resource/> 
-SELECT COUNT(DISTINCT ?x) 
+SELECT (COUNT(DISTINCT ?x) as ?count) 
 WHERE { 
         res:Turkmenistan dbo:language ?x . 
 } ]]>
@@ -1021,7 +1021,7 @@ WHERE {
 <query><![CDATA[ 
 PREFIX dbo: <http://dbpedia.org/ontology/> 
 PREFIX res: <http://dbpedia.org/resource/> 
-SELECT COUNT(DISTINCT ?uri) 
+SELECT (COUNT(DISTINCT ?uri) as ?count) 
 WHERE { 
         res:Jane_Fonda dbo:spouse ?uri . 
 } ]]>
@@ -3832,7 +3832,7 @@ WHERE {
 <query><![CDATA[
 PREFIX yago: <http://dbpedia.org/class/yago/>
 PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
-SELECT COUNT(DISTINCT ?uri) 
+SELECT (COUNT(DISTINCT ?uri) as ?count) 
 WHERE {
         ?uri rdf:type yago:EuropeanCountries .
 }
