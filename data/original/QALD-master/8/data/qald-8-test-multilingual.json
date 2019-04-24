@@ -968,7 +968,7 @@
       "keywords" : "highest,  mountain,  Bavarian Alps"
     } ],
     "query" : {
-      "sparql" : "PREFIX dbo: <http://dbpedia.org/ontology/> PREFIX dbr: <http://dbpedia.org/resource/> SELECT ?m  WHERE { dbr:Bavarian_Alps dbp:highest ?m} "
+      "sparql" : "PREFIX dbp:highest: <http://dbpedia.org/property/highest> PREFIX dbo: <http://dbpedia.org/ontology/> PREFIX dbr: <http://dbpedia.org/resource/> SELECT ?m  WHERE { dbr:Bavarian_Alps dbp:highest ?m} "
     },
     "answers" : [ {
       "head" : {
