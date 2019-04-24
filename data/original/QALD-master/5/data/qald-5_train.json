@@ -43406,7 +43406,7 @@
           "keywords": "actori englezi, protagoniști, Lovesick"
         }
       ],
-      "query": "PREFIX res: <http://dbpedia.org/resource/>PREFIX dbo: <http://dbpedia.org/ontology/> PREFIX yago: <http://dbpedia.org/clas/yago/> SELECT DISTINCT ?uriWHERE { res:Lovesick dbo:starring ?uri . { ?uri dbo:birthPlace res:England . } UNION { ?uri rdf:type yago:EnglishFilmActors . }",
+      "query": "PREFIX rdf:type: <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> PREFIX res: <http://dbpedia.org/resource/>PREFIX  dbo: <http://dbpedia.org/ontology/> PREFIX yago: <http://dbpedia.org/clas/yago/> SELECT DISTINCT ?uriWHERE { res:Lovesick dbo:starring ?uri . { ?uri dbo:birthPlace res:England . } UNION { ?uri rdf:type yago:EnglishFilmActors . }",
       "answers": [
         {
           "string": "http://dbpedia.org/resource/Dudley_Moore"

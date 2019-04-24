@@ -2163,6 +2163,7 @@ OFFSET 0 LIMIT 1
 PREFIX res: <http://dbpedia.org/resource/>
 PREFIX yago: <http://dbpedia.org/class/yago/> 	
 PREFIX dbo: <http://dbpedia.org/ontology/> 
+PREFIX rdf:type: <http://www.w3.org/1999/02/22-rdf-syntax-ns#type>
 SELECT DISTINCT ?uri 
 WHERE {
         res:Air_China dbo:headquarter ?uri .
@@ -2194,6 +2195,7 @@ WHERE {
 PREFIX res: <http://dbpedia.org/resource/>
 PREFIX dbp: <http://dbpedia.org/property/> 
 PREFIX dbo: <http://dbpedia.org/ontology/> 
+PREFIX rdf:type: <http://www.w3.org/1999/02/22-rdf-syntax-ns#type>
 SELECT DISTINCT ?uri 
 WHERE {
 	?uri rdf:type dbo:Artist.
@@ -2226,7 +2228,8 @@ WHERE {
 <query><![CDATA[
 PREFIX res: <http://dbpedia.org/resource/>
 PREFIX dbo: <http://dbpedia.org/ontology/> 
-SELECT DISTINCT count (?uri)
+PREFIX rdf:type: <http://www.w3.org/1999/02/22-rdf-syntax-ns#type>
+SELECT DISTINCT (COUNT (?uri) as ?count)
 WHERE {
   ?uri rdf:type dbo:Scientist .
   ?uri dbo:almaMater ?university .
@@ -2448,7 +2451,7 @@ WHERE {
 <query><![CDATA[
 PREFIX dbo: <http://dbpedia.org/ontology/>
 PREFIX res: <http://dbpedia.org/resource/>
-SELECT DISTINCT COUNT(?c)
+SELECT DISTINCT (COUNT(?c) as ?count)
 WHERE {
         res:Facebook dbo:foundedBy ?uri . 
         ?c dbo:foundedBy ?uri .
@@ -2477,7 +2480,8 @@ WHERE {
 <query><![CDATA[
 PREFIX dbo: <http://dbpedia.org/ontology/>
 PREFIX res: <http://dbpedia.org/resource/>
-SELECT COUNT(DISTINCT ?c)
+PREFIX rdf:type: <http://www.w3.org/1999/02/22-rdf-syntax-ns#type>
+SELECT (COUNT(DISTINCT ?c) as ?count)
 WHERE {
         ?c rdf:type dbo:Company .
         ?c dbo:foundingYear ?year .
@@ -2539,7 +2543,7 @@ PREFIX dbo: <http://dbpedia.org/ontology/>
 PREFIX dbp: <http://dbpedia.org/ontology/>
 PREFIX res: <http://dbpedia.org/resource/>
 PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
-SELECT COUNT(DISTINCT ?uri)
+SELECT (COUNT(DISTINCT ?uri) as ?count)
 WHERE { 
         ?uri rdf:type dbo:Airline . 
         ?uri dbp:alliance res:Star_Alliance .
@@ -2568,6 +2572,7 @@ WHERE {
 <query><![CDATA[
 PREFIX dbo: <http://dbpedia.org/ontology/>
 PREFIX dbp: <http://dbpedia.org/property/>
+PREFIX rdf:type: <http://www.w3.org/1999/02/22-rdf-syntax-ns#type>
 PREFIX res: <http://dbpedia.org/resource/>
 SELECT DISTINCT ?uri
 WHERE {
@@ -3011,7 +3016,7 @@ WHERE {
 <query><![CDATA[
 PREFIX dbo: <http://dbpedia.org/ontology/>
 PREFIX res: <http://dbpedia.org/resource/>
-SELECT DISTINCT (?h1-?h2)
+SELECT DISTINCT (?h1-?h2 as ?distinct)
 WHERE {
         res:Mount_Everest dbo:elevation ?h1 .
         res:K2 dbo:elevation ?h2 .
@@ -3115,6 +3120,7 @@ WHERE {
 <query><![CDATA[
 PREFIX yago: <http://dbpedia.org/class/yago/> 	
 PREFIX res: <http://dbpedia.org/resource/>
+PREFIX rdf:type: <http://www.w3.org/1999/02/22-rdf-syntax-ns#type>
 ASK
 WHERE { 
         res:Taiko rdf:type yago:JapaneseMusicalInstruments .
@@ -3143,7 +3149,7 @@ WHERE {
 <query><![CDATA[
 PREFIX dbo: <http://dbpedia.org/ontology/>
 PREFIX res: <http://dbpedia.org/resource/>
-SELECT COUNT(DISTINCT ?uri)
+SELECT (COUNT(DISTINCT ?uri) as ?count)
 WHERE {
         res:Slovenia dbo:ethnicGroup ?uri .
 }

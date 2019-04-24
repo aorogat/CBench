@@ -20,6 +20,7 @@
 PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
 PREFIX dbo: <http://dbpedia.org/ontology/> 
 PREFIX res: <http://dbpedia.org/resource/> 
+PREFIX rdf:type: &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#type&lt;
 SELECT DISTINCT ?uri 
 WHERE { 
         ?uri rdf:type dbo:Astronaut . 
@@ -1906,7 +1907,7 @@ WHERE {
 <query><![CDATA[ 
 PREFIX dbp: <http://dbpedia.org/property/> 
 PREFIX res: <http://dbpedia.org/resource/> 
-SELECT COUNT(DISTINCT ?uri)
+SELECT (COUNT(DISTINCT ?uri) as ?count)
 WHERE { 
         ?uri dbp:programme res:Soyuz_programme . 
 }  
@@ -7168,7 +7169,7 @@ WHERE {
 <query><![CDATA[
 PREFIX dbo: <http://dbpedia.org/ontology/>
 PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
-SELECT COUNT(DISTINCT ?uri)
+SELECT (COUNT(DISTINCT ?uri) as ?count)
 WHERE { 
         ?uri rdf:type dbo:Airline . 
 }
@@ -7560,7 +7561,7 @@ WHERE {
 <query><![CDATA[
 PREFIX res: <http://dbpedia.org/resource/>
 PREFIX dbo: <http://dbpedia.org/ontology/> 
-SELECT DISTINCT COUNT(?uri) 
+SELECT DISTINCT (COUNT(?uri) as ?count) 
 WHERE {
         ?uri dbo:profession res:Politician .
         ?uri dbo:almaMater res:Columbia_University .
@@ -7800,7 +7801,8 @@ WHERE {
 <query><![CDATA[
 PREFIX res: <http://dbpedia.org/resource/>
 PREFIX dbo: <http://dbpedia.org/ontology/> 
-PREFIX yago: <http://dbpedia.org/class/yago/> 
+PREFIX yago: <http://dbpedia.org/class/yago/>
+PREFIX rdf:type: <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 
 SELECT DISTINCT ?uri
 WHERE {
           res:Lovesick dbo:starring ?uri .
