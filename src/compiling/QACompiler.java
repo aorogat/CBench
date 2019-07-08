@@ -111,14 +111,25 @@ public class QACompiler {
 		for(int i = 0; i < totalQuestions.size(); i++) {
 			
 			ArrayList<Question> curr= totalQuestions.get(i); // current qa file
+			
 			//Iterate through each question in qa file
 			for(int j = 0; j < curr.size(); j++) {
+				if(curr.get(j).getQuestionQuery() == null) {
+					System.out.println("Hit");
+					totalQuestions.get(i).remove(j);
+					j--;
+					continue; 
+				};
 				String currQuestion = curr.get(j).getQuestionString(); //Current question
 				
 				//Go through each other question in each other file
-				for(int i2 = 0; i2 < totalQuestions.size(); i2++) {
+				for(int i2 = 0; i2 <= i; i2++) {
 					ArrayList<Question> curr2 = totalQuestions.get(i2);
+					if(i2 >= i) {
+						//break;
+					}
 					for(int j2 = 0; j2 < curr2.size(); j2++) {
+					
 						String currQuestionCompare = curr2.get(j2).getQuestionString(); 
 
 						if(i != i2 || j != j2)
@@ -579,7 +590,6 @@ public class QACompiler {
 			for(int j = 0; j < totalQuestions.get(i).size(); j++) {
 
 				Question curr = totalQuestions.get(i).get(j);
-				
 				ArrayList<String> fetchedAnswers = getUpdatedAnswers(curr);
 				
 				if(fetchedAnswers == null) { questionsToRemove.add(curr); }
@@ -659,6 +669,7 @@ public class QACompiler {
 	static ArrayList<String> getUpdatedAnswers(Question question){
 		ArrayList<String> returnAnswers = new ArrayList<String>();
 		ArrayList<String> answers =  question.getAnswers();
+		//System.out.println(question.getQuestionQuery());
 		String query = question.getQuestionQuery().replace("\n", " ").replace("\t", " ");
 		question.setQuestionQuery(query);
 		ParameterizedSparqlString qs = new ParameterizedSparqlString(query);
