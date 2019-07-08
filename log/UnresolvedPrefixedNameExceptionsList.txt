@@ -1,11 +1,4 @@
-Total: 4
-
-File: ./data/original/QALD-master/1/data/dbpedia-train.xml
-Question: 'Which software has been developed by organizations founded in California?
-Query:  PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> PREFIX onto: <http://dbpedia.org/ontology/> PREFIX res: <http://dbpedia.org/resource/> SELECT ?uri WHERE {   ?company rdf:type onto:Organisation  .         ?company onto:foundationPlace res:California .         ?uri onto:developer ?company .         ?uri rdf:type onto:Software . } 
-Exception: Line 1, column 173: Unresolved prefixed name: rdf:type
-
-
+Total: 11
 
 File: ./data/original/QALD-master/1/data/dbpedia-train.xml
 Question: 'Which companies are located in California, USA?
@@ -21,10 +14,66 @@ Exception: Line 1, column 129: Unresolved prefixed name: rdf:type
 
 
 
+File: ./data/original/QALD-master/6/data/qald-6-train-multilingual.json
+Question: 'Give me all people with first name Jimmy.
+Query: SELECT DISTINCT ?uri WHERE {  ?uri <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> foaf:Person .  ?uri foaf:givenName 'Jimmy'@en . } 
+Exception: Line 1, column 86: Unresolved prefixed name: foaf:Person
+
+
+
 File: ./data/original/QALD-master/7/data/qald-7-train-hybrid.json
 Question: 'When was the European President known as the decider born?
 Query: PREFIX text: <http://jena.apache.org/text#>  PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> PREFIX dbo: <http://dbpedia.org/ontology/> SELECT DISTINCT ?proj WHERE { ?uri text:"the decider" . ?uri dbo:birthDate ?proj. ?uri rdf:type http://dbpedia.org/class/yago/PresidentsOfTheEuropeanCouncil . } 
 Exception: Line 1, column 243: Unresolved prefixed name: http:
+
+
+
+File: ./data/original/QALD-master/9/data/qald-9-train-multilingual.json
+Question: 'Give me all world heritage sites designated within the past two years.
+Query: SELECT DISTINCT ?uri WHERE { ?uri <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://dbpedia.org/ontology/WorldHeritageSite> . { ?uri <http://dbpedia.org/property/year> '2013'^^xsd:integer . } UNION { ?uri <http://dbpedia.org/property/year> '2014'^^xsd:integer . } }
+Exception: Line 1, column 185: Unresolved prefixed name: xsd:integer
+
+
+
+File: ./data/original/QALD-master/9/data/qald-9-train-multilingual.json
+Question: 'Give me all actors who were born in Paris after 1950.
+Query: SELECT DISTINCT ?uri WHERE { ?uri <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://dbpedia.org/ontology/Actor> . ?uri <http://dbpedia.org/ontology/birthPlace> <http://dbpedia.org/resource/Paris> . ?uri <http://dbpedia.org/ontology/birthDate> ?date . FILTER ( ?date >= xsd:dateTime('1950-12-31T00:00:00Z')) }
+Exception: Line 1, column 278: Unresolved prefixed name: xsd:dateTime
+
+
+
+File: ./data/original/QALD-master/9/data/qald-9-train-multilingual.json
+Question: 'In which U.S. state is Mount McKinley located?
+Query: SELECT DISTINCT ?uri WHERE { <http://dbpedia.org/resource/Mount_McKinley> dbo:wikiPageRedirects ?x . ?x <http://dbpedia.org/ontology/locatedInArea> ?uri. ?uri rdf:type yago:WikicatStatesOfTheUnitedStates }
+Exception: Line 1, column 75: Unresolved prefixed name: dbo:wikiPageRedirects
+
+
+
+File: ./data/original/QALD-master/9/data/qald-9-train-multilingual.json
+Question: 'Give me all actors called Baldwin.
+Query: SELECT DISTINCT ?uri WHERE { ?uri foaf:surname 'Baldwin'@en . { ?uri <http://dbpedia.org/ontology/occupation> <http://dbpedia.org/resource/Actor> . } UNION { ?uri <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://dbpedia.org/ontology/Actor> . } }
+Exception: Line 1, column 35: Unresolved prefixed name: foaf:surname
+
+
+
+File: ./data/original/QALD-master/9/data/qald-9-train-multilingual.json
+Question: 'Show me all songs from Bruce Springsteen released between 1980 and 1990.
+Query: SELECT DISTINCT ?uri WHERE { ?uri <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://dbpedia.org/ontology/Song> . ?uri <http://dbpedia.org/ontology/artist> <http://dbpedia.org/resource/Bruce_Springsteen> . ?uri <http://dbpedia.org/ontology/releaseDate> ?date . FILTER (?date >= '1980-01-01'^^xsd:date && ?date <= '1990-12-31'^^xsd:date) }
+Exception: Line 1, column 300: Unresolved prefixed name: xsd:date
+
+
+
+File: ./data/original/QALD-master/9/data/qald-9-train-multilingual.json
+Question: 'Give me all films produced by Steven Spielberg with a budget of at least $80 million.
+Query: SELECT DISTINCT ?uri WHERE { ?uri <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://dbpedia.org/ontology/Film> . ?uri <http://dbpedia.org/ontology/director> <http://dbpedia.org/resource/Steven_Spielberg> . ?uri <http://dbpedia.org/ontology/budget> ?b . FILTER( xsd:double(?b) >= 8.0E7 ) }
+Exception: Line 1, column 270: Unresolved prefixed name: xsd:double
+
+
+
+File: ./data/original/QALD-master/9/data/qald-9-train-multilingual.json
+Question: 'What is the last work of Dan Brown?
+Query: PREFIX dbo: <http://dbpedia.org/ontology/> PREFIX dbp: <http://dbpedia.org/property/> PREFIX dbr: <http://dbpedia.org/resource/> SELECT ?book WHERE { { ?book dbo:author dbr:Dan_Brown . ?book dbp:releaseDate ?date } UNION { ?book dbo:author dbr:Dan_Brown . ?book dbo:publicationDate ?date} } ORDER BY DESC(xsd:date(?date)) LIMIT 1
+Exception: Line 1, column 306: Unresolved prefixed name: xsd:date
 
 
 

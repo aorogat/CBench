@@ -1,6 +1,6 @@
-Questions removed: 2854
+Questions removed: 2828
 Total questions after reduncany: 5913
-Oringal questions: 8418
+Oringal questions: 8202
 ./data/original/LC-QuAD-data/test-data.json
 'Which architect of Marine Corps Air Station Kaneohe Bay was also tenant of New Sanno hotel /''
 Query returns no answers. Deleting question.
@@ -17985,65 +17985,9 @@ Query returns no answers. Deleting question.
 
 
 ./data/original/QALD-master/1/data/dbpedia-test.xml
-'Who is the daughter of Bill Clinton married to?'
-Query returns no answers. Deleting question.
- PREFIX res: <http://dbpedia.org/resource/> PREFIX dbpedia2: <http://dbpedia.org/property/> PREFIX onto: <http://dbpedia.org/ontology/> PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> SELECT DISTINCT ?uri ?string WHERE  {         res:Bill_Clinton onto:child ?child .         ?child dbpedia2:spouse ?string .         ?uri rdfs:label ?string . } 
-
-
-
-./data/original/QALD-master/1/data/dbpedia-test.xml
-'Which river does the Brooklyn Bridge cross?'
-Query returns no answers. Deleting question.
- PREFIX res: <http://dbpedia.org/resource/> PREFIX dbpedia2: <http://dbpedia.org/property/> SELECT DISTINCT ?uri ?string WHERE  {                res:Brooklyn_Bridge dbpedia2:crosses ?string .          ?uri dbpedia2:name ?string . } 
-
-
-
-./data/original/QALD-master/1/data/dbpedia-test.xml
-'Which states of Germany are governed by the Social Democratic Party?'
-Query returns no answers. Deleting question.
- PREFIX onto: <http://dbpedia.org/ontology/> PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> PREFIX res: <http://dbpedia.org/resource/> PREFIX yago: <http://dbpedia.org/class/yago/> SELECT DISTINCT ?uri ?string  WHERE {         ?uri rdf:type yago:StatesOfGermany .         ?uri onto:leaderParty res:Social_Democratic_Party_of_Germany .         OPTIONAL {?uri rdfs:label ?string. FILTER (lang(?string) = 'en') } } 
-
-
-
-./data/original/QALD-master/1/data/dbpedia-test.xml
-'Which U.S. states possess gold minerals?'
-Query returns no answers. Deleting question.
- PREFIX yago: <http://dbpedia.org/class/yago/> PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> PREFIX dbpedia2: <http://dbpedia.org/property/> SELECT DISTINCT ?uri ?string WHERE  {         ?uri rdf:type yago:StatesOfTheUnitedStates .         ?uri dbpedia2:mineral ?mineral .         FILTER (regex(?mineral,'Gold')) .         OPTIONAL {?uri rdfs:label ?string. FILTER (lang(?string) = 'en') } } 
-
-
-
-./data/original/QALD-master/1/data/dbpedia-test.xml
-'Which classis does the Millepede belong to?'
-Query returns no answers. Deleting question.
- PREFIX dbpedia2: <http://dbpedia.org/property/> PREFIX res: <http://dbpedia.org/resource/> SELECT ?string WHERE {        res:Millipede dbpedia2:classis ?string . } 
-
-
-
-./data/original/QALD-master/1/data/dbpedia-test.xml
-'Who created Goofy?'
-Query returns no answers. Deleting question.
- PREFIX res: <http://dbpedia.org/resource/> PREFIX prop: <http://dbpedia.org/property/> SELECT DISTINCT ?uri ?string WHERE  {         res:Goofy prop:creator ?string .         ?uri prop:name ?string . } 
-
-
-
-./data/original/QALD-master/1/data/dbpedia-test.xml
 'Give me the capitals of all U.S. states.'
 Query returns no answers. Deleting question.
  PREFIX onto: <http://dbpedia.org/ontology/> PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> PREFIX yago: <http://dbpedia.org/class/yago/> SELECT DISTINCT ?uri ?string WHERE {   ?states rdf:type yago:StatesOfTheUnitedStates .         ?states onto:capital ?uri .         OPTIONAL {?uri rdfs:label ?string. FILTER (lang(?string) = 'en') } } 
-
-
-
-./data/original/QALD-master/1/data/dbpedia-test.xml
-'Give me all cities in New Jersey with more than 100000 inhabitants.'
-Query returns no answers. Deleting question.
- PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> PREFIX dbpedia2: <http://dbpedia.org/property/> PREFIX onto: <http://dbpedia.org/ontology/> SELECT DISTINCT ?uri ?string WHERE  {  ?uri rdf:type onto:City .         ?uri dbpedia2:subdivisionName ?location .         FILTER (regex(?location, 'New Jersey')) .         ?uri dbpedia2:populationTotal ?inhabitants .         FILTER (?inhabitants > 100000) .         OPTIONAL {?uri rdfs:label ?string. FILTER (lang(?string) = 'en') } } 
-
-
-
-./data/original/QALD-master/1/data/dbpedia-test.xml
-'Which museum exhibits The Scream by Munch?'
-Query returns no answers. Deleting question.
- PREFIX res: <http://dbpedia.org/resource/> PREFIX dbpedia2: <http://dbpedia.org/property/> PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> SELECT ?uri ?string WHERE  {  res:The_Scream dbpedia2:museum ?string .         OPTIONAL { ?uri rdfs:label ?string. } } 
 
 
 
@@ -18055,20 +17999,6 @@ Query returns no answers. Deleting question.
 
 
 ./data/original/QALD-master/1/data/dbpedia-test.xml
-'Which mountain is the highest after the Annapurna?'
-Query returns no answers. Deleting question.
- PREFIX onto: <http://dbpedia.org/ontology/> PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> PREFIX res: <http://dbpedia.org/resource/> SELECT ?uri ?string WHERE  {                res:Annapurna onto:elevation ?elev .         ?uri rdf:type onto:Mountain .          ?uri onto:elevation ?all .         FILTER (?all < ?elev) .         OPTIONAL {?uri rdfs:label ?string. FILTER (lang(?string) = 'en') }  } ORDER BY DESC(?all) LIMIT 1 
-
-
-
-./data/original/QALD-master/1/data/dbpedia-test.xml
-'Which bridges are of the same type as the Manhattan Bridge?'
-Query returns no answers. Deleting question.
- PREFIX onto: <http://dbpedia.org/ontology/> PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> PREFIX res: <http://dbpedia.org/resource/> PREFIX dbpedia2: <http://dbpedia.org/property/> SELECT DISTINCT ?uri ?string WHERE  {                ?uri rdf:type onto:Bridge .         ?uri dbpedia2:design ?design .         res:Manhattan_Bridge dbpedia2:design ?manha .          FILTER (regex(?design, ?manha)).         FILTER (?uri != res:Manhattan_Bridge) .          OPTIONAL {?uri rdfs:label ?string. FILTER (lang(?string) = 'en') } } 
-
-
-
-./data/original/QALD-master/1/data/dbpedia-test.xml
 'Which European countries are a constitutional monarchy?'
 Query returns no answers. Deleting question.
  PREFIX onto: <http://dbpedia.org/ontology/> PREFIX yago: <http://dbpedia.org/class/yago/> PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> PREFIX res: <http://dbpedia.org/resource/> SELECT DISTINCT ?uri ?string WHERE  {  ?uri rdf:type yago:EuropeanCountries .         ?uri onto:governmentType res:Constitutional_monarchy .         OPTIONAL {?uri rdfs:label ?string. FILTER (lang(?string) = 'en') } } 
@@ -18076,65 +18006,9 @@ Query returns no answers. Deleting question.
 
 
 ./data/original/QALD-master/1/data/dbpedia-test.xml
-'Which state of the United States of America has the highest density?'
-Query returns no answers. Deleting question.
- PREFIX yago: <http://dbpedia.org/class/yago/> PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> PREFIX dbpedia2: <http://dbpedia.org/property/> SELECT ?uri ?string WHERE  {  ?uri rdf:type yago:StatesOfTheUnitedStates .         ?uri dbpedia2:densityrank ?density         OPTIONAL {?uri rdfs:label ?string. FILTER (lang(?string) = 'en') } } ORDER BY ASC(?density) LIMIT 1 
-
-
-
-./data/original/QALD-master/1/data/dbpedia-test.xml
-'What is the currency of the Czech Republic?'
-Query returns no answers. Deleting question.
- PREFIX dbpedia2: <http://dbpedia.org/property/> PREFIX res: <http://dbpedia.org/resource/> PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> SELECT ?uri ?string WHERE  {  res:Czech_Republic dbpedia2:currency ?string .         ?uri rdfs:label ?string . } 
-
-
-
-./data/original/QALD-master/1/data/dbpedia-test.xml
-'Which countries in the European Union adopted the Euro?'
-Query returns no answers. Deleting question.
- PREFIX dbpedia2: <http://dbpedia.org/property/> PREFIX res: <http://dbpedia.org/resource/> PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> PREFIX yago: <http://dbpedia.org/class/yago/> PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> SELECT DISTINCT ?uri ?string WHERE  {  ?uri rdf:type yago:EuropeanUnionMemberStates .         { ?uri dbpedia2:currency res:Euro . }          UNION          { ?uri dbpedia2:currencyCode ?code . FILTER regex(?code,'EUR') }         OPTIONAL { ?uri rdfs:label ?string. FILTER (lang(?string) = 'en') } } 
-
-
-
-./data/original/QALD-master/1/data/dbpedia-test.xml
-'Through which countries does the Yenisei river flow?'
-Query returns no answers. Deleting question.
- PREFIX res: <http://dbpedia.org/resource/> PREFIX dbpedia2: <http://dbpedia.org/property/> SELECT DISTINCT ?uri ?string WHERE  {         res:Yenisei_River dbpedia2:country ?string .         OPTIONAL { ?uri dbpedia2:commonName ?name . }         FILTER regex(?name,?string) .         OPTIONAL { ?uri dbpedia2:dateEnd ?date . }         FILTER (!BOUND(?date)) } 
-
-
-
-./data/original/QALD-master/1/data/dbpedia-test.xml
 'When did Germany join the EU?'
 Query returns no answers. Deleting question.
  PREFIX res: <http://dbpedia.org/resource/> PREFIX dbpedia2: <http://dbpedia.org/property/> SELECT ?date WHERE  {                res:Germany dbpedia2:accessioneudate ?date .       } 
-
-
-
-./data/original/QALD-master/1/data/dbpedia-test.xml
-'Which monarchs of the United Kingdom were married to a German?'
-Query returns no answers. Deleting question.
- PREFIX yago: <http://dbpedia.org/class/yago/> PREFIX onto: <http://dbpedia.org/ontology/> PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> PREFIX res: <http://dbpedia.org/resource/> SELECT DISTINCT ?uri ?string WHERE  {         ?uri rdf:type yago:MonarchsOfTheUnitedKingdom .         { ?uri onto:spouse ?spouse . } UNION { ?spouse onto:spouse ?uri . }         ?spouse onto:birthPlace res:Germany.         OPTIONAL {?uri rdfs:label ?string. FILTER (lang(?string) = 'en') } } 
-
-
-
-./data/original/QALD-master/1/data/dbpedia-test.xml
-'Who designed the Brooklyn Bridge?'
-Query returns no answers. Deleting question.
- PREFIX res: <http://dbpedia.org/resource/> PREFIX dbpedia2: <http://dbpedia.org/property/> SELECT DISTINCT ?uri ?string  WHERE  {         res:Brooklyn_Bridge dbpedia2:designer ?string .         ?uri dbpedia2:name ?string . } 
-
-
-
-./data/original/QALD-master/1/data/dbpedia-test.xml
-'What is the highest place of Karakoram?'
-Query returns no answers. Deleting question.
- PREFIX onto: <http://dbpedia.org/ontology/> PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> PREFIX res: <http://dbpedia.org/resource/> SELECT ?uri ?string WHERE  {                res:Karakoram onto:highestPlace ?uri .           OPTIONAL {?uri rdfs:label ?string. FILTER (lang(?string) = 'en') } } 
-
-
-
-./data/original/QALD-master/1/data/dbpedia-train.xml
-'Give me all school types.'
-Query returns no answers. Deleting question.
- PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> PREFIX yago: <http://dbpedia.org/class/yago/> SELECT DISTINCT ?uri ?string WHERE {   ?uri rdf:type yago:SchoolTypes .         OPTIONAL {?uri rdfs:label ?string . FILTER (lang(?string) = 'en') } } 
 
 
 
@@ -18149,53 +18023,6 @@ Query returns no answers. Deleting question.
 'Who was the wife of President Lincoln?'
 Query returns no answers. Deleting question.
  PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> PREFIX foaf: <http://xmlns.com/foaf/0.1/> PREFIX onto: <http://dbpedia.org/ontology/> SELECT ?uri ?string WHERE  {  ?person rdf:type onto:President .  ?person foaf:surname 'Lincoln'@en .  ?person onto:spouse ?uri.         OPTIONAL {?uri rdfs:label ?string . FILTER (lang(?string) = 'en') } } 
-
-
-
-./data/original/QALD-master/1/data/dbpedia-train.xml
-'What is the official website of Tom Hanks?'
-Query returns no answers. Deleting question.
- PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> PREFIX foaf: <http://xmlns.com/foaf/0.1/> SELECT ?uri WHERE {   ?subject  rdfs:label 'Tom Hanks'@en .         ?subject foaf:homepage ?uri } 
-
-
-
-./data/original/QALD-master/1/data/dbpedia-train.xml
-'Which mountains are higher than the Nanga Parbat?'
-Query returns no answers. Deleting question.
- PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> PREFIX onto: <http://dbpedia.org/ontology/> PREFIX prop: <http://dbpedia.org/property/> SELECT ?uri ?string WHERE  {  ?uri rdf:type onto:Mountain .         ?acon rdfs:label 'Nanga Parbat'@en .         ?acon prop:elevationM ?elevation .         ?uri prop:elevationM ?allelevation .         FILTER (?allelevation > ?elevation) .  OPTIONAL {?uri rdfs:label ?string . FILTER (lang(?string) = 'en') } } 
-
-
-
-./data/original/QALD-master/1/data/dbpedia-train.xml
-'Give me all actors starring in Batman Begins.'
-Query returns no answers. Deleting question.
- PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> PREFIX foaf: <http://xmlns.com/foaf/0.1/> PREFIX onto: <http://dbpedia.org/ontology/> SELECT ?uri  WHERE  {  ?film rdf:type onto:Film .         ?film onto:starring ?uri .         ?film foaf:name 'Batman Begins'@en . } 
-
-
-
-./data/original/QALD-master/1/data/dbpedia-train.xml
-'Which companies work in the aerospace industry as well as on nuclear reactor technology?'
-Query returns no answers. Deleting question.
- PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> PREFIX onto:  <http://dbpedia.org/ontology/> PREFIX res:  <http://dbpedia.org/resource/> PREFIX prop: <http://dbpedia.org/property/> SELECT ?uri ?string WHERE {   ?uri  rdf:type onto:Company  .  ?uri prop:industry res:Aerospace .         ?uri prop:industry res:Nuclear_reactor_technology .  OPTIONAL {?uri rdfs:label ?string . FILTER (lang(?string) = 'en') } } 
-
-
-
-File: ./data/original/QALD-master/1/data/dbpedia-train.xml
-Question: 'Is Christian Bale starring in Batman Begins?
-Query:  PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> PREFIX foaf: <http://xmlns.com/foaf/0.1/> PREFIX onto: <http://dbpedia.org/ontology/> PREFIX rdfs:label: <http://www.w3.org/2000/01/rdf-schema#labelgt; ASK WHERE  {  ?film rdf:type onto:Film .         ?film onto:starring ?actors .         ?actors rdfs:label 'Christian Bale'@en .         ?film foaf:name 'Batman Begins'@en } 
-
-Expected Answers: []
-Exception: Encountered " <PNAME_LN> "rdfs:label: "" at line 1, column 153.
-Was expecting:
-    <PNAME_NS> ...
-    
-
-
-
-./data/original/QALD-master/1/data/dbpedia-train.xml
-'Give me the websites of companies with more than 500000 employees.'
-Query returns no answers. Deleting question.
- PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> PREFIX prop: <http://dbpedia.org/property/> PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> PREFIX foaf: <http://xmlns.com/foaf/0.1/> PREFIX onto: <http://dbpedia.org/ontology/> SELECT DISTINCT ?uri  WHERE  {  ?subject rdf:type onto:Company .  ?subject prop:numEmployees ?employees .  FILTER( xsd:integer(?employees) >= 500000 ) .  ?subject foaf:homepage ?uri . } 
 
 
 
@@ -18228,51 +18055,9 @@ Query returns no answers. Deleting question.
 
 
 ./data/original/QALD-master/1/data/dbpedia-train.xml
-'Which caves have more than 3 entrances?'
-Query returns no answers. Deleting question.
- PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> PREFIX onto: <http://dbpedia.org/ontology/> PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> SELECT ?uri ?string WHERE {   ?uri  rdf:type onto:Cave  .         ?uri onto:numberOfEntrances ?entrance .         FILTER (?entrance > 3) .         OPTIONAL {?uri rdfs:label ?string . FILTER (lang(?string) = 'en') } } 
-
-
-
-./data/original/QALD-master/1/data/dbpedia-train.xml
-'Who owns Aldi?'
-Query returns no answers. Deleting question.
- PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> PREFIX onto: <http://dbpedia.org/ontology/> SELECT ?uri ?string WHERE  {  ?orga rdf:type onto:Organisation .  ?orga onto:keyPerson ?uri .  ?orga rdfs:label 'Aldi'@en .  OPTIONAL {?uri rdfs:label ?string . FILTER (lang(?string) = 'en') }         FILTER (lang(?string) = 'en')  } 
-
-
-
-./data/original/QALD-master/1/data/dbpedia-train.xml
-'Which capitals in Europe were host cities of the summer olympic games?'
-Query returns no answers. Deleting question.
- PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> PREFIX yago: <http://dbpedia.org/class/yago/> SELECT ?uri ?string WHERE  {  ?uri rdf:type yago:CapitalsInEurope .         ?uri rdf:type yago:HostCitiesOfTheSummerOlympicGames .         OPTIONAL {?uri rdfs:label ?string . FILTER (lang(?string) = 'en') }  } 
-
-
-
-./data/original/QALD-master/1/data/dbpedia-train.xml
-'Who has been the 5th president of the United States of America?'
-Query returns no answers. Deleting question.
- PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> PREFIX onto: <http://dbpedia.org/ontology/> PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> SELECT ?uri ?string WHERE  {  ?uri rdf:type onto:President .  ?uri onto:orderInOffice '5th President of the United States'@en .         OPTIONAL {?uri rdfs:label ?string . FILTER (lang(?string) = 'en') } } 
-
-
-
-./data/original/QALD-master/1/data/dbpedia-train.xml
-'In which programming language is GIMP written?'
-Query returns no answers. Deleting question.
- PREFIX prop: <http://dbpedia.org/property/> PREFIX res: <http://dbpedia.org/resource/> SELECT ?string WHERE  {    res:GIMP prop:programmingLanguage ?string . } 
-
-
-
-./data/original/QALD-master/1/data/dbpedia-train.xml
 'Give me all female German chancellors!'
 Query returns no answers. Deleting question.
  PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> PREFIX yago: <http://dbpedia.org/class/yago/> PREFIX prop: <http://dbpedia.org/property/> SELECT ?uri ?string WHERE  {  ?uri rdf:type yago:FemaleHeadsOfGovernment.         ?uri prop:office ?office .         FILTER regex(?office, 'Chancellor of Germany').                 OPTIONAL {?uri rdfs:label ?string . FILTER (lang(?string) = 'en') } } 
-
-
-
-./data/original/QALD-master/1/data/dbpedia-train.xml
-'When was Capcom founded?'
-Query returns no answers. Deleting question.
- PREFIX res: <http://dbpedia.org/resource/> PREFIX prop: <http://dbpedia.org/property/> SELECT ?date WHERE  {      res:Capcom prop:foundation ?date . } 
 
 
 
@@ -18301,6 +18086,13 @@ Query returns no answers. Deleting question.
 'Earth & Beyond'
 Query returns no answers. Deleting question.
  PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> PREFIX onto: <http://dbpedia.org/ontology/> PREFIX prop: <http://dbpedia.org/property/> SELECT ?uri ?string WHERE  {  ?uri rdf:type onto:Software .         ?uri prop:publisher "Electronic Arts"@en .  OPTIONAL {?uri rdfs:label ?string .}         FILTER (lang(?string) = "en")  } 
+
+
+
+./data/original/QALD-master/1/data/dbpedia-train-CDATA.xml
+'What is the official website of Tom Hanks?'
+Query returns no answers. Deleting question.
+ PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> PREFIX foaf: <http://xmlns.com/foaf/0.1/> SELECT ?uri WHERE {   ?subject  rdfs:label  "Tom Hanks"@en .         ?subject foaf:homepage ?uri } 
 
 
 
@@ -18422,44 +18214,23 @@ Query returns no answers. Deleting question.
 
 
 ./data/original/QALD-master/2/data/dbpedia-train-answers.xml
-'Give me the capitals of all countries in Africa.'
+'Give me all actors starring in Batman Begins.'
 Query returns no answers. Deleting question.
- PREFIX dbo: <http://dbpedia.org/ontology/> PREFIX yago: <http://dbpedia.org/class/yago/> PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> SELECT DISTINCT ?uri ?string WHERE {   ?states rdf:type yago:AfricanCountries .         ?states dbo:capital ?uri .         OPTIONAL { ?uri rdfs:label ?string. FILTER (lang(?string) = 'en') } } 
+ PREFIX dbo: <http://dbpedia.org/ontology/> PREFIX res: <http://dbpedia.org/resource/> PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> SELECT DISTINCT ?uri ?string  WHERE {  res:Batman_Begins dbo:starring ?uri .  OPTIONAL { ?uri rdfs:label ?string . FILTER (lang(?string) = 'en') }  } 
 
 
 
 ./data/original/QALD-master/2/data/dbpedia-train-answers.xml
-'Which European countries have a constitutional monarchy?'
+'Who is the daughter of Bill Clinton married to?'
 Query returns no answers. Deleting question.
- PREFIX dbo: <http://dbpedia.org/ontology/> PREFIX res: <http://dbpedia.org/resource/> PREFIX yago: <http://dbpedia.org/class/yago/> PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> SELECT DISTINCT ?uri ?string  WHERE {  ?uri rdf:type yago:EuropeanCountries .         ?uri dbo:governmentType res:Constitutional_monarchy .         OPTIONAL { ?uri rdfs:label ?string. FILTER (lang(?string) = 'en') } } 
+ PREFIX dbo: <http://dbpedia.org/ontology/> PREFIX dbp: <http://dbpedia.org/property/> PREFIX res: <http://dbpedia.org/resource/> PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> SELECT DISTINCT ?uri ?string  WHERE {         res:Bill_Clinton dbo:child ?child .         ?child dbp:spouse ?string .         ?uri rdfs:label ?string . } 
 
 
 
 ./data/original/QALD-master/2/data/dbpedia-train-answers.xml
-'Give me all female German chancellors.'
+'Which classis does the Millepede belong to?'
 Query returns no answers. Deleting question.
- PREFIX yago: <http://dbpedia.org/class/yago/> PREFIX dbp: <http://dbpedia.org/property/> PREFIX res: <http://dbpedia.org/resource/> PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> SELECT DISTINCT ?uri ?string  WHERE {  ?uri rdf:type yago:FemaleHeadsOfGovernment.         ?uri dbp:office res:Chancellor_of_Germany .         OPTIONAL { ?uri rdfs:label ?string . FILTER (lang(?string) = 'en') } } 
-
-
-
-./data/original/QALD-master/2/data/dbpedia-train-answers.xml
-'Give me all presidents of the United States.'
-Query returns no answers. Deleting question.
- PREFIX yago: <http://dbpedia.org/class/yago/> PREFIX dbo: <http://dbpedia.org/ontology/> PREFIX dbp: <http://dbpedia.org/property/> PREFIX res: <http://dbpedia.org/resource/> PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> SELECT DISTINCT ?uri ?string  WHERE {         ?uri rdf:type dbo:Person .         { ?uri rdf:type yago:PresidentsOfTheUnitedStates. }         UNION         { ?uri rdf:type dbo:President.           ?uri dbp:title res:President_of_the_United_States. }         ?uri rdfs:label ?string.          FILTER (lang(?string) = 'en' && !regex(?string,'Presidency','i') && !regex(?string,'and the')) . } 
-
-
-
-./data/original/QALD-master/2/data/dbpedia-train-answers.xml
-'Which state of the USA has the highest population density?'
-Query returns no answers. Deleting question.
- PREFIX yago: <http://dbpedia.org/class/yago/> PREFIX dbp: <http://dbpedia.org/property/> PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> SELECT DISTINCT ?uri ?string  WHERE {  ?uri rdf:type yago:StatesOfTheUnitedStates .         ?uri dbp:densityrank ?rank .         OPTIONAL { ?uri rdfs:label ?string. FILTER (lang(?string) = 'en') } }  ORDER BY ASC(?rank) LIMIT 1 
-
-
-
-./data/original/QALD-master/2/data/dbpedia-train-answers.xml
-'Give me all female Russian astronauts.'
-Query returns no answers. Deleting question.
- PREFIX yago: <http://dbpedia.org/class/yago/> PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> SELECT DISTINCT ?uri ?string  WHERE {  ?uri rdf:type yago:RussianCosmonauts .         ?uri rdf:type yago:FemaleAstronauts .         OPTIONAL { ?uri rdfs:label ?string. FILTER (lang(?string) = 'en') } } 
+ PREFIX dbp: <http://dbpedia.org/property/> PREFIX res: <http://dbpedia.org/resource/> PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> SELECT DISTINCT ?uri ?string WHERE {        res:Millipede dbp:classis ?string .        ?uri rdfs:label ?string . } 
 
 
 
@@ -18523,25 +18294,6 @@ Was expecting:
 
 
 
-File: ./data/original/QALD-master/3/data/dbpedia-test-answers.xml
-Question: 'Which books by Kerouac were published by Viking Press?
-Query: PREFIX dbo: <http://dbpedia.org/ontology/> PREFIX res: <http://dbpedia.org/resource/> PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> PREFIX xsd:date: <http://www.w3.org/2001/XMLSchema#date> SELECT DISTINCT ?uri  WHERE {  ?uri rdf:type dbo:Book .  ?uri dbo:publisher res:Viking_Press .         ?uri dbo:author res:Jack_Kerouac . }
-
-Expected Answers: [http://dbpedia.org/resource/The_Dharma_Bums, http://dbpedia.org/resource/On_the_Road, http://dbpedia.org/resource/References_in_On_the_Road, http://dbpedia.org/resource/Atop_an_Underwood:_Early_Stories_and_Other_Writings, http://dbpedia.org/resource/Door_Wide_Open]
-Exception: Encountered " <PNAME_LN> "xsd:date: "" at line 1, column 152.
-Was expecting:
-    <PNAME_NS> ...
-    
-
-
-
-./data/original/QALD-master/3/data/dbpedia-test-answers.xml
-'Which U.S. states are in the same timezone as Utah?'
-Query returns no answers. Deleting question.
-PREFIX res: <http://dbpedia.org/resource/> PREFIX dbp: <http://dbpedia.org/property/> PREFIX yago: <http://dbpedia.org/class/yago/> PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> SELECT DISTINCT ?uri  WHERE {  res:Utah dbp:timezone ?x .          ?uri rdf:type yago:StatesOfTheUnitedStates .          ?uri dbp:timezone ?x .         FILTER (?uri != res:Utah) }
-
-
-
 ./data/original/QALD-master/3/data/dbpedia-test-answers.xml
 'Which daughters of British earls died in the same place they were born in?'
 Query returns no answers. Deleting question.
@@ -18557,121 +18309,9 @@ PREFIX dbo: <http://dbpedia.org/ontology/> PREFIX res: <http://dbpedia.org/resou
 
 
 ./data/original/QALD-master/3/data/dbpedia-test-answers.xml
-'What is the total amount of men and women serving in the FDNY?'
-Query returns no answers. Deleting question.
-PREFIX dbp: <http://dbpedia.org/property/> PREFIX res: <http://dbpedia.org/resource/> SELECT DISTINCT ?num  WHERE {  res:New_York_City_Fire_Department dbp:strength ?num . }
-
-
-
-./data/original/QALD-master/3/data/dbpedia-test-answers.xml
-'In which city was the former Dutch queen Juliana buried?'
-Query returns no answers. Deleting question.
-PREFIX dbo: <http://dbpedia.org/ontology/> PREFIX res: <http://dbpedia.org/resource/> PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> SELECT DISTINCT ?uri  WHERE {  res:Juliana_of_the_Netherlands dbo:restingPlace ?uri.  ?uri rdf:type dbo:Settlement . }
-
-
-
-./data/original/QALD-master/3/data/dbpedia-test-answers.xml
-'What are the nicknames of San Francisco?'
-Query returns no answers. Deleting question.
-PREFIX dbp: <http://dbpedia.org/property/> PREFIX res: <http://dbpedia.org/resource/> SELECT DISTINCT ?string  WHERE {  res:San_Francisco dbp:nickname ?string . }
-
-
-
-./data/original/QALD-master/3/data/dbpedia-test-answers.xml
-'To which countries does the Himalayan mountain system extend?'
-Query returns no answers. Deleting question.
-PREFIX dbp: <http://dbpedia.org/property/> PREFIX res: <http://dbpedia.org/resource/> SELECT DISTINCT ?uri  WHERE {  res:Himalayas dbp:country ?uri . }
-
-
-
-./data/original/QALD-master/3/data/dbpedia-test-answers.xml
-'What is the founding year of the brewery that produces Pilsner Urquell?'
-Query returns no answers. Deleting question.
-PREFIX dbp: <http://dbpedia.org/property/> PREFIX res: <http://dbpedia.org/resource/> SELECT DISTINCT ?num  WHERE {  res:Pilsner_Urquell dbp:brewery ?uri .  ?uri dbp:foundation ?num . }
-
-
-
-./data/original/QALD-master/3/data/dbpedia-test-answers.xml
-'In which U.S. state is Fort Knox located?'
-Query returns no answers. Deleting question.
-PREFIX dbo: <http://dbpedia.org/ontology/> PREFIX dbp: <http://dbpedia.org/property/> PREFIX res: <http://dbpedia.org/resource/> SELECT DISTINCT ?uri WHERE {  res:Fort_Knox dbp:location ?uri .         ?uri dbo:country res:United_States . }
-
-
-
-./data/original/QALD-master/3/data/dbpedia-test-answers.xml
-'Give me a list of all American inventions.'
-Query returns no answers. Deleting question.
-PREFIX yago: <http://dbpedia.org/class/yago/> PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> SELECT DISTINCT ?uri  WHERE {  ?uri rdf:type yago:AmericanInventions . }
-
-
-
-./data/original/QALD-master/3/data/dbpedia-test-answers.xml
-'Who is the youngest player in the Premier League?'
-Query returns no answers. Deleting question.
-PREFIX dbo: <http://dbpedia.org/ontology/> PREFIX res: <http://dbpedia.org/resource/> SELECT DISTINCT ?uri  WHERE {  ?uri dbo:team ?x .  ?x dbo:league res:Premier_League .  ?uri dbo:birthDate ?y . } ORDER BY DESC(?y) OFFSET 0 LIMIT 1
-
-
-
-./data/original/QALD-master/3/data/dbpedia-test-answers.xml
-'Who painted The Storm on the Sea of Galilee?'
-Query returns no answers. Deleting question.
-PREFIX dbp: <http://dbpedia.org/property/> PREFIX res: <http://dbpedia.org/resource/> SELECT DISTINCT ?uri  WHERE {  res:The_Storm_on_the_Sea_of_Galilee dbp:artist ?uri . }
-
-
-
-./data/original/QALD-master/3/data/dbpedia-test-answers.xml
-'Who wrote the lyrics for the Polish national anthem?'
-Query returns no answers. Deleting question.
-PREFIX dbo: <http://dbpedia.org/ontology/> PREFIX dbp: <http://dbpedia.org/property/> PREFIX res: <http://dbpedia.org/resource/> SELECT DISTINCT ?uri  WHERE {  res:Poland dbo:anthem ?x .         ?x dbp:author ?uri . }
-
-
-
-./data/original/QALD-master/3/data/dbpedia-test-answers.xml
-'Who was the father of Queen Elizabeth II?'
-Query returns no answers. Deleting question.
-PREFIX res: <http://dbpedia.org/resource/> PREFIX dbp: <http://dbpedia.org/property/> SELECT DISTINCT ?uri WHERE {          res:Elizabeth_II dbp:father ?uri . }
-
-
-
-./data/original/QALD-master/3/data/dbpedia-test-answers.xml
-'Which U.S. state has the abbreviation MN?'
-Query returns no answers. Deleting question.
-PREFIX dbp: <http://dbpedia.org/property/> PREFIX yago: <http://dbpedia.org/class/yago/> PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> SELECT DISTINCT ?uri  WHERE {  ?uri rdf:type yago:StatesOfTheUnitedStates .         ?uri dbp:postalabbreviation 'MN'@en . }
-
-
-
-./data/original/QALD-master/3/data/dbpedia-test-answers.xml
-'Which movies did Kurosawa direct after Rashomon?'
-Query returns no answers. Deleting question.
-PREFIX dbo: <http://dbpedia.org/ontology/> PREFIX dbp: <http://dbpedia.org/property/> PREFIX res: <http://dbpedia.org/resource/> PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> SELECT DISTINCT ?uri WHERE {  ?uri rdf:type dbo:Film .         ?uri dbo:director res:Akira_Kurosawa .  { ?uri dbo:releaseDate ?x . } UNION { ?uri dbp:released ?x . }         <http://dbpedia.org/resource/Rashomon_(film)> dbo:releaseDate ?y .         FILTEr (?y > ?x) }
-
-
-
-./data/original/QALD-master/3/data/dbpedia-test-answers.xml
-'Which professional surfers were born on the Philippines?'
-Query returns no answers. Deleting question.
-PREFIX dbo: <http://dbpedia.org/ontology/> PREFIX res: <http://dbpedia.org/resource/> SELECT DISTINCT ?uri WHERE {  ?uri dbo:occupation res:Surfing .  ?uri dbo:birthPlace res:Philippines . }
-
-
-
-./data/original/QALD-master/3/data/dbpedia-test-answers.xml
 'Give me all current Methodist national leaders.'
 Query returns no answers. Deleting question.
 PREFIX dbp: <http://dbpedia.org/property/> PREFIX res: <http://dbpedia.org/resource/> PREFIX yago: <http://dbpedia.org/class/yago/> PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> SELECT DISTINCT ?uri  WHERE {  ?uri rdf:type yago:CurrentNationalLeaders .  ?uri dbp:religion res:Methodism . }
-
-
-
-./data/original/QALD-master/3/data/dbpedia-test-answers.xml
-'Who was called Scarface?'
-Query returns no answers. Deleting question.
-PREFIX dbp: <http://dbpedia.org/property/> PREFIX res: <http://dbpedia.org/resource/> SELECT DISTINCT ?uri  WHERE {  ?uri dbp:nickname res:Scarface . }
-
-
-
-./data/original/QALD-master/3/data/dbpedia-test-answers.xml
-'What is the time zone of Salt Lake City?'
-Query returns no answers. Deleting question.
-PREFIX res: <http://dbpedia.org/resource/> PREFIX dbp: <http://dbpedia.org/property/> SELECT DISTINCT ?uri  WHERE {  res:Salt_Lake_City dbp:timezone ?uri .  }
 
 
 
@@ -18682,92 +18322,10 @@ PREFIX dbo: <http://dbpedia.org/ontology/> PREFIX res: <http://dbpedia.org/resou
 
 
 
-./data/original/QALD-master/3/data/dbpedia-test-answers.xml
-'Who is the husband of Amanda Palmer?'
+./data/original/QALD-master/3/data/dbpedia-train-answers.xml
+'What is the highest place of Karakoram?'
 Query returns no answers. Deleting question.
-PREFIX dbp: <http://dbpedia.org/property/> PREFIX res: <http://dbpedia.org/resource/> SELECT DISTINCT ?uri  WHERE {  res:Amanda_Palmer dbp:spouse ?uri .  }
-
-
-
-./data/original/QALD-master/3/data/dbpedia-test-answers.xml
-'Which Greek goddesses dwelt on Mount Olympus?'
-Query returns no answers. Deleting question.
-PREFIX dbp: <http://dbpedia.org/property/> PREFIX res: <http://dbpedia.org/resource/> PREFIX yago: <http://dbpedia.org/class/yago/> PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> SELECT DISTINCT ?uri  WHERE {         ?uri rdf:type yago:GreekGoddesses .  ?uri dbp:abode res:Mount_Olympus . }
-
-
-
-./data/original/QALD-master/3/data/dbpedia-test-answers.xml
-'How high is the Mount Everest?'
-Query returns no answers. Deleting question.
-PREFIX dbo: <http://dbpedia.org/ontology/> PREFIX res: <http://dbpedia.org/resource/> SELECT DISTINCT ?num  WHERE {  res:Mount_Everest dbo:elevation ?num. }
-
-
-
-./data/original/QALD-master/3/data/dbpedia-test-answers.xml
-'Sean Parnell is the governor of which U.S. state?'
-Query returns no answers. Deleting question.
-PREFIX yago: <http://dbpedia.org/class/yago/> PREFIX dbp: <http://dbpedia.org/property/> PREFIX res: <http://dbpedia.org/resource/> PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> SELECT DISTINCT ?uri  WHERE {         ?uri rdf:type yago:StatesOfTheUnitedStates .         ?uri dbp:governor res:Sean_Parnell . }
-
-
-
-./data/original/QALD-master/3/data/dbpedia-test-answers.xml
-'Who is the mayor of Berlin?'
-Query returns no answers. Deleting question.
-PREFIX dbo: <http://dbpedia.org/ontology/> PREFIX res: <http://dbpedia.org/resource/> PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> SELECT DISTINCT ?uri  WHERE {  res:Berlin dbo:leader ?uri . }
-
-
-
-./data/original/QALD-master/3/data/dbpedia-test-answers.xml
-'Who founded Intel?'
-Query returns no answers. Deleting question.
-PREFIX dbo: <http://dbpedia.org/ontology/> PREFIX res: <http://dbpedia.org/resource/> PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> SELECT DISTINCT ?uri  WHERE {  res:Intel dbo:foundedBy ?uri .  }
-
-
-
-./data/original/QALD-master/3/data/dbpedia-test-answers.xml
-'Give me all B-sides of the Ramones.'
-Query returns no answers. Deleting question.
-PREFIX dbo: <http://dbpedia.org/ontology/> PREFIX dbp: <http://dbpedia.org/property/> PREFIX res: <http://dbpedia.org/resource/> SELECT DISTINCT ?string  WHERE {  ?x dbo:musicalArtist res:Ramones .         ?x dbp:bSide ?string .  }
-
-
-
-./data/original/QALD-master/3/data/dbpedia-test-answers.xml
-'Who produces Orangina?'
-Query returns no answers. Deleting question.
-PREFIX dbo: <http://dbpedia.org/ontology/> PREFIX res: <http://dbpedia.org/resource/> SELECT DISTINCT ?uri  WHERE {  ?uri dbo:product res:Orangina . }
-
-
-
-./data/original/QALD-master/3/data/dbpedia-test-answers.xml
-'Which U.S. state has been admitted latest?'
-Query returns no answers. Deleting question.
-PREFIX dbp: <http://dbpedia.org/property/> PREFIX yago: <http://dbpedia.org/class/yago/> PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> SELECT DISTINCT ?uri  WHERE {   ?uri rdf:type yago:StatesOfTheUnitedStates .  ?uri dbp:admittancedate ?x . } ORDER BY DESC(?x) OFFSET 0 LIMIT 1
-
-
-
-File: ./data/original/QALD-master/3/data/dbpedia-test-answers.xml
-Question: 'Show me all songs from Bruce Springsteen released between 1980 and 1990.
-Query: PREFIX dbo:  <http://dbpedia.org/ontology/> PREFIX res:  <http://dbpedia.org/resource/> PREFIX yago: <http://dbpedia.org/class/yago/> PREFIX xsd:date: <http://www.w3.org/2001/XMLSchema#date> PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> SELECT DISTINCT ?uri  WHERE {         ?uri rdf:type dbo:Song .         ?uri dbo:artist res:Bruce_Springsteen .         ?uri dbo:releaseDate ?date .          FILTER (?date >= '1980-01-01'^^xsd:date && ?date <= '1990-12-31'^^xsd:date) }
-
-Expected Answers: [http://dbpedia.org/resource/No_Surrender_(song), http://dbpedia.org/resource/Downbound_Train, http://dbpedia.org/resource/Working_on_the_Highway, http://dbpedia.org/resource/Bobby_Jean, http://dbpedia.org/resource/Darlington_County_(song), http://dbpedia.org/resource/Johnny_99_(song)]
-Exception: Encountered " <PNAME_LN> "xsd:date: "" at line 1, column 142.
-Was expecting:
-    <PNAME_NS> ...
-    
-
-
-
-./data/original/QALD-master/3/data/dbpedia-test-answers.xml
-'Give me all professional skateboarders from Sweden.'
-Query returns no answers. Deleting question.
-PREFIX dbo: <http://dbpedia.org/ontology/> PREFIX dbp: <http://dbpedia.org/property/> PREFIX res: <http://dbpedia.org/resource/> SELECT DISTINCT ?uri  WHERE {  ?uri dbo:occupation res:Skateboarding .          { ?uri dbo:birthPlace res:Sweden . }         UNION         { ?uri dbo:birthPlace ?place .            ?place dbo:country res:Sweden . } }
-
-
-
-./data/original/QALD-master/3/data/dbpedia-test-answers.xml
-'How many students does the Free University in Amsterdam have?'
-Query returns no answers. Deleting question.
-PREFIX dbo: <http://dbpedia.org/ontology/> PREFIX res: <http://dbpedia.org/resource/> SELECT DISTINCT ?num  WHERE {  res:Vrije_Universiteit dbo:numberOfStudents ?num . }
+PREFIX dbo: <http://dbpedia.org/ontology/> PREFIX res: <http://dbpedia.org/resource/> SELECT DISTINCT ?uri WHERE {                res:Karakoram dbo:highestPlace ?uri .   }
 
 
 
@@ -18779,16 +18337,65 @@ PREFIX dbp: <http://dbpedia.org/property/> PREFIX res: <http://dbpedia.org/resou
 
 
 ./data/original/QALD-master/3/data/dbpedia-train-answers.xml
-'Who is the daughter of Ingrid Bergman married to?'
+'Which European countries have a constitutional monarchy?'
 Query returns no answers. Deleting question.
-PREFIX dbo: <http://dbpedia.org/ontology/> PREFIX res: <http://dbpedia.org/resource/> PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> SELECT DISTINCT ?uri WHERE {         res:Ingrid_Bergman dbo:child ?child .         ?child dbo:spouse ?uri . }
+PREFIX dbo: <http://dbpedia.org/ontology/> PREFIX res: <http://dbpedia.org/resource/> PREFIX yago: <http://dbpedia.org/class/yago/> PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> SELECT DISTINCT ?uri  WHERE {  ?uri rdf:type yago:EuropeanCountries .         ?uri dbo:governmentType res:Constitutional_monarchy . }
 
 
 
 ./data/original/QALD-master/3/data/dbpedia-train-answers.xml
-'Give me all actors starring in Last Action Hero.'
+'Which monarchs of the United Kingdom were married to a German?'
 Query returns no answers. Deleting question.
-PREFIX dbp: <http://dbpedia.org/property/> PREFIX res: <http://dbpedia.org/resource/> SELECT DISTINCT ?uri  WHERE {  res:Last_Action_Hero dbp:starring ?uri . }
+PREFIX yago: <http://dbpedia.org/class/yago/> PREFIX dbo: <http://dbpedia.org/ontology/> PREFIX res: <http://dbpedia.org/resource/> PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> SELECT DISTINCT ?uri  WHERE {         ?uri rdf:type yago:MonarchsOfTheUnitedKingdom .         ?uri dbo:spouse ?spouse .         ?spouse dbo:birthPlace res:Germany. }
+
+
+
+./data/original/QALD-master/3/data/dbpedia-train-answers.xml
+'Give me all female German chancellors.'
+Query returns no answers. Deleting question.
+PREFIX yago: <http://dbpedia.org/class/yago/> PREFIX dbp: <http://dbpedia.org/property/> PREFIX res: <http://dbpedia.org/resource/> PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> SELECT DISTINCT ?uri  WHERE {  ?uri rdf:type yago:FemaleHeadsOfGovernment.         ?uri dbp:office res:Chancellor_of_Germany . }
+
+
+
+./data/original/QALD-master/3/data/dbpedia-train-answers.xml
+'Give me all school types.'
+Query returns no answers. Deleting question.
+PREFIX yago: <http://dbpedia.org/class/yago/> PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> SELECT DISTINCT ?uri  WHERE {   ?uri rdf:type yago:SchoolTypes . }
+
+
+
+./data/original/QALD-master/3/data/dbpedia-train-answers.xml
+'Which companies work in the aerospace industry as well as on nuclear reactor technology?'
+Query returns no answers. Deleting question.
+PREFIX dbo:  <http://dbpedia.org/ontology/> PREFIX dbp: <http://dbpedia.org/property/> PREFIX res:  <http://dbpedia.org/resource/> PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> SELECT DISTINCT ?uri WHERE {   ?uri rdf:type dbo:Company  .  ?uri dbp:industry res:Aerospace .         ?uri dbp:industry res:Nuclear_reactor_technology . }
+
+
+
+./data/original/QALD-master/3/data/dbpedia-train-answers.xml
+'Who owns Aldi?'
+Query returns no answers. Deleting question.
+PREFIX res: <http://dbpedia.org/resource/> PREFIX dbo: <http://dbpedia.org/ontology/> SELECT DISTINCT ?uri WHERE {  res:Aldi dbo:keyPerson ?uri . }
+
+
+
+./data/original/QALD-master/3/data/dbpedia-train-answers.xml
+'Who has been the 5th president of the United States of America?'
+Query returns no answers. Deleting question.
+PREFIX dbo: <http://dbpedia.org/ontology/> SELECT DISTINCT ?uri  WHERE {  ?uri dbo:orderInOffice '5th President of the United States'@en . }
+
+
+
+./data/original/QALD-master/3/data/dbpedia-train-answers.xml
+'Give me all female Russian astronauts.'
+Query returns no answers. Deleting question.
+PREFIX yago: <http://dbpedia.org/class/yago/> PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> SELECT DISTINCT ?uri WHERE {  ?uri rdf:type yago:RussianCosmonauts .         ?uri rdf:type yago:FemaleAstronauts . }
+
+
+
+./data/original/QALD-master/3/data/dbpedia-train-answers.xml
+'Which countries in the European Union adopted the Euro?'
+Query returns no answers. Deleting question.
+PREFIX dbp: <http://dbpedia.org/property/> PREFIX res: <http://dbpedia.org/resource/> PREFIX yago: <http://dbpedia.org/class/yago/> PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> SELECT DISTINCT ?uri WHERE {  ?uri rdf:type yago:EuropeanUnionMemberStates .         { ?uri dbp:currency res:Euro . }          UNION          { ?uri dbp:currencyCode 'EUR'@en . }         UNION          { ?uri dbp:currencyCode 'Euro'@en . } }
 
 
 
@@ -18828,9 +18435,9 @@ Query returns no answers. Deleting question.
 
 
 ./data/original/QALD-master/3/data/esdbpedia-train-answers.xml
-'List all episodes of the first season of the HBO television series The Sopranos.'
+'Give me all presidents of the United States.'
 Query returns no answers. Deleting question.
- PREFIX esdbp: <http://es.dbpedia.org/property/>  PREFIX esres: <http://es.dbpedia.org/resource/> SELECT DISTINCT ?uri  WHERE {  ?uri esdbp:serie esres:Los_Soprano .         ?uri esdbp:temporada 1 . } 
+ PREFIX dbo: <http://dbpedia.org/ontology/> PREFIX esdbp: <http://es.dbpedia.org/property/> PREFIX esres: <http://es.dbpedia.org/resource/> PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> SELECT DISTINCT ?uri WHERE {  ?uri esdbp:cargo esres:Presidente_de_los_Estados_Unidos .         ?uri rdf:type dbo:Person .         FILTER(!(regex(str(?uri),'Campaña_presidencial'))) } 
 
 
 
@@ -18925,364 +18532,73 @@ Query returns no answers. Deleting question.
 
 
 
-File: ./data/original/QALD-master/4/data/qald-4_multilingual_test.xml
-Question: 'How many languages are spoken in Colombia?
-Query:  PREFIX dbo: <http://dbpedia.org/ontology/> PREFIX res: <http://dbpedia.org/resource/> PREFIX res: <http://dbpedia.org/resource/> PREFIX rdf:type: <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> SELECT (COUNT(DISTINCT ?uri) as ?count)  WHERE {         ?uri rdf:type dbo:Language .          res:Colombia dbo:language ?uri . } 
-
-Expected Answers: []
-Exception: Encountered " <PNAME_LN> "rdf:type: "" at line 1, column 138.
-Was expecting:
-    <PNAME_NS> ...
-    
+./data/original/QALD-master/4/data/qald-4_multilingual_train_withanswers.xml
+'Who was the first president of the United States?'
+Query returns no answers. Deleting question.
+PREFIX dbo: <http://dbpedia.org/ontology/> PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> SELECT DISTINCT ?uri WHERE {          ?uri rdf:type dbo:Person .          ?uri dbo:office '1st President of the United States'@en . }
 
 
 
-./data/original/QALD-master/4/data/qald-4_multilingual_test.xml
+./data/original/QALD-master/4/data/qald-4_multilingual_train_withanswers.xml
+'Which movies did Kurosawa direct after Rashomon?'
+Query returns no answers. Deleting question.
+PREFIX dbo: <http://dbpedia.org/ontology/> PREFIX dbp: <http://dbpedia.org/property/> PREFIX res: <http://dbpedia.org/resource/> PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> SELECT DISTINCT ?uri WHERE {         ?uri rdf:type dbo:Film .         ?uri dbo:director res:Akira_Kurosawa .       { ?uri dbo:releaseDate ?x . }        UNION        { ?uri dbp:released ?x . }         res:Rashomon dbo:releaseDate ?y .         FILTER (?y > ?x) }
+
+
+
+./data/original/QALD-master/4/data/qald-4_multilingual_train_withanswers.xml
+'Who was called Scarface?'
+Query returns no answers. Deleting question.
+PREFIX dbp: <http://dbpedia.org/property/>  PREFIX res: <http://dbpedia.org/resource/>  SELECT DISTINCT ?uri  WHERE {          ?uri dbp:nickname res:Scarface .  }
+
+
+
+./data/original/QALD-master/5/data/qald-5_train.xml
+'Who is the mayor of Berlin?'
+Query returns no answers. Deleting question.
+  PREFIX dbo: <http://dbpedia.org/ontology/>  PREFIX res: <http://dbpedia.org/resource/>  SELECT DISTINCT ?uri  WHERE {          res:Berlin dbo:leader ?uri .  }  
+
+
+
+./data/original/QALD-master/5/data/qald-5_train.xml
+'Sean Parnell is the governor of which U.S. state?'
+Query returns no answers. Deleting question.
+  PREFIX yago: <http://dbpedia.org/class/yago/>  PREFIX dbp: <http://dbpedia.org/property/>  PREFIX res: <http://dbpedia.org/resource/>  PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>  SELECT DISTINCT ?uri  WHERE {          ?uri rdf:type yago:StatesOfTheUnitedStates .          ?uri dbp:governor res:Sean_Parnell .  }  
+
+
+
+./data/original/QALD-master/5/data/qald-5_train.xml
+'When was Capcom founded?'
+Query returns no answers. Deleting question.
+ PREFIX dbo: <http://dbpedia.org/ontology/> PREFIX res: <http://dbpedia.org/resource/> SELECT DISTINCT ?date  WHERE {         res:Capcom dbo:foundingDate ?date . } 
+
+
+
+./data/original/QALD-master/5/data/qald-5_train.xml
 'When was Carlo Giuliani shot?'
 Query returns no answers. Deleting question.
  PREFIX dbp: <http://dbpedia.org/property/> PREFIX res: <http://dbpedia.org/resource/> SELECT DISTINCT ?date WHERE {         res:Death_of_Carlo_Giuliani dbp:dateOfDeath ?date . } 
 
 
 
-./data/original/QALD-master/4/data/qald-4_multilingual_test.xml
-'Give me all animals that are extinct.'
+./data/original/QALD-master/6/data/qald-6-train-multilingual.json
+'How many students does the Free University in Amsterdam have?'
 Query returns no answers. Deleting question.
- PREFIX dbo: <http://dbpedia.org/ontology/> PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> SELECT DISTINCT ?uri WHERE {         ?uri rdf:type dbo:Animal .         ?uri dbo:conservationStatus "EX"@en . } 
+SELECT DISTINCT ?num WHERE {  <http://dbpedia.org/resource/VU_University_Amsterdam> <http://dbpedia.org/ontology/numberOfStudents> ?num . } 
 
 
 
-File: ./data/original/QALD-master/4/data/qald-4_multilingual_test.xml
-Question: 'Give me all films produced by Steven Spielberg with a budget of at least $80 million.
-Query:  PREFIX dbo: <http://dbpedia.org/ontology/> PREFIX res: <http://dbpedia.org/resource/> PREFIX xsd:double: <http://www.w3.org/2001/XMLSchema#double> PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> SELECT DISTINCT ?uri  WHERE {         ?uri rdf:type dbo:Film .         ?uri dbo:director res:Steven_Spielberg .         ?uri dbo:budget ?b .         FILTER( xsd:double(?b) >= 8.0E7 ) }
-
-Expected Answers: []
-Exception: Encountered " <PNAME_LN> "xsd:double: "" at line 1, column 95.
-Was expecting:
-    <PNAME_NS> ...
-    
-
-
-
-File: ./data/original/QALD-master/4/data/qald-4_multilingual_test.xml
-Question: 'Give me all actors who were born in Paris after 1950.
-Query:  PREFIX dbo: <http://dbpedia.org/ontology/> PREFIX res: <http://dbpedia.org/resource/> PREFIX xsd:dateTime: <http://www.w3.org/2001/XMLSchema#dateTime> PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> SELECT DISTINCT ?uri  WHERE {         ?uri rdf:type dbo:Actor .         ?uri dbo:birthPlace res:Paris .         ?uri dbo:birthDate ?date .         FILTER ( ?date >= xsd:dateTime("1950-12-31T00:00:00Z"))  }  
-
-Expected Answers: []
-Exception: Encountered " <PNAME_LN> "xsd:dateTime: "" at line 1, column 95.
-Was expecting:
-    <PNAME_NS> ...
-    
-
-
-
-./data/original/QALD-master/4/data/qald-4_multilingual_test.xml
-'Give me the capitals of all countries that the Himalayas run through.'
+./data/original/QALD-master/6/data/qald-6-train-multilingual.json
+'Who produces Orangina?'
 Query returns no answers. Deleting question.
- PREFIX dbp: <http://dbpedia.org/property/> PREFIX dbo: <http://dbpedia.org/ontology/> PREFIX res: <http://dbpedia.org/resource/> SELECT DISTINCT ?uri WHERE {          res:Himalayas dbp:country ?country .           ?country dbo:capital ?uri . }   
+SELECT DISTINCT ?uri WHERE {  ?uri <http://dbpedia.org/ontology/product> <http://dbpedia.org/resource/Orangina> . } 
 
 
 
-./data/original/QALD-master/4/data/qald-4_multilingual_test.xml
-'Which actor played Chewbacca?'
+./data/original/QALD-master/6/data/qald-6-train-multilingual.json
+'Which U.S. state has been admitted latest?'
 Query returns no answers. Deleting question.
- PREFIX dbp: <http://dbpedia.org/property/> PREFIX res: <http://dbpedia.org/resource/> SELECT DISTINCT ?uri WHERE {         res:Chewbacca dbp:portrayer ?uri .  }  
-
-
-
-./data/original/QALD-master/4/data/qald-4_multilingual_test.xml
-'Give me the grandchildren of Bruce Lee.'
-Query returns no answers. Deleting question.
- PREFIX dbo: <http://dbpedia.org/ontology/> PREFIX res: <http://dbpedia.org/resource/> SELECT DISTINCT ?uri WHERE {         res:Bruce_Lee dbo:child ?child .          ?child dbo:child ?uri . }  
-
-
-
-File: ./data/original/QALD-master/4/data/qald-4_multilingual_test.xml
-Question: 'Give me all writers that won the Nobel Prize in literature.
-Query:  PREFIX dbo: <http://dbpedia.org/ontology/> PREFIX res: <http://dbpedia.org/resource/> PREFIX rdf:type: &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#type&lt; SELECT DISTINCT ?uri WHERE {         ?uri rdf:type dbo:Writer .         ?uri dbo:award res:Nobel_Prize_in_Literature .  }  
-
-Expected Answers: []
-Exception: Encountered " <PNAME_LN> "rdf:type: "" at line 1, column 95.
-Was expecting:
-    <PNAME_NS> ...
-    
-
-
-
-./data/original/QALD-master/4/data/qald-4_multilingual_test.xml
-'How deep is Lake Placid?'
-Query returns no answers. Deleting question.
- PREFIX dbo: <http://dbpedia.org/ontology/> SELECT DISTINCT ?n WHERE {         <http://dbpedia.org/resource/Lake_Placid_(Texas)> dbo:depth ?n .  }  
-
-
-
-./data/original/QALD-master/4/data/qald-4_multilingual_test.xml
-'Which spaceflights were launched from Baikonur?'
-Query returns no answers. Deleting question.
- PREFIX dbo: <http://dbpedia.org/ontology/> PREFIX res: <http://dbpedia.org/resource/> SELECT DISTINCT ?uri WHERE {         ?uri dbo:launchPad res:Baikonur_Cosmodrome . } 
-
-
-
-File: ./data/original/QALD-master/4/data/qald-4_multilingual_test.xml
-Question: 'Give me all actors called Baldwin.
-Query:  PREFIX dbo:  <http://dbpedia.org/ontology/> PREFIX res:  <http://dbpedia.org/resource/> PREFIX foaf: <http://xmlns.com/foaf/0.1/> PREFIX rdf:type: &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#type&lt; SELECT DISTINCT ?uri WHERE {         ?uri foaf:surname "Baldwin"@en .        { ?uri dbo:occupation res:Actor . }        UNION        { ?uri rdf:type dbo:Actor . } } 
-
-Expected Answers: []
-Exception: Encountered " <PNAME_LN> "rdf:type: "" at line 1, column 139.
-Was expecting:
-    <PNAME_NS> ...
-    
-
-
-
-./data/original/QALD-master/4/data/qald-4_multilingual_test.xml
-'What does CPU stand for?'
-Query returns no answers. Deleting question.
- PREFIX dbo: <http://dbpedia.org/ontology/> PREFIX res: <http://dbpedia.org/resource/> SELECT DISTINCT ?uri WHERE {         ?uri dbo:abbreviation "CPU"@en . }  
-
-
-
-./data/original/QALD-master/4/data/qald-4_multilingual_train.xml
-'Which professional surfers were born in Australia?'
-Query returns no answers. Deleting question.
-  PREFIX dbo: <http://dbpedia.org/ontology/>  PREFIX res: <http://dbpedia.org/resource/>  SELECT DISTINCT ?uri  WHERE {          ?uri dbo:occupation res:Surfing .           ?uri dbo:birthPlace res:Australia .  } 
-
-
-
-./data/original/QALD-master/4/data/qald-4_multilingual_train.xml
-'Which U.S. states are in the same time zone as Utah?'
-Query returns no answers. Deleting question.
-  PREFIX res: <http://dbpedia.org/resource/>  PREFIX dbp: <http://dbpedia.org/property/>  PREFIX yago: <http://dbpedia.org/class/yago/>  PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>  SELECT DISTINCT ?uri  WHERE {          res:Utah dbp:timezone ?x .           ?uri rdf:type yago:StatesOfTheUnitedStates .           ?uri dbp:timezone ?x .          FILTER (?uri != res:Utah)  } 
-
-
-
-./data/original/QALD-master/4/data/qald-4_multilingual_train.xml
-'Which U.S. state has the highest population density?'
-Query returns no answers. Deleting question.
- PREFIX yago: <http://dbpedia.org/class/yago/> PREFIX dbp: <http://dbpedia.org/property/> PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> SELECT DISTINCT ?uri  WHERE {         ?uri rdf:type yago:StatesOfTheUnitedStates .         ?uri dbp:densityrank ?rank . }  ORDER BY ASC(?rank)  OFFSET 0 LIMIT 1 
-
-
-
-./data/original/QALD-master/4/data/qald-4_multilingual_train.xml
-'What is the highest place of the Urals?'
-Query returns no answers. Deleting question.
- PREFIX dbo: <http://dbpedia.org/ontology/> PREFIX res: <http://dbpedia.org/resource/> SELECT DISTINCT ?uri WHERE {                res:Ural_Mountains dbo:highestPlace ?uri .   } 
-
-
-
-./data/original/QALD-master/4/data/qald-4_multilingual_train.xml
-'Give me all federal chancellors of Germany.'
-Query returns no answers. Deleting question.
- PREFIX dbp: <http://dbpedia.org/property/> PREFIX res: <http://dbpedia.org/resource/> SELECT DISTINCT ?uri WHERE {         ?uri dbp:office res:Chancellor_of_Germany .  } 
-
-
-
-./data/original/QALD-master/4/data/qald-4_multilingual_train.xml
-'Which companies work in the aerospace industry as well as in medicine?'
-Query returns no answers. Deleting question.
- PREFIX dbo:  <http://dbpedia.org/ontology/> PREFIX res:  <http://dbpedia.org/resource/> PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> SELECT DISTINCT ?uri  WHERE {          ?uri rdf:type dbo:Company  .         ?uri dbo:industry res:Aerospace .          ?uri dbo:industry res:Medicine . } 
-
-
-
-./data/original/QALD-master/4/data/qald-4_multilingual_train.xml
-'Who was the first president of the United States?'
-Query returns no answers. Deleting question.
- PREFIX dbo: <http://dbpedia.org/ontology/> PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> SELECT DISTINCT ?uri WHERE {          ?uri rdf:type dbo:Person .          ?uri dbo:office '1st President of the United States'@en . } 
-
-
-
-./data/original/QALD-master/4/data/qald-4_multilingual_train.xml
-'In which U.S. state is Mount McKinley located?'
-Query returns no answers. Deleting question.
- PREFIX yago: <http://dbpedia.org/class/yago/> PREFIX dbo:  <http://dbpedia.org/ontology/> PREFIX res:  <http://dbpedia.org/resource/> PREFIX rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> SELECT DISTINCT ?uri WHERE {         ?uri rdf:type yago:StatesOfTheUnitedStates .         res:Mount_McKinley dbo:locatedInArea ?uri .  } 
-
-
-
-./data/original/QALD-master/5/data/qald-5_train.xml
-'Who was called Frank The Tank?'
-Query returns no answers. Deleting question.
-  PREFIX dbp: <http://dbpedia.org/property/>  SELECT DISTINCT ?uri  WHERE {          ?uri dbp:nickname 'Frank The Tank'@en .  } 
-
-
-
-./data/original/QALD-master/5/data/qald-5_train.xml
-'Who was the 16th president of the United States?'
-Query returns no answers. Deleting question.
- PREFIX dbo: <http://dbpedia.org/ontology/> PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> SELECT DISTINCT ?uri WHERE {          ?uri dbo:office 'President of the United States' .          ?uri dbo:orderInOffice '16th' . } 
-
-
-
-./data/original/QALD-master/5/data/qald-5_train.xml
-'Who was called Rodzilla?'
-Query returns no answers. Deleting question.
- PREFIX dbp: <http://dbpedia.org/property/>  SELECT DISTINCT ?uri  WHERE {           ?uri dbp:nickname "Rodzilla"@en . } 
-
-
-
-./data/original/QALD-master/5/data/qald-5_train.xml
-'Who wrote The Hunger Games?'
-Query returns no answers. Deleting question.
- PREFIX dbo: <http://dbpedia.org/ontology/>  PREFIX res: <http://dbpedia.org/resource/>  SELECT DISTINCT ?uri WHERE {          res:The_Hunger_Games dbo:author ?uri .  } 
-
-
-
-./data/original/QALD-master/5/data/qald-5_train.xml
-'Who played Agent Smith in Matrix?'
-Query returns no answers. Deleting question.
- PREFIX dbp: <http://dbpedia.org/property/> PREFIX res: <http://dbpedia.org/resource/> SELECT DISTINCT ?uri WHERE {          res:Agent_Smith dbp:portrayer ?uri .  } 
-
-
-
-./data/original/QALD-master/5/data/qald-5_train.xml
-'What airlines are part of the SkyTeam alliance?'
-Query returns no answers. Deleting question.
- PREFIX res: <http://dbpedia.org/resource/> PREFIX dbp: <http://dbpedia.org/property/>  PREFIX dbo: <http://dbpedia.org/ontology/>  PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> SELECT DISTINCT ?uri  WHERE {           ?uri rdf:type dbo:Airline .         { ?uri dbp:alliance res:SkyTeam . }         UNION         { ?uri dbo:Alliance res:SkyTeam . } } 
-
-
-
-./data/original/QALD-master/5/data/qald-5_train.xml
-'What is the highest volcano in Africa?'
-Query returns no answers. Deleting question.
- PREFIX dbo: <http://dbpedia.org/ontology/> PREFIX res: <http://dbpedia.org/resource/> PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> PREFIX yago: <http://dbpedia.org/class/yago/>  SELECT DISTINCT ?uri  WHERE {         ?uri rdf:type dbo:Volcano .         ?uri dbo:locatedInArea ?area .                 ?area rdf:type yago:AfricanCountries .          ?uri dbo:elevation ?elevation . } ORDER BY DESC(?elevation)  OFFSET 0 LIMIT 1 
-
-
-
-./data/original/QALD-master/5/data/qald-5_train.xml
-'Which beer originated in Ireland?'
-Query returns no answers. Deleting question.
- PREFIX res: <http://dbpedia.org/resource/> PREFIX dbp: <http://dbpedia.org/property/>  SELECT DISTINCT ?uri  WHERE {         ?uri dbp:type res:Beer .         ?uri dbp:origin "Ireland"@en . } 
-
-
-
-File: ./data/original/QALD-master/5/data/qald-5_train.xml
-Question: 'Give me English actors starring in Lovesick.
-Query:  PREFIX res: <http://dbpedia.org/resource/> PREFIX dbo: <http://dbpedia.org/ontology/>  PREFIX yago: <http://dbpedia.org/class/yago/> PREFIX rdf:type: <http://www.w3.org/1999/02/22-rdf-syntax-ns#type>  SELECT DISTINCT ?uri WHERE {           res:Lovesick dbo:starring ?uri .         { ?uri dbo:birthPlace res:England . }         UNION         { ?uri rdf:type yago:EnglishFilmActors . } } 
-
-Expected Answers: [http://dbpedia.org/resource/Dudley_Moore, http://dbpedia.org/resource/Alec_Guinness]
-Exception: Encountered " <PNAME_LN> "rdf:type: "" at line 1, column 142.
-Was expecting:
-    <PNAME_NS> ...
-    
-
-
-
-./data/original/QALD-master/5/data/qald-5_train.xml
-'Give me all types of eating disorders.'
-Query returns no answers. Deleting question.
- PREFIX yago: <http://dbpedia.org/class/yago/>  PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> SELECT DISTINCT ?uri WHERE {           ?uri rdf:type yago:EatingDisorders . } 
-
-
-
-./data/original/QALD-master/5/data/qald-5_train.xml
-'What is the timezone in San Pedro de Atacama?'
-Query returns no answers. Deleting question.
- PREFIX res: <http://dbpedia.org/resource/> PREFIX dbo: <http://dbpedia.org/timezone/>  SELECT DISTINCT ?uri WHERE {         res:San_Pedro_de_Atacama dbo:timezone ?uri . } 
-
-
-
-./data/original/QALD-master/5/data/qald-5_test.xml
-'Give me all ESA astronauts.'
-Query returns no answers. Deleting question.
-  PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>  PREFIX dbo: <http://dbpedia.org/ontology/>  PREFIX res: <http://dbpedia.org/resource/>  SELECT DISTINCT ?uri  WHERE {          ?uri rdf:type dbo:Astronaut .          ?uri dbo:type res:European_Space_Agency . }  
-
-
-
-File: ./data/original/QALD-master/5/data/qald-5_test.xml
-Question: 'In which city is Air China headquartered?
-Query:  PREFIX res: <http://dbpedia.org/resource/> PREFIX yago: <http://dbpedia.org/class/yago/>   PREFIX dbo: <http://dbpedia.org/ontology/>  PREFIX rdf:type: <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> SELECT DISTINCT ?uri  WHERE {         res:Air_China dbo:headquarter ?uri .         ?uri rdf:type yago:City108524735 . } 
-
-Expected Answers: [http://dbpedia.org/resource/Beijing]
-Exception: Encountered " <PNAME_LN> "rdf:type: "" at line 1, column 144.
-Was expecting:
-    <PNAME_NS> ...
-    
-
-
-
-File: ./data/original/QALD-master/5/data/qald-5_test.xml
-Question: 'Which artists were born on the same date as Rachel Stevens?
-Query:  PREFIX res: <http://dbpedia.org/resource/> PREFIX dbp: <http://dbpedia.org/property/>  PREFIX dbo: <http://dbpedia.org/ontology/>  PREFIX rdf:type: <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> SELECT DISTINCT ?uri  WHERE {  ?uri rdf:type dbo:Artist.  res:Rachel_Stevens dbp:dateOfBirth ?date .  ?uri dbp:dateOfBirth ?date . } 
-
-Expected Answers: [http://dbpedia.org/resource/Vesna_Pisarovi%C4%87, http://dbpedia.org/resource/Rachel_Stevens, http://dbpedia.org/resource/Gizem_Saka]
-Exception: Encountered " <PNAME_LN> "rdf:type: "" at line 1, column 140.
-Was expecting:
-    <PNAME_NS> ...
-    
-
-
-
-File: ./data/original/QALD-master/5/data/qald-5_test.xml
-Question: 'How many scientists graduated from an Ivy League university?
-Query:  PREFIX res: <http://dbpedia.org/resource/> PREFIX dbo: <http://dbpedia.org/ontology/>  PREFIX rdf:type: <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> SELECT DISTINCT (COUNT (?uri) as ?count) WHERE {   ?uri rdf:type dbo:Scientist .   ?uri dbo:almaMater ?university .  ?university dbo:affiliation res:Ivy_League . } 
-
-Expected Answers: [521]
-Exception: Encountered " <PNAME_LN> "rdf:type: "" at line 1, column 96.
-Was expecting:
-    <PNAME_NS> ...
-    
-
-
-
-File: ./data/original/QALD-master/5/data/qald-5_test.xml
-Question: 'How many companies were founded in the same year as Google?
-Query:  PREFIX dbo: <http://dbpedia.org/ontology/> PREFIX res: <http://dbpedia.org/resource/> PREFIX rdf:type: <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> SELECT (COUNT(DISTINCT ?c) as ?count) WHERE {         ?c rdf:type dbo:Company .         ?c dbo:foundingYear ?year .         res:Google dbo:foundingYear ?year . } 
-
-Expected Answers: [1007]
-Exception: Encountered " <PNAME_LN> "rdf:type: "" at line 1, column 95.
-Was expecting:
-    <PNAME_NS> ...
-    
-
-
-
-File: ./data/original/QALD-master/5/data/qald-5_test.xml
-Question: 'Give me all spacecrafts that flew to Mars.
-Query:  PREFIX dbo: <http://dbpedia.org/ontology/> PREFIX dbp: <http://dbpedia.org/property/> PREFIX rdf:type: <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> PREFIX res: <http://dbpedia.org/resource/> SELECT DISTINCT ?uri WHERE {         ?uri rdf:type dbo:Spacecraft .         ?uri dbp:planet res:Mars . } 
-
-Expected Answers: [http://dbpedia.org/resource/MELOS, http://dbpedia.org/resource/Mars_Pathfinder, http://dbpedia.org/resource/Mars_2020_rover_mission, http://dbpedia.org/resource/Mars_Science_Laboratory, http://dbpedia.org/resource/InSight, http://dbpedia.org/resource/ExoMars_rover]
-Exception: Encountered " <PNAME_LN> "rdf:type: "" at line 1, column 95.
-Was expecting:
-    <PNAME_NS> ...
-    
-
-
-
-./data/original/QALD-master/5/data/qald-5_test.xml
-'Give me all Swiss non-profit organizations.'
-Query returns no answers. Deleting question.
- PREFIX dbo: <http://dbpedia.org/ontology/>  PREFIX res: <http://dbpedia.org/resource/>  SELECT DISTINCT ?uri  WHERE {          ?uri dbo:type res:Nonprofit_organization .        { ?uri dbo:locationCountry res:Switzerland . }        UNION        { ?uri dbo:location ?x .          ?x dbo:country res:Switzerland . }  }  
-
-
-
-./data/original/QALD-master/5/data/qald-5_test.xml
-'What does the abbreviation FIFA stand for?'
-Query returns no answers. Deleting question.
- PREFIX res: <http://dbpedia.org/resource/> PREFIX dbp: <http://dbpedia.org/property/>  SELECT DISTINCT ?name WHERE {           res:FIFA dbp:name ?name . } 
-
-
-
-./data/original/QALD-master/5/data/qald-5_test.xml
-'Desserts from which country contain fish?'
-Query returns no answers. Deleting question.
- PREFIX dbo: <http://dbpedia.org/ontology/>  PREFIX res: <http://dbpedia.org/resource/>  SELECT DISTINCT ?uri  WHERE {         ?x dbo:type res:Dessert .         ?x dbo:origin ?uri .         ?x dbo:ingredient res:Fish . } 
-
-
-
-./data/original/QALD-master/5/data/qald-5_test.xml
-'What is the height difference between Mount Everest and K2?'
-Query returns no answers. Deleting question.
- PREFIX dbo: <http://dbpedia.org/ontology/> PREFIX res: <http://dbpedia.org/resource/> SELECT DISTINCT (?h1-?h2 as ?distinct) WHERE {         res:Mount_Everest dbo:elevation ?h1 .         res:K2 dbo:elevation ?h2 . }  
-
-
-
-File: ./data/original/QALD-master/5/data/qald-5_test.xml
-Question: 'Are Taiko a kind of Japanese musical instruments?
-Query:  PREFIX yago: <http://dbpedia.org/class/yago/>   PREFIX res: <http://dbpedia.org/resource/> PREFIX rdf:type: <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> ASK WHERE {          res:Taiko rdf:type yago:JapaneseMusicalInstruments . } 
-
-Expected Answers: [true]
-Exception: Encountered " <PNAME_LN> "rdf:type: "" at line 1, column 100.
-Was expecting:
-    <PNAME_NS> ...
-    
+SELECT DISTINCT ?uri WHERE {  ?uri <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://dbpedia.org/class/yago/StatesOfTheUnitedStates> .  ?uri <http://dbpedia.org/property/admittancedate> ?x . } ORDER BY DESC(?x) OFFSET 0 LIMIT 1 
 
 
 
@@ -19294,9 +18610,86 @@ SELECT DISTINCT ?uri WHERE {  ?uri <http://www.w3.org/1999/02/22-rdf-syntax-ns#t
 
 
 ./data/original/QALD-master/6/data/qald-6-train-multilingual.json
-'Where is Fort Knox located?'
+'Who founded Intel?'
 Query returns no answers. Deleting question.
-SELECT DISTINCT ?uri WHERE {  <http://dbpedia.org/resource/Fort_Knox> <http://dbpedia.org/property/location> ?uri . }
+SELECT DISTINCT ?uri WHERE {  <http://dbpedia.org/resource/Intel> <http://dbpedia.org/ontology/foundedBy> ?uri . } 
+
+
+
+./data/original/QALD-master/6/data/qald-6-train-multilingual.json
+'Who is the husband of Amanda Palmer?'
+Query returns no answers. Deleting question.
+SELECT DISTINCT ?uri WHERE {  <http://dbpedia.org/resource/Amanda_Palmer> <http://dbpedia.org/property/spouse> ?uri . } 
+
+
+
+./data/original/QALD-master/6/data/qald-6-train-multilingual.json
+'Which countries are connected by the Rhine?'
+Query returns no answers. Deleting question.
+SELECT DISTINCT ?uri WHERE {  <http://dbpedia.org/resource/Rhine> <http://dbpedia.org/property/country> ?string .  ?uri <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://dbpedia.org/ontology/Country> .  ?uri <http://www.w3.org/2000/01/rdf-schema#label> ?string . } 
+
+
+
+./data/original/QALD-master/6/data/qald-6-train-multilingual.json
+'Which Greek goddesses dwelt on Mount Olympus?'
+Query returns no answers. Deleting question.
+SELECT DISTINCT ?uri WHERE {  ?uri <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://dbpedia.org/class/yago/GreekGoddesses> .  ?uri <http://dbpedia.org/property/abode> <http://dbpedia.org/resource/Mount_Olympus> . } 
+
+
+
+./data/original/QALD-master/6/data/qald-6-train-multilingual.json
+'Give me a list of all American inventions.'
+Query returns no answers. Deleting question.
+SELECT DISTINCT ?uri WHERE {  ?uri <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://dbpedia.org/class/yago/AmericanInventions> . } 
+
+
+
+./data/original/QALD-master/6/data/qald-6-train-multilingual.json
+'Which U.S. state has the abbreviation MN?'
+Query returns no answers. Deleting question.
+SELECT DISTINCT ?uri WHERE {  ?uri <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://dbpedia.org/class/yago/StatesOfTheUnitedStates> .  ?uri <http://dbpedia.org/property/postalabbreviation> 'MN'@en . } 
+
+
+
+./data/original/QALD-master/6/data/qald-6-train-multilingual.json
+'What is the founding year of the brewery that produces Pilsner Urquell?'
+Query returns no answers. Deleting question.
+SELECT DISTINCT ?num WHERE {  <http://dbpedia.org/resource/Pilsner_Urquell> <http://dbpedia.org/property/brewery> ?uri .  ?uri <http://dbpedia.org/property/foundation> ?num . } 
+
+
+
+./data/original/QALD-master/6/data/qald-6-train-multilingual.json
+'Which bridges are of the same type as the Manhattan Bridge?'
+Query returns no answers. Deleting question.
+SELECT DISTINCT ?uri WHERE {  ?uri <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://dbpedia.org/ontology/Bridge> .  ?uri <http://dbpedia.org/property/design> ?design .  <http://dbpedia.org/resource/Manhattan_Bridge> <http://dbpedia.org/property/design> ?mdesign .  FILTER (?design = ?mdesign && ?uri != <http://dbpedia.org/resource/Manhattan_Bridge>) .} 
+
+
+
+./data/original/QALD-master/6/data/qald-6-train-multilingual.json
+'Which U.S. state has the highest population density?'
+Query returns no answers. Deleting question.
+SELECT DISTINCT ?uri WHERE {  ?uri <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://dbpedia.org/class/yago/StatesOfTheUnitedStates> .  ?uri <http://dbpedia.org/property/densityrank> ?rank . } ORDER BY ASC(?rank) OFFSET 0 LIMIT 1 
+
+
+
+./data/original/QALD-master/6/data/qald-6-train-multilingual.json
+'Which companies work in the aerospace industry as well as in medicine?'
+Query returns no answers. Deleting question.
+SELECT DISTINCT ?uri WHERE {  ?uri <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://dbpedia.org/ontology/Company> .  ?uri <http://dbpedia.org/ontology/industry> <http://dbpedia.org/resource/Aerospace> .  ?uri <http://dbpedia.org/ontology/industry> <http://dbpedia.org/resource/Medicine> . } 
+
+
+
+./data/original/QALD-master/6/data/qald-6-train-multilingual.json
+'Which capitals in Europe were host cities of the summer olympic games?'
+Query returns no answers. Deleting question.
+SELECT DISTINCT ?uri WHERE {  ?uri <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://dbpedia.org/class/yago/CapitalsInEurope> .  ?uri <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://dbpedia.org/class/yago/HostCitiesOfTheSummerOlympicGames> . } 
+
+
+
+./data/original/QALD-master/6/data/qald-6-train-multilingual.json
+'Which states of Germany are governed by the Social Democratic Party?'
+Query returns no answers. Deleting question.
+SELECT DISTINCT ?uri WHERE {  ?uri <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://dbpedia.org/class/yago/StatesOfGermany> .  { ?uri <http://dbpedia.org/ontology/leaderParty> <http://dbpedia.org/resource/Social_Democratic_Party_of_Germany> . } UNION  { ?uri <http://dbpedia.org/property/rulingParty> 'SPD'@en . } } 
 
 
 
@@ -19308,9 +18701,44 @@ SELECT DISTINCT ?n WHERE {  <http://dbpedia.org/resource/Chiemsee> <http://dbped
 
 
 ./data/original/QALD-master/6/data/qald-6-train-multilingual.json
-'Which subsidiary of TUI Travel serves both Glasgow and Dublin?'
+'What is the highest volcano in Africa?'
 Query returns no answers. Deleting question.
-SELECT DISTINCT ?uri WHERE { <http://dbpedia.org/resource/TUI_Travel> <http://dbpedia.org/ontology/subsidiary> ?uri .  ?uri <http://dbpedia.org/ontology/targetAirport> <http://dbpedia.org/resource/Glasgow_Airport> . ?uri <http://dbpedia.org/ontology/targetAirport> <http://dbpedia.org/resource/Dublin_Airport> . } 
+SELECT DISTINCT ?uri WHERE {  ?uri <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://dbpedia.org/ontology/Volcano> .  ?uri <http://dbpedia.org/ontology/locatedInArea> ?area .  ?area <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://dbpedia.org/class/yago/AfricanCountries> .  ?uri <http://dbpedia.org/ontology/elevation> ?elevation . } ORDER BY DESC(?elevation) OFFSET 0 LIMIT 1 
+
+
+
+./data/original/QALD-master/6/data/qald-6-train-multilingual.json
+'Give me English actors starring in Lovesick.'
+Query returns no answers. Deleting question.
+SELECT DISTINCT ?uri WHERE {  <http://dbpedia.org/resource/Lovesick> <http://dbpedia.org/ontology/starring> ?uri .  { ?uri <http://dbpedia.org/ontology/birthPlace> <http://dbpedia.org/resource/England> . }  UNION  { ?uri <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://dbpedia.org/class/yago/EnglishFilmActors> . } } 
+
+
+
+./data/original/QALD-master/6/data/qald-6-train-multilingual.json
+'Which artists were born on the same date as Rachel Stevens?'
+Query returns no answers. Deleting question.
+SELECT DISTINCT ?uri WHERE { ?uri <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://dbpedia.org/ontology/Artist> . <http://dbpedia.org/resource/Rachel_Stevens> <http://dbpedia.org/property/dateOfBirth> ?date . ?uri <http://dbpedia.org/property/dateOfBirth> ?date . } 
+
+
+
+./data/original/QALD-master/6/data/qald-6-train-multilingual.json
+'Give me all spacecrafts that flew to Mars.'
+Query returns no answers. Deleting question.
+SELECT DISTINCT ?uri WHERE {  ?uri <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://dbpedia.org/ontology/Spacecraft> .  ?uri <http://dbpedia.org/property/planet> <http://dbpedia.org/resource/Mars> . } 
+
+
+
+./data/original/QALD-master/6/data/qald-6-train-multilingual.json
+'What does the abbreviation FIFA stand for?'
+Query returns no answers. Deleting question.
+SELECT DISTINCT ?name WHERE {  <http://dbpedia.org/resource/FIFA> <http://dbpedia.org/property/name> ?name . } 
+
+
+
+./data/original/QALD-master/6/data/qald-6-train-multilingual.json
+'Desserts from which country contain fish?'
+Query returns no answers. Deleting question.
+SELECT DISTINCT ?uri WHERE {  ?x <http://dbpedia.org/ontology/type> <http://dbpedia.org/resource/Dessert> .  ?x <http://dbpedia.org/ontology/origin> ?uri .  ?x <http://dbpedia.org/ontology/ingredient> <http://dbpedia.org/resource/Fish> . } 
 
 
 
@@ -19322,72 +18750,9 @@ PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> PREFIX dbo: <http://db
 
 
 ./data/original/QALD-master/6/data/qald-6-test-multilingual.json
-'What is the name of the school where Obama's wife studied?'
-Query returns no answers. Deleting question.
-SELECT DISTINCT ?s WHERE { <http://dbpedia.org/resource/Barack_Obama> <http://dbpedia.org/property/spouse> ?x . ?x <http://dbpedia.org/property/almaMater> ?s . } 
-
-
-
-./data/original/QALD-master/6/data/qald-6-test-multilingual.json
-'Which computer scientist won an oscar?'
-Query returns no answers. Deleting question.
-SELECT DISTINCT ?uri WHERE { { ?uri <http://dbpedia.org/ontology/field> <http://dbpedia.org/resource/Computer_science> . } UNION { ?uri <http://purl.org/dc/elements/1.1/description> ?s . FILTER regex(?s,'computer scientist','i') } ?uri <http://dbpedia.org/ontology/award> <http://dbpedia.org/resource/Academy_Awards> . } 
-
-
-
-./data/original/QALD-master/6/data/qald-6-test-multilingual.json
-'Which country was Bill Gates born in?'
-Query returns no answers. Deleting question.
-SELECT DISTINCT ?uri WHERE { <http://dbpedia.org/resource/Bill_Gates> <http://dbpedia.org/ontology/birthPlace> ?x . ?x <http://dbpedia.org/ontology/country> ?uri . }
-
-
-
-./data/original/QALD-master/6/data/qald-6-test-multilingual.json
-'How many seats does the home stadium of FC Porto have?'
-Query returns no answers. Deleting question.
-SELECT DISTINCT ?n WHERE { <http://dbpedia.org/resource/FC_Porto> <http://dbpedia.org/ontology/ground> ?x . ?x <http://dbpedia.org/ontology/seatingCapacity> ?n . } 
-
-
-
-./data/original/QALD-master/6/data/qald-6-test-multilingual.json
-'In which city was the president of Montenegro born?'
-Query returns no answers. Deleting question.
-SELECT DISTINCT ?uri WHERE { ?x <http://dbpedia.org/property/office> <http://dbpedia.org/resource/President_of_Montenegro> . ?x <http://dbpedia.org/ontology/birthPlace> ?uri . ?uri a <http://dbpedia.org/ontology/City> . } 
-
-
-
-./data/original/QALD-master/6/data/qald-6-test-multilingual.json
-'What is the full name of Prince Charles?'
-Query returns no answers. Deleting question.
-SELECT DISTINCT ?s WHERE { <http://dbpedia.org/resource/Charles,_Prince_of_Wales> <http://dbpedia.org/ontology/alias> ?s . } 
-
-
-
-./data/original/QALD-master/6/data/qald-6-test-multilingual.json
-'What was the original occupation of the inventor of Lego?'
-Query returns no answers. Deleting question.
-SELECT DISTINCT ?uri WHERE { <http://dbpedia.org/resource/Lego> <http://dbpedia.org/property/inventor> ?x . ?x <http://dbpedia.org/property/occupation> ?uri . } 
-
-
-
-./data/original/QALD-master/6/data/qald-6-test-multilingual.json
-'Show me all U.S. states.'
-Query returns no answers. Deleting question.
-SELECT DISTINCT ?uri WHERE { ?uri a <http://dbpedia.org/class/yago/StatesOfTheUnitedStates> . } 
-
-
-
-./data/original/QALD-master/6/data/qald-6-test-multilingual.json
 'How many calories does a baguette have?'
 Query returns no answers. Deleting question.
 SELECT DISTINCT ?n WHERE { <http://dbpedia.org/resource/Baguette> <http://dbpedia.org/ontology/approximateCalories> ?n. }
-
-
-
-./data/original/QALD-master/6/data/qald-6-test-multilingual.json
-'Which space probes were sent into orbit around the sun?'
-Query returns no answers. Deleting question.
-SELECT DISTINCT ?uri WHERE { ?uri <http://dbpedia.org/property/satelliteOf> <http://dbpedia.org/resource/Sun> . }
 
 
 
@@ -19398,108 +18763,59 @@ SELECT DISTINCT ?n WHERE { <http://dbpedia.org/resource/Coca-Cola> <http://dbped
 
 
 
-./data/original/QALD-master/6/data/qald-6-test-multilingual.json
-'Whom did Lance Bass marry?'
+./data/original/QALD-master/7/data/qald-7-test-en-wikidata.json
+'How many countries are there in Europe?'
 Query returns no answers. Deleting question.
-SELECT DISTINCT ?uri WHERE { ?uri <http://dbpedia.org/ontology/spouse> <http://dbpedia.org/resource/Lance_Bass> . } 
+SELECT (COUNT(DISTINCT ?uri) as ?c) WHERE { ?uri <http://www.wikidata.org/prop/direct/P31> <http://www.wikidata.org/entity/Q6256> . ?uri <http://www.wikidata.org/prop/direct/P30> <http://www.wikidata.org/entity/Q46> . }
 
 
 
-./data/original/QALD-master/6/data/qald-6-test-multilingual.json
-'What color expresses loyalty?'
+./data/original/QALD-master/7/data/qald-7-test-en-wikidata.json
+'Give me the capitals of all countries in Africa.'
 Query returns no answers. Deleting question.
-SELECT DISTINCT ?uri WHERE { ?uri <http://dbpedia.org/ontology/connotation> <http://dbpedia.org/resource/Loyalty> . }
+SELECT DISTINCT ?uri WHERE { ?country <http://www.wikidata.org/prop/direct/P31> <http://www.wikidata.org/entity/Q6256> . ?country  <http://www.wikidata.org/prop/direct/P30> <http://www.wikidata.org/entity/Q15> . ?country <http://www.wikidata.org/prop/direct/P36> ?uri . }
 
 
 
-./data/original/QALD-master/6/data/qald-6-test-multilingual.json
-'Give me all South American countries.'
+./data/original/QALD-master/7/data/qald-7-test-en-wikidata.json
+'Which mountain is the highest after the Annapurna?'
 Query returns no answers. Deleting question.
-SELECT DISTINCT ?uri WHERE { ?uri a <http://dbpedia.org/class/yago/SouthAmericanCountries> . }
+SELECT DISTINCT ?uri WHERE { ?uri <http://www.wikidata.org/prop/direct/P31> <http://www.wikidata.org/entity/Q8502> . ?uri <http://www.wikidata.org/prop/direct/P2044> ?elevation . <http://www.wikidata.org/entity/Q16466024> <http://www.wikidata.org/prop/direct/P2044> ?elevation2 . FILTER (?elevation < ?elevation2) . } ORDER BY DESC(?elevation) LIMIT 1
 
 
 
-./data/original/QALD-master/6/data/qald-6-test-multilingual.json
-'What are the names of the Teenage Mutant Ninja Turtles?'
+./data/original/QALD-master/7/data/qald-7-test-en-wikidata.json
+'Give me all communist countries.'
 Query returns no answers. Deleting question.
-SELECT DISTINCT ?s WHERE { <http://dbpedia.org/resource/Teenage_Mutant_Ninja_Turtles> <http://dbpedia.org/property/members> ?x . ?x <http://dbpedia.org/property/characterName> ?s . }
+SELECT DISTINCT ?uri WHERE { ?uri <http://www.wikidata.org/prop/direct/P31> <http://www.wikidata.org/entity/Q849866> . } 
 
 
 
-./data/original/QALD-master/6/data/qald-6-test-multilingual.json
-'What are the zodiac signs?'
+./data/original/QALD-master/7/data/qald-7-test-en-wikidata.json
+'Which politicians were married to a German?'
 Query returns no answers. Deleting question.
-SELECT DISTINCT ?uri WHERE { ?uri <http://dbpedia.org/property/element> <http://dbpedia.org/resource/Astrological_sign> . }
+SELECT DISTINCT ?uri WHERE { ?uri <http://www.wikidata.org/prop/direct/P106> <http://www.wikidata.org/entity/Q82955> . ?uri <http://www.wikidata.org/prop/direct/P26> ?spouse . { ?spouse <http://www.wikidata.org/prop/direct/P27> <http://www.wikidata.org/entity/Q183> . } UNION { ?spouse <http://www.wikidata.org/prop/direct/P19>/<http://www.wikidata.org/prop/direct/P17> <http://www.wikidata.org/entity/Q183> } } 
 
 
 
-./data/original/QALD-master/6/data/qald-6-test-multilingual.json
-'What is Batman's real name?'
+./data/original/QALD-master/7/data/qald-7-test-en-wikidata.json
+'Who wrote the lyrics for the Polish national anthem?'
 Query returns no answers. Deleting question.
-SELECT DISTINCT ?s WHERE { <http://dbpedia.org/resource/Batman> <http://dbpedia.org/property/alterEgo> ?s . }
+SELECT DISTINCT ?uri WHERE { <http://www.wikidata.org/entity/Q36> <http://www.wikidata.org/prop/direct/P85>/<http://www.wikidata.org/prop/direct/P676> ?uri . }
 
 
 
-./data/original/QALD-master/7/data/qald-7-train-largescale.json
-'Give me all books written by David Foster Wallace.'
+./data/original/QALD-master/7/data/qald-7-test-en-wikidata.json
+'What is the official website of Tom Cruise?'
 Query returns no answers. Deleting question.
-PREFIX dbo: <http://dbpedia.org/ontology/> PREFIX res: <http://dbpedia.org/resource/> PREFIX dbp: <http://dbpedia.org/property/> PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> SELECT DISTINCT ?uri WHERE { ?uri rdf:type dbo:Book . ?uri dbp:author res:David_Foster_Wallace . }
+SELECT DISTINCT ?string WHERE { <http://www.wikidata.org/entity/Q37079> <http://www.wikidata.org/prop/direct/P856> ?string . }
 
 
 
-./data/original/QALD-master/7/data/qald-7-train-largescale.json
-'Give me the children of David Foster.'
+./data/original/QALD-master/7/data/qald-7-test-en-wikidata.json
+'Give me the websites of companies with more than 500000 employees.'
 Query returns no answers. Deleting question.
-PREFIX dbo: <http://dbpedia.org/ontology/> PREFIX res: <http://dbpedia.org/resource/> SELECT DISTINCT ?child WHERE { res:David_Foster dbo:child ?child . }
-
-
-
-./data/original/QALD-master/7/data/qald-7-train-largescale.json
-'Show me everyone who was born on Boxing Day.'
-Query returns no answers. Deleting question.
-PREFIX dbp: <http://dbpedia.org/property/> PREFIX res: <http://dbpedia.org/resource/> PREFIX dbo: <http://dbpedia.org/ontology/> PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> SELECT DISTINCT ?uri WHERE { ?uri rdf:type dbo:Person . { ?uri dbo:birthDate ?date . } UNION { ?uri dbp:birthDate ?date . } res:Boxing_Day dbp:date ?date . }
-
-
-
-./data/original/QALD-master/7/data/qald-7-train-largescale.json
-'What is the ruling party in Lo Espejo?'
-Query returns no answers. Deleting question.
-PREFIX dbp: <http://dbpedia.org/property/> PREFIX res: <http://dbpedia.org/resource/> PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> SELECT DISTINCT ?uri ?string WHERE { res:Lo_Espejo dbp:leaderParty ?uri . OPTIONAL { ?uri rdfs:label ?string. FILTER (lang(?string) = 'en') } }
-
-
-
-./data/original/QALD-master/7/data/qald-7-train-largescale.json
-'When is Gibraltar Diamond Jubilee Flotilla?'
-Query returns no answers. Deleting question.
-PREFIX dbp: <http://dbpedia.org/property/> PREFIX res: <http://dbpedia.org/resource/> SELECT DISTINCT ?date WHERE { res:Gibraltar_Diamond_Jubilee_Flotilla dbp:date ?date . }
-
-
-
-./data/original/QALD-master/7/data/qald-7-train-largescale.json
-'When was the Cobble Hill Tunnel built?'
-Query returns no answers. Deleting question.
-PREFIX dbp: <http://dbpedia.org/property/> PREFIX res: <http://dbpedia.org/resource/> SELECT ?num WHERE { res:Cobble_Hill_Tunnel dbp:built ?num . }
-
-
-
-./data/original/QALD-master/7/data/qald-7-train-largescale.json
-'When was the Riverdale Monument built?'
-Query returns no answers. Deleting question.
-PREFIX dbp: <http://dbpedia.org/property/> PREFIX res: <http://dbpedia.org/resource/> SELECT ?num WHERE { res:Riverdale_Monument dbp:built ?num . }
-
-
-
-./data/original/QALD-master/7/data/qald-7-train-largescale.json
-'Which instruments does Courtney Love play?'
-Query returns no answers. Deleting question.
-PREFIX dbo: <http://dbpedia.org/ontology/> PREFIX res: <http://dbpedia.org/resource/> SELECT DISTINCT ?uri WHERE { res:Courtney_Love dbo:instrument ?uri . }
-
-
-
-./data/original/QALD-master/7/data/qald-7-train-largescale.json
-'Who designed the Langebro?'
-Query returns no answers. Deleting question.
-PREFIX res: <http://dbpedia.org/resource/> PREFIX dbp: <http://dbpedia.org/property/> PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> SELECT DISTINCT ?uri ?string WHERE { res:Langebro dbp:designer ?uri . OPTIONAL { ?uri rdfs:label ?string. FILTER (lang(?string) = 'en') } }
+SELECT DISTINCT ?string WHERE { ?uri <http://www.wikidata.org/prop/direct/P31>/(<http://www.wikidata.org/prop/direct/P279>*) <http://www.wikidata.org/entity/Q4830453> . ?uri <http://www.wikidata.org/prop/direct/P1128> ?number . FILTER(?number > 500000) . ?uri <http://www.wikidata.org/prop/direct/P856> ?string . }
 
 
 
@@ -19507,6 +18823,104 @@ PREFIX res: <http://dbpedia.org/resource/> PREFIX dbp: <http://dbpedia.org/prope
 'When was the Battle of Gettysburg?'
 Query returns no answers. Deleting question.
 PREFIX dbo: <http://dbpedia.org/ontology/> PREFIX res: <http://dbpedia.org/resource/> SELECT DISTINCT ?date  WHERE {         res:Battle_of_Gettysburg dbo:date ?date . }
+
+
+
+./data/original/QALD-master/7/data/qald-7-train-multilingual-extended-json.json
+'Who painted The Storm on the Sea of Galilee?'
+Query returns no answers. Deleting question.
+PREFIX dbp: <http://dbpedia.org/property/> PREFIX res: <http://dbpedia.org/resource/> SELECT DISTINCT ?uri  WHERE {  res:The_Storm_on_the_Sea_of_Galilee dbp:artist ?uri . }
+
+
+
+./data/original/QALD-master/7/data/qald-7-train-multilingual-extended-json.json
+'Who was called Frank The Tank?'
+Query returns no answers. Deleting question.
+PREFIX dbp: <http://dbpedia.org/property/>  SELECT DISTINCT ?uri  WHERE {          ?uri dbp:nickname 'Frank The Tank'@en .  }
+
+
+
+./data/original/QALD-master/7/data/qald-7-train-multilingual-extended-json.json
+'Who was called Rodzilla?'
+Query returns no answers. Deleting question.
+PREFIX dbp: <http://dbpedia.org/property/>  SELECT DISTINCT ?uri  WHERE {           ?uri dbp:nickname "Rodzilla"@en . }
+
+
+
+./data/original/QALD-master/7/data/qald-7-train-multilingual-extended-json.json
+'What color expresses loyalty?'
+Query returns no answers. Deleting question.
+SELECT DISTINCT ?uri WHERE { ?uri <http://dbpedia.org/ontology/connotation> <http://dbpedia.org/resource/Loyalty> . }
+
+
+
+./data/original/QALD-master/7/data/qald-7-train-multilingual-extended-json.json
+'Who is the youngest player in the Premier League?'
+Query returns no answers. Deleting question.
+PREFIX dbo: <http://dbpedia.org/ontology/>  PREFIX res: <http://dbpedia.org/resource/>  SELECT DISTINCT ?uri  WHERE {          ?uri dbo:team ?x .          ?x dbo:league res:Premier_League .          ?uri dbo:birthDate ?y .  }  ORDER BY DESC(?y)  OFFSET 0 LIMIT 1
+
+
+
+./data/original/QALD-master/7/data/qald-7-train-multilingual-extended-json.json
+'Who was the father of Queen Elizabeth II?'
+Query returns no answers. Deleting question.
+PREFIX res: <http://dbpedia.org/resource/> PREFIX dbp: <http://dbpedia.org/property/> SELECT DISTINCT ?uri WHERE {          res:Elizabeth_II dbp:father ?uri . }
+
+
+
+./data/original/QALD-master/7/data/qald-7-train-multilingual-extended-json.json
+'What are the nicknames of San Francisco?'
+Query returns no answers. Deleting question.
+SELECT DISTINCT ?string WHERE {  <http://dbpedia.org/resource/San_Francisco> <http://dbpedia.org/property/nickname> ?string . } 
+
+
+
+./data/original/QALD-master/7/data/qald-7-train-multilingual-extended-json.json
+'Through which countries does the Yenisei river flow?'
+Query returns no answers. Deleting question.
+PREFIX res: <http://dbpedia.org/resource/> PREFIX dbp: <http://dbpedia.org/property/> SELECT DISTINCT ?uri  WHERE {         res:Yenisei_River dbp:country ?uri . }
+
+
+
+./data/original/QALD-master/7/data/qald-7-train-multilingual-extended-json.json
+'Who was the 16th president of the United States?'
+Query returns no answers. Deleting question.
+PREFIX dbo: <http://dbpedia.org/ontology/> PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> SELECT DISTINCT ?uri WHERE {          ?uri dbo:office 'President of the United States' .          ?uri dbo:orderInOffice '16th' . }
+
+
+
+./data/original/QALD-master/7/data/qald-7-train-multilingual-extended-json.json
+'How high is the Mount Everest?'
+Query returns no answers. Deleting question.
+PREFIX dbo: <http://dbpedia.org/ontology/> PREFIX res: <http://dbpedia.org/resource/> SELECT DISTINCT ?num  WHERE {  res:Mount_Everest dbo:elevation ?num. }
+
+
+
+./data/original/QALD-master/7/data/qald-7-train-multilingual-extended-json.json
+'What is the time zone of Salt Lake City?'
+Query returns no answers. Deleting question.
+PREFIX res: <http://dbpedia.org/resource/> PREFIX dbp: <http://dbpedia.org/property/> SELECT DISTINCT ?uri  WHERE {  res:Salt_Lake_City dbp:timezone ?uri .  }
+
+
+
+./data/original/QALD-master/7/data/qald-7-train-multilingual-extended-json.json
+'Where is Fort Knox located?'
+Query returns no answers. Deleting question.
+SELECT DISTINCT ?uri WHERE {  <http://dbpedia.org/resource/Fort_Knox> <http://dbpedia.org/property/location> ?uri . }
+
+
+
+./data/original/QALD-master/7/data/qald-7-train-multilingual-extended-json.json
+'Which subsidiary of TUI Travel serves both Glasgow and Dublin?'
+Query returns no answers. Deleting question.
+SELECT DISTINCT ?uri WHERE { <http://dbpedia.org/resource/TUI_Travel> <http://dbpedia.org/ontology/subsidiary> ?uri .  ?uri <http://dbpedia.org/ontology/targetAirport> <http://dbpedia.org/resource/Glasgow_Airport> . ?uri <http://dbpedia.org/ontology/targetAirport> <http://dbpedia.org/resource/Dublin_Airport> . } 
+
+
+
+./data/original/QALD-master/7/data/qald-7-train-multilingual-extended-json.json
+'Which professional surfers were born on the Philippines?'
+Query returns no answers. Deleting question.
+PREFIX dbo: <http://dbpedia.org/ontology/> PREFIX res: <http://dbpedia.org/resource/> SELECT DISTINCT ?uri WHERE {  ?uri dbo:occupation res:Surfing .  ?uri dbo:birthPlace res:Philippines . }
 
 
 
@@ -20960,6 +20374,83 @@ PREFIX res: <http://dbpedia.org/resource/> PREFIX dbp: <http://dbpedia.org/prope
 
 
 
+./data/original/QALD-master/7/data/qald-7-train-largescale.json
+'Give me all books written by David Foster Wallace.'
+Query returns no answers. Deleting question.
+PREFIX dbo: <http://dbpedia.org/ontology/> PREFIX res: <http://dbpedia.org/resource/> PREFIX dbp: <http://dbpedia.org/property/> PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> SELECT DISTINCT ?uri WHERE { ?uri rdf:type dbo:Book . ?uri dbp:author res:David_Foster_Wallace . }
+
+
+
+./data/original/QALD-master/7/data/qald-7-train-largescale.json
+'Give me all professional skateboarders from Sweden.'
+Query returns no answers. Deleting question.
+PREFIX dbo: <http://dbpedia.org/ontology/> PREFIX dbp: <http://dbpedia.org/property/> PREFIX res: <http://dbpedia.org/resource/> PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> SELECT DISTINCT ?uri ?string WHERE { ?uri dbo:occupation res:Skateboarding . { ?uri dbo:birthPlace res:Sweden . } UNION { ?uri dbo:birthPlace ?place . ?place dbo:country res:Sweden . } OPTIONAL { ?uri rdfs:label ?string. FILTER (lang(?string) = 'en') } }
+
+
+
+./data/original/QALD-master/7/data/qald-7-train-largescale.json
+'Give me the children of David Foster.'
+Query returns no answers. Deleting question.
+PREFIX dbo: <http://dbpedia.org/ontology/> PREFIX res: <http://dbpedia.org/resource/> SELECT DISTINCT ?child WHERE { res:David_Foster dbo:child ?child . }
+
+
+
+./data/original/QALD-master/7/data/qald-7-train-largescale.json
+'Show me everyone who was born on Boxing Day.'
+Query returns no answers. Deleting question.
+PREFIX dbp: <http://dbpedia.org/property/> PREFIX res: <http://dbpedia.org/resource/> PREFIX dbo: <http://dbpedia.org/ontology/> PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> SELECT DISTINCT ?uri WHERE { ?uri rdf:type dbo:Person . { ?uri dbo:birthDate ?date . } UNION { ?uri dbp:birthDate ?date . } res:Boxing_Day dbp:date ?date . }
+
+
+
+./data/original/QALD-master/7/data/qald-7-train-largescale.json
+'What is the ruling party in Lo Espejo?'
+Query returns no answers. Deleting question.
+PREFIX dbp: <http://dbpedia.org/property/> PREFIX res: <http://dbpedia.org/resource/> PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> SELECT DISTINCT ?uri ?string WHERE { res:Lo_Espejo dbp:leaderParty ?uri . OPTIONAL { ?uri rdfs:label ?string. FILTER (lang(?string) = 'en') } }
+
+
+
+./data/original/QALD-master/7/data/qald-7-train-largescale.json
+'When is Gibraltar Diamond Jubilee Flotilla?'
+Query returns no answers. Deleting question.
+PREFIX dbp: <http://dbpedia.org/property/> PREFIX res: <http://dbpedia.org/resource/> SELECT DISTINCT ?date WHERE { res:Gibraltar_Diamond_Jubilee_Flotilla dbp:date ?date . }
+
+
+
+./data/original/QALD-master/7/data/qald-7-train-largescale.json
+'When was the Cobble Hill Tunnel built?'
+Query returns no answers. Deleting question.
+PREFIX dbp: <http://dbpedia.org/property/> PREFIX res: <http://dbpedia.org/resource/> SELECT ?num WHERE { res:Cobble_Hill_Tunnel dbp:built ?num . }
+
+
+
+./data/original/QALD-master/7/data/qald-7-train-largescale.json
+'When was the Riverdale Monument built?'
+Query returns no answers. Deleting question.
+PREFIX dbp: <http://dbpedia.org/property/> PREFIX res: <http://dbpedia.org/resource/> SELECT ?num WHERE { res:Riverdale_Monument dbp:built ?num . }
+
+
+
+./data/original/QALD-master/7/data/qald-7-train-largescale.json
+'Which instruments does Courtney Love play?'
+Query returns no answers. Deleting question.
+PREFIX dbo: <http://dbpedia.org/ontology/> PREFIX res: <http://dbpedia.org/resource/> SELECT DISTINCT ?uri WHERE { res:Courtney_Love dbo:instrument ?uri . }
+
+
+
+./data/original/QALD-master/7/data/qald-7-train-largescale.json
+'Which professional surfers were born in Australia?'
+Query returns no answers. Deleting question.
+PREFIX dbo: <http://dbpedia.org/ontology/> PREFIX res: <http://dbpedia.org/resource/> PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> SELECT DISTINCT ?uri ?string WHERE { ?uri dbo:occupation res:Surfing . ?uri dbo:birthPlace res:Australia . OPTIONAL { ?uri rdfs:label ?string. FILTER (lang(?string) = 'en') } }
+
+
+
+./data/original/QALD-master/7/data/qald-7-train-largescale.json
+'Who designed the Langebro?'
+Query returns no answers. Deleting question.
+PREFIX res: <http://dbpedia.org/resource/> PREFIX dbp: <http://dbpedia.org/property/> PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> SELECT DISTINCT ?uri ?string WHERE { res:Langebro dbp:designer ?uri . OPTIONAL { ?uri rdfs:label ?string. FILTER (lang(?string) = 'en') } }
+
+
+
 File: ./data/original/QALD-master/8/data/qald-8-test-multilingual.json
 Question: 'What is the highest mountain in the Bavarian Alps?
 Query: PREFIX dbp:highest: <http://dbpedia.org/property/highest> PREFIX dbo: <http://dbpedia.org/ontology/> PREFIX dbr: <http://dbpedia.org/resource/> SELECT ?m  WHERE { dbr:Bavarian_Alps dbp:highest ?m} 
@@ -20980,9 +20471,261 @@ ASK WHERE { <http://www.wikidata.org/entity/Q276186> <http://www.wikidata.org/pr
 
 
 ./data/original/QALD-master/8/data/wikidata-train-7.json
+'Who was on the Apollo 11 mission?'
+Query returns no answers. Deleting question.
+SELECT DISTINCT ?uri WHERE { <http://www.wikidata.org/entity/Q43653> <http://www.wikidata.org/prop/direct/P1029> ?uri}
+
+
+
+./data/original/QALD-master/8/data/wikidata-train-7.json
+'What is the name of the school where Obama's wife studied?'
+Query returns no answers. Deleting question.
+SELECT DISTINCT ?uri WHERE { <http://www.wikidata.org/entity/Q76> <http://www.wikidata.org/prop/direct/P26>/<http://www.wikidata.org/prop/direct/P69> ?uri}
+
+
+
+./data/original/QALD-master/8/data/wikidata-train-7.json
+'Where does Piccadilly start?'
+Query returns no answers. Deleting question.
+SELECT DISTINCT ?uri WHERE { <http://www.wikidata.org/entity/Q1124023> <http://www.wikidata.org/prop/direct/P559> ?uri}
+
+
+
+./data/original/QALD-master/8/data/wikidata-train-7.json
+'When did the Boston Tea Party take place?'
+Query returns no answers. Deleting question.
+SELECT DISTINCT ?uri WHERE { <http://www.wikidata.org/entity/Q19024> <http://www.wikidata.org/prop/direct/P585> ?uri}
+
+
+
+./data/original/QALD-master/8/data/wikidata-train-7.json
+'Who wrote Harry Potter?'
+Query returns no answers. Deleting question.
+SELECT DISTINCT ?uri WHERE { <http://www.wikidata.org/entity/Q8337> <http://www.wikidata.org/prop/direct/P50> ?uri}
+
+
+
+./data/original/QALD-master/8/data/wikidata-train-7.json
+'Which actors play in Big Bang Theory?'
+Query returns no answers. Deleting question.
+SELECT DISTINCT ?uri WHERE { <http://www.wikidata.org/entity/Q8539> <http://www.wikidata.org/prop/direct/P161> ?uri}
+
+
+
+./data/original/QALD-master/8/data/wikidata-train-7.json
 'How many goals did Pelé score?'
 Query returns no answers. Deleting question.
 SELECT (SUM(?goals) as ?total) WHERE { <http://www.wikidata.org/entity/Q12897> <http://www.wikidata.org/prop/P54> ?teamMembership .  ?teamMembership <http://www.wikidata.org/prop/qualifier/P1351> ?goals . }
+
+
+
+./data/original/QALD-master/8/data/wikidata-train-7.json
+'Which computer scientist won an oscar?'
+Query returns no answers. Deleting question.
+SELECT DISTINCT ?uri WHERE { ?uri <http://www.wikidata.org/prop/direct/P106> <http://www.wikidata.org/entity/Q82594> . ?uri <http://www.wikidata.org/prop/direct/P166> ?award . ?award <http://www.wikidata.org/prop/direct/P31> <http://www.wikidata.org/entity/Q19020> . }
+
+
+
+./data/original/QALD-master/8/data/wikidata-train-7.json
+'Who does the voice of Bart Simpson?'
+Query returns no answers. Deleting question.
+SELECT DISTINCT ?uri WHERE {  <http://www.wikidata.org/entity/Q5480> <http://www.wikidata.org/prop/direct/P725> ?uri }
+
+
+
+./data/original/QALD-master/8/data/wikidata-train-7.json
+'Which country was Bill Gates born in?'
+Query returns no answers. Deleting question.
+SELECT DISTINCT ?uri WHERE { <http://www.wikidata.org/entity/Q5284> <http://www.wikidata.org/prop/direct/P19>/<http://www.wikidata.org/prop/direct/P17> ?uri }
+
+
+
+./data/original/QALD-master/8/data/wikidata-train-7.json
+'How many grand-children did Jacques Cousteau have?'
+Query returns no answers. Deleting question.
+SELECT (COUNT(DISTINCT ?uri) as ?count) WHERE { <http://www.wikidata.org/entity/Q83233> <http://www.wikidata.org/prop/direct/P40>/<http://www.wikidata.org/prop/direct/P40> ?uri }
+
+
+
+./data/original/QALD-master/8/data/wikidata-train-7.json
+'How many seats does the home stadium of FC Porto have?'
+Query returns no answers. Deleting question.
+SELECT DISTINCT ?num WHERE { <http://www.wikidata.org/entity/Q128446> <http://www.wikidata.org/prop/direct/P115>/<http://www.wikidata.org/prop/direct/P1083> ?num }
+
+
+
+./data/original/QALD-master/8/data/wikidata-train-7.json
+'In which city was the president of Montenegro born?'
+Query returns no answers. Deleting question.
+SELECT DISTINCT ?uri WHERE { <http://www.wikidata.org/entity/Q236> <http://www.wikidata.org/prop/direct/P35>/<http://www.wikidata.org/prop/direct/P19> ?uri . ?uri <http://www.wikidata.org/prop/direct/P31> <http://www.wikidata.org/entity/Q515> . }
+
+
+
+./data/original/QALD-master/8/data/wikidata-train-7.json
+'What is the full name of Prince Charles?'
+Query returns no answers. Deleting question.
+SELECT DISTINCT ?s WHERE { <http://www.wikidata.org/entity/Q43274> <http://www.w3.org/2004/02/skos/core#altLabel> ?s  . }
+
+
+
+./data/original/QALD-master/8/data/wikidata-train-7.json
+'What is the longest river in China?'
+Query returns no answers. Deleting question.
+SELECT DISTINCT ?uri WHERE { ?uri <http://www.wikidata.org/prop/direct/P31> <http://www.wikidata.org/entity/Q4022> . ?uri <http://www.wikidata.org/prop/direct/P17> <http://www.wikidata.org/entity/Q148> . ?uri <http://www.wikidata.org/prop/direct/P2043> ?length } ORDER BY DESC(?length) LIMIT 1
+
+
+
+./data/original/QALD-master/8/data/wikidata-train-7.json
+'When did princess Diana die?'
+Query returns no answers. Deleting question.
+SELECT DISTINCT ?date WHERE { <http://www.wikidata.org/entity/Q9685> <http://www.wikidata.org/prop/direct/P570> ?date  . }
+
+
+
+./data/original/QALD-master/8/data/wikidata-train-7.json
+'How many moons does Mars have?'
+Query returns no answers. Deleting question.
+SELECT DISTINCT ?uri WHERE { <http://www.wikidata.org/entity/Q111> <http://www.wikidata.org/prop/direct/P398> ?uri  . }
+
+
+
+./data/original/QALD-master/8/data/wikidata-train-7.json
+'Give me a list of all Canadians that reside in the U.S.'
+Query returns no answers. Deleting question.
+SELECT DISTINCT ?uri WHERE { ?uri <http://www.wikidata.org/prop/direct/P19>/<http://www.wikidata.org/prop/direct/P17>  <http://www.wikidata.org/entity/Q16> . ?uri <http://www.wikidata.org/prop/direct/P551>  <http://www.wikidata.org/entity/Q30> . }
+
+
+
+./data/original/QALD-master/8/data/wikidata-train-7.json
+'Show me all Czech movies.'
+Query returns no answers. Deleting question.
+SELECT DISTINCT ?uri WHERE {  ?uri <http://www.wikidata.org/prop/direct/P31> <http://www.wikidata.org/entity/Q11424> . { ?uri <http://www.wikidata.org/prop/direct/P495> <http://www.wikidata.org/entity/Q213> . } UNION { ?uri <http://www.wikidata.org/prop/direct/P495> <http://www.wikidata.org/entity/Q33946> . } }
+
+
+
+./data/original/QALD-master/8/data/wikidata-train-7.json
+'Which rivers flow into the North Sea?'
+Query returns no answers. Deleting question.
+SELECT DISTINCT ?uri WHERE {  ?uri <http://www.wikidata.org/prop/direct/P31> <http://www.wikidata.org/entity/Q4022> . ?uri <http://www.wikidata.org/prop/direct/P403> <http://www.wikidata.org/entity/Q1693> . }
+
+
+
+./data/original/QALD-master/8/data/wikidata-train-7.json
+'Give me a list of all critically endangered birds.'
+Query returns no answers. Deleting question.
+SELECT DISTINCT ?uri WHERE {  ?uri <http://www.wikidata.org/prop/direct/P171>* <http://www.wikidata.org/entity/Q5113> . ?uri <http://www.wikidata.org/prop/direct/P141> <http://www.wikidata.org/entity/Q219127> . }
+
+
+
+./data/original/QALD-master/8/data/wikidata-train-7.json
+'What was the original occupation of the inventor of Lego?'
+Query returns no answers. Deleting question.
+SELECT DISTINCT ?uri WHERE {  <http://www.wikidata.org/entity/Q170484> <http://www.wikidata.org/prop/direct/P61>/<http://www.wikidata.org/prop/direct/P106> ?uri }
+
+
+
+./data/original/QALD-master/8/data/wikidata-train-7.json
+'Which countries have more than ten volcanoes?'
+Query returns no answers. Deleting question.
+SELECT DISTINCT ?uri WHERE {  { ?volcano <http://www.wikidata.org/prop/direct/P31> <http://www.wikidata.org/entity/Q8072> . } UNION { ?volcano <http://www.wikidata.org/prop/direct/P31> ?type . ?type <http://www.wikidata.org/prop/direct/P279>* <http://www.wikidata.org/entity/Q8072> . } ?volcano <http://www.wikidata.org/prop/direct/P17> ?uri . } GROUP BY ?uri HAVING(COUNT(?volcano)>10)
+
+
+
+./data/original/QALD-master/8/data/wikidata-train-7.json
+'Show me all U.S. states.'
+Query returns no answers. Deleting question.
+SELECT DISTINCT ?uri WHERE { ?uri <http://www.wikidata.org/prop/direct/P31> <http://www.wikidata.org/entity/Q35657> . }
+
+
+
+./data/original/QALD-master/8/data/wikidata-train-7.json
+'How many emperors did China have?'
+Query returns no answers. Deleting question.
+SELECT (COUNT(DISTINCT ?uri) as ?count) WHERE {  ?uri <http://www.wikidata.org/prop/direct/P39> <http://www.wikidata.org/entity/Q268218>}
+
+
+
+./data/original/QALD-master/8/data/wikidata-train-7.json
+'How did Michael Jackson die?'
+Query returns no answers. Deleting question.
+SELECT DISTINCT ?uri WHERE { <http://www.wikidata.org/entity/Q2831> <http://www.wikidata.org/prop/direct/P509> ?uri . }
+
+
+
+./data/original/QALD-master/8/data/wikidata-train-7.json
+'Which space probes were sent into orbit around the sun?'
+Query returns no answers. Deleting question.
+SELECT DISTINCT ?uri WHERE {  ?uri <http://www.wikidata.org/prop/direct/P522> <http://www.wikidata.org/entity/Q737809> . }
+
+
+
+./data/original/QALD-master/8/data/wikidata-train-7.json
+'On which day is Columbus Day?'
+Query returns no answers. Deleting question.
+SELECT DISTINCT ?date WHERE { <http://www.wikidata.org/entity/Q367523> <http://www.wikidata.org/prop/direct/P837> ?date  . }
+
+
+
+./data/original/QALD-master/8/data/wikidata-train-7.json
+'How short is the shortest active NBA player?'
+Query returns no answers. Deleting question.
+SELECT DISTINCT ?height WHERE { ?uri <http://www.wikidata.org/prop/direct/P106>  <http://www.wikidata.org/entity/Q3665646> . ?uri <http://www.wikidata.org/prop/direct/P54>/<http://www.wikidata.org/prop/direct/P118> <http://www.wikidata.org/entity/Q155223> .  ?uri <http://www.wikidata.org/prop/P54> ?teamMembership . FILTER NOT EXISTS { ?teamMembership <http://www.wikidata.org/prop/qualifier/P582> ?endDate } ?uri  <http://www.wikidata.org/prop/direct/P2048> ?height } ORDER BY ?height LIMIT 1
+
+
+
+./data/original/QALD-master/8/data/wikidata-train-7.json
+'Whom did Lance Bass marry?'
+Query returns no answers. Deleting question.
+SELECT DISTINCT ?uri WHERE { <http://www.wikidata.org/entity/Q443120> <http://www.wikidata.org/prop/direct/P26> ?uri . }
+
+
+
+./data/original/QALD-master/8/data/wikidata-train-7.json
+'Give me all South American countries.'
+Query returns no answers. Deleting question.
+SELECT DISTINCT ?uri WHERE {  ?uri <http://www.wikidata.org/prop/direct/P31> <http://www.wikidata.org/entity/Q6256> . ?uri <http://www.wikidata.org/prop/direct/P30> <http://www.wikidata.org/entity/Q18> . }
+
+
+
+./data/original/QALD-master/8/data/wikidata-train-7.json
+'What are the names of the Teenage Mutant Ninja Turtles?'
+Query returns no answers. Deleting question.
+SELECT DISTINCT ?uri WHERE {  ?uri <http://www.wikidata.org/prop/direct/P361> <http://www.wikidata.org/entity/Q1381762> . }
+
+
+
+./data/original/QALD-master/8/data/wikidata-train-7.json
+'What are the zodiac signs?'
+Query returns no answers. Deleting question.
+SELECT DISTINCT ?uri WHERE {  <http://www.wikidata.org/entity/Q40540> <http://www.wikidata.org/prop/direct/P527> ?uri . }
+
+
+
+./data/original/QALD-master/8/data/wikidata-train-7.json
+'What languages do they speak in Pakistan?'
+Query returns no answers. Deleting question.
+SELECT DISTINCT ?uri WHERE { <http://www.wikidata.org/entity/Q843> <http://www.wikidata.org/prop/direct/P37> ?uri . }
+
+
+
+./data/original/QALD-master/8/data/wikidata-train-7.json
+'Who became president after JFK died?'
+Query returns no answers. Deleting question.
+SELECT DISTINCT ?uri WHERE { <http://www.wikidata.org/entity/Q9696> <http://www.wikidata.org/prop/P39> ?position . ?position  <http://www.wikidata.org/prop/statement/P39> <http://www.wikidata.org/entity/Q11696> . ?position <http://www.wikidata.org/prop/qualifier/P1366> ?uri . }
+
+
+
+./data/original/QALD-master/8/data/wikidata-train-7.json
+'What is Elon Musk famous for?'
+Query returns no answers. Deleting question.
+SELECT DISTINCT ?uri WHERE { <http://www.wikidata.org/entity/Q317521> <http://www.wikidata.org/prop/direct/P61> ?uri . }
+
+
+
+./data/original/QALD-master/8/data/wikidata-train-7.json
+'What is Batman's real name?'
+Query returns no answers. Deleting question.
+SELECT DISTINCT ?uri WHERE { <http://www.wikidata.org/entity/Q2695156> <http://www.wikidata.org/prop/direct/P460> ?uri . }
 
 
 
