@@ -3,26 +3,18 @@ package compiling;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Dictionary;
 import java.util.HashMap;
-import java.util.Hashtable;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map.Entry;
 import java.util.Set;
-import java.util.concurrent.TimeUnit;
 
-import org.apache.jena.query.Dataset;
 import org.apache.jena.query.ParameterizedSparqlString;
-import org.apache.jena.query.Query;
 import org.apache.jena.query.QueryExecution;
 import org.apache.jena.query.QueryExecutionFactory;
 import org.apache.jena.query.QuerySolution;
-import org.apache.jena.query.ReadWrite;
 import org.apache.jena.query.ResultSet;
 import org.apache.jena.query.ResultSetFormatter;
-import org.apache.jena.rdf.model.Model;
-import org.apache.jena.rdf.model.RDFNode;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -46,7 +38,7 @@ public class QACompiler {
 		initHashmaps();
         totalQuestions = parseQuestions();
         checkForRedundancy();
-		System.out.println("Check for vavfvfvfvlid answers");
+		System.out.println("Check for valid answers");
 		cleanEmptyFiles();
 		validateAnswers();
 		cleanEmptyFiles();
@@ -481,16 +473,47 @@ public class QACompiler {
 	{
 		ArrayList<ArrayList<Question>> results = new ArrayList<ArrayList<Question>>();
 		
+		int numberOfQuestionsFromLastFile = 0;
+		int lastSizeOfResults = 0;
+		
 		//LC- QuAD
 		results.add(JSONParser.parseQuADFile("./data/original/LC-QuAD-data/test-data.json", "QUAD", "dbpedia"));
+		System.out.println("File: " + "./data/original/LC-QuAD-data/test-data.json");
+		numberOfQuestionsFromLastFile = results.size() - lastSizeOfResults;
+		System.out.println("Number of Questions: " + numberOfQuestionsFromLastFile);
+		System.out.println("Total Number of Questions: " + results.size());
+		lastSizeOfResults = results.size();
+		
 		results.add(JSONParser.parseQuADFile("./data/original/LC-QuAD-data/train-data.json", "QUAD", "dbpedia"));
+		System.out.println("File: " + "./data/original/LC-QuAD-data/train-data.json");
+		numberOfQuestionsFromLastFile = results.size() - lastSizeOfResults;
+		System.out.println("Number of Questions: " + numberOfQuestionsFromLastFile);
+		System.out.println("Total Number of Questions: " + results.size());
+		lastSizeOfResults = results.size();
 		
 		//QALD
 		//1
 		
 		results.add(XMLParser.parseQald1("./data/original/QALD-master/1/data/dbpedia-test.xml", "QALD-1", "dbpedia", false));
+		System.out.println("File: " + "./data/original/QALD-master/1/data/dbpedia-test.xml");
+		numberOfQuestionsFromLastFile = results.size() - lastSizeOfResults;
+		System.out.println("Number of Questions: " + numberOfQuestionsFromLastFile);
+		System.out.println("Total Number of Questions: " + results.size());
+		lastSizeOfResults = results.size();
+		
 		results.add(XMLParser.parseQald1("./data/original/QALD-master/1/data/dbpedia-train.xml", "QALD-1", "dbpedia", false));
+		System.out.println("File: " + "./data/original/QALD-master/1/data/dbpedia-train.xmloriginal/LC-QuAD-data/train-data.json");
+		numberOfQuestionsFromLastFile = results.size() - lastSizeOfResults;
+		System.out.println("Number of Questions: " + numberOfQuestionsFromLastFile);
+		System.out.println("Total Number of Questions: " + results.size());
+		lastSizeOfResults = results.size();
+		
 		results.add(XMLParser.parseQald4("./data/original/QALD-master/1/data/dbpedia-train-CDATA.xml", "QALD-1", "dbpedia", false));
+		System.out.println("File: " + "./data/original/QALD-master/1/data/dbpedia-train-CDATA.xml");
+		numberOfQuestionsFromLastFile = results.size() - lastSizeOfResults;
+		System.out.println("Number of Questions: " + numberOfQuestionsFromLastFile);
+		System.out.println("Total Number of Questions: " + results.size());
+		lastSizeOfResults = results.size();
 				
 		//results.add(XMLParser.parseQald4("./data/original/QALD-master/1/data/musicbrainz-test.xml", "QALD-1", "musicbrainz", false));
 		//results.add(XMLParser.parseQald4("./data/original/QALD-master/1/data/musicbrainz-train.xml", "QALD-1", "musicbrainz", false));
@@ -499,16 +522,49 @@ public class QACompiler {
 		//2
 		
 		results.add(XMLParser.parseQald1("./data/original/QALD-master/2/data/dbpedia-train-answers.xml", "QALD-2", "dbpedia", false));
+		System.out.println("File: " + "./data/original/QALD-master/2/data/dbpedia-train-answers.xml");
+		numberOfQuestionsFromLastFile = results.size() - lastSizeOfResults;
+		System.out.println("Number of Questions: " + numberOfQuestionsFromLastFile);
+		System.out.println("Total Number of Questions: " + results.size());
+		lastSizeOfResults = results.size();
 		
 		//results.add(XMLParser.parseQald4("./data/original/QALD-master/2/data/musicbrainz-train-answers.xml", "QALD-2", "musicbrainz", false));
 		
 		results.add(XMLParser.parseQald1("./data/original/QALD-master/2/data/participants-challenge-answers.xml", "QALD-2", "dbpedia", false));
-		//3
+		System.out.println("File: " + "./data/original/QALD-master/2/data/participants-challenge-answers.xml");
+		numberOfQuestionsFromLastFile = results.size() - lastSizeOfResults;
+		System.out.println("Number of Questions: " + numberOfQuestionsFromLastFile);
+		System.out.println("Total Number of Questions: " + results.size());
+		lastSizeOfResults = results.size();
 		
+		//3
 		results.add(XMLParser.parseQald4("./data/original/QALD-master/3/data/dbpedia-test-answers.xml", "QALD-3", "dbpedia", true));
+		System.out.println("File: " + "./data/original/QALD-master/3/data/dbpedia-test-answers.xml");
+		numberOfQuestionsFromLastFile = results.size() - lastSizeOfResults;
+		System.out.println("Number of Questions: " + numberOfQuestionsFromLastFile);
+		System.out.println("Total Number of Questions: " + results.size());
+		lastSizeOfResults = results.size();
+		
 		results.add(XMLParser.parseQald4("./data/original/QALD-master/3/data/dbpedia-train-answers.xml", "QALD-3", "dbpedia", true));
+		System.out.println("File: " + "./data/original/QALD-master/3/data/dbpedia-train-answers.xml");
+		numberOfQuestionsFromLastFile = results.size() - lastSizeOfResults;
+		System.out.println("Number of Questions: " + numberOfQuestionsFromLastFile);
+		System.out.println("Total Number of Questions: " + results.size());
+		lastSizeOfResults = results.size();
+		
 		results.add(XMLParser.parseQald4("./data/original/QALD-master/3/data/esdbpedia-test-answers.xml", "QALD-3", "dbpedia", true));
+		System.out.println("File: " + "./data/original/QALD-master/3/data/esdbpedia-test-answers.xml");
+		numberOfQuestionsFromLastFile = results.size() - lastSizeOfResults;
+		System.out.println("Number of Questions: " + numberOfQuestionsFromLastFile);
+		System.out.println("Total Number of Questions: " + results.size());
+		lastSizeOfResults = results.size();
+		
 		results.add(XMLParser.parseQald4("./data/original/QALD-master/3/data/esdbpedia-train-answers.xml", "QALD-3", "dbpedia", true));
+		System.out.println("File: " + "./data/original/QALD-master/3/data/esdbpedia-train-answers.xml");
+		numberOfQuestionsFromLastFile = results.size() - lastSizeOfResults;
+		System.out.println("Number of Questions: " + numberOfQuestionsFromLastFile);
+		System.out.println("Total Number of Questions: " + results.size());
+		lastSizeOfResults = results.size();
 		
 		//results.add(XMLParser.parseQald4("./data/original/QALD-master/3/data/musicbrainz-test-answers.xml", "QALD-3", "musicbrainz", true));
 		//results.add(XMLParser.parseQald4("./data/original/QALD-master/3/data/musicbrainz-train-answers.xml", "QALD-3", "musicbrainz", true));
@@ -521,13 +577,48 @@ public class QACompiler {
 		//results.add(XMLParser.parseQald4("./data/original/QALD-master/4/data/qald-4_biomedical_train_withanswers.xml", "QALD-4", "mannheimu"));
 		
 		results.add(XMLParser.parseQald4("./data/original/QALD-master/4/data/qald-4_multilingual_test.xml", "QALD-4", "dbpedia", true));
+		System.out.println("File: " + "./data/original/QALD-master/4/data/qald-4_multilingual_test.xml");
+		numberOfQuestionsFromLastFile = results.size() - lastSizeOfResults;
+		System.out.println("Number of Questions: " + numberOfQuestionsFromLastFile);
+		System.out.println("Total Number of Questions: " + results.size());
+		lastSizeOfResults = results.size();
+		
 		results.add(XMLParser.parseQald4("./data/original/QALD-master/4/data/qald-4_multilingual_train.xml", "QALD-4", "dbpedia", true));
+		System.out.println("File: " + "./data/original/QALD-master/4/data/qald-4_multilingual_train.xml");
+		numberOfQuestionsFromLastFile = results.size() - lastSizeOfResults;
+		System.out.println("Number of Questions: " + numberOfQuestionsFromLastFile);
+		System.out.println("Total Number of Questions: " + results.size());
+		lastSizeOfResults = results.size();
+		
 		results.add(XMLParser.parseQald4("./data/original/QALD-master/4/data/qald-4_multilingual_test_withanswers.xml", "QALD-4", "dbpedia", true));
+		System.out.println("File: " + "./data/original/QALD-master/4/data/qald-4_multilingual_test_withanswers.xml");
+		numberOfQuestionsFromLastFile = results.size() - lastSizeOfResults;
+		System.out.println("Number of Questions: " + numberOfQuestionsFromLastFile);
+		System.out.println("Total Number of Questions: " + results.size());
+		lastSizeOfResults = results.size();
+		
 		results.add(XMLParser.parseQald4("./data/original/QALD-master/4/data/qald-4_multilingual_train_withanswers.xml", "QALD-4", "dbpedia", true));
+		System.out.println("File: " + "./data/original/QALD-master/4/data/qald-4_multilingual_train_withanswers.xml");
+		numberOfQuestionsFromLastFile = results.size() - lastSizeOfResults;
+		System.out.println("Number of Questions: " + numberOfQuestionsFromLastFile);
+		System.out.println("Total Number of Questions: " + results.size());
+		lastSizeOfResults = results.size();
+		
 		
 		//5
 		results.add(XMLParser.parseQald5("./data/original/QALD-master/5/data/qald-5_train.xml", "QALD-5", "dbpedia"));
+		System.out.println("File: " + "./data/original/QALD-master/5/data/qald-5_train.xml");
+		numberOfQuestionsFromLastFile = results.size() - lastSizeOfResults;
+		System.out.println("Number of Questions: " + numberOfQuestionsFromLastFile);
+		System.out.println("Total Number of Questions: " + results.size());
+		lastSizeOfResults = results.size();
+		
 		results.add(XMLParser.parseQald5("./data/original/QALD-master/5/data/qald-5_test.xml", "QALD-5", "dbpedia"));
+		System.out.println("File: " + "./data/original/QALD-master/5/data/qald-5_test.xml");
+		numberOfQuestionsFromLastFile = results.size() - lastSizeOfResults;
+		System.out.println("Number of Questions: " + numberOfQuestionsFromLastFile);
+		System.out.println("Total Number of Questions: " + results.size());
+		lastSizeOfResults = results.size();
 		
 		//results.add(XMLParser.parseQald5("./data/original/QALD-master/5/data/qald-5_train.xml", "QALD-5"));
 		///QuestionAnswerBenchmark/data/original/QALD-master/5/data/qald-5_train.json
@@ -535,32 +626,138 @@ public class QACompiler {
 		
 		//6
 		results.add(JSONParser.parseQald7File2("./data/original/QALD-master/6/data/qald-6-train-multilingual.json", "QALD-6", "dbpedia"));
+		System.out.println("File: " + "./data/original/QALD-master/6/data/qald-6-train-multilingual.json");
+		numberOfQuestionsFromLastFile = results.size() - lastSizeOfResults;
+		System.out.println("Number of Questions: " + numberOfQuestionsFromLastFile);
+		System.out.println("Total Number of Questions: " + results.size());
+		lastSizeOfResults = results.size();
+		
 		results.add(JSONParser.parseQald7File6("./data/original/QALD-master/6/data/qald-6-test-hybrid.json", "QALD-6", "dbpedia"));
+		System.out.println("File: " + "./data/original/QALD-master/6/data/qald-6-test-hybrid.json");
+		numberOfQuestionsFromLastFile = results.size() - lastSizeOfResults;
+		System.out.println("Number of Questions: " + numberOfQuestionsFromLastFile);
+		System.out.println("Total Number of Questions: " + results.size());
+		lastSizeOfResults = results.size();
+		
 		results.add(JSONParser.parseQald7File2("./data/original/QALD-master/6/data/qald-6-test-multilingual.json", "QALD-6", "dbpedia"));
+		System.out.println("File: " + "./data/original/QALD-master/6/data/qald-6-test-multilingual.json");
+		numberOfQuestionsFromLastFile = results.size() - lastSizeOfResults;
+		System.out.println("Number of Questions: " + numberOfQuestionsFromLastFile);
+		System.out.println("Total Number of Questions: " + results.size());
+		lastSizeOfResults = results.size();
+		
 		//results.add(JSONParser.parseQald7File4("./data/original/QALD-master/6/data/qald-6-train-datacube-raw.json", "QALD-6", "linkedspending"));
 		results.add(JSONParser.parseQald7File4("./data/original/QALD-master/6/data/qald-6-train-datacube.json", "QALD-6", "linkedspending"));
+		System.out.println("File: " + "./data/original/QALD-master/6/data/qald-6-train-datacube.json");
+		numberOfQuestionsFromLastFile = results.size() - lastSizeOfResults;
+		System.out.println("Number of Questions: " + numberOfQuestionsFromLastFile);
+		System.out.println("Total Number of Questions: " + results.size());
+		lastSizeOfResults = results.size();
+		
 		results.add(JSONParser.parseQald7File6("./data/original/QALD-master/6/data/qald-6-train-hybrid.json", "QALD-6", "dbpedia"));
+		System.out.println("File: " + "./data/original/QALD-master/6/data/qald-6-train-hybrid.json");
+		numberOfQuestionsFromLastFile = results.size() - lastSizeOfResults;
+		System.out.println("Number of Questions: " + numberOfQuestionsFromLastFile);
+		System.out.println("Total Number of Questions: " + results.size());
+		lastSizeOfResults = results.size();
+		
 		//results.add(JSONParser.parseQald7File2("./data/original/QALD-master/6/data/qald-6-train-multilingual-raw.json", "QALD-6", "dbpedia"));
 
 		//7
 		
 		results.add(JSONParser.parseQald7File2("./data/original/QALD-master/7/data/qald-7-test-en-wikidata.json", "QALD-7", "wikidata"));
+		System.out.println("File: " + "./data/original/QALD-master/7/data/qald-7-test-en-wikidata.json");
+		numberOfQuestionsFromLastFile = results.size() - lastSizeOfResults;
+		System.out.println("Number of Questions: " + numberOfQuestionsFromLastFile);
+		System.out.println("Total Number of Questions: " + results.size());
+		lastSizeOfResults = results.size();
+		
 		results.add(JSONParser.parseQald7File2("./data/original/QALD-master/7/data/qald-7-train-largescale.json", "QALD-7", "dbpedia"));
+		System.out.println("File: " + "./data/original/QALD-master/7/data/qald-7-train-largescale.json");
+		numberOfQuestionsFromLastFile = results.size() - lastSizeOfResults;
+		System.out.println("Number of Questions: " + numberOfQuestionsFromLastFile);
+		System.out.println("Total Number of Questions: " + results.size());
+		lastSizeOfResults = results.size();
+		
 		results.add(JSONParser.parseQald7File1("./data/original/QALD-master/7/data/qald-7-train-multilingual-extended-json.json", "QALD-7", "dbpedia"));
+		System.out.println("File: " + "./data/original/QALD-master/7/data/qald-7-train-multilingual-extended-json");
+		numberOfQuestionsFromLastFile = results.size() - lastSizeOfResults;
+		System.out.println("Number of Questions: " + numberOfQuestionsFromLastFile);
+		System.out.println("Total Number of Questions: " + results.size());
+		lastSizeOfResults = results.size();
+		
 		results.add(JSONParser.parseQald7File2("./data/original/QALD-master/7/data/qald-7-train-en-wikidata.json", "QALD-7", "wikidata"));
+		System.out.println("File: " + "./data/original/QALD-master/7/data/qald-7-train-en-wikidata.json");
+		numberOfQuestionsFromLastFile = results.size() - lastSizeOfResults;
+		System.out.println("Number of Questions: " + numberOfQuestionsFromLastFile);
+		System.out.println("Total Number of Questions: " + results.size());
+		lastSizeOfResults = results.size();
+		
 		results.add(JSONParser.parseQald7File3("./data/original/QALD-master/7/data/qald-7-train-hybrid-extended-json.json", "QALD-7", "dbpedia"));
+		System.out.println("File: " + "./data/original/QALD-master/7/data/qald-7-train-hybrid-extended-json.json");
+		numberOfQuestionsFromLastFile = results.size() - lastSizeOfResults;
+		System.out.println("Number of Questions: " + numberOfQuestionsFromLastFile);
+		System.out.println("Total Number of Questions: " + results.size());
+		lastSizeOfResults = results.size();
+		
 		results.add(JSONParser.parseQald7File4("./data/original/QALD-master/7/data/qald-7-train-hybrid.json", "QALD-7", "dbpedia"));
+		System.out.println("File: " + "./data/original/QALD-master/7/data/qald-7-train-hybrid.json");
+		numberOfQuestionsFromLastFile = results.size() - lastSizeOfResults;
+		System.out.println("Number of Questions: " + numberOfQuestionsFromLastFile);
+		System.out.println("Total Number of Questions: " + results.size());
+		lastSizeOfResults = results.size();
+		
 		results.add(JSONParser.parseQald7File3("./data/original/QALD-master/7/data/qald-7-train-multilingual-extended-json.json", "QALD-7", "dbpedia"));
+		System.out.println("File: " + "./data/original/QALD-master/7/data/qald-7-train-multilingual-extended-json.json");
+		numberOfQuestionsFromLastFile = results.size() - lastSizeOfResults;
+		System.out.println("Number of Questions: " + numberOfQuestionsFromLastFile);
+		System.out.println("Total Number of Questions: " + results.size());
+		lastSizeOfResults = results.size();
+		
 		results.add(JSONParser.parseQald7File2("./data/original/QALD-master/7/data/qald-7-test-multilingual.json", "QALD-7", "dbpedia"));
+		System.out.println("File: " + "./data/original/QALD-master/7/data/qald-7-test-multilingual.json");
+		numberOfQuestionsFromLastFile = results.size() - lastSizeOfResults;
+		System.out.println("Number of Questions: " + numberOfQuestionsFromLastFile);
+		System.out.println("Total Number of Questions: " + results.size());
+		lastSizeOfResults = results.size();
+		
 		results.add(JSONParser.parseQald7File2("./data/original/QALD-master/7/data/qald-7-train-largescale.json", "QALD-7", "dbpedia"));
+		System.out.println("File: " + "./data/original/QALD-master/7/data/qald-7-train-largescale.json");
+		numberOfQuestionsFromLastFile = results.size() - lastSizeOfResults;
+		System.out.println("Number of Questions: " + numberOfQuestionsFromLastFile);
+		System.out.println("Total Number of Questions: " + results.size());
+		lastSizeOfResults = results.size();
+		
 		
 		//8
 		results.add(JSONParser.parseQald8File("./data/original/QALD-master/8/data/qald-8-test-multilingual.json", "QALD-8", "dbpedia"));
+		System.out.println("File: " + "./data/original/QALD-master/8/data/qald-8-test-multilingual.json");
+		numberOfQuestionsFromLastFile = results.size() - lastSizeOfResults;
+		System.out.println("Number of Questions: " + numberOfQuestionsFromLastFile);
+		System.out.println("Total Number of Questions: " + results.size());
+		lastSizeOfResults = results.size();
+		
 		results.add(JSONParser.parseQald8File("./data/original/QALD-master/8/data/qald-8-train-multilingual.json", "QALD-8", "dbpedia"));
+		System.out.println("File: " + "./data/original/QALD-master/8/data/qald-8-train-multilingual.json");
+		numberOfQuestionsFromLastFile = results.size() - lastSizeOfResults;
+		System.out.println("Number of Questions: " + numberOfQuestionsFromLastFile);
+		System.out.println("Total Number of Questions: " + results.size());
+		lastSizeOfResults = results.size();
+		
 		results.add(JSONParser.parseQald7File2("./data/original/QALD-master/8/data/wikidata-train-7.json", "QALD-8", "wikidata"));
+		System.out.println("File: " + "./data/original/QALD-master/8/data/wikidata-train-7.json");
+		numberOfQuestionsFromLastFile = results.size() - lastSizeOfResults;
+		System.out.println("Number of Questions: " + numberOfQuestionsFromLastFile);
+		System.out.println("Total Number of Questions: " + results.size());
+		lastSizeOfResults = results.size();
 		
 		//9 
 		results.add(JSONParser.parseQald9File("./data/original/QALD-master/9/data/qald-9-train-multilingual.json", "QALD-9", "dbpedia"));
+		System.out.println("File: " + "./data/original/QALD-master/9/data/qald-9-train-multilingual.json");
+		numberOfQuestionsFromLastFile = results.size() - lastSizeOfResults;
+		System.out.println("Number of Questions: " + numberOfQuestionsFromLastFile);
+		System.out.println("Total Number of Questions: " + results.size());
+		lastSizeOfResults = results.size();
 
 		return results;
 	}
