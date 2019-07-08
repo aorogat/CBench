@@ -58,7 +58,7 @@ public class XMLParser {
 	            	System.out.println(e);
 	            }
 	            
-	            
+	            if(question.getQuestionQuery() != null)
 	            questionsList.add(question);
 	         }
 	      } catch (Exception e) {
@@ -125,7 +125,7 @@ public class XMLParser {
 	            	System.out.println(e);
 	            }
 	            
-	            
+	            if(question.getQuestionQuery() != null)
 	            questionsList.add(question);
 	         }
 	      } catch (Exception e) {
@@ -171,6 +171,7 @@ public class XMLParser {
 	            for(int j = 0; j < answersList.getLength(); ++j) {
 	            	question.addAnswer(getCharacterDataFromElement((Element)answersList.item(j)));
 	            }
+	            if(question.getQuestionQuery() != null)
 	            questionsList.add(question);
 	         }
 	      } catch (Exception e) {

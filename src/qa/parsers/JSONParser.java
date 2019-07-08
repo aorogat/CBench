@@ -17,8 +17,9 @@ public class JSONParser {
 	 * @param fileDirectory the path to the file to be parsed
 	 * @param sourceString the string describing the source associated with these question
 	 * @return ArrayList<Question> the list of questions parsed from file
+	 * @throws JSONException 
 	 */
-	public static ArrayList<Question> parseQuADFile(String fileDirectory, String sourceString, String endpoint) {
+	public static ArrayList<Question> parseQuADFile(String fileDirectory, String sourceString, String endpoint) throws JSONException {
 		ArrayList<Question> questionsList = new ArrayList<Question>();
 		//System.out.println("Reading file " + fileDirectory + "...");
 		String fileContents = FileManager.readWholeFile(fileDirectory);
@@ -38,7 +39,7 @@ public class JSONParser {
 			
 			// The question's SPARQL Query
 			question.setQuestionQuery(currentQuestionObject.getString("sparql_query"));
-
+			if(question.getQuestionQuery() != null)
 			questionsList.add(question);
 		}
 		return questionsList;
@@ -93,7 +94,8 @@ public class JSONParser {
 				}
 				
 			}
-			questionsList.add(question);
+			if(question.getQuestionQuery() != null)
+				questionsList.add(question);
 		}
 		return questionsList;
 	}
@@ -165,6 +167,7 @@ public class JSONParser {
 					question.addAnswer(bindingsArray.getJSONObject(j).getJSONObject(type).getString("value"));
 				}
 			}
+			if(question.getQuestionQuery() != null)
 			questionsList.add(question);
 		}
 		return questionsList;
@@ -240,6 +243,7 @@ public class JSONParser {
 					}
 				}
 			}
+			if(question.getQuestionQuery() != null)
 			questionsList.add(question);
 		}
 		return questionsList;
@@ -252,8 +256,9 @@ public class JSONParser {
 	 * @param fileDirectory the path to the file to be parsed
 	 * @param sourceString the string describing the source associated with these question
 	 * @return ArrayList<Question> the list of questions parsed from file
+	 * @throws JSONException 
 	 */
-	public static ArrayList<Question> parseQald7File3(String fileDirectory, String sourceString, String endpoint) {
+	public static ArrayList<Question> parseQald7File3(String fileDirectory, String sourceString, String endpoint) throws JSONException {
 		ArrayList<Question> questionsList = new ArrayList<Question>();
 		//System.out.println("Reading file " + fileDirectory + "...");
 		String fileContents = FileManager.readWholeFile(fileDirectory);
@@ -310,6 +315,7 @@ public class JSONParser {
 					}
 				}
 			question.setAnswers(answers);
+			if(question.getQuestionQuery() != null)
 			questionsList.add(question);
 		}
 		return questionsList;
@@ -322,8 +328,9 @@ public class JSONParser {
 	 * @param fileDirectory the path to the file to be parsed
 	 * @param sourceString the string describing the source associated with these question
 	 * @return ArrayList<Question> the list of questions parsed from file
+	 * @throws JSONException 
 	 */
-	public static ArrayList<Question> parseQald7File4(String fileDirectory, String sourceString, String endpoint) {
+	public static ArrayList<Question> parseQald7File4(String fileDirectory, String sourceString, String endpoint) throws JSONException {
 		ArrayList<Question> questionsList = new ArrayList<Question>();
 		String fileContents = FileManager.readWholeFile(fileDirectory);
 		JSONObject obj = new JSONObject(fileContents);
@@ -386,6 +393,7 @@ public class JSONParser {
 					}
 				}
 			question.setAnswers(answers);
+			if(question.getQuestionQuery() != null)
 			questionsList.add(question);
 		}
 		return questionsList;
@@ -396,8 +404,9 @@ public class JSONParser {
 	 * @param fileDirectory the path to the file to be parsed
 	 * @param sourceString the string describing the source associated with these question
 	 * @return ArrayList<Question> the list of questions parsed from file
+	 * @throws JSONException 
 	 */
-	public static ArrayList<Question> parseQald5(String fileDirectory, String sourceString, String endpoint) {
+	public static ArrayList<Question> parseQald5(String fileDirectory, String sourceString, String endpoint) throws JSONException {
 		ArrayList<Question> questionsList = new ArrayList<Question>();
 		//System.out.println("Reading file " + fileDirectory + "...");
 		String fileContents = FileManager.readWholeFile(fileDirectory);
@@ -437,11 +446,12 @@ public class JSONParser {
 					question.addAnswer(answersArray.getJSONObject(j).getString("string"));
 				}
 			}
+			if(question.getQuestionQuery() != null)
 			questionsList.add(question);
 		}
 		return questionsList;
 	}
-	public static ArrayList<Question> parseQald7File6(String fileDirectory, String sourceString, String endpoint) {
+	public static ArrayList<Question> parseQald7File6(String fileDirectory, String sourceString, String endpoint) throws JSONException {
 		ArrayList<Question> questionsList = new ArrayList<Question>();
 		String fileContents = FileManager.readWholeFile(fileDirectory);
 		//System.out.println("Parsing file...");
@@ -494,6 +504,7 @@ public class JSONParser {
 				}
 			
 			question.setAnswers(answers);
+			if(question.getQuestionQuery() != null)
 			questionsList.add(question);
 		}
 		return questionsList;
