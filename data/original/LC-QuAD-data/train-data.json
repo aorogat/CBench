@@ -1,4 +1,5 @@
-[
+{
+"questions": [
     {
         "_id": "1501", 
         "corrected_question": "How many movies did Stanley Kubrick direct?", 
@@ -28000,3 +28001,4 @@
         "sparql_template_id": 2
     }
 ]
+}
