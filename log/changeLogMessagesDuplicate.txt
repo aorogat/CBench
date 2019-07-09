@@ -1,7 +1,3 @@
-./data/original/LC-QuAD-data/train-data.json	'Which political party got elected in First Legislative Assembly of Uttar Pradesh ?' is a duplicate; found in paths: 	         ./data/original/LC-QuAD-data/train-data.json and 	        ./data/original/LC-QuAD-data/train-data.json	Instance found in newer file ./data/original/LC-QuAD-data/train-data.json will be kept.		
-
-./data/original/LC-QuAD-data/train-data.json	'Who is the author of Karakuri Dji Ultimo ?' is a duplicate; found in paths: 	         ./data/original/LC-QuAD-data/train-data.json and 	        ./data/original/LC-QuAD-data/train-data.json	Instance found in newer file ./data/original/LC-QuAD-data/train-data.json will be kept.		
-
 ./data/original/QALD-master/1/data/dbpedia-train-CDATA.xml	'What is the official website of Tom Hanks?' is a duplicate; found in paths: 	         ./data/original/QALD-master/1/data/dbpedia-train-CDATA.xml and 	        ./data/original/QALD-master/1/data/dbpedia-train.xml	Instance found in newer file ./data/original/QALD-master/1/data/dbpedia-train-CDATA.xml will be kept.		
 
 ./data/original/QALD-master/1/data/dbpedia-train-CDATA.xml	'Give me the websites of companies with more than 500000 employees.' is a duplicate; found in paths: 	         ./data/original/QALD-master/1/data/dbpedia-train-CDATA.xml and 	        ./data/original/QALD-master/1/data/dbpedia-train.xml	Instance found in newer file ./data/original/QALD-master/1/data/dbpedia-train-CDATA.xml will be kept.		
@@ -3586,6 +3582,8 @@
 
 ./data/original/QALD-master/8/data/wikidata-train-7.json	'Who was the doctoral supervisor of Albert Einstein?' is a duplicate; found in paths: 	         ./data/original/QALD-master/8/data/wikidata-train-7.json and 	        ./data/original/QALD-master/8/data/qald-8-train-multilingual.json	Instance found in newer file ./data/original/QALD-master/8/data/wikidata-train-7.json will be kept.		
 
+./data/original/QALD-master/8/data/wikidata-train-7.json	'Did Kaurismäki ever win the Grand Prix at Cannes?' is a duplicate; found in paths: 	         ./data/original/QALD-master/8/data/wikidata-train-7.json and 	        ./data/original/QALD-master/8/data/qald-8-train-multilingual.json	Instance found in newer file ./data/original/QALD-master/8/data/wikidata-train-7.json will be kept.		
+
 ./data/original/QALD-master/8/data/wikidata-train-7.json	'Who wrote the song Hotel California?' is a duplicate; found in paths: 	         ./data/original/QALD-master/8/data/wikidata-train-7.json and 	        ./data/original/QALD-master/8/data/qald-8-train-multilingual.json	Instance found in newer file ./data/original/QALD-master/8/data/wikidata-train-7.json will be kept.		
 
 ./data/original/QALD-master/8/data/wikidata-train-7.json	'Who was on the Apollo 11 mission?' is a duplicate; found in paths: 	         ./data/original/QALD-master/8/data/wikidata-train-7.json and 	        ./data/original/QALD-master/7/data/qald-7-train-en-wikidata.json	Instance found in newer file ./data/original/QALD-master/8/data/wikidata-train-7.json will be kept.		
@@ -3619,6 +3617,8 @@
 ./data/original/QALD-master/8/data/wikidata-train-7.json	'What is the largest country in the world?' is a duplicate; found in paths: 	         ./data/original/QALD-master/8/data/wikidata-train-7.json and 	        ./data/original/QALD-master/8/data/qald-8-train-multilingual.json	Instance found in newer file ./data/original/QALD-master/8/data/wikidata-train-7.json will be kept.		
 
 ./data/original/QALD-master/8/data/wikidata-train-7.json	'Which states border Illinois?' is a duplicate; found in paths: 	         ./data/original/QALD-master/8/data/wikidata-train-7.json and 	        ./data/original/QALD-master/7/data/qald-7-train-en-wikidata.json	Instance found in newer file ./data/original/QALD-master/8/data/wikidata-train-7.json will be kept.		
+
+./data/original/QALD-master/8/data/wikidata-train-7.json	'How many goals did Pelé score?' is a duplicate; found in paths: 	         ./data/original/QALD-master/8/data/wikidata-train-7.json and 	        ./data/original/QALD-master/7/data/qald-7-train-en-wikidata.json	Instance found in newer file ./data/original/QALD-master/8/data/wikidata-train-7.json will be kept.		
 
 ./data/original/QALD-master/8/data/wikidata-train-7.json	'Who is the president of Eritrea?' is a duplicate; found in paths: 	         ./data/original/QALD-master/8/data/wikidata-train-7.json and 	        ./data/original/QALD-master/8/data/qald-8-train-multilingual.json	Instance found in newer file ./data/original/QALD-master/8/data/wikidata-train-7.json will be kept.		
 
@@ -4366,7 +4366,7 @@
 
 ./data/original/QALD-master/9/data/qald-9-train-multilingual.json	'Did Che Guevara have children?' is a duplicate; found in paths: 	         ./data/original/QALD-master/9/data/qald-9-train-multilingual.json and 	        ./data/original/QALD-master/8/data/qald-8-train-multilingual.json	Instance found in newer file ./data/original/QALD-master/9/data/qald-9-train-multilingual.json will be kept.		
 
-./data/original/QALD-master/9/data/qald-9-train-multilingual.json	'Did Kaurismäki ever win the Grand Prix at Cannes?' is a duplicate; found in paths: 	         ./data/original/QALD-master/9/data/qald-9-train-multilingual.json and 	        ./data/original/QALD-master/8/data/qald-8-train-multilingual.json	Instance found in newer file ./data/original/QALD-master/9/data/qald-9-train-multilingual.json will be kept.		
+./data/original/QALD-master/9/data/qald-9-train-multilingual.json	'Did Kaurismäki ever win the Grand Prix at Cannes?' is a duplicate; found in paths: 	         ./data/original/QALD-master/9/data/qald-9-train-multilingual.json and 	        ./data/original/QALD-master/8/data/wikidata-train-7.json	Instance found in newer file ./data/original/QALD-master/9/data/qald-9-train-multilingual.json will be kept.		
 
 ./data/original/QALD-master/9/data/qald-9-train-multilingual.json	'To which party does the mayor of Paris belong?' is a duplicate; found in paths: 	         ./data/original/QALD-master/9/data/qald-9-train-multilingual.json and 	        ./data/original/QALD-master/8/data/wikidata-train-7.json	Instance found in newer file ./data/original/QALD-master/9/data/qald-9-train-multilingual.json will be kept.		
 

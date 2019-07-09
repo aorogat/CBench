@@ -1,22 +1,21 @@
-Number of keywords: 17
-Number of hits: 89912
-Number of queries: 2369
-: 14214
-: 14214
-: 14214
-: 14214
-: 14214
-: 14214
-SELECT: 1940
-ASK : 429
-DISTINCT: 1844
-LIMIT: 48
+Number of keywords: 16
+Number of hits: 23056
+Number of queries: 600
+: 3600
+: 3600
+: 3600
+: 3600
+: 3600
+: 3600
+SELECT: 538
+ASK : 62
+DISTINCT: 441
+LIMIT: 49
 OFFSET: 32
 ORDER BY: 44
 FILTER: 99
 UNION: 48
 OPTIONAL: 60
-GRAPH: 1
 NOT EXISTS: 1
 COUNT: 34
 GROUP BY: 3

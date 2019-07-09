@@ -5,6 +5,6 @@
 5 triples: 19
 4 triples: 18
 3 triples: 21
-2 triples: 901
-1 triples: 1382
+2 triples: 98
+1 triples: 416
 0 triples: 18

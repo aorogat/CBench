@@ -478,18 +478,18 @@ public class QACompiler {
 		
 		//LC- QuAD
 //		results.add(JSONParser.parseQuADFile("./data/original/LC-QuAD-data/test-data.json", "QUAD", "dbpedia"));
-//		System.out.println("File: " + "./data/original/LC-QuAD-data/test-data.json");
-//		numberOfQuestionsFromLastFile = results.get(resultsIndex).size() ;;
-//		System.out.println("Number of Questions: " + numberOfQuestionsFromLastFile);
-//		System.out.println("Total Number of Questions: " + results.get(resultsIndex).size());
-//		
+//		System.out.println("File: " + "./data/original/QALD-master/1/data/dbpedia-test.xml");
+//		System.out.println("Number of Questions: " + results.get(resultsIndex).size() );
+//		totalNumberOfQuestions += results.get(resultsIndex).size();
+//		System.out.println("Total Number of Questions: " + totalNumberOfQuestions);
+//		++resultsIndex;
 		
 //		results.add(JSONParser.parseQuADFile("./data/original/LC-QuAD-data/train-data.json", "QUAD", "dbpedia"));
-//		System.out.println("File: " + "./data/original/LC-QuAD-data/train-data.json");
-//		numberOfQuestionsFromLastFile = results.get(resultsIndex).size() ;;
-//		System.out.println("Number of Questions: " + numberOfQuestionsFromLastFile);
-//		System.out.println("Total Number of Questions: " + results.get(resultsIndex).size());
-//		
+//		System.out.println("File: " + "./data/original/QALD-master/1/data/dbpedia-test.xml");
+//		System.out.println("Number of Questions: " + results.get(resultsIndex).size() );
+//		totalNumberOfQuestions += results.get(resultsIndex).size();
+//		System.out.println("Total Number of Questions: " + totalNumberOfQuestions);
+//		++resultsIndex;
 		
 		//QALD
 		//1
@@ -498,7 +498,6 @@ public class QACompiler {
 		System.out.println("Number of Questions: " + results.get(resultsIndex).size() );
 		totalNumberOfQuestions += results.get(resultsIndex).size();
 		System.out.println("Total Number of Questions: " + totalNumberOfQuestions);
-		
 		++resultsIndex;
 		
 		results.add(XMLParser.parseQald1("./data/original/QALD-master/1/data/dbpedia-train.xml", "QALD-1", "dbpedia", false));

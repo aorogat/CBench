@@ -1,18 +1,17 @@
-TOTAL: 2369
+TOTAL: 600
 
-  minus   count: 5
+  minus   count: 2
   offset  limit order by: 1
   graph   minus: 1
   order by limit offset asc(: 6
-     limit: 2
-  minus   sum: 2
+     limit: 3
   filter   optional: 42
-     graph: 16
+     graph: 1
   limit   graph: 1
   offset  limit filter: 1
   optional filter union count: 2
  limit union offset order by desc(: 3
-none: 1939
+none: 361
   order by   desc(: 1
  limit minus offset order by desc(: 1
   filter   not exists: 1
@@ -20,17 +19,16 @@ none: 1939
   limit   order by: 1
   optional  filter minus: 1
   optional  filter count: 1
-     union: 16
+     union: 10
   union   minus: 1
   order by  limit desc(: 6
   union   count: 12
   group by union count having: 1
  limit filter offset order by desc(: 1
  limit count offset order by desc(: 1
-     minus: 76
+     minus: 12
   union  filter optional: 12
-     count: 151
-     sum: 4
+     count: 53
   filter   union: 5
  limit optional order by filter desc(: 2
  limit count order by filter desc(: 1

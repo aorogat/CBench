@@ -1,4 +1,4 @@
-Total: 4
+Total: 2
 
 File: ./data/original/QALD-master/4/data/qald-4_multilingual_test_withanswers.xml
 Question: 'What does CPU stand for?
@@ -11,20 +11,6 @@ File: ./data/original/QALD-master/7/data/qald-7-train-hybrid.json
 Question: 'Which buildings in art deco style did Shreve, Lamb and Harmon design?
 Query: PREFIX dbo: <http://dbpedia.org/ontology/> PREFIX res: <http://dbpedia.org/resource/> PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> SELECT DISTINCT ?uri  WHERE {         ?uri dbo:architect res:Shreve,_Lamb_&_Harmon .       { ?uri dbo:architecturalStyle res:Art_Deco . }       UNION       { ?uri text:"style text:"art deco" . }  }
 Exception: Lexical error at line 1, column 214.  Encountered: "L" (76), after : "_"
-
-
-
-File: ./data/original/QALD-master/9/data/qald-9-train-multilingual.json
-Question: 'how much is the elevation of Düsseldorf Airport ?
-Query: PREFIX dbo: <http://dbpedia.org/ontology/> PREFIX dbr: <http://dbpedia.org/resource/> SELECT ?ele WHERE { dbr:Düsseldorf_Airport dbo:elevation ?ele } LIMIT 1
-Exception: Lexical error at line 1, column 113.  Encountered: "\u00bc" (188), after : ""
-
-
-
-File: ./data/original/QALD-master/9/data/qald-9-train-multilingual.json
-Question: 'Did Kaurismäki ever win the Grand Prix at Cannes?
-Query: PREFIX dbo: <http://dbpedia.org/ontology/> PREFIX res: <http://dbpedia.org/resource/> ASK WHERE { res:Aki_Kaurismäki dbo:award <http://dbpedia.org/resource/Grand_Prix_(Cannes_Film_Festival)> }
-Exception: Lexical error at line 1, column 115.  Encountered: "\u00a4" (164), after : ""
 
 
 
