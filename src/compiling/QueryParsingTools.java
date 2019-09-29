@@ -4,7 +4,7 @@ import qa.dataStructures.Question;
 
 public class QueryParsingTools {
 	//Calculate the number of tuples in the query
-	static int getNumberOfTuples(String query) {
+	public static int getNumberOfTuples(String query) {
 		int ind = query.indexOf("{");
 		int result = 0;
 		
@@ -55,7 +55,7 @@ public class QueryParsingTools {
 	}
 
 	//Calculate which combinations of operators are found in the query
-	static void operatorDistribution(Question q, boolean full) {
+	public static void operatorDistribution(Question q, boolean full) {
 		String query = q.getQuestionQuery();
 
 		if(full)
