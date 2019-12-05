@@ -6,19 +6,14 @@
 package ShapeAnalysis;
 
 import DataSet.DataSetPreprocessing;
-import static DataSet.DataSetPreprocessing.queries;
-import static DataSet.DataSetPreprocessing.questions;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import org.apache.jena.query.Query;
 import org.apache.jena.query.QueryFactory;
 import org.apache.jena.query.Syntax;
 import qa.dataStructures.Question;
-import java.io.File;
 import java.io.StringWriter;
  
 import javax.xml.bind.JAXBContext;
