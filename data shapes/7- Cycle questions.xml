@@ -1,0 +1,143 @@
+<questions>
+<question>
+    <id>1</id>
+    <database>Freebase</database>
+    <questionSource>Freebase_Web</questionSource>
+    <filepath>./data/Freebase/SPARQL/WebQuestionsSP/WebQSP.train.json</filepath>
+    <questionString>who played nba finals 2010?</questionString>
+    <questionQuery>#MANUAL SPARQL
+PREFIX ns: &lt;http://rdf.freebase.com/ns/&gt;
+SELECT DISTINCT ?x
+WHERE {
+  {
+    ns:m.0bx_x85 ns:sports.sports_championship_event.champion ?x .
+  }
+  UNION
+  {
+    ns:m.0bx_x85 ns:sports.sports_championship_event.runner_up ?x . 
+  }
+}</questionQuery>
+    <answers>
+        <answer>Boston Celtics</answer>
+        <answer>Los Angeles Lakers</answer>
+    </answers>
+</question><question>
+    <id>2</id>
+    <database>Freebase</database>
+    <questionSource>Freebase_Web</questionSource>
+    <filepath>./data/Freebase/SPARQL/WebQuestionsSP/WebQSP.train.json</filepath>
+    <questionString>what did newton discover or invent?</questionString>
+    <questionQuery>#MANUAL SPARQL
+PREFIX ns: &lt;http://rdf.freebase.com/ns/&gt;
+SELECT DISTINCT ?x
+WHERE {
+	{ 
+	  ns:m.03s9v ns:base.argumentmaps.innovator.original_ideas ?x .
+	}
+	UNION
+	{
+	  ns:m.03s9v ns:law.inventor.inventions ?x .
+	}
+}</questionQuery>
+    <answers>
+        <answer>Newton's law of universal gravitation</answer>
+        <answer>Reflecting telescope</answer>
+        <answer>Pet door</answer>
+    </answers>
+</question><question>
+    <id>3</id>
+    <database>Freebase</database>
+    <questionSource>Freebase_Web</questionSource>
+    <filepath>./data/Freebase/SPARQL/WebQuestionsSP/WebQSP.train.json</filepath>
+    <questionString>what teams played in the 2010 stanley cup?</questionString>
+    <questionQuery>#MANUAL SPARQL
+PREFIX ns: &lt;http://rdf.freebase.com/ns/&gt;
+SELECT DISTINCT ?x
+WHERE {
+  {
+    ns:m.0by0ww1 ns:sports.sports_championship_event.champion ?x .
+  }
+  UNION
+  {
+    ns:m.0by0ww1 ns:sports.sports_championship_event.runner_up ?x . 
+  }
+}</questionQuery>
+    <answers>
+        <answer>Philadelphia Flyers</answer>
+        <answer>Chicago Blackhawks</answer>
+    </answers>
+</question><question>
+    <id>4</id>
+    <database>Freebase</database>
+    <questionSource>Freebase_Web</questionSource>
+    <filepath>./data/Freebase/SPARQL/WebQuestionsSP/WebQSP.test.json</filepath>
+    <questionString>what are all the songs justin bieber wrote?</questionString>
+    <questionQuery>#MANUAL SPARQL
+PREFIX ns: &lt;http://rdf.freebase.com/ns/&gt;
+SELECT DISTINCT ?x
+WHERE {
+	{ 
+	  # Lyrics
+	  ns:m.06w2sn5 ns:music.lyricist.lyrics_written ?x .
+	}
+	UNION
+	{
+	  # Compositions
+	  ns:m.06w2sn5 ns:music.composer.compositions ?x .
+	}
+}</questionQuery>
+    <answers>
+        <answer>Lolly</answer>
+        <answer>Home to Mama</answer>
+        <answer>Baby</answer>
+        <answer>Never Let You Go</answer>
+        <answer>Eenie Meenie</answer>
+        <answer>Somebody to Love</answer>
+        <answer>Never Say Never</answer>
+        <answer>Bigger</answer>
+        <answer>Pray</answer>
+        <answer>First Dance</answer>
+        <answer>Live My Life</answer>
+        <answer>Boyfriend</answer>
+        <answer>Turn to You (Mother's Day Dedication)</answer>
+        <answer>Die in Your Arms</answer>
+        <answer>Thought Of You</answer>
+        <answer>Beauty And A Beat</answer>
+        <answer>All Around The World</answer>
+        <answer>As Long as You Love Me</answer>
+        <answer>Beautiful</answer>
+        <answer>Right Here</answer>
+        <answer>#thatPower</answer>
+        <answer>Heartbreaker</answer>
+        <answer>All That Matters</answer>
+        <answer>Hold Tight</answer>
+        <answer>Wait for a Minute</answer>
+        <answer>Recovery</answer>
+        <answer>Bad Day</answer>
+        <answer>All Bad</answer>
+        <answer>PYD</answer>
+        <answer>Change Me</answer>
+        <answer>Roller Coaster</answer>
+        <answer>Confident</answer>
+    </answers>
+</question><question>
+    <id>5</id>
+    <database>dbpedia</database>
+    <questionSource>QALD-9</questionSource>
+    <filepath>./data/DBpedia/SPARQL/QALD-master/9/data/qald-9-train-multilingual.json</filepath>
+    <questionString>Which films starring Clint Eastwood did he direct himself?</questionString>
+    <questionQuery>SELECT DISTINCT ?uri WHERE { ?uri &lt;http://dbpedia.org/ontology/director&gt; &lt;http://dbpedia.org/resource/Clint_Eastwood&gt; ; &lt;http://dbpedia.org/ontology/starring&gt; &lt;http://dbpedia.org/resource/Clint_Eastwood&gt; }</questionQuery>
+    <answers>
+        <answer>http://dbpedia.org/resource/Play_Misty_for_Me</answer>
+        <answer>http://dbpedia.org/resource/Blood_Work_(film)</answer>
+        <answer>http://dbpedia.org/resource/Space_Cowboys</answer>
+        <answer>http://dbpedia.org/resource/The_Gauntlet_(film)</answer>
+        <answer>http://dbpedia.org/resource/Million_Dollar_Baby</answer>
+        <answer>http://dbpedia.org/resource/True_Crime_(1999_film)</answer>
+        <answer>http://dbpedia.org/resource/Bronco_Billy</answer>
+        <answer>http://dbpedia.org/resource/Magnum_Force</answer>
+        <answer>http://dbpedia.org/resource/High_Plains_Drifter</answer>
+        <answer>http://dbpedia.org/resource/Gran_Torino</answer>
+    </answers>
+</question></questions>
+
