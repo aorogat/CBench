@@ -3,10 +3,7 @@ package ShapeAnalysis;
 import Graph.Edge;
 import Graph.Graph;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.Iterator;
-import java.util.List;
-import java.util.Set;
 import org.apache.jena.query.Query;
 import org.apache.jena.query.QueryFactory;
 import org.apache.jena.sparql.core.TriplePath;
@@ -360,7 +357,7 @@ public class QueryShapeType {
             );
 
         } catch (Exception e) {
-            //System.out.println("This Query has a problem");
+            System.err.println("This Query has a problem in its graph");
         }
         return graph;
     }
