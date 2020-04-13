@@ -14,7 +14,7 @@ import javax.xml.bind.annotation.XmlType;
  *
  */
 @XmlRootElement(name = "question")
-@XmlType (propOrder={"id","database","questionSource","filepath","questionString","questionQuery","answers"})
+@XmlType (propOrder={"id","database","questionSource","filepath","questionString","keywords","questionQuery","answers"})
 public class Question {
 
     private int id;
@@ -22,6 +22,7 @@ public class Question {
     private String questionQuery;
     private String questionSource;
     private ArrayList<String> answers;
+    private String keywords;
     private String database;
     private String filePath;
 
@@ -46,6 +47,10 @@ public class Question {
 
     public void addAnswer(String answer) {
         answers.add(answer);
+    }
+    
+    public void addKeyword(String keyword) {
+        answers.add(keyword);
     }
 
     public void setFilepath(String newFilePath) {
@@ -88,6 +93,16 @@ public class Question {
         this.questionSource = questionSource;
     }
 
+    public String getKeywords() {
+        return keywords;
+    }
+
+    public void setKeywords(String keywords) {
+        this.keywords = keywords;
+    }
+    
+    
+
     @XmlElementWrapper(name = "answers")
     @XmlElements(
             @XmlElement(name = "answer", type = String.class))
@@ -98,5 +113,7 @@ public class Question {
     public void setAnswers(ArrayList<String> answers) {
         this.answers = answers;
     }
+    
+    
 
 }

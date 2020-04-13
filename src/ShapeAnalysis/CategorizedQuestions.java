@@ -38,7 +38,7 @@ public class CategorizedQuestions {
     ArrayList<Question> flowerSet_Qs = new ArrayList<Question>();
 
     public CategorizedQuestions() {
-        DataSetPreprocessing.getQueriesWithoutDuplicates();
+        DataSetPreprocessing.getQueriesWithoutDuplicates(6, false, false, false);
         for (Question q : DataSetPreprocessing.questionsWithoutDuplicates) {
             String queryString = q.getQuestionQuery();
             try {
@@ -83,50 +83,50 @@ public class CategorizedQuestions {
         CategorizedQuestions categories = new CategorizedQuestions();
         System.out.println();
         
-        PrintWriter writer;
-        try {
-            writer = new PrintWriter("1- Single Edge questions.xml", "UTF-8");
-            writer.println(categories.printQuestionsAsXML(categories.singleShape_Qs));
-            writer.close();
-            
-            writer = new PrintWriter("2- Chain questions.xml", "UTF-8");
-            writer.println(categories.printQuestionsAsXML(categories.chain_Qs));
-            writer.close();
-            
-            writer = new PrintWriter("3- Chain set questions.xml", "UTF-8");
-            writer.println(categories.printQuestionsAsXML(categories.chainSet_Qs));
-            writer.close();
-           
-            writer = new PrintWriter("4- Star questions.xml", "UTF-8");
-            writer.println(categories.printQuestionsAsXML(categories.star_Qs));
-            writer.close();
-            
-            writer = new PrintWriter("5- Tree questions.xml", "UTF-8");
-            writer.println(categories.printQuestionsAsXML(categories.tree_Qs));
-            writer.close();
-            
-            writer = new PrintWriter("6- Forest questions.xml", "UTF-8");
-            writer.println(categories.printQuestionsAsXML(categories.forest_Qs));
-            writer.close();
-            
-            writer = new PrintWriter("7- Cycle questions.xml", "UTF-8");
-            writer.println(categories.printQuestionsAsXML(categories.cycle_Qs));
-            writer.close();
-            
-             
-            writer = new PrintWriter("8- Flower questions.xml", "UTF-8");
-            writer.println(categories.printQuestionsAsXML(categories.flower_Qs));
-            writer.close();
-            
-            writer = new PrintWriter("9- Flowwerset questions.xml", "UTF-8");
-            writer.println(categories.printQuestionsAsXML(categories.flowerSet_Qs));
-            writer.close();
-            
-            
-        } catch (FileNotFoundException ex) {
-        } catch (UnsupportedEncodingException ex) {
-        }
-        
+//        PrintWriter writer;
+//        try {
+//            writer = new PrintWriter("1- Web-- Single Edge questions.xml", "UTF-8");
+//            writer.println(categories.printQuestionsAsXML(categories.singleShape_Qs));
+//            writer.close();
+//            
+//            writer = new PrintWriter("2- Web-- Chain questions.xml", "UTF-8");
+//            writer.println(categories.printQuestionsAsXML(categories.chain_Qs));
+//            writer.close();
+//            
+//            writer = new PrintWriter("3- Web-- Chain set questions.xml", "UTF-8");
+//            writer.println(categories.printQuestionsAsXML(categories.chainSet_Qs));
+//            writer.close();
+//           
+//            writer = new PrintWriter("4- Web-- Star questions.xml", "UTF-8");
+//            writer.println(categories.printQuestionsAsXML(categories.star_Qs));
+//            writer.close();
+//            
+//            writer = new PrintWriter("5- Web-- Tree questions.xml", "UTF-8");
+//            writer.println(categories.printQuestionsAsXML(categories.tree_Qs));
+//            writer.close();
+//            
+//            writer = new PrintWriter("6- Web-- Forest questions.xml", "UTF-8");
+//            writer.println(categories.printQuestionsAsXML(categories.forest_Qs));
+//            writer.close();
+//            
+//            writer = new PrintWriter("7- Web-- Cycle questions.xml", "UTF-8");
+//            writer.println(categories.printQuestionsAsXML(categories.cycle_Qs));
+//            writer.close();
+//            
+//             
+//            writer = new PrintWriter("8- Web-- Flower questions.xml", "UTF-8");
+//            writer.println(categories.printQuestionsAsXML(categories.flower_Qs));
+//            writer.close();
+//            
+//            writer = new PrintWriter("9- Web-- Flowwerset questions.xml", "UTF-8");
+//            writer.println(categories.printQuestionsAsXML(categories.flowerSet_Qs));
+//            writer.close();
+//            
+//            
+//        } catch (FileNotFoundException ex) {
+//        } catch (UnsupportedEncodingException ex) {
+//        }
+//        
     }
 
     String printQuestionsAsXML(ArrayList<Question> qs) {

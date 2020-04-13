@@ -12,7 +12,7 @@ public class ShapeAnalysis {
     ArrayList<Query> qs;
 
     public ShapeAnalysis() {
-        qs = DataSetPreprocessing.getQueriesWithoutDuplicates();
+        qs = DataSetPreprocessing.getQueriesWithoutDuplicates(-9, false, true, true);
     }
 
     public static void main(String[] args) {

@@ -46,7 +46,12 @@ public class Parser {
 
 		        question.setQuestionString(getCharacterDataFromElement((Element)langList.item(0)).replace("\n", "")
                         .replaceAll("\\!\\[CDATA\\[", "").replaceAll("]]", ""));
-
+                     try{   
+                        question.setKeywords(getCharacterDataFromElement((Element)element.
+	            		getElementsByTagName("keywords").item(0))
+                            .replaceAll("\\!\\[CDATA\\[", "").replaceAll("]]", ""));
+                     
+                    }catch(Exception e){}
 	            question.setQuestionQuery(getCharacterDataFromElement((Element)element.
 	            		getElementsByTagName("query").item(0))
                             .replaceAll("\\!\\[CDATA\\[", "").replaceAll("]]", ""));

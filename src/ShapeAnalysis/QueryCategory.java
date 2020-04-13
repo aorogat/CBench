@@ -32,7 +32,7 @@ public class QueryCategory extends org.apache.jena.query.Query {
         return true;
     }
 
-    public static boolean isCQ_OF(String queryString) //CQ_OF: Conjunctive Query with simple filter and OPT (well designed)
+    public static boolean isCQ_OF(String queryString) //CQ_OF: Conjunctive Query with simple filter and OPT
     {
         if (!isAOF(queryString)) {
             return false;

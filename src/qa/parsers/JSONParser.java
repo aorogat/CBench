@@ -87,22 +87,22 @@ public class JSONParser {
 
             JSONObject currentQuestionObject = arr.getJSONObject(i);
             question.setQuestionString(currentQuestionObject.getString("utterance").replace("\n", ""));
-            
-             try{
-            JSONArray answers = currentQuestionObject.getJSONArray("targets");
-            for (int j = 0; j < answers.length(); j++) {
-                // The question's answers
-                String answer = null;
-                try {
-                    answer = (String) answers.get(j);
-                } catch (Exception e) {
-                    answer = null;
-                }
 
-                question.addAnswer(answer);
+            try {
+                JSONArray answers = currentQuestionObject.getJSONArray("targets");
+                for (int j = 0; j < answers.length(); j++) {
+                    // The question's answers
+                    String answer = null;
+                    try {
+                        answer = (String) answers.get(j);
+                    } catch (Exception e) {
+                        answer = null;
+                    }
+
+                    question.addAnswer(answer);
+                }
+            } catch (Exception e) {
             }
-            }catch(Exception e)
-            {}
 
             questionsList.add(question);
         }
@@ -126,22 +126,22 @@ public class JSONParser {
 
             JSONObject currentQuestionObject = arr.getJSONObject(i);
             question.setQuestionString(currentQuestionObject.getString("question").replace("\n", ""));
-            
-             try{
-            JSONArray answers = currentQuestionObject.getJSONArray("answers");
-            for (int j = 0; j < answers.length(); j++) {
-                // The question's answers
-                String answer = null;
-                try {
-                    answer = (String) answers.get(j);
-                } catch (Exception e) {
-                    answer = null;
-                }
 
-                question.addAnswer(answer);
+            try {
+                JSONArray answers = currentQuestionObject.getJSONArray("answers");
+                for (int j = 0; j < answers.length(); j++) {
+                    // The question's answers
+                    String answer = null;
+                    try {
+                        answer = (String) answers.get(j);
+                    } catch (Exception e) {
+                        answer = null;
+                    }
+
+                    question.addAnswer(answer);
+                }
+            } catch (Exception e) {
             }
-            }catch(Exception e)
-            {}
 
             questionsList.add(question);
         }
@@ -165,22 +165,22 @@ public class JSONParser {
 
             JSONObject currentQuestionObject = arr.getJSONObject(i);
             question.setQuestionString(currentQuestionObject.getJSONArray("questions").get(0).toString().replace("\n", ""));
-            
-             try{
-            JSONArray answers = currentQuestionObject.getJSONArray("answers");
-            for (int j = 0; j < answers.length(); j++) {
-                // The question's answers
-                String answer = null;
-                try {
-                    answer = (String) answers.get(j);
-                } catch (Exception e) {
-                    answer = null;
-                }
 
-                question.addAnswer(answer);
+            try {
+                JSONArray answers = currentQuestionObject.getJSONArray("answers");
+                for (int j = 0; j < answers.length(); j++) {
+                    // The question's answers
+                    String answer = null;
+                    try {
+                        answer = (String) answers.get(j);
+                    } catch (Exception e) {
+                        answer = null;
+                    }
+
+                    question.addAnswer(answer);
+                }
+            } catch (Exception e) {
             }
-            }catch(Exception e)
-            {}
 
             questionsList.add(question);
         }
@@ -206,22 +206,22 @@ public class JSONParser {
             question.setQuestionString(currentQuestionObject.getString("question").replace("\n", ""));
             // The question's SPARQL Query
             question.setQuestionQuery(currentQuestionObject.getString("sparql_query"));
-            
-            try{
-            JSONArray answers = currentQuestionObject.getJSONArray("answer");
-            for (int j = 0; j < answers.length(); j++) {
-                // The question's answers
-                String answer = null;
-                try {
-                    answer = (String) answers.get(j);
-                } catch (Exception e) {
-                    answer = null;
-                }
 
-                question.addAnswer(answer);
+            try {
+                JSONArray answers = currentQuestionObject.getJSONArray("answer");
+                for (int j = 0; j < answers.length(); j++) {
+                    // The question's answers
+                    String answer = null;
+                    try {
+                        answer = (String) answers.get(j);
+                    } catch (Exception e) {
+                        answer = null;
+                    }
+
+                    question.addAnswer(answer);
+                }
+            } catch (Exception e) {
             }
-            }catch(Exception e)
-            {}
 
             questionsList.add(question);
         }
@@ -252,21 +252,21 @@ public class JSONParser {
                 question.setQuestionQuery(null);
             }
 
-            try{
-            JSONArray answers = ((JSONObject) currentQuestionObject.getJSONArray("Parses").get(0)).getJSONArray("Answers");
-            for (int j = 0; j < answers.length(); j++) {
-                // The question's answers
-                String answer = null;
-                try {
-                    answer = ((JSONObject) (answers.get(j))).getString("EntityName");
-                } catch (Exception e) {
-                    answer = null;
-                }
+            try {
+                JSONArray answers = ((JSONObject) currentQuestionObject.getJSONArray("Parses").get(0)).getJSONArray("Answers");
+                for (int j = 0; j < answers.length(); j++) {
+                    // The question's answers
+                    String answer = null;
+                    try {
+                        answer = ((JSONObject) (answers.get(j))).getString("EntityName");
+                    } catch (Exception e) {
+                        answer = null;
+                    }
 
-                question.addAnswer(answer);
+                    question.addAnswer(answer);
+                }
+            } catch (Exception e) {
             }
-            }catch(Exception e)
-            {}
 
             questionsList.add(question);
 
@@ -295,6 +295,10 @@ public class JSONParser {
                 JSONObject currentQuestionLanguageObject = objectArr.getJSONObject(j);
                 if (currentQuestionLanguageObject.getString("language").compareTo("en") == 0) {
                     question.setQuestionString(currentQuestionLanguageObject.getString("string").replace("\n", ""));
+                    if (currentQuestionLanguageObject.getString("language").compareTo("en") == 0) {
+                        question.setKeywords(currentQuestionLanguageObject.getString("keywords").replace("\n", ""));
+
+                    }
                     break;
                 }
             }
@@ -372,7 +376,9 @@ public class JSONParser {
                 if (languageArr.getJSONObject(j).getString("language").compareTo("en") == 0) {
                     question.setQuestionQuery(languageArr.getJSONObject(j).getString("SPARQL"));
                     question.setQuestionString(languageArr.getJSONObject(j).getString("question").replace("\n", ""));
-
+                    if (languageArr.getJSONObject(j).getString("language").compareTo("en") == 0) {
+                        question.setKeywords(languageArr.getJSONObject(j).getString("keywords").replace("\n", ""));
+                    }
                     break;
                 }
             }
@@ -430,6 +436,10 @@ public class JSONParser {
             for (int j = 0; j < questionArray.length(); ++j) {
                 if (questionArray.getJSONObject(j).getString("language").compareTo("en") == 0) {
                     question.setQuestionString(questionArray.getJSONObject(j).getString("string").replace("\n", ""));
+                    if (questionArray.getJSONObject(j).getString("language").compareTo("en") == 0) {
+                        question.setKeywords(questionArray.getJSONObject(j).getString("keywords").replace("\n", ""));
+                        break;
+                    }
                     break;
                 }
             }
@@ -655,6 +665,10 @@ public class JSONParser {
             for (int j = 0; j < bodyArray.length(); ++j) {
                 if (bodyArray.getJSONObject(j).getString("language").compareTo("en") == 0) {
                     question.setQuestionString(bodyArray.getJSONObject(j).getString("string").replace("\n", ""));
+                    if (bodyArray.getJSONObject(j).getString("language").compareTo("en") == 0) {
+                        question.setKeywords(bodyArray.getJSONObject(j).getString("keywords").replace("\n", ""));
+
+                    }
                     break;
                 }
             }
