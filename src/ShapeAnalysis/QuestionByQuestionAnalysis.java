@@ -25,7 +25,7 @@ public class QuestionByQuestionAnalysis {
     static int counter = 0;
 
     public QuestionByQuestionAnalysis() {
-        queries = DataSetPreprocessing.getQueriesWithoutDuplicates(6, false, false, false);
+        queries = DataSetPreprocessing.getQueriesWithoutDuplicates(9, false, false, false);
         questions = DataSetPreprocessing.questionsWithoutDuplicates;
     }
 
