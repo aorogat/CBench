@@ -16,7 +16,7 @@ public class Keywords
     
     public Keywords()
     {
-        qs = DataSetPreprocessing.getQueriesWithoutDuplicates();
+        qs = DataSetPreprocessing.getQueriesWithoutDuplicates(-1, false, false, true);
     }
     
     public static void main(String[] args) {
@@ -48,9 +48,10 @@ public class Keywords
             if(q.hasOrderBy()) orderBy++;
             
             if(q.toString().toLowerCase().contains("filter")) filter++;
-            if(q.toString().toLowerCase().contains(" .")) and++;
+            if(q.toString().toLowerCase().contains(" .")
+             ||q.toString().toLowerCase().contains(" ;")) and++;
             if(q.toString().toLowerCase().contains("union")) union++;
-            if(q.toString().toLowerCase().contains("opt")) opt++;
+            if(q.toString().toLowerCase().contains("optional")) opt++;
             if(q.toString().toLowerCase().contains("graph")) graph++;
             if(q.toString().toLowerCase().contains("not exists")) notExists++;
             else if(q.toString().toLowerCase().contains("exists")) exists++;
@@ -71,24 +72,42 @@ public class Keywords
         System.out.println("& "+ "QALD 1" +" & \\\\");
         System.out.println("\\hline \\hline");
         System.out.println("Element       & \\#Queries & Relative\\%   \\\\ \\hline");
-        System.out.println("Select & " + select + "    & " + formatter.format((Double.valueOf(select)/Double.valueOf(qs.size()))*100)+"\\% \\\\");
-        System.out.println("Asks & " + ask + "    & " + formatter.format((Double.valueOf(ask)/Double.valueOf(qs.size()))*100)+"\\% \\\\");
-        System.out.println("Describe & " + describe + "    & " + formatter.format((Double.valueOf(describe)/Double.valueOf(qs.size()))*100)+"\\% \\\\");
-        System.out.println("Construct & " + construct + "    & " + formatter.format((Double.valueOf(construct)/Double.valueOf(qs.size()))*100)+"\\% \\\\ \\hline");
-        System.out.println("Distinct & " + distinct + "    & " + formatter.format((Double.valueOf(distinct)/Double.valueOf(qs.size()))*100)+"\\% \\\\");
-        System.out.println("Limit & " + limit + "    & " + formatter.format((Double.valueOf(limit)/Double.valueOf(qs.size()))*100)+"\\% \\\\");
-        System.out.println("Offset & " + offset + "    & " + formatter.format((Double.valueOf(offset)/Double.valueOf(qs.size()))*100)+"\\% \\\\");
-        System.out.println("Order By & " + orderBy + "    & " + formatter.format((Double.valueOf(orderBy)/Double.valueOf(qs.size()))*100)+"\\% \\\\ \\hline");
-        System.out.println("Filter & " + filter + "    & " + formatter.format((Double.valueOf(filter)/Double.valueOf(qs.size()))*100)+"\\% \\\\");
-        System.out.println("And & " + and + "    & " + formatter.format((Double.valueOf(and)/Double.valueOf(qs.size()))*100)+"\\% \\\\");
-        System.out.println("Union & " + union + "    & " + formatter.format((Double.valueOf(union)/Double.valueOf(qs.size()))*100)+"\\% \\\\");
-        System.out.println("Opt & " + opt + "    & " + formatter.format((Double.valueOf(opt)/Double.valueOf(qs.size()))*100)+"\\% \\\\");
-        System.out.println("Not Exists & " + notExists + "    & " + formatter.format((Double.valueOf(notExists)/Double.valueOf(qs.size()))*100)+"\\% \\\\");
-        System.out.println("Minus & " + minus + "    & " + formatter.format((Double.valueOf(minus)/Double.valueOf(qs.size()))*100)+"\\% \\\\");
-        System.out.println("Exists & " + exists + "    & " + formatter.format((Double.valueOf(exists)/Double.valueOf(qs.size()))*100)+"\\% \\\\ \\hline");
-        System.out.println("Aggregators & " + aggregators + "    & " + formatter.format((Double.valueOf(aggregators)/Double.valueOf(qs.size()))*100)+"\\% \\\\");
-        System.out.println("Group By & " + groupBy + "    & " + formatter.format((Double.valueOf(groupBy)/Double.valueOf(qs.size()))*100)+"\\% \\\\");
-        System.out.println("Having & " + having + "    & " + formatter.format((Double.valueOf(having)/Double.valueOf(qs.size()))*100)+"\\% \\\\");
+        System.out.println("Select & " + select + "    & " + 
+                formatter.format((Double.valueOf(select)/Double.valueOf(qs.size()))*100)+"\\% \\\\");
+        System.out.println("Asks & " + ask + "    & " + 
+                formatter.format((Double.valueOf(ask)/Double.valueOf(qs.size()))*100)+"\\% \\\\");
+        System.out.println("Describe & " + describe + "    & " + 
+                formatter.format((Double.valueOf(describe)/Double.valueOf(qs.size()))*100)+"\\% \\\\");
+        System.out.println("Construct & " + construct + "    & " + 
+                formatter.format((Double.valueOf(construct)/Double.valueOf(qs.size()))*100)+"\\% \\\\ \\hline");
+        System.out.println("Distinct & " + distinct + "    & " + 
+                formatter.format((Double.valueOf(distinct)/Double.valueOf(qs.size()))*100)+"\\% \\\\");
+        System.out.println("Limit & " + limit + "    & " + 
+                formatter.format((Double.valueOf(limit)/Double.valueOf(qs.size()))*100)+"\\% \\\\");
+        System.out.println("Offset & " + offset + "    & " + 
+                formatter.format((Double.valueOf(offset)/Double.valueOf(qs.size()))*100)+"\\% \\\\");
+        System.out.println("Order By & " + orderBy + "    & " + 
+                formatter.format((Double.valueOf(orderBy)/Double.valueOf(qs.size()))*100)+"\\% \\\\ \\hline");
+        System.out.println("Filter & " + filter + "    & " + 
+                formatter.format((Double.valueOf(filter)/Double.valueOf(qs.size()))*100)+"\\% \\\\");
+        System.out.println("And & " + and + "    & " + 
+                formatter.format((Double.valueOf(and)/Double.valueOf(qs.size()))*100)+"\\% \\\\");
+        System.out.println("Union & " + union + "    & " + 
+                formatter.format((Double.valueOf(union)/Double.valueOf(qs.size()))*100)+"\\% \\\\");
+        System.out.println("Opt & " + opt + "    & " + 
+                formatter.format((Double.valueOf(opt)/Double.valueOf(qs.size()))*100)+"\\% \\\\");
+        System.out.println("Not Exists & " + notExists + "    & " + 
+                formatter.format((Double.valueOf(notExists)/Double.valueOf(qs.size()))*100)+"\\% \\\\");
+        System.out.println("Minus & " + minus + "    & " + 
+                formatter.format((Double.valueOf(minus)/Double.valueOf(qs.size()))*100)+"\\% \\\\");
+        System.out.println("Exists & " + exists + "    & " + 
+                formatter.format((Double.valueOf(exists)/Double.valueOf(qs.size()))*100)+"\\% \\\\ \\hline");
+        System.out.println("Aggregators & " + aggregators + "    & " + 
+                formatter.format((Double.valueOf(aggregators)/Double.valueOf(qs.size()))*100)+"\\% \\\\");
+        System.out.println("Group By & " + groupBy + "    & " + 
+                formatter.format((Double.valueOf(groupBy)/Double.valueOf(qs.size()))*100)+"\\% \\\\");
+        System.out.println("Having & " + having + "    & " + 
+                formatter.format((Double.valueOf(having)/Double.valueOf(qs.size()))*100)+"\\% \\\\");
         System.out.println("\\end{tabular}");
         //System.out.println("\\end{longtable}");
         System.out.println("");
@@ -113,23 +132,23 @@ public class Keywords
         System.out.println(groupBy);
         System.out.println(having);
         System.out.println("");
-        System.out.println(formatter.format((Double.valueOf(select)/Double.valueOf(qs.size()))*100));
-        System.out.println(formatter.format((Double.valueOf(ask)/Double.valueOf(qs.size()))*100));
-        System.out.println(formatter.format((Double.valueOf(describe)/Double.valueOf(qs.size()))*100));
-        System.out.println(formatter.format((Double.valueOf(construct)/Double.valueOf(qs.size()))*100));
-        System.out.println(formatter.format((Double.valueOf(distinct)/Double.valueOf(qs.size()))*100));
-        System.out.println(formatter.format((Double.valueOf(limit)/Double.valueOf(qs.size()))*100));
-        System.out.println(formatter.format((Double.valueOf(offset)/Double.valueOf(qs.size()))*100));
-        System.out.println(formatter.format((Double.valueOf(orderBy)/Double.valueOf(qs.size()))*100));
-        System.out.println(formatter.format((Double.valueOf(filter)/Double.valueOf(qs.size()))*100));
-        System.out.println("and" + formatter.format((Double.valueOf(and)/Double.valueOf(qs.size()))*100));
-        System.out.println(formatter.format((Double.valueOf(union)/Double.valueOf(qs.size()))*100));
-        System.out.println(formatter.format((Double.valueOf(opt)/Double.valueOf(qs.size()))*100));
-        System.out.println(formatter.format((Double.valueOf(notExists)/Double.valueOf(qs.size()))*100));
-        System.out.println(formatter.format((Double.valueOf(minus)/Double.valueOf(qs.size()))*100));
-        System.out.println(formatter.format((Double.valueOf(exists)/Double.valueOf(qs.size()))*100));
-        System.out.println(formatter.format((Double.valueOf(aggregators)/Double.valueOf(qs.size()))*100));
-        System.out.println(formatter.format((Double.valueOf(groupBy)/Double.valueOf(qs.size()))*100));
-        System.out.println(formatter.format((Double.valueOf(having)/Double.valueOf(qs.size()))*100));
+        System.out.println(formatter.format((Double.valueOf(select)/Double.valueOf(qs.size()))*100) + "\\%");
+        System.out.println(formatter.format((Double.valueOf(ask)/Double.valueOf(qs.size()))*100) + "\\%");
+        System.out.println(formatter.format((Double.valueOf(describe)/Double.valueOf(qs.size()))*100) + "\\%");
+        System.out.println(formatter.format((Double.valueOf(construct)/Double.valueOf(qs.size()))*100) + "\\%");
+        System.out.println(formatter.format((Double.valueOf(distinct)/Double.valueOf(qs.size()))*100) + "\\%");
+        System.out.println(formatter.format((Double.valueOf(limit)/Double.valueOf(qs.size()))*100) + "\\%");
+        System.out.println(formatter.format((Double.valueOf(offset)/Double.valueOf(qs.size()))*100) + "\\%");
+        System.out.println(formatter.format((Double.valueOf(orderBy)/Double.valueOf(qs.size()))*100) + "\\%");
+        System.out.println(formatter.format((Double.valueOf(filter)/Double.valueOf(qs.size()))*100) + "\\%");
+        System.out.println(formatter.format((Double.valueOf(and)/Double.valueOf(qs.size()))*100) + "\\%");
+        System.out.println(formatter.format((Double.valueOf(union)/Double.valueOf(qs.size()))*100) + "\\%");
+        System.out.println(formatter.format((Double.valueOf(opt)/Double.valueOf(qs.size()))*100) + "\\%");
+        System.out.println(formatter.format((Double.valueOf(notExists)/Double.valueOf(qs.size()))*100) + "\\%");
+        System.out.println(formatter.format((Double.valueOf(minus)/Double.valueOf(qs.size()))*100) + "\\%");
+        System.out.println(formatter.format((Double.valueOf(exists)/Double.valueOf(qs.size()))*100) + "\\%");
+        System.out.println(formatter.format((Double.valueOf(aggregators)/Double.valueOf(qs.size()))*100) + "\\%");
+        System.out.println(formatter.format((Double.valueOf(groupBy)/Double.valueOf(qs.size()))*100) + "\\%");
+        System.out.println(formatter.format((Double.valueOf(having)/Double.valueOf(qs.size()))*100) + "\\%");
     }
 }

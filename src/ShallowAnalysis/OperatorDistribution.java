@@ -19,7 +19,7 @@ public class OperatorDistribution
                                 U = 0, UF = 0, AU = 0, AUF = 0, CPF_U = 0;
 
     public OperatorDistribution() {
-        qs = DataSetPreprocessing.getQueriesWithoutDuplicates();
+        qs = DataSetPreprocessing.getQueriesWithoutDuplicates(100, false, false, false);
     }
 
     public static void main(String[] args) {
@@ -32,9 +32,14 @@ public class OperatorDistribution
 
         for (Query q : qs) {
             boolean FILTER = q.toString().toLowerCase().contains("filter"), 
-                    AND = q.toString().toLowerCase().contains(" ."), 
-                    OPT = q.toString().toLowerCase().contains("opt"), 
+                    
+                    AND = q.toString().toLowerCase().contains(" .")
+                     ||q.toString().toLowerCase().contains(" ;"), 
+                    
+                    OPT = q.toString().toLowerCase().contains("optional"),
+                    
                     GRAPH = q.toString().toLowerCase().contains("graph"), 
+                    
                     UNION = q.toString().toLowerCase().contains("union");
             
             if(FILTER && !AND && !OPT && !GRAPH && !UNION)F++;
@@ -55,6 +60,10 @@ public class OperatorDistribution
             
             if(!FILTER && !AND && !OPT && !GRAPH && !UNION)none++;
             
+//            System.out.println(q.toString());
+//            System.out.println("==============");
+//            System.out.println("Filter = "+ FILTER + "AND = "+ AND + "OPT = "+ OPT + "Graph = "+GRAPH +"Union = "+ UNION );
+//            
         }
         
         
@@ -62,54 +71,58 @@ public class OperatorDistribution
         CPF_O = O + OF + AO + AOF;
         CPF_G = G;
         CPF_U = U + UF + AU + AUF;
-        
-        for (Query q : qs) {
-            System.out.println(q.toString());
-        }
-        
-        System.out.println(none);
-         System.out.println(F);
-         System.out.println(A);
-         System.out.println(AF);
-         System.out.println(CPF);
-        
-         System.out.println(O);
-         System.out.println(OF);
-         System.out.println(AO);
-         System.out.println(AOF);
-         System.out.println(CPF_O);
-        
-         System.out.println(G);
-         System.out.println(CPF_G);
-        
-         System.out.println(U);
-         System.out.println(UF);
-         System.out.println(AU);
-         System.out.println(AUF);
-         System.out.println(CPF_U);
          
-         System.out.println("");
+         
+        System.out.println("\\begin{tabular}{lll}");
+        System.out.println("\\hline \\hline");
+        System.out.println("& "+ "QALD 1" +" & \\\\");
+        System.out.println("\\hline \\hline");
+        System.out.println("Operators       & \\#Queries & Relative\\%   \\\\ \\hline");
         
-         System.out.println(formatter.format(Double.valueOf(none)/qs.size()*100) );
-         System.out.println(formatter.format(Double.valueOf(F)/qs.size()*100) );
-         System.out.println(formatter.format(Double.valueOf(A)/qs.size()*100) );
-         System.out.println(formatter.format(Double.valueOf(AF)/qs.size()*100) );
-         System.out.println(formatter.format(Double.valueOf(CPF)/qs.size()*100) );
+         System.out.println("none & "+ none + "    & " + formatter.format(Double.valueOf(none)/qs.size()*100) +"\\% \\\\" );
+         System.out.println("F & " + F + "    & " +  formatter.format(Double.valueOf(F)/qs.size()*100) +"\\% \\\\" );
+         System.out.println("A & " + A + "    & " +  formatter.format(Double.valueOf(A)/qs.size()*100) +"\\% \\\\" );
+         System.out.println("A, F & " + AF + "    & " +  formatter.format(Double.valueOf(AF)/qs.size()*100) +"\\% \\\\" );
+         System.out.println("CPF & " + CPF + "    & " +  formatter.format(Double.valueOf(CPF)/qs.size()*100) +"\\% \\\\" );
         
-         System.out.println(formatter.format(Double.valueOf(O)/qs.size()*100) );
-         System.out.println(formatter.format(Double.valueOf(OF)/qs.size()*100) );
-         System.out.println(formatter.format(Double.valueOf(AO)/qs.size()*100) );
-         System.out.println(formatter.format(Double.valueOf(AOF)/qs.size()*100) );
-         System.out.println(formatter.format(Double.valueOf(CPF_O)/qs.size()*100) );
+         System.out.println("O & " + O + "    & " +  formatter.format(Double.valueOf(O)/qs.size()*100) +"\\% \\\\" );
+         System.out.println("O, F & " + OF + "    & " +  formatter.format(Double.valueOf(OF)/qs.size()*100) +"\\% \\\\" );
+         System.out.println("A, O & " + AO + "    & " +  formatter.format(Double.valueOf(AO)/qs.size()*100) +"\\% \\\\" );
+         System.out.println("A, O, F & " + AOF + "    & " +  formatter.format(Double.valueOf(AOF)/qs.size()*100) +"\\% \\\\" );
+         System.out.println("CPF + O & +" + CPF_O + "    & +" +  formatter.format(Double.valueOf(CPF_O)/qs.size()*100) +"\\% \\\\" );
         
-         System.out.println(formatter.format(Double.valueOf(G)/qs.size()*100) );
-         System.out.println(formatter.format(Double.valueOf(CPF_G)/qs.size()*100) );
+         System.out.println("G & " + G + "    & " +  formatter.format(Double.valueOf(G)/qs.size()*100) +"\\% \\\\" );
+         System.out.println("CPF + G & +" + CPF_G + "    & +" +  formatter.format(Double.valueOf(CPF_G)/qs.size()*100) +"\\% \\\\" );
         
-         System.out.println(formatter.format(Double.valueOf(U)/qs.size()*100) );
-         System.out.println(formatter.format(Double.valueOf(UF)/qs.size()*100) );
-         System.out.println(formatter.format(Double.valueOf(AU)/qs.size()*100) );
-         System.out.println(formatter.format(Double.valueOf(AUF)/qs.size()*100) );
-         System.out.println(formatter.format(Double.valueOf(CPF_U)/qs.size()*100) );
+         System.out.println("U & " + U + "    & " +  formatter.format(Double.valueOf(U)/qs.size()*100) +"\\% \\\\" );
+         System.out.println("UF & " + UF + "    & " +  formatter.format(Double.valueOf(UF)/qs.size()*100) +"\\% \\\\" );
+         System.out.println("AU & " + AU + "    & " +  formatter.format(Double.valueOf(AU)/qs.size()*100) +"\\% \\\\" );
+         System.out.println("AUF & " + AUF + "    & " +  formatter.format(Double.valueOf(AUF)/qs.size()*100) +"\\% \\\\" );
+         System.out.println("CPF + U & +" + CPF_U + "    & +" +  formatter.format(Double.valueOf(CPF_U)/qs.size()*100) +"\\% \\\\" );
+                
+        System.out.println("\\end{tabular}");
+        
+        
+        System.out.println(formatter.format(Double.valueOf(none)/qs.size()*100) +"\\%" );
+         System.out.println(formatter.format(Double.valueOf(F)/qs.size()*100) +"\\%" );
+         System.out.println(formatter.format(Double.valueOf(A)/qs.size()*100) +"\\%" );
+         System.out.println(formatter.format(Double.valueOf(AF)/qs.size()*100) +"\\%" );
+         System.out.println(formatter.format(Double.valueOf(CPF)/qs.size()*100) +"\\%" );
+        
+         System.out.println(formatter.format(Double.valueOf(O)/qs.size()*100) +"\\%" );
+         System.out.println(formatter.format(Double.valueOf(OF)/qs.size()*100) +"\\%" );
+         System.out.println(formatter.format(Double.valueOf(AO)/qs.size()*100) +"\\%" );
+         System.out.println(formatter.format(Double.valueOf(AOF)/qs.size()*100) +"\\%" );
+         System.out.println("'+"+formatter.format(Double.valueOf(CPF_O)/qs.size()*100) +"\\%" );
+        
+         System.out.println(formatter.format(Double.valueOf(G)/qs.size()*100) +"\\%" );
+         System.out.println("'+"+formatter.format(Double.valueOf(CPF_G)/qs.size()*100) +"\\%" );
+        
+         System.out.println(formatter.format(Double.valueOf(U)/qs.size()*100) +"\\%" );
+         System.out.println(formatter.format(Double.valueOf(UF)/qs.size()*100) +"\\%" );
+         System.out.println(formatter.format(Double.valueOf(AU)/qs.size()*100) +"\\%" );
+         System.out.println(formatter.format(Double.valueOf(AUF)/qs.size()*100) +"\\%" );
+         System.out.println("'+"+formatter.format(Double.valueOf(CPF_U)/qs.size()*100) +"\\%" );
                 
     }
 
