@@ -1,23 +1,16 @@
 {
-    "questions": [{
-            "question": {
-                "answers": {
-                    "head": {
-                        "vars": ["o1"]
-                    },
-                    "results": {
-                        "bindings": [{
-                                "o1": {
-                                    "type": "uri",
-                                    "value": "http://www.wikidata.org/entity/Q13133"
-                                }
-                            }]
-                    }
-                },
-                "language": [{
-                        "SPARQL": "SELECT DISTINCT ?o1 WHERE { t <http://www.wikidata.org/entity/Q76>  <http://www.wikidata.org/prop/direct/P26>  ?o1 .   }  LIMIT 1000",
-                        "confidence": 0.8905907822131486
-                    }]
-            }
+"questions": [{
+"question": {
+"answers": { "head" : { "vars" : [ "o1" ] }, 
+             "results" : { "bindings" : [ 
+                                            { "o1" : { "type" : "uri", 
+                                                       "value" : "http://www.wikidata.org/entity/Q107933" } 
+                                                     }, 
+                                            { "o1" : { "type" : "uri", "value" : "http://www.wikidata.org/entity/Q1312282" } }, { "o1" : { "type" : "uri", "value" : "http://www.wikidata.org/entity/Q131814" } }, { "o1" : { "type" : "uri", "value" : "http://www.wikidata.org/entity/Q1339951" } }, { "o1" : { "type" : "uri", "value" : "http://www.wikidata.org/entity/Q1388769" } }, { "o1" : { "type" : "uri", "value" : "http://www.wikidata.org/entity/Q1517888" } }, { "o1" : { "type" : "uri", "value" : "http://www.wikidata.org/entity/Q170510" } }, { "o1" : { "type" : "uri", "value" : "http://www.wikidata.org/entity/Q176945" } }, { "o1" : { "type" : "uri", "value" : "http://www.wikidata.org/entity/Q181936" } }, { "o1" : { "type" : "uri", "value" : "http://www.wikidata.org/entity/Q182431" } }, { "o1" : { "type" : "uri", "value" : "http://www.wikidata.org/entity/Q218605" } }, { "o1" : { "type" : "uri", "value" : "http://www.wikidata.org/entity/Q230035" } }, { "o1" : { "type" : "uri", "value" : "http://www.wikidata.org/entity/Q230654" } }, { "o1" : { "type" : "uri", "value" : "http://www.wikidata.org/entity/Q232933" } }, { "o1" : { "type" : "uri", "value" : "http://www.wikidata.org/entity/Q238432" } }, { "o1" : { "type" : "uri", "value" : "http://www.wikidata.org/entity/Q2454564" } }, { "o1" : { "type" : "uri", "value" : "http://www.wikidata.org/entity/Q2531955" } }, { "o1" : { "type" : "uri", "value" : "http://www.wikidata.org/entity/Q26806" } }, { "o1" : { "type" : "uri", "value" : "http://www.wikidata.org/entity/Q2685" } }, { "o1" : { "type" : "uri", "value" : "http://www.wikidata.org/entity/Q272977" } }, { "o1" : { "type" : "uri", "value" : "http://www.wikidata.org/entity/Q295923" } }, { "o1" : { "type" : "uri", "value" : "http://www.wikidata.org/entity/Q308840" } }, { "o1" : { "type" : "uri", "value" : "http://www.wikidata.org/entity/Q309690" } }, { "o1" : { "type" : "uri", "value" : "http://www.wikidata.org/entity/Q310926" } }, { "o1" : { "type" : "uri", "value" : "http://www.wikidata.org/entity/Q3218046" } }, { "o1" : { "type" : "uri", "value" : "http://www.wikidata.org/entity/Q3507448" } }, { "o1" : { "type" : "uri", "value" : "http://www.wikidata.org/entity/Q382420" } }, { "o1" : { "type" : "uri", "value" : "http://www.wikidata.org/entity/Q40026" } }, { "o1" : { "type" : "uri", "value" : "http://www.wikidata.org/entity/Q437351" } }, { "o1" : { "type" : "uri", "value" : "http://www.wikidata.org/entity/Q459559" } }, { "o1" : { "type" : "uri", "value" : "http://www.wikidata.org/entity/Q461691" } }, { "o1" : { "type" : "uri", "value" : "http://www.wikidata.org/entity/Q511436" } }, { "o1" : { "type" : "uri", "value" : "http://www.wikidata.org/entity/Q512367" } }, { "o1" : { "type" : "uri", "value" : "http://www.wikidata.org/entity/Q534234" } }, { "o1" : { "type" : "uri", "value" : "http://www.wikidata.org/entity/Q62975" } }, { "o1" : { "type" : "uri", "value" : "http://www.wikidata.org/entity/Q6369611" } }, { "o1" : { "type" : "uri", "value" : "http://www.wikidata.org/entity/Q720530" } }, { "o1" : { "type" : "uri", "value" : "http://www.wikidata.org/entity/Q781151" } }, { "o1" : { "type" : "uri", "value" : "http://www.wikidata.org/entity/Q82222" } }, { "o1" : { "type" : "uri", "value" : "http://www.wikidata.org/entity/Q83484" } }, { "o1" : { "type" : "uri", "value" : "http://www.wikidata.org/entity/Q94715" } } ] }}",
+        "language": [{
+        "SPARQL": "SELECT DISTINCT ?o1 WHERE { \t ?o1 .  } LIMIT 1000",
+                "confidence": 0.67
         }]
 }
+}]
+        }
