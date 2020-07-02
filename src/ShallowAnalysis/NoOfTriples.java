@@ -1,5 +1,6 @@
 package ShallowAnalysis;
 
+import DataSet.Benchmark;
 import DataSet.DataSetPreprocessing;
 import Graph.Edge;
 import java.text.DecimalFormat;
@@ -34,7 +35,7 @@ public final class NoOfTriples {
             zero = 0; one = 0; two = 0; three = 0; four = 0; five = 0; six = 0; seven = 0;
             eight = 0; nine = 0; ten = 0; elevenOrMore = 0; total = 0;
             s = "QALD " + i;
-            qs = DataSetPreprocessing.getQueriesWithoutDuplicates(i, false, false, false);
+            qs = DataSetPreprocessing.getQueriesWithoutDuplicates(i);
             triplesAnalysis();
             results.add(s);
             qs.clear();
@@ -43,7 +44,7 @@ public final class NoOfTriples {
         zero = 0; one = 0; two = 0; three = 0; four = 0; five = 0; six = 0; seven = 0;
             eight = 0; nine = 0; ten = 0; elevenOrMore = 0; total = 0;
         s = "QALD ALL";
-        qs = DataSetPreprocessing.getQueriesWithoutDuplicates(100, false, false, false);
+        qs = DataSetPreprocessing.getQueriesWithoutDuplicates(Benchmark.QALD_ALL);
         triplesAnalysis();
         results.add(s);
         
@@ -52,7 +53,7 @@ public final class NoOfTriples {
         zero = 0; one = 0; two = 0; three = 0; four = 0; five = 0; six = 0; seven = 0;
             eight = 0; nine = 0; ten = 0; elevenOrMore = 0; total = 0;
         s = "LC-QUAD";
-        qs = DataSetPreprocessing.getQueriesWithoutDuplicates(-1, true, false, false);
+        qs = DataSetPreprocessing.getQueriesWithoutDuplicates(Benchmark.LC_QUAD);
         triplesAnalysis();
         results.add(s);
         
@@ -61,7 +62,7 @@ public final class NoOfTriples {
         zero = 0; one = 0; two = 0; three = 0; four = 0; five = 0; six = 0; seven = 0;
             eight = 0; nine = 0; ten = 0; elevenOrMore = 0; total = 0;
         s = "Graph";
-        qs = DataSetPreprocessing.getQueriesWithoutDuplicates(-1, false, true, false);
+        qs = DataSetPreprocessing.getQueriesWithoutDuplicates(Benchmark.GraphQuestions);
         triplesAnalysis();
         results.add(s);
         System.out.println("====================================================");
@@ -76,7 +77,7 @@ public final class NoOfTriples {
         zero = 0; one = 0; two = 0; three = 0; four = 0; five = 0; six = 0; seven = 0;
             eight = 0; nine = 0; ten = 0; elevenOrMore = 0; total = 0;
         s = "Web";
-        qs = DataSetPreprocessing.getQueriesWithoutDuplicates(-1, false, false, true);
+        qs = DataSetPreprocessing.getQueriesWithoutDuplicates(Benchmark.WebQuestions);
         triplesAnalysis();
         results.add(s);
         System.out.println("====================================================");

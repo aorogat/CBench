@@ -2,12 +2,15 @@ package ShapeAnalysis;
 
 import Graph.Edge;
 import Graph.Graph;
+import ShallowAnalysis.ElementVistorImpl;
 import java.util.ArrayList;
 import java.util.Iterator;
 import org.apache.jena.query.Query;
 import org.apache.jena.query.QueryFactory;
 import org.apache.jena.sparql.core.TriplePath;
+import org.apache.jena.sparql.syntax.Element;
 import org.apache.jena.sparql.syntax.ElementPathBlock;
+import org.apache.jena.sparql.syntax.ElementSubQuery;
 import org.apache.jena.sparql.syntax.ElementVisitorBase;
 import org.apache.jena.sparql.syntax.ElementWalker;
 
@@ -228,7 +231,7 @@ public class QueryShapeType {
         }
         return false;
     }
-    
+
     private static boolean isPetal(Graph graph) {
         ArrayList<Integer> verticesDegrees = graph.getVerticesDegrees();
 
@@ -288,9 +291,10 @@ public class QueryShapeType {
 
     public static boolean isFlowerSet(String queryString) {
         //if separate graphs are flowers
-        if(isFlower(queryString))
+        if (isFlower(queryString)) {
             return true;
-        
+        }
+
         //pruning the graph: remove elements with degree 1
         // if the remaining graphs are petals, it is a flowerset
         Graph graph = queryToGraph(queryString);
@@ -324,37 +328,25 @@ public class QueryShapeType {
         if (degree_2 > 0 && degree_greater_2 >= 2) {
             return true;
         }
-        
+
         return false;
     }
-
+    
+    
+    static public Graph graph = new Graph();
     private static Graph queryToGraph(String queryString) {
         //Define Graph as a set of edges
-        final Graph graph = new Graph();
+        graph = new Graph();
         try {
-            Query query = QueryFactory.create(queryString);
-            // This will walk through all parts of the query
-            ElementWalker.walk(query.getQueryPattern(),
-                    // For each element...
-                    new ElementVisitorBase() {
-                        // ...when it's a block of triples...
-                        public void visit(ElementPathBlock el) {
-                            // ...go through all the triples...
-                            Iterator<TriplePath> triples = el.patternElts();
-                            while (triples.hasNext()) {
-                                TriplePath triple = triples.next();
-
-                                graph.edges.add(new Edge(triple.getSubject().toString(), triple.getObject().toString()));
-                                if (!graph.vertices.contains(triple.getSubject().toString())) {
-                                    graph.vertices.add(triple.getSubject().toString());
-                                }
-                                if (!graph.vertices.contains(triple.getObject().toString())) {
-                                    graph.vertices.add(triple.getObject().toString());
-                                }
-                            }
-                        }
-                    }
-            );
+            Query q = QueryFactory.create(queryString);
+            Element e = q.getQueryPattern();
+                
+                System.out.println("===============================");
+                System.out.println(e.getClass().toString());
+                System.out.println("===============================");
+                System.out.println(e.toString());
+                ElementVisitorBase visitor = new ElementVisitorShapeImpl();
+                ElementWalker.walk(e, visitor);
 
         } catch (Exception e) {
             System.err.println("This Query has a problem in its graph");

@@ -1,5 +1,6 @@
 package ShapeAnalysis;
 
+import DataSet.Benchmark;
 import DataSet.DataSetPreprocessing;
 import ShallowAnalysis.NoOfTriples;
 import java.text.DecimalFormat;
@@ -20,12 +21,12 @@ import qa.dataStructures.Question;
  */
 public class QuestionByQuestionAnalysis {
 
-    static ArrayList<Query> queries;
+    static ArrayList<Query> qs;
     static ArrayList<Question> questions;
     static int counter = 0;
 
     public QuestionByQuestionAnalysis() {
-        queries = DataSetPreprocessing.getQueriesWithoutDuplicates(9, false, false, false);
+        qs = DataSetPreprocessing.getQueriesWithoutDuplicates(Benchmark.QALD_1);
         questions = DataSetPreprocessing.questionsWithoutDuplicates;
     }
 

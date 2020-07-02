@@ -1,10 +1,10 @@
 package systemstesting;
 
+import DataSet.Benchmark;
 import DataSet.DataSetPreprocessing;
 import javax.net.ssl.HttpsURLConnection;
 import java.io.BufferedReader;
 import java.io.DataOutputStream;
-import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -12,8 +12,6 @@ import java.io.Reader;
 import java.net.URL;
 import java.nio.charset.Charset;
 import java.util.ArrayList;
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
 import org.apache.jena.query.Query;
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -21,18 +19,14 @@ import org.json.JSONObject;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
-import org.w3c.dom.Node;
-import org.w3c.dom.NodeList;
 import qa.dataStructures.Question;
 
 public class WDAqua {
 
-    static ArrayList<Query> qs = DataSetPreprocessing.getQueriesWithoutDuplicates(9, false, false, false);
+    static ArrayList<Query> qs = DataSetPreprocessing.getQueriesWithoutDuplicates(Benchmark.ComplexQuestions);
     static ArrayList<Question> questions = DataSetPreprocessing.questions;
 
-    static String KB_File = "QALD_9.xml";
-    static String KB = "dbpedia";
-    static String QUESTION_SOURCE = "QALD-9";
+    static String KB = "freebase";
 
     static int correctAnswered;
     static int patiallyAnswered;
@@ -56,10 +50,11 @@ public class WDAqua {
         for (Question question : questions) {
             //1- Determine CorectAnswerList
             corectAnswersList = question.getAnswers();
-            for (String s : corectAnswersList)
-                s.trim().replace('_', ' ').replaceAll("\n", "").replaceAll("\t", "").replace("http://dbpedia.org/resource/", "");
+            for (int i = 0; i < corectAnswersList.size(); i++) 
+                corectAnswersList.set(i, corectAnswersList.get(i).trim().replace('_', ' ').replaceAll("\n", "").replaceAll("\t", "")
+                        .replace("http://dbpedia.org/resource/", "").replace("https://en.wikipedia.org/wiki/", ""));
             //2- Determine systemAnswersList
-            answer(question.getQuestionSource());
+            answer(question.getQuestionString());
 
             //Loading indicator
             System.out.print(".");
@@ -84,81 +79,7 @@ public class WDAqua {
         }
 
         //5- At the End, Print Results
-        printResults();
-        
-        
-//        WDAqua obj = new WDAqua();
-//
-//        String question = "";
-//
-//        ArrayList<Question> questionsList = new ArrayList<Question>();
-//        try {
-//            //Detemine XML File of Questions with tags
-//            //"id","database","questionSource","filepath","questionString","keywords","questionQuery","answers"
-//            File fXmlFile = new File(KB_File);
-//            DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
-//            DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
-//            org.w3c.dom.Document doc = dBuilder.parse(fXmlFile);
-//
-//            doc.getDocumentElement().normalize();
-//
-//            NodeList allQuesions = doc.getElementsByTagName("question");
-//
-//            //for every question
-//            for (int questionIndex = 0; questionIndex < allQuesions.getLength(); questionIndex++) {
-//
-//                Node currentQuestion = allQuesions.item(questionIndex);
-//
-//                if (currentQuestion.getNodeType() == Node.ELEMENT_NODE) {
-//                    org.w3c.dom.Element eElement = (org.w3c.dom.Element) currentQuestion;
-//                    //Select questions with specific source e.g. QALD-9 or Freebase_web for Freebase file
-//                    if (eElement.getElementsByTagName("questionSource").item(0).getTextContent().equals(QUESTION_SOURCE)) {
-//                        question = (eElement.getElementsByTagName("questionString").item(0).getTextContent());
-//
-//                        //1- Determine CorectAnswerList
-//                        NodeList ans = eElement.getElementsByTagName("answer");
-//                        try {
-//                            corectAnswersList = new ArrayList<>();
-//                            for (int i = 0; i < ans.getLength(); i++) {
-//                                corectAnswersList.add(ans.item(i).getTextContent().trim().replace('_', ' ').replaceAll("\n", "").replaceAll("\t", "").replace("http://dbpedia.org/resource/", ""));
-//                            }
-//                        } catch (Exception e) {
-//                        }
-//
-//                        //2- Determine systemAnswersList
-//                        answer(question);
-//
-//                        //Loading indicator
-//                        System.out.print(".");
-//
-//                        //3- List of Questions and their (R, P, F1)
-//                        evaluatedQuestions.add(new QuestionEval(question, corectAnswersList, systemAnswersList));
-//
-//                        //4- Global F-1 Score requied parameters
-//                        if (corectAnswersList.size() > 0) {
-//                            questionsWithCorrectAnswers++;
-//                            if (systemAnswersList.size() > 0) {
-//                                answered++;
-//                                if (Performance.hasAnyCorrectAnswer(corectAnswersList, systemAnswersList)) {
-//                                    patiallyAnswered++;
-//                                }
-//                                if (Performance.hasCompleteCorrectAnswer(corectAnswersList, systemAnswersList)) {
-//                                    correctAnswered++;
-//                                }
-//                            }
-//                        }
-//
-//                    }
-//                }
-//            }
-//
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-//
-//        //5- At the End, Print Results
-//        printResults();
-
+        printResults();                
     }
 
     static void printResults() {
@@ -189,7 +110,7 @@ public class WDAqua {
     }
 
     static void answer(String question) throws IOException, JSONException {
-        String ks, as, qs;
+        String ks, as, qss;
         String format = "%-50s%-70s%n";
         JSONObject json;
 
@@ -212,7 +133,7 @@ public class WDAqua {
             wr.writeBytes(urlParameters2);
             wr.flush();
         }
-        String result = "";
+        String result;
         int responseCode = httpClient.getResponseCode();
 
         try (BufferedReader in = new BufferedReader(
@@ -256,10 +177,7 @@ public class WDAqua {
                 }
 
             }
-            //ans = ans.substring(0, ans.length() - 2) + "]";
-            //System.out.println(question + "\nSystem: " + ans + "\n" + "Corect: " + correct);
         } catch (Exception e) {
-            //System.out.println(question + "\n-------");
         }
     }
 

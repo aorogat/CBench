@@ -20,6 +20,93 @@ public class JSONParser {
      * @return ArrayList<Question> the list of questions parsed from file
      * @throws JSONException
      */
+    public static ArrayList<Question> parseComQA(String fileDirectory, String sourceString, String endpoint) throws JSONException {
+        ArrayList<Question> questionsList = new ArrayList<Question>();
+        //System.out.println("Reading file " + fileDirectory + "...");
+        String fileContents = FileManager.readWholeFile(fileDirectory);
+        //System.out.println("Parsing file...");
+        JSONObject obj = new JSONObject(fileContents);
+        JSONArray arr = obj.getJSONArray("questions");
+        for (int i = 0; i < arr.length(); i++) {
+
+            JSONObject currentQuestionObject = arr.getJSONObject(i);
+            
+            
+            //Question
+            JSONArray questionVersions = currentQuestionObject.getJSONArray("questions");
+            for (int k = 0; k < questionVersions.length(); k++) {
+                Question question = new Question();
+            question.setDatabase(endpoint);
+            question.setFilepath(fileDirectory);
+            // The source is predefined
+            question.setQuestionSource(sourceString);
+
+            //Answers
+            try {
+                    JSONArray answers = currentQuestionObject.getJSONArray("answers");
+                    for (int j = 0; j < answers.length(); j++) {
+                        // The question's answers
+                        String answer = null;
+                        try {
+                            answer = (String) answers.get(j);
+                        } catch (Exception e) {
+                            answer = null;
+                        }
+
+                        question.addAnswer(answer);
+                    }
+                } catch (Exception e) {
+                }
+            
+                question.setQuestionString(questionVersions.get(k).toString().replace("\n", ""));
+
+                
+
+                questionsList.add(question);
+            }
+        }
+        return questionsList;
+    }
+
+    public static ArrayList<Question> parseTemp(String fileDirectory, String sourceString, String endpoint) throws JSONException {
+        ArrayList<Question> questionsList = new ArrayList<Question>();
+        //System.out.println("Reading file " + fileDirectory + "...");
+        String fileContents = FileManager.readWholeFile(fileDirectory);
+        //System.out.println("Parsing file...");
+        JSONObject obj = new JSONObject(fileContents);
+        JSONArray arr = obj.getJSONArray("questions");
+        for (int i = 0; i < arr.length(); i++) {
+
+            Question question = new Question();
+            question.setDatabase(endpoint);
+            question.setFilepath(fileDirectory);
+            // The source is predefined
+            question.setQuestionSource(sourceString);
+
+            JSONObject currentQuestionObject = arr.getJSONObject(i);
+            question.setQuestionString(currentQuestionObject.getString("Question"));
+
+            try {
+                JSONArray answers = currentQuestionObject.getJSONArray("Gold answer");
+                for (int j = 0; j < answers.length(); j++) {
+                    // The question's answers
+                    String answer = null;
+                    try {
+                        answer = (String) answers.get(j);
+                    } catch (Exception e) {
+                        answer = null;
+                    }
+
+                    question.addAnswer(answer);
+                }
+            } catch (Exception e) {
+            }
+
+            questionsList.add(question);
+        }
+        return questionsList;
+    }
+
     public static ArrayList<Question> parseQuADFile(String fileDirectory, String sourceString, String endpoint) throws JSONException {
         ArrayList<Question> questionsList = new ArrayList<Question>();
         //System.out.println("Reading file " + fileDirectory + "...");

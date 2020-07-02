@@ -5,6 +5,7 @@
  */
 package ShapeAnalysis;
 
+import DataSet.Benchmark;
 import DataSet.DataSetPreprocessing;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
@@ -38,7 +39,7 @@ public class CategorizedQuestions {
     ArrayList<Question> flowerSet_Qs = new ArrayList<Question>();
 
     public CategorizedQuestions() {
-        DataSetPreprocessing.getQueriesWithoutDuplicates(9, false, false, false);
+        ArrayList qs = DataSetPreprocessing.getQueriesWithoutDuplicates(Benchmark.QALD_1);
         for (Question q : DataSetPreprocessing.questionsWithoutDuplicates) {
             String queryString = q.getQuestionQuery();
             try {

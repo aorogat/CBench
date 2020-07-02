@@ -1,5 +1,6 @@
 package ShallowAnalysis;
 
+import DataSet.Benchmark;
 import DataSet.DataSetPreprocessing;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
@@ -16,10 +17,11 @@ public class OperatorDistribution
     public static int none = 0, F = 0, A = 0, AF = 0, CPF = 0, 
                                 O = 0, OF = 0, AO = 0, AOF = 0, CPF_O = 0,
                                 G = 0, CPF_G = 0,
-                                U = 0, UF = 0, AU = 0, AUF = 0, CPF_U = 0;
+                                U = 0, UF = 0, AU = 0, AUF = 0, CPF_U = 0,
+                                FGP = 0, FGU = 0, FAG = 0, AOUF = 0, AOUFG = 0;
 
     public OperatorDistribution() {
-        qs = DataSetPreprocessing.getQueriesWithoutDuplicates(100, false, false, false);
+        qs = DataSetPreprocessing.getQueriesWithoutDuplicates(Benchmark.QALD_1);
     }
 
     public static void main(String[] args) {
@@ -59,6 +61,13 @@ public class OperatorDistribution
             if(FILTER && AND && !OPT && !GRAPH && UNION)AUF++;
             
             if(!FILTER && !AND && !OPT && !GRAPH && !UNION)none++;
+            
+            
+            if(FILTER && !AND && OPT && GRAPH && !UNION)FGP++;
+            if(FILTER && !AND && !OPT && GRAPH && UNION)FGU++;
+            if(FILTER && AND && !OPT && GRAPH && !UNION)FAG++;
+            if(FILTER && AND && OPT && !GRAPH && UNION)AOUF++;
+            if(FILTER && AND && OPT && GRAPH && UNION)AOUFG++;
             
 //            System.out.println(q.toString());
 //            System.out.println("==============");
@@ -124,6 +133,10 @@ public class OperatorDistribution
          System.out.println(formatter.format(Double.valueOf(AUF)/qs.size()*100) +"\\%" );
          System.out.println("'+"+formatter.format(Double.valueOf(CPF_U)/qs.size()*100) +"\\%" );
                 
+         System.out.println("FGP = "+FGP);
+         System.out.println("FGU = "+FGU);
+         System.out.println("FAG = "+FAG);
+         System.out.println("AOUF = "+AOUF);
     }
 
 

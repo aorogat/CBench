@@ -1,5 +1,6 @@
 package ShallowAnalysis;
 
+import DataSet.Benchmark;
 import DataSet.DataSetPreprocessing;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
@@ -16,7 +17,7 @@ public class Keywords
     
     public Keywords()
     {
-        qs = DataSetPreprocessing.getQueriesWithoutDuplicates(-1, false, false, true);
+        qs = DataSetPreprocessing.getQueriesWithoutDuplicates(Benchmark.QALD_1);
     }
     
     public static void main(String[] args) {
