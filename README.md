@@ -70,7 +70,7 @@ and expects the answers in a JSON file with the follwoing format
     "Other keys": "Other values"    
 }
 ```
-For Bolean Answer
+For Boolean Answer
 ```json
 {
     "questions": [{
