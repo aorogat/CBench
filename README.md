@@ -16,8 +16,8 @@ based on popular single-number metrics, but also gives a detailed analysis of th
 
 ### Prerequisites
 CBench requires the following development kits and liberaries. You can download the liberaries with the system.
-* for Java [JDK 8, Apach Jena, ...]
-* for Python [Python 3, Numpy, Pandas, Matplotlib, Spacy, Scipy, Statistics, ...]
+* for Java [JDK 8, Apach Jena]
+* for Python [Python 3, Numpy, Pandas, Matplotlib, Spacy, Scipy, Statistics]
 
 ### Deploy CBench via jar
 * __Download CBench.jar:__ ToDo
