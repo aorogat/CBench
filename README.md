@@ -37,8 +37,9 @@ url?query=[question]&kb=[knowledge Base]
 ```
 Where *_url_* is the one that your system is running on for example "http://www.aaa.com/QA/". CBench concatenates your *url* with the *Query string ?query=[question]&kb=[knowledge Base]* using the 2 parameters: *_query_* and *_kb_* that are set on the runtime. The *_query_* parameter value determined based on the current question from the chosen benchmark. For the *_kb_* parameter, you configure it at the beginning after running CBench to [default, dbpedia, wikidata or freebase]. *_default_* value means CBench uses the default benchmark for every file of questions. To add a new KG, read the next section.
 
-For every question in the benchmark, CBench sends an http request to your QA system 
-Example
+For every question in the benchmark, CBench sends an http request to your QA system.
+
+Example for the question *"In which films did Julia Roberts as well as Richard Gere play?"*
 ```url
 http://www.aaa.com/QA/?query=In%20which%20films%20did%20Julia%20Roberts%20as%20well%20as%20Richard%20Gere%20play&kb=dbpedia
 ```
