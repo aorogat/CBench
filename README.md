@@ -77,7 +77,6 @@ For Boolean Answer
     "questions": [{
             "answers": [{
                     "head": {
-                        "link": []
                     },
                     "boolean": true
                 }],
