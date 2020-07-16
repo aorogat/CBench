@@ -24,7 +24,13 @@ CBench requires the following development kits and liberaries. You can download 
 * __Unzip CBench.jar:__ ToDo
 
 ### Run CBench in Netbeans
-ToDo
+* Download the *src* folder which contains the java source code.
+* Using Netbeans, create a new Java Project with Existing Sources as in the image
+![Image of Tracks](images/netbeans.png)
+* Download the Python files (.py files) in home directory of your project. The Java code runs such files.
+* Download the *.jar* files from the *lib* folder and add all of them as liberaries to your project.
+
+Now you can edit and run the project.
 
 ### Add a New Benchmark
 ToDo
