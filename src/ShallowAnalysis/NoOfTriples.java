@@ -2,22 +2,15 @@ package ShallowAnalysis;
 
 import DataSet.Benchmark;
 import DataSet.DataSetPreprocessing;
-import Graph.Edge;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.util.ArrayList;
-import java.util.Iterator;
 import org.apache.jena.query.Query;
-import org.apache.jena.sparql.core.TriplePath;
 import org.apache.jena.sparql.syntax.Element;
-import org.apache.jena.sparql.syntax.ElementPathBlock;
 import org.apache.jena.sparql.syntax.ElementVisitorBase;
 import org.apache.jena.sparql.syntax.ElementWalker;
 
-/**
- *
- * @author Abdelghny Orogat
- */
+
 public final class NoOfTriples {
 
     ArrayList<String> results = new ArrayList<>();
@@ -65,12 +58,6 @@ public final class NoOfTriples {
         qs = DataSetPreprocessing.getQueriesWithoutDuplicates(Benchmark.GraphQuestions);
         triplesAnalysis();
         results.add(s);
-        System.out.println("====================================================");
-        System.out.println("====================================================");
-        System.out.println("=============  Graph "+total+"======================");
-        System.out.println("====================================================");
-        System.out.println("====================================================");
-        System.out.println("====================================================");
         
         qs.clear();
         
@@ -80,12 +67,6 @@ public final class NoOfTriples {
         qs = DataSetPreprocessing.getQueriesWithoutDuplicates(Benchmark.WebQuestions);
         triplesAnalysis();
         results.add(s);
-        System.out.println("====================================================");
-        System.out.println("====================================================");
-        System.out.println("=============  Web "+total+"======================");
-        System.out.println("====================================================");
-        System.out.println("====================================================");
-        System.out.println("====================================================");
 
         
         for (String result : results) {
@@ -108,14 +89,48 @@ public final class NoOfTriples {
                 NoOfTriples.total++;
                 Element e = q.getQueryPattern();
                 
-                System.out.println("===============================");
-                System.out.println(e.getClass().toString());
-                System.out.println("===============================");
-                System.out.println(e.toString());
                 ElementVisitorBase visitor = new ElementVistorImpl();
                 ElementWalker.walk(e, visitor);
-                System.out.println("Counter    " + NoOfTriples.counter+"        "+e.getClass().toString());
-                System.out.println("===============================");
+                
+                switch (NoOfTriples.counter) {
+            case 0:
+                NoOfTriples.zero++;
+                break;
+            case 1:
+                NoOfTriples.one++;
+                break;
+            case 2:
+                NoOfTriples.two++;
+                break;
+            case 3:
+                NoOfTriples.three++;
+                break;
+            case 4:
+                NoOfTriples.four++;
+                break;
+            case 5:
+                NoOfTriples.five++;
+                break;
+            case 6:
+                NoOfTriples.six++;
+                break;
+            case 7:
+                NoOfTriples.seven++;
+                break;
+            case 8:
+                NoOfTriples.eight++;
+                break;
+            case 9:
+                NoOfTriples.nine++;
+                break;
+            case 10:
+                NoOfTriples.ten++;
+                break;
+            default:
+                NoOfTriples.elevenOrMore++;
+                break;
+
+        }
                         
             } catch (Exception e) {
                 System.out.println(e.getMessage());

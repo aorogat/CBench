@@ -2,7 +2,6 @@ package ShapeAnalysis;
 
 import java.util.ArrayList;
 import org.apache.jena.query.Query;
-import DataSet.AllQueries;
 import DataSet.Benchmark;
 import DataSet.DataSetPreprocessing;
 import java.text.DecimalFormat;
@@ -155,28 +154,6 @@ public class ShapeAnalysis {
                 }
             }
         }
-//        System.out.println("\\begin{table*}[t]");
-//        System.out.println("\\caption{Cumulative shape analysis of \\textit{CQ}, \\textit{CQ\\textsubscript{F}}, \\textit{CQ\\textsubscript{OF}} across all logs}");
-//        System.out.println("\\centering");
-//        System.out.println("\\begin{tabular}{lllllll}");
-//        System.out.println("\\hline \\hline");
-//        System.out.println("& & & " + "QALD 1" + " & & & \\\\");
-//        System.out.println("\\hline \\hline");
-//        System.out.println("            & \\textit{CQ}        &            &\\textit{CQ\\textsubscript{F}}        &            &\\textit{CQ\\textsubscript{OF}}           &             \\\\ \\hline");
-//        System.out.println("Shape       & \\#Queries & Relative\\% & \\#Queries & Relative\\% & \\#Queries & Relative\\%  \\\\ \\hline");
-//        System.out.println("Single Edge & " + singleShape_CQ + "    & " + formatter.format((Double.valueOf(singleShape_CQ) / Double.valueOf(CQ)) * 100) + "\\%    & " + singleShape_CQf + "      & " + formatter.format((Double.valueOf(singleShape_CQf) / Double.valueOf(CQf)) * 100) + "\\%    & " + singleShape_CQof + "      & " + formatter.format((Double.valueOf(singleShape_CQof) / Double.valueOf(CQof)) * 100) + "\\% \\\\");
-//        System.out.println("Chain       & " + chain_CQ + "          & " + formatter.format((Double.valueOf(chain_CQ) / Double.valueOf(CQ)) * 100) + "\\%    &       " + chain_CQf + "      & " + formatter.format((Double.valueOf(chain_CQf) / Double.valueOf(CQf)) * 100) + "\\%    & " + chain_CQof + "      & " + formatter.format((Double.valueOf(chain_CQof) / Double.valueOf(CQof)) * 100) + "\\% \\\\ ");
-//        System.out.println("Chain Set   & " + chainSet_CQ + "       & " + formatter.format((Double.valueOf(chainSet_CQ) / Double.valueOf(CQ)) * 100) + "\\%    &    " + chainSet_CQf + "      & " + formatter.format((Double.valueOf(chainSet_CQf) / Double.valueOf(CQf)) * 100) + "\\%    & " + chainSet_CQof + "      & " + formatter.format((Double.valueOf(chainSet_CQof) / Double.valueOf(CQof)) * 100) + "\\% \\\\");
-//        System.out.println("Star        & " + star_CQ + "           & " + formatter.format((Double.valueOf(star_CQ) / Double.valueOf(CQ)) * 100) + "\\%    &        " + star_CQf + "      & " + formatter.format((Double.valueOf(star_CQf) / Double.valueOf(CQf)) * 100) + "\\%    & " + star_CQof + "      & " + formatter.format((Double.valueOf(star_CQof) / Double.valueOf(CQof)) * 100) + "\\% \\\\");
-//        System.out.println("Tree        & " + tree_CQ + "           & " + formatter.format((Double.valueOf(tree_CQ) / Double.valueOf(CQ)) * 100) + "\\%    &        " + tree_CQf + "      & " + formatter.format((Double.valueOf(tree_CQf) / Double.valueOf(CQf)) * 100) + "\\%    & " + tree_CQof + "      & " + formatter.format((Double.valueOf(tree_CQof) / Double.valueOf(CQof)) * 100) + "\\% \\\\");
-//        System.out.println("Forest      & " + forest_CQ + "         & " + formatter.format((Double.valueOf(forest_CQ) / Double.valueOf(CQ)) * 100) + "\\%    &      " + forest_CQf + "      & " + formatter.format((Double.valueOf(forest_CQf) / Double.valueOf(CQf)) * 100) + "\\%    & " + forest_CQof + "      & " + formatter.format((Double.valueOf(forest_CQof) / Double.valueOf(CQof)) * 100) + "\\% \\\\ \\hline");
-//        System.out.println("Cycle       & " + cycle_CQ + "          & " + formatter.format((Double.valueOf(cycle_CQ) / Double.valueOf(CQ)) * 100) + "\\%    &       " + cycle_CQf + "      & " + formatter.format((Double.valueOf(cycle_CQf) / Double.valueOf(CQf)) * 100) + "\\%    & " + cycle_CQof + "      & " + formatter.format((Double.valueOf(cycle_CQof) / Double.valueOf(CQof)) * 100) + "\\% \\\\");
-//        System.out.println("Flower      & " + flower_CQ + "         & " + formatter.format((Double.valueOf(flower_CQ) / Double.valueOf(CQ)) * 100) + "\\%    &      " + flower_CQf + "      & " + formatter.format((Double.valueOf(flower_CQf) / Double.valueOf(CQf)) * 100) + "\\%    & " + flower_CQof + "      & " + formatter.format((Double.valueOf(flower_CQof) / Double.valueOf(CQof)) * 100) + "\\% \\\\");
-//        System.out.println("Flower Set  & " + flowerSet_CQ + "      & " + formatter.format((Double.valueOf(flowerSet_CQ) / Double.valueOf(CQ)) * 100) + "\\%    &   " + flowerSet_CQf + "      & " + formatter.format((Double.valueOf(flowerSet_CQf) / Double.valueOf(CQf)) * 100) + "\\%    & " + flowerSet_CQof + "      & " + formatter.format((Double.valueOf(flowerSet_CQof) / Double.valueOf(CQof)) * 100) + "\\% \\\\ \\hline");
-//        System.out.println("Total       & " + CQ + "      & " + "100.0" + "\\%    & " + CQf + "      & " + "100.0" + "\\%    & " + CQof + "      & " + "100.0" + "\\%");
-//        System.out.println("\\end{tabular}");
-//        System.out.println("\\end{table*}");
-//        System.out.println("");
         
         System.out.println("Single Edge & " + singleShape_CQ + "    & " + formatter.format((Double.valueOf(singleShape_CQ) / Double.valueOf(CQ)) * 100) + "\\%    & " + singleShape_CQf + "      & " + formatter.format((Double.valueOf(singleShape_CQf) / Double.valueOf(CQf)) * 100) + "\\%    & " + singleShape_CQof + "      & " + formatter.format((Double.valueOf(singleShape_CQof) / Double.valueOf(CQof)) * 100) + "\\% \\\\");
         System.out.println("Chain       & " + chain_CQ + "          & " + formatter.format((Double.valueOf(chain_CQ) / Double.valueOf(CQ)) * 100) + "\\%    &       " + chain_CQf + "      & " + formatter.format((Double.valueOf(chain_CQf) / Double.valueOf(CQf)) * 100) + "\\%    & " + chain_CQof + "      & " + formatter.format((Double.valueOf(chain_CQof) / Double.valueOf(CQof)) * 100) + "\\% \\\\ ");

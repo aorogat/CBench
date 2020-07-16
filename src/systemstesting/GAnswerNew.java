@@ -1,11 +1,14 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package systemstesting;
 
 import DataSet.Benchmark;
 import DataSet.DataSetPreprocessing;
 import UptodatAnswers.CuratedAnswer;
-import javax.net.ssl.HttpsURLConnection;
 import java.io.BufferedReader;
-import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -16,16 +19,16 @@ import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import org.apache.commons.io.IOUtils;
 import org.apache.jena.query.Query;
-import org.apache.jena.query.QueryFactory;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.jsoup.Jsoup;
-import org.jsoup.nodes.Element;
-import org.jsoup.select.Elements;
 import qa.dataStructures.Question;
 
-public class WDAqua {
+/**
+ *
+ * @author aorogat
+ */
+public class GAnswerNew {
 
     static ArrayList<Query> qs;
     static ArrayList<Question> questions = DataSetPreprocessing.questions;
@@ -40,16 +43,18 @@ public class WDAqua {
     //Question has array of answers. each has vars(keywords)
     public static void main(String[] args) throws IOException, JSONException, Exception {
         KB = "dbpedia";
+
+//        performance(Benchmark.QALD_1, "QALD_1", false);
+//        performance(Benchmark.QALD_2, "QALD_2", false);
+//        performance(Benchmark.QALD_3, "QALD_3", false);
+//        performance(Benchmark.QALD_4, "QALD_4", false);
+//        performance(Benchmark.QALD_5, "QALD_5", false);
+//        performance(Benchmark.QALD_6, "QALD_6", false);
+//        performance(Benchmark.QALD_7, "QALD_7", false);
+        performance(Benchmark.QALD_8, "QALD_8", false);
+//        performance(Benchmark.QALD_9, "QALD_9", false);
+
 //        performance(Benchmark.LC_QUAD, "LC_QUAD", true);
-        performance(Benchmark.QALD_1, "QALD_1",false);
-//        performance(Benchmark.QALD_2, "QALD_2");
-//        performance(Benchmark.QALD_3, "QALD_3");
-//        performance(Benchmark.QALD_4, "QALD_4");
-//        performance(Benchmark.QALD_5, "QALD_5");
-//        performance(Benchmark.QALD_6, "QALD_6");
-//        performance(Benchmark.QALD_7, "QALD_7");
-//        performance(Benchmark.QALD_8, "QALD_8");
-//        performance(Benchmark.TempQuestions, "TempQuestions", false);
     }
 
     public static void performance(int benchmark, String benchmarkName, boolean curated) throws IOException {
@@ -63,9 +68,7 @@ public class WDAqua {
         evaluatedBenchmark.allQuestions = questions.size();
 
         int counter = 0;
-        int qsWithAnswers = 0;
         for (Question question : questions) {
-            corectAnswersList = new ArrayList<>();
             counter++;
             //1- Determine CorectAnswerList
             if (curated) {
@@ -75,28 +78,14 @@ public class WDAqua {
 
                 for (int i = 0; i < corectAnswersList.size(); i++) {
                     if (corectAnswersList.get(i) != null) {
-                        corectAnswersList.set(i, corectAnswersList.get(i).trim().replace('_', ' ')
-                                .replaceAll("\n", "").replaceAll("\t", "")
+                        corectAnswersList.set(i, corectAnswersList.get(i).trim().replace('_', ' ').replaceAll("\n", "").replaceAll("\t", "")
                                 .replace("http://dbpedia.org/resource/", "")
                                 .replace("https://en.wikipedia.org/wiki/", "")
-                                .replace("http://www.wikidata.org/entity/", ""));
+                                .replace("http://www.wikidata.org/entity/", "")
+                                .replaceAll("True", "Yes")
+                                .replaceAll("False", "No"));
                     }
 
-                }
-                try {
-                    if (corectAnswersList != null) {
-                        if (corectAnswersList.size() > 0) {
-                            qsWithAnswers++;
-                        } else {
-                            continue;
-                        }
-
-                        if (corectAnswersList.size() == 1 && corectAnswersList.get(0).equals("null")) {
-                            continue;
-                        }
-                    }
-                } catch (Exception e) {
-                    corectAnswersList = new ArrayList<>();
                 }
             }
             //2- Determine systemAnswersList
@@ -121,7 +110,7 @@ public class WDAqua {
 
             //3- List of Questions and their (R, P, F1)
             evaluatedBenchmark.evaluatedQuestions.add(new QuestionEval(question.getQuestionString(), question, corectAnswersList, systemAnswersList));
-            
+
         }
 
         //4- Calculate parameters
@@ -131,74 +120,53 @@ public class WDAqua {
         evaluatedBenchmark.printScores();
 
         System.out.println("\n\n\n\n\n\n\n");
-
     }
 
     static void answer(String question) throws IOException, JSONException {
-
-        JSONObject json = null;
-
-        //////////////////
-        String command
-                = "curl -X POST http://qanswer-core1.univ-st-etienne.fr/api/gerbil?"
-                + "query=" + question;// + "&kb=" + KB;
-        ProcessBuilder processBuilder = new ProcessBuilder(command.split(" "));
-        Process process = processBuilder.start();
-        InputStream inputStream = process.getInputStream();
-        String result = IOUtils.toString(inputStream, StandardCharsets.UTF_8);
-        /////////////////
-
-        result = result.replace("\\n", " ").replace("\\{", "{").replace("\\}", "}").replace("\\", "")
-                .replace("\"{", "{").replace("\"}", "}").replace("}\"", "}");
-        System.out.println(result);
-
         try {
             systemAnswersList = new ArrayList<>();
-            json = new JSONObject(result);
-            JSONArray bindings = json.getJSONArray("questions").getJSONObject(0)
-                    .getJSONObject("question").getJSONObject("answers")
-                    .getJSONObject("results").getJSONArray("bindings");
-
-            String varName = json.getJSONArray("questions").getJSONObject(0)
-                    .getJSONObject("question").getJSONObject("answers")
-                    .getJSONObject("head").getJSONArray("vars").getString(0);
-
-            System.out.println(varName);
-
-            for (int i = 0; i < bindings.length(); i++) {
-                JSONObject binding = (JSONObject) bindings.getJSONObject(i);
-                JSONObject o1 = (JSONObject) binding.getJSONObject(varName);
-                String value = (String) o1.get("value");
-
-                //For wikidata with Freebase benchmarks
-                if (value.startsWith("http")) {
-                    org.jsoup.nodes.Document doc = Jsoup.connect(value).get();
-                    Elements div = doc.select(".wikibase-title-label");
-                    Element e = div.get(0);
-                    value = e.text();
-                    systemAnswersList.add(value.replace('_', ' '));
-                }
-//                systemAnswersList.add(value.replace('_', ' ')
-//                        .replace("http://dbpedia.org/resource/", "")
-//                        .replace("https://en.wikipedia.org/wiki/", "")
-//                        .replace("http://www.wikidata.org/entity/", ""));
-            }
-        } catch (Exception e) {
+            JSONObject json = readJsonFromUrl("http://ganswer.gstore-pku.com/api/qald.jsp?query=" + question.replace(" ", "%20"));
+            System.out.println(json.toString());
             try {
-                boolean b = json.getJSONArray("questions").getJSONObject(0)
-                        .getJSONObject("question").getJSONObject("answers")
-                        .getBoolean("boolean");
-                systemAnswersList = new ArrayList<>();
-                if (b) {
-                    systemAnswersList.add("Yes");
-                } else {
-                    systemAnswersList.add("No");
-                }
-            } catch (Exception ex) {
-                ex.printStackTrace();
-            }
-        }
 
+                JSONArray bindings = json.getJSONArray("questions").getJSONObject(0)
+                        .getJSONArray("answers").getJSONObject(0)
+                        .getJSONObject("results").getJSONArray("bindings");
+
+                String varName = json.getJSONArray("questions").getJSONObject(0)
+                        .getJSONArray("answers").getJSONObject(0)
+                        .getJSONObject("head").getJSONArray("vars").getString(0);
+
+                System.out.println(varName);
+
+                for (int i = 0; i < bindings.length(); i++) {
+                    JSONObject binding = (JSONObject) bindings.getJSONObject(i);
+                    JSONObject o1 = (JSONObject) binding.getJSONObject(varName);
+                    String value = (String) o1.get("value");
+
+                    systemAnswersList.add(value.replace('_', ' ')
+                            .replace("http://dbpedia.org/resource/", "")
+                            .replace("https://en.wikipedia.org/wiki/", "")
+                            .replace("http://www.wikidata.org/entity/", ""));
+                }
+            } catch (Exception e) {
+                try {
+                    boolean b = json.getJSONArray("questions").getJSONObject(0)
+                            .getJSONArray("answers").getJSONObject(0)
+                            .getBoolean("boolean");
+                    systemAnswersList = new ArrayList<>();
+                    if (b) {
+                        systemAnswersList.add("Yes");
+                    } else {
+                        systemAnswersList.add("No");
+                    }
+                } catch (Exception ex) {
+                    ex.printStackTrace();
+                }
+            }
+        } catch (Exception eex) {
+            eex.printStackTrace();
+        }
     }
 
     private static String readAll(Reader rd) throws IOException {

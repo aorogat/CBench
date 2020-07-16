@@ -23,7 +23,7 @@ public class QueryCategory extends org.apache.jena.query.Query {
         return true;
     }
 
-    public static boolean isCQ_F(String queryString) //CQ_F: Conjunctive Query with simple filter
+    public static boolean isCQ_F(String queryString) //CQ_F: Conjunctive Query with filter
     {
         if (queryString.toLowerCase().contains("optional")
                 || !isAOF(queryString)) {
@@ -32,7 +32,7 @@ public class QueryCategory extends org.apache.jena.query.Query {
         return true;
     }
 
-    public static boolean isCQ_OF(String queryString) //CQ_OF: Conjunctive Query with simple filter and OPT
+    public static boolean isCQ_OF(String queryString) //CQ_OF: Conjunctive Query with filter and OPT
     {
         if (!isAOF(queryString)) {
             return false;

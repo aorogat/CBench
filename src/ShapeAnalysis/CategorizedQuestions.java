@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package ShapeAnalysis;
 
 import DataSet.Benchmark;
@@ -22,10 +17,6 @@ import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
  
 
-/**
- *
- * @author aorogat
- */
 public class CategorizedQuestions {
 
     ArrayList<Question> singleShape_Qs = new ArrayList<Question>();
@@ -74,7 +65,6 @@ public class CategorizedQuestions {
                 }
             } catch (Exception e) {
                 System.err.println(e.getMessage());
-                //System.out.println(queryString);
             }
         }
     }

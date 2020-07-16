@@ -56,8 +56,7 @@ public class Graph
         }
     }
 
-    // Prints all paths from 
-    // 's' to 'd' 
+    // Get all paths from 's' to 'd' 
     public ArrayList<List<String>> getAllPaths(String s, String d) {
         buildAdjList();
 

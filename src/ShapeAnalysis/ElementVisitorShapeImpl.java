@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package ShapeAnalysis;
 
 import Graph.Edge;
@@ -17,7 +12,6 @@ import org.apache.jena.sparql.syntax.ElementWalker;
 
 public class ElementVisitorShapeImpl extends ElementVisitorBase {
 
-    static boolean subquery = false;
 
     @Override
     public void visit(ElementPathBlock el) {
@@ -26,6 +20,7 @@ public class ElementVisitorShapeImpl extends ElementVisitorBase {
             TriplePath triple = triples.next();
 
             QueryShapeType.graph.edges.add(new Edge(triple.getSubject().toString(), triple.getObject().toString()));
+            
             if (!QueryShapeType.graph.vertices.contains(triple.getSubject().toString())) {
                 QueryShapeType.graph.vertices.add(triple.getSubject().toString());
             }
@@ -37,7 +32,6 @@ public class ElementVisitorShapeImpl extends ElementVisitorBase {
 
     @Override
     public void visit(ElementSubQuery el) {
-        subquery = true;
         Query q = el.getQuery();
         Element e = q.getQueryPattern();
 

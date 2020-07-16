@@ -51,7 +51,6 @@ public class XMLParser {
                         question.addAnswer(getCharacterDataFromElement((Element) langList.item(j)).replace("\n", ""));
                     }
                 } catch (Exception e) {
-                    //System.out.println(e);
                 }
 
                 if (question.getQuestionQuery() != null) {
@@ -59,7 +58,6 @@ public class XMLParser {
                 }
             }
         } catch (Exception e) {
-            //e.printStackTrace();
         }
         return questionsList;
     }
@@ -103,7 +101,6 @@ public class XMLParser {
                         question.setQuestionString(getCharacterDataFromElement(langElement).replace("\n", ""));
                     }
                 }
-                //System.out.println("");
 
                 question.setQuestionQuery(getCharacterDataFromElement((Element) element.
                         getElementsByTagName("query").item(0)));
@@ -122,7 +119,6 @@ public class XMLParser {
                         question.addAnswer(answersList.item(j).getTextContent().replace("\n", ""));
                     }
                 } catch (Exception e) {
-                    //System.out.println(e);
                 }
 
                 if (question.getQuestionQuery() != null) {
@@ -130,7 +126,6 @@ public class XMLParser {
                 }
             }
         } catch (Exception e) {
-            e.printStackTrace();
         }
         return questionsList;
     }

@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import org.apache.jena.query.Query;
 import org.apache.jena.query.QueryFactory;
-import org.apache.jena.query.Syntax;
 import qa.dataStructures.Question;
 import qa.parsers.JSONParser;
 import qa.parsers.Parser;
@@ -26,17 +25,17 @@ public class DataSetPreprocessing {
         {
             questions.addAll(Parser.parseQald1("./data/DBpedia/SPARQL/QALD-master/1/data/dbpedia-test.xml", "QALD-1", "dbpedia", false));
             questions.addAll(Parser.parseQald1("./data/DBpedia/SPARQL/QALD-master/1/data/dbpedia-train.xml", "QALD-1", "dbpedia", false));
-            questions.addAll(Parser.parseQald1("./data/DBpedia/SPARQL/QALD-master/1/data/musicbrainz-test.xml", "QALD-1", "dbpedia", false));
-            questions.addAll(Parser.parseQald1("./data/DBpedia/SPARQL/QALD-master/1/data/musicbrainz-train.xml", "QALD-1", "dbpedia", false));
+//            questions.addAll(Parser.parseQald1("./data/DBpedia/SPARQL/QALD-master/1/data/musicbrainz-test.xml", "QALD-1", "dbpedia", false));
+//            questions.addAll(Parser.parseQald1("./data/DBpedia/SPARQL/QALD-master/1/data/musicbrainz-train.xml", "QALD-1", "dbpedia", false));
         }
         if(benchmark == Benchmark.QALD_2 || benchmark == Benchmark.QALD_ALL)
         {
             questions.addAll(Parser.parseQald1("./data/DBpedia/SPARQL/QALD-master/2/data/dbpedia-test.xml", "QALD-2", "dbpedia", false));
             questions.addAll(Parser.parseQald1("./data/DBpedia/SPARQL/QALD-master/2/data/dbpedia-train.xml", "QALD-2", "dbpedia", false));
             questions.addAll(Parser.parseQald1("./data/DBpedia/SPARQL/QALD-master/2/data/dbpedia-train-answers.xml", "QALD-2", "dbpedia", false));
-            questions.addAll(Parser.parseQald1("./data/DBpedia/SPARQL/QALD-master/2/data/musicbrainz-test.xml", "QALD-2", "dbpedia", false));
-            questions.addAll(Parser.parseQald1("./data/DBpedia/SPARQL/QALD-master/2/data/musicbrainz-train.xml", "QALD-2", "dbpedia", false));
-            questions.addAll(Parser.parseQald1("./data/DBpedia/SPARQL/QALD-master/2/data/musicbrainz-train-answers.xml", "QALD-2", "dbpedia", false));
+//            questions.addAll(Parser.parseQald1("./data/DBpedia/SPARQL/QALD-master/2/data/musicbrainz-test.xml", "QALD-2", "dbpedia", false));
+//            questions.addAll(Parser.parseQald1("./data/DBpedia/SPARQL/QALD-master/2/data/musicbrainz-train.xml", "QALD-2", "dbpedia", false));
+//            questions.addAll(Parser.parseQald1("./data/DBpedia/SPARQL/QALD-master/2/data/musicbrainz-train-answers.xml", "QALD-2", "dbpedia", false));
             questions.addAll(Parser.parseQald1("./data/DBpedia/SPARQL/QALD-master/2/data/participants-challenge.xml", "QALD-2", "dbpedia", false));
             questions.addAll(Parser.parseQald1("./data/DBpedia/SPARQL/QALD-master/2/data/participants-challenge-answers.xml", "QALD-2", "dbpedia", false));
         }
@@ -50,10 +49,10 @@ public class DataSetPreprocessing {
             questions.addAll(XMLParser.parseQald4("./data/DBpedia/SPARQL/QALD-master/3/data/esdbpedia-test-answers.xml", "QALD-3", "dbpedia", true));
             questions.addAll(XMLParser.parseQald4("./data/DBpedia/SPARQL/QALD-master/3/data/esdbpedia-train.xml", "QALD-3", "dbpedia", true));
             questions.addAll(XMLParser.parseQald4("./data/DBpedia/SPARQL/QALD-master/3/data/esdbpedia-train-answers.xml", "QALD-3", "dbpedia", true));
-            questions.addAll(XMLParser.parseQald4("./data/DBpedia/SPARQL/QALD-master/3/data/musicbrainz-test.xml", "QALD-3", "dbpedia", true));
-            questions.addAll(XMLParser.parseQald4("./data/DBpedia/SPARQL/QALD-master/3/data/musicbrainz-test-answers.xml", "QALD-3", "dbpedia", true));
-            questions.addAll(XMLParser.parseQald4("./data/DBpedia/SPARQL/QALD-master/3/data/musicbrainz-train.xml", "QALD-3", "dbpedia", true));
-            questions.addAll(XMLParser.parseQald4("./data/DBpedia/SPARQL/QALD-master/3/data/musicbrainz-train-answers.xml", "QALD-3", "dbpedia", true));
+//            questions.addAll(XMLParser.parseQald4("./data/DBpedia/SPARQL/QALD-master/3/data/musicbrainz-test.xml", "QALD-3", "dbpedia", true));
+//            questions.addAll(XMLParser.parseQald4("./data/DBpedia/SPARQL/QALD-master/3/data/musicbrainz-test-answers.xml", "QALD-3", "dbpedia", true));
+//            questions.addAll(XMLParser.parseQald4("./data/DBpedia/SPARQL/QALD-master/3/data/musicbrainz-train.xml", "QALD-3", "dbpedia", true));
+//            questions.addAll(XMLParser.parseQald4("./data/DBpedia/SPARQL/QALD-master/3/data/musicbrainz-train-answers.xml", "QALD-3", "dbpedia", true));
         }
         if(benchmark == Benchmark.QALD_4 || benchmark == Benchmark.QALD_ALL)
         {
@@ -77,16 +76,16 @@ public class DataSetPreprocessing {
         {
             questions.addAll(JSONParser.parseQald7File2("./data/DBpedia/SPARQL/QALD-master/6/data/qald-6-train-multilingual.json", "QALD-6", "dbpedia"));
             questions.addAll(JSONParser.parseQald7File2("./data/DBpedia/SPARQL/QALD-master/6/data/qald-6-test-multilingual.json", "QALD-6", "dbpedia"));
-            questions.addAll(JSONParser.parseQald7File4("./data/DBpedia/SPARQL/QALD-master/6/data/qald-6-train-datacube.json", "QALD-6", "linkedspending"));
+//            questions.addAll(JSONParser.parseQald7File4("./data/DBpedia/SPARQL/QALD-master/6/data/qald-6-train-datacube.json", "QALD-6", "linkedspending"));
             questions.addAll(JSONParser.parseQald7File6("./data/DBpedia/SPARQL/QALD-master/6/data/qald-6-train-hybrid.json", "QALD-6", "dbpedia"));
             questions.addAll(JSONParser.parseQald7File6("./data/DBpedia/SPARQL/QALD-master/6/data/qald-6-test-hybrid.json", "QALD-6", "dbpedia"));
         }
         if(benchmark == Benchmark.QALD_7 || benchmark == Benchmark.QALD_ALL)
         {
-            questions.addAll(JSONParser.parseQald7File2("./data/DBpedia/SPARQL/QALD-master/7/data/qald-7-test-en-wikidata.json", "QALD-7", "wikidata"));
+//            questions.addAll(JSONParser.parseQald7File2("./data/DBpedia/SPARQL/QALD-master/7/data/qald-7-test-en-wikidata.json", "QALD-7", "wikidata"));
             questions.addAll(JSONParser.parseQald7File2("./data/DBpedia/SPARQL/QALD-master/7/data/qald-7-train-largescale.json", "QALD-7", "dbpedia"));
             questions.addAll(JSONParser.parseQald7File1("./data/DBpedia/SPARQL/QALD-master/7/data/qald-7-train-multilingual-extended-json.json", "QALD-7", "dbpedia"));
-            questions.addAll(JSONParser.parseQald7File2("./data/DBpedia/SPARQL/QALD-master/7/data/qald-7-train-en-wikidata.json", "QALD-7", "wikidata"));
+//            questions.addAll(JSONParser.parseQald7File2("./data/DBpedia/SPARQL/QALD-master/7/data/qald-7-train-en-wikidata.json", "QALD-7", "wikidata"));
             questions.addAll(JSONParser.parseQald7File3("./data/DBpedia/SPARQL/QALD-master/7/data/qald-7-train-hybrid-extended-json.json", "QALD-7", "dbpedia"));
             questions.addAll(JSONParser.parseQald7File4("./data/DBpedia/SPARQL/QALD-master/7/data/qald-7-train-hybrid.json", "QALD-7", "dbpedia"));
             questions.addAll(JSONParser.parseQald7File3("./data/DBpedia/SPARQL/QALD-master/7/data/qald-7-train-multilingual-extended-json.json", "QALD-7", "dbpedia"));
@@ -96,7 +95,7 @@ public class DataSetPreprocessing {
         {
             questions.addAll(JSONParser.parseQald8File("./data/DBpedia/SPARQL/QALD-master/8/data/qald-8-test-multilingual.json", "QALD-8", "dbpedia"));
             questions.addAll(JSONParser.parseQald8File("./data/DBpedia/SPARQL/QALD-master/8/data/qald-8-train-multilingual.json", "QALD-8", "dbpedia"));
-            questions.addAll(JSONParser.parseQald7File2("./data/DBpedia/SPARQL/QALD-master/8/data/wikidata-train-7.json", "QALD-8", "wikidata"));
+//            questions.addAll(JSONParser.parseQald7File2("./data/DBpedia/SPARQL/QALD-master/8/data/wikidata-train-7.json", "QALD-8", "wikidata"));
         }
         if(benchmark == Benchmark.QALD_9 || benchmark == Benchmark.QALD_ALL)
         {
@@ -113,80 +112,88 @@ public class DataSetPreprocessing {
         }      
         if(benchmark == Benchmark.GraphQuestions)
         {
-            questions.addAll(JSONParser.parseGra("./data/Freebase/SPARQL/GraphQuestions-master/freebase13/graphquestions.testing.json", "Freebase_Graph", "Freebase"));
-            questions.addAll(JSONParser.parseGra("./data/Freebase/SPARQL/GraphQuestions-master/freebase13/graphquestions.training.json", "Freebase_Graph", "Freebase"));
+            questions.addAll(JSONParser.parseGra("./data/Freebase/SPARQL/GraphQuestions-master/freebase13/graphquestions.testing.json", "Freebase_Graph", "freebase"));
+            questions.addAll(JSONParser.parseGra("./data/Freebase/SPARQL/GraphQuestions-master/freebase13/graphquestions.training.json", "Freebase_Graph", "freebase"));
         }
         if(benchmark == Benchmark.WebQuestions)
         {
-            questions.addAll(JSONParser.parseWeb("./data/Freebase/SPARQL/WebQuestionsSP/WebQSP.test.json", "Freebase_Web", "Freebase"));
-            questions.addAll(JSONParser.parseWeb("./data/Freebase/SPARQL/WebQuestionsSP/WebQSP.test.partial.json", "Freebase_Web", "Freebase"));
-            questions.addAll(JSONParser.parseWeb("./data/Freebase/SPARQL/WebQuestionsSP/WebQSP.train.json", "Freebase_Web", "Freebase"));
-            questions.addAll(JSONParser.parseWeb("./data/Freebase/SPARQL/WebQuestionsSP/WebQSP.train.partial.json", "Freebase_Web", "Freebase"));
+            questions.addAll(JSONParser.parseWeb("./data/Freebase/SPARQL/WebQuestionsSP/WebQSP.test.json", "Freebase_Web", "freebase"));
+            questions.addAll(JSONParser.parseWeb("./data/Freebase/SPARQL/WebQuestionsSP/WebQSP.test.partial.json", "Freebase_Web", "freebase"));
+            questions.addAll(JSONParser.parseWeb("./data/Freebase/SPARQL/WebQuestionsSP/WebQSP.train.json", "Freebase_Web", "freebase"));
+            questions.addAll(JSONParser.parseWeb("./data/Freebase/SPARQL/WebQuestionsSP/WebQSP.train.partial.json", "Freebase_Web", "freebase"));
         }
         
         //Every Question has some other questions with the same answer
         if(benchmark == Benchmark.ComQA)
         {
-            questions.addAll(JSONParser.parseComQA("./data/Freebase/No_SPARQL/ComQA/comqa_train.json", "ComQA", "Freebase"));
-            questions.addAll(JSONParser.parseComQA("./data/Freebase/No_SPARQL/ComQA/comqa_dev.json", "ComQA", "Freebase"));
-            questions.addAll(JSONParser.parseFreeNo2("./data/Freebase/No_SPARQL/ComQA/comqa_test.json", "ComQA", "Freebase"));
+            questions.addAll(JSONParser.parseComQA("./data/Freebase/No_SPARQL/ComQA/comqa_train.json", "ComQA", "freebase"));
+            questions.addAll(JSONParser.parseComQA("./data/Freebase/No_SPARQL/ComQA/comqa_dev.json", "ComQA", "freebase"));
+            questions.addAll(JSONParser.parseFreeNo2("./data/Freebase/No_SPARQL/ComQA/comqa_test.json", "ComQA", "freebase"));
         }
         
         
         if(benchmark == Benchmark.ComplexQuestions)
         {
-            questions.addAll(JSONParser.parseFreeNo("./data/Freebase/No_SPARQL/Complex_Questions/questions.json", "ComplexQuestions", "Freebase"));
+            questions.addAll(JSONParser.parseFreeNo("./data/Freebase/No_SPARQL/Complex_Questions/questions.json", "ComplexQuestions", "freebase"));
         }        
         
         //No Answers available in the Benchmarks. Only Lamda Calculas Expresions assoiated with questions.
         if(benchmark == Benchmark.Free917)
         {
+            questions.addAll(JSONParser.parseFree917("./data/Freebase/No_SPARQL/Free917/free917.train.examples.canonicalized.json", "Free917", "freebase"));
+            questions.addAll(JSONParser.parseFree917("./data/Freebase/No_SPARQL/Free917/free917.test.examples.canonicalized.json", "Free917", "freebase"));
         }
         
         if(benchmark == Benchmark.SimpleDBpediaQA)
         {
+            questions.addAll(JSONParser.parseSimpleDB("./data/DBpedia/No_SPARQL/SimpleDBpediaQA-master/V1/train.json", "SimpleDBpediaQA", "dbpediaa"));
+            questions.addAll(JSONParser.parseSimpleDB("./data/DBpedia/No_SPARQL/SimpleDBpediaQA-master/V1/test.json", "SimpleDBpediaQA", "dbpediaa"));
+            questions.addAll(JSONParser.parseSimpleDB("./data/DBpedia/No_SPARQL/SimpleDBpediaQA-master/V1/valid.json", "SimpleDBpediaQA", "dbpediaa"));
         }
         
-        if(benchmark == Benchmark.SimpleQuestions)
-        {
-        }
         
         if(benchmark == Benchmark.TempQuestions)
         {
-            questions.addAll(JSONParser.parseTemp("./data/Freebase/No_SPARQL/TempQuestions/TempQuestions.json", "TempQuestions", "Freebase"));
+            questions.addAll(JSONParser.parseTemp("./data/Freebase/No_SPARQL/TempQuestions/TempQuestions.json", "TempQuestions", "freebase"));
         }
         
         
 
         //Reverse List to remain most recent
         Collections.reverse(questions);
-        //Remove duplicates
+        System.out.println("\n\n\n\n\nQuestions Preprocessing ----->");
+        System.out.println("....... Remove Dublicates");
+        System.out.println("....... Exclude Queries the are not valid SPARQL 1.1");
+        System.out.println(".");
         String format = "%-10s%-10s%-20s%-30s%-70s%-50s%n";
-        System.out.format(format, "#\t", "Status\t", "Source\t", "File name\t", "Question\t", "Answers\t");
-        System.out.format(format, "======\t", "======\t", "======\t", "=========\t", "========\t", "========\t");
+        System.out.format(format, "#", "Status", "Source", "File name", "Question", "Answers");
+        System.out.format(format, "======", "======", "======", "=========", "========", "========");
         for (int i = 0; i < questions.size(); i++) {
             Question q = questions.get(i);
             System.out.format(format,
-                    (i + 1)+"\t",
-                    "Remain\t",
-                    questions.get(i).getQuestionSource()+"\t",
-                    questions.get(i).getFilepath().substring(questions.get(i).getFilepath().lastIndexOf("/") + 1)+"\t",
-                    questions.get(i).getQuestionString()+"\t",
-                    questions.get(i).getAnswers().toString()+"\t");
+                    (i + 1)+"",
+                    "Remain",
+                    questions.get(i).getQuestionSource()+"",
+                    questions.get(i).getFilepath().substring(questions.get(i).getFilepath().lastIndexOf("/") + 1)+"",
+                    questions.get(i).getQuestionString()+"",
+                    questions.get(i).getAnswers().toString()+"");
+            
+            //Remove duplicates
             for (int j = 0; j < questions.size(); j++) {
                 if (q.getQuestionString().equals(questions.get(j).getQuestionString()) && i != j) {
 
                     System.out.format(format,
-                            "-"+"\t",
-                            "Removed"+"\t",
-                            questions.get(j).getQuestionSource()+"\t",
-                            questions.get(j).getFilepath().substring(questions.get(j).getFilepath().lastIndexOf("/") + 1)+"\t",
-                            questions.get(j).getQuestionString()+"\t",
-                            questions.get(j).getAnswers().toString()+"\t");
+                            "-"+"",
+                            "Removed"+"",
+                            questions.get(j).getQuestionSource()+"",
+                            questions.get(j).getFilepath().substring(questions.get(j).getFilepath().lastIndexOf("/") + 1)+"",
+                            questions.get(j).getQuestionString()+"",
+                            questions.get(j).getAnswers().toString()+"");
+                    
                     questions.remove(j);
                 }
             }
-            //System.out.println("");
+            System.out.println("");
             questionsWithoutDuplicates = questions;
         }
 
@@ -212,23 +219,23 @@ public class DataSetPreprocessing {
                     queries.add(query);
                 }
             } catch (Exception e) {
-                //System.out.println(e.getMessage());
                 queriesWithProblems.add(queryString +"\n\n"+ e.getMessage());
-                //System.out.println(queryString);
             }
         }
+        System.out.println("\n\n\n\n\nBenchmark Statistics ----->");
         System.out.println("Questions: " + questions.size());
-        System.out.println("Queries with problems: " + queriesWithProblems.size());
-        System.out.println("Queries: " + queries.size());
+        System.out.println("Queries with problems: " + queriesWithProblems.size() 
+                + " [These queies are not valid SPARQL 1.1 and are not supported by Apache Jena parser. (Excluded from the experiment)]");
+        System.out.println("Valid Queries: " + queries.size());
+        System.out.println("=============================");
         return queries;
     }
     
+    /*This method enable you to check the questions of a dataset and their quires and answers. 
+    Some queries may not support SPARQL 1.1 and are excluded from the experiment.*/
     public static void main(String[] args) {
-        getQueriesWithoutDuplicates(Benchmark.ComplexQuestions);
-//        System.out.println("===== Qeries with problems ======");
-//        for (String q : queriesWithProblems) {
-//            System.out.println(q);
-//            System.out.println("======================================================");
-//        }
+        //Select the required benchmark by changing the constant variable that represent the benchmark.
+        //All Constants values are in the Benchmark class.
+        getQueriesWithoutDuplicates(Benchmark.QALD_1);
     }
 }

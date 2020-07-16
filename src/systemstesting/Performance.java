@@ -1,17 +1,8 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package systemstesting;
 
 import java.util.ArrayList;
 import java.util.Collections;
 
-/**
- *
- * @author aorogat
- */
 public class Performance {
     
     static int correctAnswered;
@@ -56,7 +47,6 @@ public class Performance {
         Collections.sort(systemAnswerList);
 
         boolean found = false;
-        //if (systemAnswerList.size() == correctAnswerList.size()) {
             for (int i = 0; i < correctAnswerList.size(); i++) {
                 found = false;
                 for (int j = 0; j < systemAnswerList.size(); j++) {
@@ -68,8 +58,7 @@ public class Performance {
                     return false;
             }
             return true;
-        //}
-
+        
     }
 
     

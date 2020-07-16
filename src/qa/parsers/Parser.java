@@ -16,10 +16,6 @@ import org.w3c.dom.NodeList;
 import qa.dataStructures.Question;
 import static qa.parsers.XMLParser.getCharacterDataFromElement;
 
-/**
- *
- * @author Abdelghny Orogat
- */
 public class Parser {
 
     public static ArrayList<Question> parseQald1(String fileDirectory, String sourceString, String endpoint, boolean multilingual) {

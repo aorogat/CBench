@@ -7,12 +7,6 @@ import javax.xml.bind.annotation.XmlElements;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 
-/**
- * The data structure for the question
- *
- * @author ahmed
- *
- */
 @XmlRootElement(name = "question")
 @XmlType (propOrder={"id","database","questionSource","filepath","questionString","keywords","questionQuery","answers"})
 public class Question {

@@ -11,20 +11,54 @@ import qa.dataStructures.Question;
 
 public class JSONParser {
 
-    /**
-     * QALD-9 Parser for file qald-9-train-multilingual.json
-     *
-     * @param fileDirectory the path to the file to be parsed
-     * @param sourceString the string describing the source associated with
-     * these question
-     * @return ArrayList<Question> the list of questions parsed from file
-     * @throws JSONException
-     */
+    
+    public static ArrayList<Question> parseSimpleDB(String fileDirectory, String sourceString, String endpoint) throws JSONException {
+        ArrayList<Question> questionsList = new ArrayList<Question>();
+        String fileContents = FileManager.readWholeFile(fileDirectory);
+        JSONObject obj = new JSONObject(fileContents);
+        JSONArray arr = obj.getJSONArray("Questions");
+        for (int i = 0; i < arr.length(); i++) {
+
+            Question question = new Question();
+            question.setDatabase(endpoint);
+            question.setFilepath(fileDirectory);
+            // The source is predefined
+            question.setQuestionSource(sourceString);
+
+            JSONObject currentQuestionObject = arr.getJSONObject(i);
+            question.setQuestionString(currentQuestionObject.getString("Query"));
+
+            questionsList.add(question);
+        }
+        return questionsList;
+    }
+
+    
+    public static ArrayList<Question> parseFree917(String fileDirectory, String sourceString, String endpoint) throws JSONException {
+        ArrayList<Question> questionsList = new ArrayList<Question>();
+        String fileContents = FileManager.readWholeFile(fileDirectory);
+        JSONArray arr = new JSONArray(fileContents);
+        for (int i = 0; i < arr.length(); i++) {
+
+            Question question = new Question();
+            question.setDatabase(endpoint);
+            question.setFilepath(fileDirectory);
+            // The source is predefined
+            question.setQuestionSource(sourceString);
+
+            JSONObject currentQuestionObject = arr.getJSONObject(i);
+            question.setQuestionString(currentQuestionObject.getString("utterance").replace("\n", ""));
+
+            questionsList.add(question);
+        }
+        return questionsList;
+    }
+
+    
+    
     public static ArrayList<Question> parseComQA(String fileDirectory, String sourceString, String endpoint) throws JSONException {
         ArrayList<Question> questionsList = new ArrayList<Question>();
-        //System.out.println("Reading file " + fileDirectory + "...");
         String fileContents = FileManager.readWholeFile(fileDirectory);
-        //System.out.println("Parsing file...");
         JSONObject obj = new JSONObject(fileContents);
         JSONArray arr = obj.getJSONArray("questions");
         for (int i = 0; i < arr.length(); i++) {
@@ -70,9 +104,7 @@ public class JSONParser {
 
     public static ArrayList<Question> parseTemp(String fileDirectory, String sourceString, String endpoint) throws JSONException {
         ArrayList<Question> questionsList = new ArrayList<Question>();
-        //System.out.println("Reading file " + fileDirectory + "...");
         String fileContents = FileManager.readWholeFile(fileDirectory);
-        //System.out.println("Parsing file...");
         JSONObject obj = new JSONObject(fileContents);
         JSONArray arr = obj.getJSONArray("questions");
         for (int i = 0; i < arr.length(); i++) {
@@ -109,9 +141,7 @@ public class JSONParser {
 
     public static ArrayList<Question> parseQuADFile(String fileDirectory, String sourceString, String endpoint) throws JSONException {
         ArrayList<Question> questionsList = new ArrayList<Question>();
-        //System.out.println("Reading file " + fileDirectory + "...");
         String fileContents = FileManager.readWholeFile(fileDirectory);
-        //System.out.println("Parsing file...");
         JSONObject obj = new JSONObject(fileContents);
         JSONArray arr = obj.getJSONArray("questions");
         for (int i = 0; i < arr.length(); i++) {
@@ -136,9 +166,7 @@ public class JSONParser {
 
     public static ArrayList<Question> parseNo(String fileDirectory, String sourceString, String endpoint) throws JSONException {
         ArrayList<Question> questionsList = new ArrayList<Question>();
-        //System.out.println("Reading file " + fileDirectory + "...");
         String fileContents = FileManager.readWholeFile(fileDirectory);
-        //System.out.println("Parsing file...");
         JSONObject obj = new JSONObject(fileContents);
         JSONArray arr = obj.getJSONArray("questions");
         for (int i = 0; i < arr.length(); i++) {
@@ -159,9 +187,7 @@ public class JSONParser {
 
     public static ArrayList<Question> parseFreeNo(String fileDirectory, String sourceString, String endpoint) throws JSONException {
         ArrayList<Question> questionsList = new ArrayList<Question>();
-        //System.out.println("Reading file " + fileDirectory + "...");
         String fileContents = FileManager.readWholeFile(fileDirectory);
-        //System.out.println("Parsing file...");
         JSONObject obj = new JSONObject(fileContents);
         JSONArray arr = obj.getJSONArray("questions");
         for (int i = 0; i < arr.length(); i++) {
@@ -198,9 +224,7 @@ public class JSONParser {
 
     public static ArrayList<Question> parseFreeNo2(String fileDirectory, String sourceString, String endpoint) throws JSONException {
         ArrayList<Question> questionsList = new ArrayList<Question>();
-        //System.out.println("Reading file " + fileDirectory + "...");
         String fileContents = FileManager.readWholeFile(fileDirectory);
-        //System.out.println("Parsing file...");
         JSONObject obj = new JSONObject(fileContents);
         JSONArray arr = obj.getJSONArray("questions");
         for (int i = 0; i < arr.length(); i++) {
@@ -237,9 +261,7 @@ public class JSONParser {
 
     public static ArrayList<Question> parseFreeNo3(String fileDirectory, String sourceString, String endpoint) throws JSONException {
         ArrayList<Question> questionsList = new ArrayList<Question>();
-        //System.out.println("Reading file " + fileDirectory + "...");
         String fileContents = FileManager.readWholeFile(fileDirectory);
-        //System.out.println("Parsing file...");
         JSONObject obj = new JSONObject(fileContents);
         JSONArray arr = obj.getJSONArray("questions");
         for (int i = 0; i < arr.length(); i++) {
@@ -276,9 +298,7 @@ public class JSONParser {
 
     public static ArrayList<Question> parseGra(String fileDirectory, String sourceString, String endpoint) throws JSONException {
         ArrayList<Question> questionsList = new ArrayList<Question>();
-        //System.out.println("Reading file " + fileDirectory + "...");
         String fileContents = FileManager.readWholeFile(fileDirectory);
-        //System.out.println("Parsing file...");
         JSONObject obj = new JSONObject(fileContents);
         JSONArray arr = obj.getJSONArray("questions");
         for (int i = 0; i < arr.length(); i++) {
@@ -317,9 +337,7 @@ public class JSONParser {
 
     public static ArrayList<Question> parseWeb(String fileDirectory, String sourceString, String endpoint) throws JSONException {
         ArrayList<Question> questionsList = new ArrayList<Question>();
-        //System.out.println("Reading file " + fileDirectory + "...");
         String fileContents = FileManager.readWholeFile(fileDirectory);
-        //System.out.println("Parsing file...");
         JSONObject obj = new JSONObject(fileContents);
         JSONArray arr = obj.getJSONArray("questions");
         for (int i = 0; i < arr.length(); i++) {
@@ -363,9 +381,7 @@ public class JSONParser {
 
     public static ArrayList<Question> parseQald9File(String fileDirectory, String sourceString, String endpoint) {
         ArrayList<Question> questionsList = new ArrayList<Question>();
-        //System.out.println("Reading file " + fileDirectory + "...");
         String fileContents = FileManager.readWholeFile(fileDirectory);
-        //System.out.println("Parsing file...");
         JSONObject obj = new JSONObject(fileContents);
         JSONArray arr = obj.getJSONArray("questions");
         for (int i = 0; i < arr.length(); i++) {
@@ -417,37 +433,16 @@ public class JSONParser {
         }
         return questionsList;
     }
-
-    /**
-     * QALD-8 Parser for file {qald-8-train-multilingual,
-     * qald-8-test-multilingual.json}
-     *
-     * @param fileDirectory the path to the file to be parsed
-     * @param sourceString the string describing the source associated with
-     * these question
-     * @return ArrayList<Question> the list of questions parsed from file
-     */
+    
     public static ArrayList<Question> parseQald8File(String fileDirectory, String sourceString, String endpoint) {
         return parseQald9File(fileDirectory, sourceString, endpoint);
     }
 
-    /**
-     * QALD-7 Parser for files: {qald-7-train-multilingual-extended-json.json}
-     *
-     * @param fileDirectory the path to the file to be parsed
-     * @param sourceString the string describing the source associated with
-     * these question
-     * @return ArrayList<Question> the list of questions parsed from file
-     */
     public static ArrayList<Question> parseQald7File1(String fileDirectory, String sourceString, String endpoint) {
         ArrayList<Question> questionsList = new ArrayList<Question>();
-        //if(print)
-        //System.out.println("Reading file " + fileDirectory + "...");
 
         String fileContents = FileManager.readWholeFile(fileDirectory);
 
-        //if(print)
-        //System.out.println("Parsing file...");
         JSONObject obj = new JSONObject(fileContents);
         JSONArray arr = obj.getJSONArray("questions");
         for (int i = 0; i < arr.length(); i++) {
@@ -495,20 +490,9 @@ public class JSONParser {
         return questionsList;
     }
 
-    /**
-     * QALD-7 Parser for files: {qald-7-test-multilingual.json,
-     * qald-7-train-largescale.json, qald-6-train-multilingual.json}
-     *
-     * @param fileDirectory the path to the file to be parsed
-     * @param sourceString the string describing the source associated with
-     * these question
-     * @return ArrayList<Question> the list of questions parsed from file
-     */
     public static ArrayList<Question> parseQald7File2(String fileDirectory, String sourceString, String endpoint) {
         ArrayList<Question> questionsList = new ArrayList<Question>();
-        //System.out.println("Reading file " + fileDirectory + "...");
         String fileContents = FileManager.readWholeFile(fileDirectory);
-        //System.out.println("Parsing file...");
         JSONObject obj = new JSONObject(fileContents);
         JSONArray arr = obj.getJSONArray("questions");
         for (int i = 0; i < arr.length(); i++) {
@@ -574,22 +558,9 @@ public class JSONParser {
         return questionsList;
     }
 
-    /**
-     * QALD-7 Parser for files: {qald-7-train-hybrid-extended-json.json,
-     * ./data/original/QALD-master/7/data/qald-7-train-multilingual-extended-json.json
-     * }
-     *
-     * @param fileDirectory the path to the file to be parsed
-     * @param sourceString the string describing the source associated with
-     * these question
-     * @return ArrayList<Question> the list of questions parsed from file
-     * @throws JSONException
-     */
     public static ArrayList<Question> parseQald7File3(String fileDirectory, String sourceString, String endpoint) throws JSONException {
         ArrayList<Question> questionsList = new ArrayList<Question>();
-        //System.out.println("Reading file " + fileDirectory + "...");
         String fileContents = FileManager.readWholeFile(fileDirectory);
-        //System.out.println("Parsing file...");
         JSONObject obj = new JSONObject(fileContents);
         JSONArray arr = obj.getJSONArray("questions");
         for (int i = 0; i < arr.length(); i++) {
@@ -645,17 +616,6 @@ public class JSONParser {
         return questionsList;
     }
 
-    /**
-     * QALD-7 Parser for files: {qald-7-train-hybrid.json,
-     *
-     * }
-     *
-     * @param fileDirectory the path to the file to be parsed
-     * @param sourceString the string describing the source associated with
-     * these question
-     * @return ArrayList<Question> the list of questions parsed from file
-     * @throws JSONException
-     */
     public static ArrayList<Question> parseQald7File4(String fileDirectory, String sourceString, String endpoint) throws JSONException {
         ArrayList<Question> questionsList = new ArrayList<Question>();
         String fileContents = FileManager.readWholeFile(fileDirectory);
@@ -720,20 +680,9 @@ public class JSONParser {
         return questionsList;
     }
 
-    /**
-     * QALD-5 Parser for files: {qald-5_train.json}
-     *
-     * @param fileDirectory the path to the file to be parsed
-     * @param sourceString the string describing the source associated with
-     * these question
-     * @return ArrayList<Question> the list of questions parsed from file
-     * @throws JSONException
-     */
     public static ArrayList<Question> parseQald5(String fileDirectory, String sourceString, String endpoint) throws JSONException {
         ArrayList<Question> questionsList = new ArrayList<Question>();
-        //System.out.println("Reading file " + fileDirectory + "...");
         String fileContents = FileManager.readWholeFile(fileDirectory);
-        //System.out.println("Parsing file...");
         JSONObject obj = new JSONObject(fileContents);
         JSONArray arr = obj.getJSONArray("questions");
         for (int i = 0; i < arr.length(); i++) {
@@ -782,7 +731,6 @@ public class JSONParser {
     public static ArrayList<Question> parseQald7File6(String fileDirectory, String sourceString, String endpoint) throws JSONException {
         ArrayList<Question> questionsList = new ArrayList<Question>();
         String fileContents = FileManager.readWholeFile(fileDirectory);
-        //System.out.println("Parsing file...");
         JSONObject obj = new JSONObject(fileContents);
         JSONArray arr = obj.getJSONArray("questions");
         for (int i = 0; i < arr.length(); i++) {

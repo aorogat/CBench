@@ -1,21 +1,17 @@
 package ShapeAnalysis;
 
-import Graph.Edge;
 import Graph.Graph;
-import ShallowAnalysis.ElementVistorImpl;
 import java.util.ArrayList;
-import java.util.Iterator;
 import org.apache.jena.query.Query;
 import org.apache.jena.query.QueryFactory;
-import org.apache.jena.sparql.core.TriplePath;
 import org.apache.jena.sparql.syntax.Element;
-import org.apache.jena.sparql.syntax.ElementPathBlock;
-import org.apache.jena.sparql.syntax.ElementSubQuery;
 import org.apache.jena.sparql.syntax.ElementVisitorBase;
 import org.apache.jena.sparql.syntax.ElementWalker;
 
 public class QueryShapeType {
 
+    static public Graph graph = new Graph();
+    
     public static boolean isSingleEdge(String queryString) { //if no. of edges = 1, it is a single edge
         if (queryToGraph(queryString).edges.size() == 1) //Graph is a list of edges
         {
@@ -331,25 +327,18 @@ public class QueryShapeType {
 
         return false;
     }
-    
-    
-    static public Graph graph = new Graph();
+
     private static Graph queryToGraph(String queryString) {
         //Define Graph as a set of edges
         graph = new Graph();
         try {
             Query q = QueryFactory.create(queryString);
             Element e = q.getQueryPattern();
-                
-                System.out.println("===============================");
-                System.out.println(e.getClass().toString());
-                System.out.println("===============================");
-                System.out.println(e.toString());
-                ElementVisitorBase visitor = new ElementVisitorShapeImpl();
-                ElementWalker.walk(e, visitor);
+
+            ElementVisitorBase visitor = new ElementVisitorShapeImpl();
+            ElementWalker.walk(e, visitor);
 
         } catch (Exception e) {
-            System.err.println("This Query has a problem in its graph");
         }
         return graph;
     }
