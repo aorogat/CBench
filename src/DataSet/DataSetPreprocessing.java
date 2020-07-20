@@ -161,13 +161,19 @@ public class DataSetPreprocessing {
 
         //Reverse List to remain most recent
         Collections.reverse(questions);
-        System.out.println("\n\n\n\n\nQuestions Preprocessing ----->");
-        System.out.println("....... Remove Dublicates");
-        System.out.println("....... Exclude Queries the are not valid SPARQL 1.1");
+        System.out.println("+");
+        System.out.println("+");
+        System.out.println("+");
+        System.out.println("+       +++++++++++++++++++++++++");
+        System.out.println("++++++> Questions Preprocessing +");
+        System.out.println("        +++++++++++++++++++++++++");
+        System.out.println("              . Read data from benchmark files");
+        System.out.println("              . Remove Dublicates");
+        System.out.println("              . Exclude Queries that are not valid SPARQL 1.1");
         System.out.println(".");
         String format = "%-10s%-10s%-20s%-30s%-70s%-50s%n";
-        System.out.format(format, "#", "Status", "Source", "File name", "Question", "Answers");
-        System.out.format(format, "======", "======", "======", "=========", "========", "========");
+        System.out.format(format, "#", "Status", "Source", "File name", "Question", "File Answers");
+        System.out.format(format, "======", "======", "======", "=========", "========", "==============");
         for (int i = 0; i < questions.size(); i++) {
             Question q = questions.get(i);
             System.out.format(format,
@@ -193,7 +199,7 @@ public class DataSetPreprocessing {
                     questions.remove(j);
                 }
             }
-            System.out.println("");
+            //System.out.println("");
             questionsWithoutDuplicates = questions;
         }
 
@@ -222,12 +228,18 @@ public class DataSetPreprocessing {
                 queriesWithProblems.add(queryString +"\n\n"+ e.getMessage());
             }
         }
-        System.out.println("\n\n\n\n\nBenchmark Statistics ----->");
-        System.out.println("Questions: " + questions.size());
-        System.out.println("Queries with problems: " + queriesWithProblems.size() 
+        System.out.println("=========================================================================================");
+        System.out.println("+");
+        System.out.println("+");
+        System.out.println("+");
+        System.out.println("+       ++++++++++++++++++++++");
+        System.out.println("++++++> Benchmark Statistics +");
+        System.out.println("        ++++++++++++++++++++++");
+        System.out.println("                Questions: " + questions.size());
+        System.out.println("                Queries with problems: " + queriesWithProblems.size() 
                 + " [These queies are not valid SPARQL 1.1 and are not supported by Apache Jena parser. (Excluded from the experiment)]");
-        System.out.println("Valid Queries: " + queries.size());
-        System.out.println("=============================");
+        System.out.println("                Valid Queries: " + queries.size());
+        System.out.println("        +++++++++++++++++++++++++");
         return queries;
     }
     

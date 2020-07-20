@@ -31,6 +31,7 @@ public class Benchmark {
     public final static int TempQuestions = 107;
     public final static int ComQA = 108;
     public final static int ComplexQuestions = 109;
+    public final static int UserDefined = 110;
     
     
     

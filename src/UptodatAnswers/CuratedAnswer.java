@@ -16,9 +16,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 public class CuratedAnswer {
-    public static String freebaseEndpoint = "";
-    public static String dbpediaEndpoint = "http://134.117.101.79:8890/sparql/?";
-    public static String wikidataEndpoint = "";
+    public static String endpoint = "http://134.117.101.79:8890/sparql/?";
 
     public static void main(String[] args) throws UnsupportedEncodingException {
         upToDateAnswerDBpedia("ASK WHERE { <http://dbpedia.org/resource/Ganymede_(moon)> <http://dbpedia.org/property/discoverer> <http://dbpedia.org/resource/Galileo_Galilei> }", "dbpedia");
@@ -54,7 +52,7 @@ public class CuratedAnswer {
 
     public static ArrayList upToDateAnswerDBpedia(String query, String kg) throws UnsupportedEncodingException {
         ArrayList<String> answersList = new ArrayList<>();
-        String url = dbpediaEndpoint
+        String url = endpoint
                 + "default-graph-uri=http%3A%2F%2Fdbpedia.org&"
                 + "query=" + URLEncoder.encode(query, StandardCharsets.UTF_8.toString()) + "&"
                 + "format=application%2Fsparql-results%2Bjson&"

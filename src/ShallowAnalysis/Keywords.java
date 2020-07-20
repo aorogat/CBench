@@ -8,15 +8,16 @@ import java.util.ArrayList;
 import org.apache.jena.query.Query;
 
 public class Keywords {
-
+    
     ArrayList<Query> qs;
 
-    public Keywords() {
-        qs = DataSetPreprocessing.getQueriesWithoutDuplicates(Benchmark.LC_QUAD);
+    public Keywords(ArrayList<Query> queries) {
+        qs = queries;
     }
 
     public static void main(String[] args) {
-        Keywords k = new Keywords();
+        
+        Keywords k = new Keywords(DataSetPreprocessing.getQueriesWithoutDuplicates(Benchmark.QALD_9));
         k.keywordsAnalysis();
     }
 

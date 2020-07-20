@@ -43,127 +43,136 @@ public class SystemEvaluation {
 
     public static void evaluate() throws IOException, JSONException, Exception {
         //Read required data        
-        System.out.println("......................... CBench for QA evaluation .........................");
-        System.out.println("----------------------------------------------------------------------------\n\n");
-        System.out.println("Select the KG from [default, dbpedia, wikidata, freebase]");
-        System.out.print("KG is: ");
+        System.out.println("        |");
+        System.out.println("        ++++> Select the KG from [default, dbpedia, wikidata, freebase]");
+        System.out.print("               KG is: ");
         KB = in.nextLine().trim().toLowerCase();
-        System.out.println("\nSelect the Benchmark (Enter the integer value) from [1- QALD_1, "
-                + "2- QALD_2, ..., 9- QALD_9, 10- QALD_ALL, "
-                + "11- LC-QUAD, 12- WebQuestions, 13- GraphQuestions, 14- ComplexQuestions, 15- ComQA, 16- TempQuestions, "
-                + "17- SimpleDBpediaQA, 18- SimpleQuestions]");
-        System.out.print("Benchmark is: ");
+        System.out.println("        |");
+        System.out.println("        ++++> Select the Benchmark (Enter the integer value) from");
+        System.out.println("                [1- QALD_1, \t\t2- QALD_2, ..., \t\t9- QALD_9, \t\t10- QALD_ALL, ");
+        System.out.println("                 11- LC-QUAD, \t\t12- WebQuestions, \t\t13- GraphQuestions, ");
+        System.out.println("                 14- ComplexQuestions, \t15- ComQA, \t\t\t16- TempQuestions, ");
+        System.out.println("                 17- SimpleDBpediaQA, \t18- SimpleQuestions, ");
+        System.out.println("                 19- UserDefined]");
+        System.out.print("               Benchmark is: ");
         benchmark = in.nextInt();
         switch (benchmark) {
             case 1:
                 benchmark = Benchmark.QALD_1;
-                System.out.println("---> CBench will use the QALD_1 Benchmark.");
+                System.out.println("               ---> CBench will use the QALD_1 Benchmark.");
                 benchmarkString = "QALD_1";
                 break;
             case 2:
                 benchmark = Benchmark.QALD_2;
-                System.out.println("---> CBench will use the QALD_2 Benchmark.");
+                System.out.println("               ---> CBench will use the QALD_2 Benchmark.");
                 benchmarkString = "QALD_2";
                 break;
             case 3:
                 benchmark = Benchmark.QALD_3;
-                System.out.println("---> CBench will use the QALD_3 Benchmark.");
+                System.out.println("               ---> CBench will use the QALD_3 Benchmark.");
                 benchmarkString = "QALD_3";
                 break;
             case 4:
                 benchmark = Benchmark.QALD_4;
-                System.out.println("---> CBench will use the QALD_4 Benchmark.");
+                System.out.println("               ---> CBench will use the QALD_4 Benchmark.");
                 benchmarkString = "QALD_4";
                 break;
             case 5:
                 benchmark = Benchmark.QALD_5;
-                System.out.println("---> CBench will use the QALD_5 Benchmark.");
+                System.out.println("               ---> CBench will use the QALD_5 Benchmark.");
                 benchmarkString = "QALD_5";
                 break;
             case 6:
                 benchmark = Benchmark.QALD_6;
-                System.out.println("---> CBench will use the QALD_6 Benchmark.");
+                System.out.println("               ---> CBench will use the QALD_6 Benchmark.");
                 benchmarkString = "QALD_6";
                 break;
             case 7:
                 benchmark = Benchmark.QALD_7;
-                System.out.println("---> CBench will use the QALD_7 Benchmark.");
+                System.out.println("               ---> CBench will use the QALD_7 Benchmark.");
                 benchmarkString = "QALD_7";
                 break;
             case 8:
                 benchmark = Benchmark.QALD_8;
-                System.out.println("---> CBench will use the QALD_8 Benchmark.");
+                System.out.println("               ---> CBench will use the QALD_8 Benchmark.");
                 benchmarkString = "QALD_8";
                 break;
             case 9:
                 benchmark = Benchmark.QALD_9;
-                System.out.println("---> CBench will use the QALD_9 Benchmark.");
+                System.out.println("               ---> CBench will use the QALD_9 Benchmark.");
                 benchmarkString = "QALD_9";
                 break;
             case 10:
                 benchmark = Benchmark.QALD_ALL;
-                System.out.println("---> CBench will use the QALD_All Benchmark.");
+                System.out.println("               ---> CBench will use the QALD_All Benchmark.");
                 benchmarkString = "QALD_ALL";
                 break;
             case 11:
                 benchmark = Benchmark.LC_QUAD;
-                System.out.println("---> CBench will use the LC-QUAD Benchmark.");
+                System.out.println("               ---> CBench will use the LC-QUAD Benchmark.");
                 benchmarkString = "LC-QUAD";
                 break;
             case 12:
                 benchmark = Benchmark.WebQuestions;
-                System.out.println("---> CBench will use the WebQuestions Benchmark.");
+                System.out.println("               ---> CBench will use the WebQuestions Benchmark.");
                 benchmarkString = "WebQuestions";
                 break;
             case 13:
                 benchmark = Benchmark.GraphQuestions;
-                System.out.println("---> CBench will use the GraphQuestions Benchmark.");
+                System.out.println("               ---> CBench will use the GraphQuestions Benchmark.");
                 benchmarkString = "GraphQuestions";
                 break;
             case 14:
                 benchmark = Benchmark.ComplexQuestions;
-                System.out.println("---> CBench will use the ComplexQuestions Benchmark.");
+                System.out.println("               ---> CBench will use the ComplexQuestions Benchmark.");
                 benchmarkString = "ComplexQuestions";
                 break;
             case 15:
                 benchmark = Benchmark.ComQA;
-                System.out.println("---> CBench will use the ComQA Benchmark.");
+                System.out.println("               ---> CBench will use the ComQA Benchmark.");
                 benchmarkString = "ComQA";
                 break;
             case 16:
                 benchmark = Benchmark.TempQuestions;
-                System.out.println("---> CBench will use the TempQuestions Benchmark.");
+                System.out.println("               ---> CBench will use the TempQuestions Benchmark.");
                 benchmarkString = "TempQuestions";
                 break;
             case 17:
                 benchmark = Benchmark.SimpleDBpediaQA;
-                System.out.println("---> CBench will use the SimpleDBpediaQA Benchmark.");
+                System.out.println("               ---> CBench will use the SimpleDBpediaQA Benchmark.");
                 benchmarkString = "SimpleDBpediaQA";
                 break;
             case 18:
                 benchmark = Benchmark.SimpleQuestions;
-                System.out.println("---> CBench will use the SimpleQuestions Benchmark.");
+                System.out.println("               ---> CBench will use the SimpleQuestions Benchmark.");
                 benchmarkString = "SimpleQuestions";
+                break;
+            case 19:
+                benchmark = Benchmark.UserDefined;
+                System.out.println("               ---> CBench will use the UserDefined Benchmark.");
+                benchmarkString = "User Defined";
                 break;
             default: evaluate();
         }
-        System.out.println("\nDo you like to update the answers?");
-        System.out.print("Enter  [y/n]: ");
+        System.out.println("        |");
+        System.out.println("        ++++> Would you like to update the answers from an endpoint?");
+        System.out.print("               Enter  [y/n]: ");
         String update = in.next().toLowerCase().trim();
         switch(update.charAt(0)){
             case 'y':
                 updateBenchmark = true;
-                System.out.println("---> CBench will update the answers.");
+                System.out.println("               ---> CBench will update the answers.");
                 break;
             case 'n':
                 updateBenchmark = false;
-                System.out.println("---> CBench will not update the answers.");
+                System.out.println("               ---> CBench will not update the answers.");
                 break;
             default: evaluate();
         }
         
-        System.out.println("\nWhat is the thresold value for Fqi to consider a question partially correct answered?");
-        System.out.print("Enter a value between 0 and 1: ");
+        System.out.println("        |");
+        System.out.println("        ++++> What is the thresold value for Fqi to consider a question partially correct answered?");
+        System.out.print("               Enter a value between 0 and 1: ");
         BenchmarkEval.threshold = in.nextDouble();
         if (BenchmarkEval.threshold < 0 || BenchmarkEval.threshold > 1) evaluate();
         
@@ -183,6 +192,12 @@ public class SystemEvaluation {
 
         int counter = 0;
         int qsWithAnswers = 0;
+        System.out.println("+");
+        System.out.println("+");
+        System.out.println("+");
+        System.out.println("+       ++++++++++++++++++++++++++++++++++++++++++++++++");
+        System.out.println("++++++> Collecting Correct answers and Systems answers +");
+        System.out.println("        ++++++++++++++++++++++++++++++++++++++++++++++++");
         for (Question question : questions) {
             corectAnswersList = new ArrayList<>();
             counter++;
@@ -230,9 +245,9 @@ public class SystemEvaluation {
             //for (int i = 0; i < 3; i++) {
             String q = question.getQuestionString().replace('?', ' ').replace(" ", "%20");
             System.out.println();
-            System.out.println("Question number:  " + counter);
-            System.out.println("Question: " + question.getQuestionString());
-            System.out.println("Correct Answer = " + corectAnswersList.toString());
+            System.out.println("               Question number:  " + counter);
+            System.out.println("               Question: " + question.getQuestionString());
+            System.out.println("               Correct Answer = " + corectAnswersList.toString());
 
             //////////////////////////////////////////////////////////////////////////////////////////////////////////
             if(KB.equals("default"))
@@ -245,13 +260,21 @@ public class SystemEvaluation {
             //  break;
             //  }
             //Loading indicator
-            System.out.println("System Answer = " + systemAnswersList.toString());
+            System.out.println("               System Answer = " + systemAnswersList.toString());
 
             //3- List of Questions and their (R, P, F1)
             evaluatedBenchmark.evaluatedQuestions.add(new QuestionEval(question.getQuestionString(), question, corectAnswersList, systemAnswersList));
 
         }
 
+        System.out.println("+");
+        System.out.println("+");
+        System.out.println("+");
+        System.out.println("+       ++++++++++++++");
+        System.out.println("++++++> Final Report +");
+        System.out.println("        ++++++++++++++");
+        System.out.print("               . Questions categorized by their queries shapes. Each line has a question, Gold Answer, System Answer, Recall, Precesion, F1-Score, the query and its properties.");
+        System.out.print("               . Final Scores");
         //4- Calculate parameters
         evaluatedBenchmark.calculateParameters();
 
@@ -270,7 +293,7 @@ public class SystemEvaluation {
             JSONObject json = readJsonFromUrl(url + "?query=" + question.replace(" ", "%20")
             +"&kb="+KB);
             
-            System.out.println(json.toString());
+            System.out.println("               System JSON Answer: "+json.toString());
             try {
 
                 JSONArray bindings = json.getJSONArray("questions").getJSONObject(0)

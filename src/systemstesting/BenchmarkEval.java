@@ -34,22 +34,11 @@ public class BenchmarkEval {
     }
 
     public void printScores() {
-        System.out.println("\n============== " + benchmarkName + " Scores ====================");
-        System.out.println("allQuestions: " + allQuestions);
-        System.out.println("Answered: " + answered);
-        System.out.println("questionsWithCorrectAnswers: " + questionsWithCorrectAnswers);
-        System.out.println("R_Mi : " + R_Mi() + "\t" + "P_Mi : " + P_Mi() + "\t" + "F_Mi : " + F_Mi());
-        System.out.println("F_Ma : " + F_Ma());
-        System.out.println();
-        System.out.println("R_G : " + R_G() + "\t" + "P_MG : " + P_G() + "\t" + "F_MG : " + F_G());
-        System.out.println("answeredWithThetaThreshold: " + answeredWithThetaThreshold);
-        System.out.println();
+        
         if (threshold <= 0) {
             threshold = 0.00000001;
         }
-        System.out.println("R_G(" + threshold + ") : " + R_G(threshold) + "\t" + "P_MG(" + threshold + ") : " + P_G(threshold) + "\t" + "F_MG(" + threshold + ") : " + F_G(threshold));
-        System.out.println("answeredWithThetaThreshold: " + answeredWithThetaThreshold);
-
+        
         System.out.println("\n============== " + benchmarkName + " All Questions ====================");
         for (QuestionEval q : evaluatedQuestions) {
             System.out.println(q.toString());
@@ -106,6 +95,25 @@ public class BenchmarkEval {
         for (QuestionEval q : flowerSetEvaluatedQuestions) {
             System.out.println(q.toString());
         }
+        
+        System.out.println("\n================================ " + benchmarkName + " ================================");
+        System.out.println("All Questions: " + allQuestions);
+        System.out.println("System Answered: " + answered);
+        System.out.println("Questions With Correct Answers: " + questionsWithCorrectAnswers);
+        System.out.println("================================ " + benchmarkName + " Scores =========================");
+        System.out.println("Micro Scores");
+        System.out.println("\tR_Mi : " + R_Mi() + "\t" + "P_Mi : " + P_Mi() + "\t" + "F_Mi : " + F_Mi());
+        System.out.println("Macro Scores");
+        System.out.println("\tF_Ma : " + F_Ma());
+        System.out.println("Global Scores (threshold = 1)");
+        System.out.println("\tR_G : " + R_G() + "\t" + "P_MG : " + P_G() + "\t" + "F_MG : " + F_G());
+        System.out.println("\tQuestions Partially Correct Answered With Theta Threshold = 1: " + answeredWithThetaThreshold);
+        double s = threshold==0.00000001?0:threshold; 
+        System.out.println("Global Scores (threshold = "+ s +")");
+        System.out.println("\tR_G(" + s + ") : " + R_G(threshold) + "\t" + "P_MG(" + s + ") : " + P_G(threshold) + "\t" + "F_MG(" + s + ") : " + F_G(threshold));
+        System.out.println("\tQuestions Partially Correct Answered With Theta Threshold = " + s +"): "+ answeredWithThetaThreshold);
+        System.out.println("=========================================================================================");
+
 
         writePropertiesToFile("singleEdge", singleEdgeEvaluatedQuestions);
         writePropertiesToFile("chain", chainEvaluatedQuestions);

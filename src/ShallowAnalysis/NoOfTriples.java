@@ -75,6 +75,21 @@ public final class NoOfTriples {
         
     }
 
+    
+    public NoOfTriples(ArrayList<Query> queries) {
+        qs = queries;
+        s = "bench\t0\t1\t2\t3\t4\t5\t6\t7\t8\t9\t10\t11+";
+        results.add(s);
+       
+        
+        zero = 0; one = 0; two = 0; three = 0; four = 0; five = 0; six = 0; seven = 0;
+            eight = 0; nine = 0; ten = 0; elevenOrMore = 0; total = 0;
+        s = "Count";
+        triplesAnalysis();
+        results.add(s);
+    }
+    
+    
     public static void main(String[] args) {
         NoOfTriples k = new NoOfTriples();
     }

@@ -17,12 +17,12 @@ public class OperatorDistribution
                                 U = 0, UF = 0, AU = 0, AUF = 0, CPF_U = 0,
                                 FGP = 0, FGU = 0, FAG = 0, AOUF = 0, AOUFG = 0;
 
-    public OperatorDistribution() {
-        qs = DataSetPreprocessing.getQueriesWithoutDuplicates(Benchmark.WebQuestions);
+    public OperatorDistribution(ArrayList<Query> queries) {
+        qs = queries;
     }
 
     public static void main(String[] args) {
-        OperatorDistribution k = new OperatorDistribution();
+        OperatorDistribution k = new OperatorDistribution(DataSetPreprocessing.getQueriesWithoutDuplicates(Benchmark.WebQuestions));
         k.analysis();
     }
 
