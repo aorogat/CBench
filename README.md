@@ -42,19 +42,21 @@ projectFolder
 
 ```
 *  __Run CBench.jar:__ Using the command ``` java -jar "PATH/TO/projectFolder/CBench.jar" ```, run the project.
-* __Configure the System:__ While the system running, it will ask you about some parameters. Theses parameters are
-* * __KG:__ The desired knowledge graph.
-* * __Benchmark:__ The desired benchmark for the analysis or QA system evaluation.
-* * __Project Directory Path:__ The path of the project must be as follow ``` PATH/TO/projectFolder ```. Please replace the PATH/TO/projectFolder by the correct path.
-* __Start the System:__ After you configured the system, it will start and do the following. __(It is prefered to unwrap the text)__
-* * __Questions Preprocessing:__ CBench read the question form the raw files and remove dupicates. All the questions will be printed.
-* * __Benchmark Statistics:__ CBench will print questions statistics.
+* __Configure the System:__ While the system is running, it asks you about some parameters. Theses parameters are
+  * __KG:__ The desired knowledge graph.
+  * __Benchmark:__ The desired benchmark for the analysis or QA system evaluation.
+  * __Project Directory Path:__ The path of the project must be as follow ``` PATH/TO/projectFolder ```. Please replace it by the correct path.
+* __Start the System:__ After you configured the system, it starts and does the following. __(It is prefered to unwrap the text)__
+  * __Questions Preprocessing:__ CBench read the question form the raw files and remove dupicates. All the questions will be printed.
+  * __Benchmark Statistics:__ CBench prints questions statistics.
+
 For Benchmark analysis,
-** __Print Analysis results:__ CBench will shallow and shape analysis. 
+  * __Print Analysis results:__ CBench prints shallow and shape analysis results. 
+
 For QA evaluation,
-* * __Collecting Correct answers and Systems answers:__ CBench will collect gold answers, feed QA system with the questtions and collect system answers. CBench prints the results per question while it is running.
-* * __Final Report:__ CBench prints the evaluated questions then print them again categorized by queries shapes. The values are seperated by tabs to be easy or you to paste them in a spreedsheet for your own analysis. After that it prints the performance scores defined in the paper.
-* * __Data Visualization:__ A Python script generates the fine-grained analysis visualization. To do so, you have to setup python on your machine and these liberaries: Numpy, Pandas, Matplotlib, Spacy, Scipy and Statistics. CBench asks you for the python3 setup location; for eaxmple, if you use anaconda on an ubuntu machine, the path usually is ``` /home/username/anaconda3/bin ```.
+  * __Collecting Correct answers and Systems answers:__ CBench collects gold answers, feeds QA system with the questtions and collects system answers. CBench prints the results per question while it is running.
+  * __Final Report:__ CBench prints the evaluated questions then print them again categorized by queries shapes. The values are seperated by tabs to be easy for you to paste them in a spreedsheet for your own analysis. After that it prints the performance scores defined in the paper.
+  * __Data Visualization:__ A Python script generates the fine-grained analysis visualization. To do so, you have to setup python on your machine and these liberaries: Numpy, Pandas, Matplotlib, Spacy, Scipy and Statistics. CBench asks you for the python3 setup location; for eaxmple, if you use anaconda on an ubuntu machine, the path usually is ``` /home/username/anaconda3/bin ```.
 
 ### Run CBench in Netbeans
 * Download the *src* folder which contains the java source code.
