@@ -56,7 +56,7 @@ For Benchmark analysis,
 For QA evaluation,
   * __Collecting Correct answers and Systems answers:__ CBench collects gold answers, feeds QA system with the questtions and collects system answers. CBench prints the results per question while it is running.
   * __Final Report:__ CBench prints the evaluated questions then print them again categorized by queries shapes. The values are seperated by tabs to be easy for you to paste them in a spreedsheet for your own analysis. After that it prints the performance scores defined in the paper.
-  * __Data Visualization:__ A Python script generates the fine-grained analysis visualization. To do so, you have to setup python on your machine and these liberaries: Numpy, Pandas, Matplotlib, Spacy, Scipy and Statistics. CBench asks you for the python3 setup location; for eaxmple, if you use anaconda on an ubuntu machine, the path usually is ``` /home/username/anaconda3/bin ```.
+  * __Data Visualization:__ A Python script generates the fine-grained analysis visualization. To do so, you have to setup python on your machine and these liberaries: Numpy, Pandas, Matplotlib, Spacy, Scipy and Statistics. CBench asks you for the python3 setup location; for example, if you use anaconda on an ubuntu machine, the path usually is ``` /home/username/anaconda3/bin ```.
 
 ### Run CBench in Netbeans
 * Download the *src* folder which contains the java source code.
