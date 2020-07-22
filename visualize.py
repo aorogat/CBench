@@ -1,5 +1,12 @@
+import os
+print(os.getcwd())
+os.chdir(os.getcwd())
+
 import numpy as np
 import matplotlib.pyplot as plt
+
+
+
 
 def visualizeFile(fileName):
     f = open(fileName, "rt")
@@ -12,9 +19,9 @@ def visualizeFile(fileName):
         current[1] = int(current[1])
         current[2] = int(current[2])
         all.append(current)
-    print(all)
+    #print(all)
     uniqueProperties = sorted(list(set(properties)))
-    print(properties)
+    #print(properties)
     correct = []
     incorrect = []
     for u in uniqueProperties:
@@ -28,9 +35,9 @@ def visualizeFile(fileName):
                     incor+=1
         correct.append(cor)
         incorrect.append(incor)
-    print(uniqueProperties)
-    print(correct)
-    print(incorrect)
+    #print(uniqueProperties)
+    print('Correct = ', correct)
+    print('Incorrect = ', incorrect)
 
 
     N = len(uniqueProperties)
@@ -94,4 +101,3 @@ try:
     visualizeFile("flowerSet.txt")
 except:
     print('No data in flowerSet.txt')
-
