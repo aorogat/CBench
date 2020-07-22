@@ -273,7 +273,6 @@ public class SystemEvaluation {
         System.out.println("+       ++++++++++++++");
         System.out.println("++++++> Final Report +");
         System.out.println("        ++++++++++++++");
-        System.out.print("               . Questions categorized by their queries shapes. Each line has a question, Gold Answer, System Answer, Recall, Precesion, F1-Score, the query and its properties.");
         System.out.print("               . Final Scores");
         //4- Calculate parameters
         evaluatedBenchmark.calculateParameters();

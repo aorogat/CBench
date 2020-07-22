@@ -4,6 +4,7 @@ import ShapeAnalysis.QueryShapeType;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+import visualization.FineGrained;
 
 public class BenchmarkEval {
 
@@ -33,12 +34,12 @@ public class BenchmarkEval {
         this.benchmarkName = benchmarkName;
     }
 
-    public void printScores() {
-        
+    public void printScores() throws IOException {
+
         if (threshold <= 0) {
             threshold = 0.00000001;
         }
-        
+
         System.out.println("\n============== " + benchmarkName + " All Questions ====================");
         for (QuestionEval q : evaluatedQuestions) {
             System.out.println(q.toString());
@@ -95,7 +96,7 @@ public class BenchmarkEval {
         for (QuestionEval q : flowerSetEvaluatedQuestions) {
             System.out.println(q.toString());
         }
-        
+
         System.out.println("\n================================ " + benchmarkName + " ================================");
         System.out.println("All Questions: " + allQuestions);
         System.out.println("System Answered: " + answered);
@@ -108,13 +109,13 @@ public class BenchmarkEval {
         System.out.println("Global Scores (threshold = 1)");
         System.out.println("\tR_G : " + R_G() + "\t" + "P_MG : " + P_G() + "\t" + "F_MG : " + F_G());
         System.out.println("\tQuestions Partially Correct Answered With Theta Threshold = 1: " + answeredWithThetaThreshold);
-        double s = threshold==0.00000001?0:threshold; 
-        System.out.println("Global Scores (threshold = "+ s +")");
+        double s = threshold == 0.00000001 ? 0 : threshold;
+        System.out.println("Global Scores (threshold = " + s + ")");
         System.out.println("\tR_G(" + s + ") : " + R_G(threshold) + "\t" + "P_MG(" + s + ") : " + P_G(threshold) + "\t" + "F_MG(" + s + ") : " + F_G(threshold));
-        System.out.println("\tQuestions Partially Correct Answered With Theta Threshold = " + s +"): "+ answeredWithThetaThreshold);
+        System.out.println("\tQuestions Partially Correct Answered With Theta Threshold = " + s + "): " + answeredWithThetaThreshold);
         System.out.println("=========================================================================================");
 
-
+        //Evaluation Visualization using Python
         writePropertiesToFile("singleEdge", singleEdgeEvaluatedQuestions);
         writePropertiesToFile("chain", chainEvaluatedQuestions);
         writePropertiesToFile("chainSet", chainSetEvaluatedQuestions);
@@ -124,6 +125,12 @@ public class BenchmarkEval {
         writePropertiesToFile("flower", flowerEvaluatedQuestions);
         writePropertiesToFile("flowerSet", flowerSetEvaluatedQuestions);
         writePropertiesToFile("cycle", cycleEvaluatedQuestions);
+        try {
+            FineGrained.visualize();
+        } catch (Exception e) {
+            System.out.println("CBench cannot viualize the results due to missed configuration.");
+            System.out.println("You can do it yourself by running the visualize.py file.");
+        }
     }
 
     public void calculateParameters() {
