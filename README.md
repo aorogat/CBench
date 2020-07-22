@@ -20,8 +20,41 @@ CBench requires the following development kits and liberaries. You can download 
 * for Python [Python 3, Numpy, Pandas, Matplotlib, Spacy, Scipy, Statistics]
 
 ### Deploy CBench via jar
-* __Download CBench.jar:__ Download the *CBench.jar* file
-* __Unzip CBench.jar:__ ToDo
+* __Download CBench.jar:__ Download the *CBench.jar* file and other folders. The project structure must be as follow
+```
+projectFolder
+│   
+└─── CBench.jar
+│
+|─── data
+│   |─── DBpedia
+│   |   │─── No_SPARQL
+│   |   └─── SPARQL
+|   |
+│   └─── Freebase
+│       │─── No_SPARQL
+│       └─── SPARQL
+│
+└─── lib
+|   └─── ... All .jar files
+│   
+└─── evaluate.py
+
+```
+*  __Run CBench.jar:__ Using the command ``` java -jar "PATH/TO/projectFolder/CBench.jar" ```, run the project.
+* __Configure the System:__ While the system running, it will ask you about some parameters. Theses parameters are
+* * __KG:__ The desired knowledge graph.
+* * __Benchmark:__ The desired benchmark for the analysis or QA system evaluation.
+* * __Project Directory Path:__ The path of the project must be as follow ``` PATH/TO/projectFolder ```. Please replace the PATH/TO/projectFolder by the correct path.
+* __Start the System:__ After you configured the system, it will start and do the following. __(It is prefered to unwrap the text)__
+* * __Questions Preprocessing:__ CBench read the question form the raw files and remove dupicates. All the questions will be printed.
+* * __Benchmark Statistics:__ CBench will print questions statistics.
+For Benchmark analysis,
+** __Print Analysis results:__ CBench will shallow and shape analysis. 
+For QA evaluation,
+* * __Collecting Correct answers and Systems answers:__ CBench will collect gold answers, feed QA system with the questtions and collect system answers. CBench prints the results per question while it is running.
+* * __Final Report:__ CBench prints the evaluated questions then print them again categorized by queries shapes. The values are seperated by tabs to be easy or you to paste them in a spreedsheet for your own analysis. After that it prints the performance scores defined in the paper.
+* * __Data Visualization:__ A Python script generates the fine-grained analysis visualization. To do so, you have to setup python on your machine and these liberaries: Numpy, Pandas, Matplotlib, Spacy, Scipy and Statistics. CBench asks you for the python3 setup location; for eaxmple, if you use anaconda on an ubuntu machine, the path usually is ``` /home/username/anaconda3/bin ```.
 
 ### Run CBench in Netbeans
 * Download the *src* folder which contains the java source code.
@@ -31,7 +64,7 @@ CBench requires the following development kits and liberaries. You can download 
 * Download the *.jar* files from the *lib* folder and add all of them as liberaries to your project.
 * Download the *data* folder, unzip the files inside it and add it to your project. The project structure must be as follow
 ```
-project  
+projectFolder  
 │
 |─── data
 │   |─── DBpedia
