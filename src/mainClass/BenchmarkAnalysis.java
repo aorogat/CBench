@@ -3,6 +3,7 @@ package mainClass;
 
 import DataSet.Benchmark;
 import DataSet.DataSetPreprocessing;
+import NLQAnalysis.QABenchmark;
 import ShallowAnalysis.Keywords;
 import ShallowAnalysis.NoOfTriples;
 import ShallowAnalysis.OperatorDistribution;
@@ -75,6 +76,9 @@ public class BenchmarkAnalysis {
         //Shape Analysis
         ShapeAnalysis shapes = new ShapeAnalysis(qs);
         shapes.analysis();
+        
+        //NLQ Analysis
+        QABenchmark.NLQAnalyze();
     }
     
 }
