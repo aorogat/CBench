@@ -27,6 +27,7 @@ projectFolder
 └─── CBench.jar
 │
 |─── data
+│   |─── userDefinied.json
 │   |─── DBpedia
 │   |   │─── No_SPARQL
 │   |   └─── SPARQL
@@ -69,6 +70,7 @@ For QA evaluation,
 projectFolder  
 │
 |─── data
+│   |─── userDefinied.json
 │   |─── DBpedia
 │   |   │─── No_SPARQL
 │   |   └─── SPARQL
@@ -90,7 +92,7 @@ projectFolder
 Now you can edit and run the project.
 
 ### Add a New Benchmark
-* Open the `userDefinied.xml` file in the `data` folder, edit it and add all the questions of your benchmark with the given format.
+* Open the `userDefinied.json` file in the `data` folder, edit it and add all the questions of your benchmark with the given format.
 * While you are running the project, select the `19- UserDefined` option.
 
 ### Evaluate a QA system  via http request
