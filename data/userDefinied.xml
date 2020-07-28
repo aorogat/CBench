@@ -1,0 +1,53 @@
+<?xml version="1.0" ?>
+<dataset id="dbpedia-train">
+    <question id="1">
+        <string>
+            What is the highest mountain?
+        </string>
+        <query>
+            PREFIX rdfs: &lt;http://www.w3.org/2000/01/rdf-schema#&gt;
+            PREFIX onto: &lt;http://dbpedia.org/ontology/&gt;
+            PREFIX rdf: &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#&gt;
+            SELECT ?uri ?string
+            WHERE
+            { 
+            ?uri  rdf:type onto:Mountain  .
+            ?uri onto:elevation ?elevation .
+            OPTIONAL {?uri rdfs:label ?string . FILTER (lang(?string) = 'en') }
+            } ORDER BY DESC(?elevation) LIMIT 1
+        </query>
+        <answers>
+            <answer>
+                <uri>
+                    http://dbpedia.org/resource/Mount_Everest
+                </uri>
+                <string>
+                    Mount Everest
+                </string>
+            </answer>
+        </answers>
+    </question>
+    <question id="2">
+        <string>
+            Is Natalie Portman an actress?
+        </string>
+        <query>
+            PREFIX rdfs: &lt;http://www.w3.org/2000/01/rdf-schema#&gt;
+            PREFIX rdf: &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#&gt;
+            PREFIX onto: &lt;http://dbpedia.org/ontology/&gt;
+            ASK
+            WHERE 
+            { 
+            ?subject rdf:type onto:Actor.
+            ?subject rdfs:label 'Natalie Portman'@en.
+            }
+        </query>
+        <answers>
+            <answer>
+                <boolean>
+                    true
+                </boolean>
+            </answer>
+        </answers>
+    </question>
+</dataset>
