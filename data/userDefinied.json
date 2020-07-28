@@ -1,0 +1,81 @@
+{
+    "dataset": {
+        "id": "Your data set id"
+    },
+    "questions": [{
+            "id": "1",
+            "question": [{
+                    "language": "en",
+                    "string": "List all boardgames by GMT.",
+                    "keywords": "boardgame, GMT"
+                }],
+            "query": {
+                "sparql": "PREFIX dbo: <http://dbpedia.org/ontology/> PREFIX res: <http://dbpedia.org/resource/> PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> SELECT ?uri WHERE { ?uri dbo:publisher res:GMT_Games }"
+            },
+            "answers": [{
+                    "head": {
+                        "vars": ["uri"]
+                    },
+                    "results": {
+                        "bindings": [{
+                                "uri": {
+                                    "type": "uri",
+                                    "value": "http://dbpedia.org/resource/Washington's_War"
+                                }
+                            }, {
+                                "uri": {
+                                    "type": "uri",
+                                    "value": "http://dbpedia.org/resource/Fields_of_Fire_(game)"
+                                }
+                            }, {
+                                "uri": {
+                                    "type": "uri",
+                                    "value": "http://dbpedia.org/resource/Commands_&_Colors:_Ancients"
+                                }
+                            }, {
+                                "uri": {
+                                    "type": "uri",
+                                    "value": "http://dbpedia.org/resource/A_World_At_War"
+                                }
+                            }, {
+                                "uri": {
+                                    "type": "uri",
+                                    "value": "http://dbpedia.org/resource/Sword_of_Rome"
+                                }
+                            }, {
+                                "uri": {
+                                    "type": "uri",
+                                    "value": "http://dbpedia.org/resource/Twilight_Struggle"
+                                }
+                            }, {
+                                "uri": {
+                                    "type": "uri",
+                                    "value": "http://dbpedia.org/resource/Paths_of_Glory_(board_game)"
+                                }
+                            }, {
+                                "uri": {
+                                    "type": "uri",
+                                    "value": "http://dbpedia.org/resource/Chandragupta_(board_game)"
+                                }
+                            }]
+                    }
+                }]
+       },
+        {
+            "id": 2,
+            "question": [{
+                    "language": "en",
+                    "string": "Was Marc Chagall a jew?",
+                    "keywords": "Marc Chagall, jew"
+                }],
+            "query": {
+                "sparql": "ASK WHERE { <http://dbpedia.org/resource/Marc_Chagall> <http://dbpedia.org/property/ethnicity> \"Jewish\"@en }"
+            },
+            "answers": [{
+                    "head": {},
+                    "results": {},
+                    "boolean": false
+                }]
+        }
+    ]
+}
