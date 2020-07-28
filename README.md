@@ -90,7 +90,8 @@ projectFolder
 Now you can edit and run the project.
 
 ### Add a New Benchmark
-ToDo
+* Open the `userDefinied.xml` file in the `data` folder, edit it and add all the questions of your benchmark with the given format.
+* While you are running the project, select the `19- UserDefined` option.
 
 ### Evaluate a QA system  via http request
 To evaluate your system, CBench will send a POST request to your QA system using the following URL
