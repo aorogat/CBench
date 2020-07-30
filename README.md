@@ -52,7 +52,7 @@ projectFolder
   * __Benchmark Statistics:__ CBench prints questions statistics.
 
 For Benchmark analysis,
-  * __Print Analysis results:__ CBench prints shallow and shape analysis results. 
+  * __Print Analysis results:__ CBench prints shallow, shape and linguistic analysis results. 
 
 For QA evaluation,
   * __Collecting Correct answers and Systems answers:__ CBench collects gold answers, feeds QA system with the questtions and collects system answers. CBench prints the results per question while it is running.
