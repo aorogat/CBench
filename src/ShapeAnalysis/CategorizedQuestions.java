@@ -30,7 +30,7 @@ public class CategorizedQuestions {
     ArrayList<Question> flowerSet_Qs = new ArrayList<Question>();
 
     public CategorizedQuestions() {
-        ArrayList qs = DataSetPreprocessing.getQueriesWithoutDuplicates(Benchmark.QALD_1);
+        ArrayList qs = DataSetPreprocessing.getQueriesWithoutDuplicates(Benchmark.WebQuestions);
         for (Question q : DataSetPreprocessing.questionsWithoutDuplicates) {
             String queryString = q.getQuestionQuery();
             try {

@@ -33,6 +33,8 @@ public class Benchmark {
     public final static int ComplexQuestions = 109;
     public final static int UserDefined = 110;
     
+    public final static int PropertiesDefined = 1000;
+    
     
     
 }

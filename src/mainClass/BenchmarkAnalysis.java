@@ -27,7 +27,7 @@ public class BenchmarkAnalysis {
         System.out.println("                 11- LC-QUAD, \t\t12- WebQuestions, \t\t13- GraphQuestions, ");
         System.out.println("                 14- ComplexQuestions, \t15- ComQA, \t\t\t16- TempQuestions, ");
         System.out.println("                 17- SimpleDBpediaQA, \t18- SimpleQuestions, ");
-        System.out.println("                 19- UserDefined]");
+        System.out.println("                 19- User Defined]");
         System.out.print("               Benchmark is: ");
         
         benchmark = in.nextInt();

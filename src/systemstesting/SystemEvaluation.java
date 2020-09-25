@@ -23,7 +23,7 @@ public class SystemEvaluation {
     static ArrayList<Query> qs;
     static ArrayList<Question> questions = DataSetPreprocessing.questions;
 
-    static String KB = "dbpedia";
+    public static String KB = "dbpedia";
     static int benchmark;
     static String benchmarkString = "";
     static boolean updateBenchmark = false;
@@ -35,14 +35,17 @@ public class SystemEvaluation {
     static ArrayList<QuestionEval> evaluatedQuestions;
 
     static Scanner in = new Scanner(System.in);
-    
-    
+
     public static void main(String[] args) throws JSONException, Exception {
         evaluate();
     }
 
     public static void evaluate() throws IOException, JSONException, Exception {
         //Read required data        
+        System.out.println("        |");
+        System.out.println("        ++++> What is your system URL? (e.g. http://ganswer.gstore-pku.com/api/qald.jsp)]");
+        System.out.print("               URL is: ");
+        url = in.nextLine().trim().toLowerCase();
         System.out.println("        |");
         System.out.println("        ++++> Select the KG from [default, dbpedia, wikidata, freebase]");
         System.out.print("               KG is: ");
@@ -53,7 +56,7 @@ public class SystemEvaluation {
         System.out.println("                 11- LC-QUAD, \t\t12- WebQuestions, \t\t13- GraphQuestions, ");
         System.out.println("                 14- ComplexQuestions, \t15- ComQA, \t\t\t16- TempQuestions, ");
         System.out.println("                 17- SimpleDBpediaQA, \t18- SimpleQuestions, ");
-        System.out.println("                 19- UserDefined]");
+        System.out.println("                 19- UserDefined, \t20- Properties Defined]");
         System.out.print("               Benchmark is: ");
         benchmark = in.nextInt();
         switch (benchmark) {
@@ -152,13 +155,19 @@ public class SystemEvaluation {
                 System.out.println("               ---> CBench will use the UserDefined Benchmark.");
                 benchmarkString = "User Defined";
                 break;
-            default: evaluate();
+            case 20:
+                benchmark = Benchmark.PropertiesDefined;
+                System.out.println("               ---> CBench will use the PropertiesDefined Benchmark.");
+                benchmarkString = "Properties Defined";
+                break;
+            default:
+                evaluate();
         }
         System.out.println("        |");
         System.out.println("        ++++> Would you like to update the answers from an endpoint?");
         System.out.print("               Enter  [y/n]: ");
         String update = in.next().toLowerCase().trim();
-        switch(update.charAt(0)){
+        switch (update.charAt(0)) {
             case 'y':
                 updateBenchmark = true;
                 System.out.println("               ---> CBench will update the answers.");
@@ -167,15 +176,17 @@ public class SystemEvaluation {
                 updateBenchmark = false;
                 System.out.println("               ---> CBench will not update the answers.");
                 break;
-            default: evaluate();
+            default:
+                evaluate();
         }
-        
+
         System.out.println("        |");
         System.out.println("        ++++> What is the thresold value for Fqi to consider a question partially correct answered?");
         System.out.print("               Enter a value between 0 and 1: ");
         BenchmarkEval.threshold = in.nextDouble();
-        if (BenchmarkEval.threshold < 0 || BenchmarkEval.threshold > 1) evaluate();
-        
+        if (BenchmarkEval.threshold < 0 || BenchmarkEval.threshold > 1) {
+            evaluate();
+        }
 
         performance(benchmark, benchmarkString, updateBenchmark);
     }
@@ -192,6 +203,14 @@ public class SystemEvaluation {
 
         int counter = 0;
         int qsWithAnswers = 0;
+
+        if (curated) {
+            System.out.println("        |");
+            System.out.println("        ++++> What is your KG endpoint URL?");
+            System.out.print("               Endpoint is: ");
+            CuratedAnswer.endpoint = in.nextLine().trim().toLowerCase();
+        }
+
         System.out.println("+");
         System.out.println("+");
         System.out.println("+");
@@ -203,11 +222,12 @@ public class SystemEvaluation {
             counter++;
             //1- Determine CorectAnswerList
             if (curated) {
-                if(KB.equals("default"))
+                if (KB.equals("default")) {
                     KB = question.getDatabase();
-            
+                }
+
                 corectAnswersList = CuratedAnswer.upToDateAnswer(question.getQuestionQuery(), KB);
-                
+
             } else {
                 corectAnswersList = question.getAnswers();
 
@@ -232,15 +252,16 @@ public class SystemEvaluation {
                         if (corectAnswersList.size() == 1 && corectAnswersList.get(0).equals("null")) {
                             continue;
                         }
-                    }
-                    else
+                    } else {
                         corectAnswersList = new ArrayList<>();
+                    }
                 } catch (Exception e) {
                     corectAnswersList = new ArrayList<>();
                 }
             }
-            if(corectAnswersList == null)
+            if (corectAnswersList == null) {
                 corectAnswersList = new ArrayList<>();
+            }
             //2- Determine systemAnswersList
             //for (int i = 0; i < 3; i++) {
             String q = question.getQuestionString().replace('?', ' ').replace(" ", "%20");
@@ -250,9 +271,9 @@ public class SystemEvaluation {
             System.out.println("               Correct Answer = " + corectAnswersList.toString());
 
             //////////////////////////////////////////////////////////////////////////////////////////////////////////
-            if(KB.equals("default"))
+            if (KB.equals("default")) {
                 KB = question.getDatabase(); /////Use for multiple endpoints////////////////////dbpedia, freebase, wikidata
-            //////////////////////////////////////////////////////////////////////////////////////////////////////////
+            }            //////////////////////////////////////////////////////////////////////////////////////////////////////////
             answer(q);
             //  if(systemAnswersList.size() == 0)
             //    continue;
@@ -281,8 +302,6 @@ public class SystemEvaluation {
         evaluatedBenchmark.printScores();
 
         System.out.println("\n\n\n\n\n\n\n");
-        
-        
 
     }
 
@@ -290,9 +309,9 @@ public class SystemEvaluation {
         try {
             systemAnswersList = new ArrayList<>();
             JSONObject json = readJsonFromUrl(url + "?query=" + question.replace(" ", "%20")
-            +"&kb="+KB);
-            
-            System.out.println("               System JSON Answer: "+json.toString());
+                    + "&kb=" + KB);
+
+            System.out.println("               System JSON Answer: " + json.toString());
             try {
 
                 JSONArray bindings = json.getJSONArray("questions").getJSONObject(0)
@@ -302,7 +321,6 @@ public class SystemEvaluation {
                 String varName = json.getJSONArray("questions").getJSONObject(0)
                         .getJSONArray("answers").getJSONObject(0)
                         .getJSONObject("head").getJSONArray("vars").getString(0);
-
 
                 for (int i = 0; i < bindings.length(); i++) {
                     JSONObject binding = (JSONObject) bindings.getJSONObject(i);

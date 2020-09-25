@@ -51,10 +51,10 @@ public class GAnswerNew {
 //        performance(Benchmark.QALD_5, "QALD_5", false);
 //        performance(Benchmark.QALD_6, "QALD_6", false);
 //        performance(Benchmark.QALD_7, "QALD_7", false);
-        performance(Benchmark.QALD_8, "QALD_8", false);
+//        performance(Benchmark.QALD_8, "QALD_8", false);
 //        performance(Benchmark.QALD_9, "QALD_9", false);
 
-//        performance(Benchmark.LC_QUAD, "LC_QUAD", true);
+        performance(Benchmark.LC_QUAD, "LC_QUAD", false);
     }
 
     public static void performance(int benchmark, String benchmarkName, boolean curated) throws IOException {
