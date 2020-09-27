@@ -152,7 +152,7 @@ For Boolean Answer
 ```
 
 ## Query Shapes Examples
-![Image of Shapes](images/shapes.png)
+![Image of Shapes](images/shapes.PNG)
 
 
 ## Support
