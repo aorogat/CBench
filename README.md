@@ -151,6 +151,9 @@ For Boolean Answer
 }
 ```
 
+## Query Shapes Examples
+![Image of Shapes](images/shapes.png)
+
 
 ## Support
 Please raise potential bugs on github. If you have a research related question, please send it to this email(xxxxxx@xxxxxxxx.xxx)
