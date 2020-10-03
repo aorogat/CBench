@@ -57,7 +57,7 @@ For Benchmark Analysis Mode,
   * __Benchmark:__ The desired benchmark for the analysis must be selected. It can be a predefined benchmark or a userdefined benchmark [See the section "Add a New Benchmark" for how to add your own benchmark].
   * __Print Analysis results:__ CBench prints shallow, shape and linguistic analysis results. 
 
-For QA Evaluation Mode,
+For QA Evaluation Mode [For how to evaluated a QA system, see section "Evaluate a QA system  via http request"],
   * __Benchmark:__ The desired benchmark for the QA Evaluation must be selected. It can be a predefined benchmark, a user-defined benchmark or Properties Defined benchmark. The Properties Defined option used for the QA Evaluation Debugging Mode.
     * __Properties Defined Benchmark:__ For this option, the CBench asks the user about the required properties and based on the targeted KG, It will collect the questions from the benchmarks that target the selected KG and achieve the user-defined properties. 
 Afetr the Benchmark Preparation, CBench will do the following
