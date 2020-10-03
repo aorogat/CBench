@@ -58,9 +58,9 @@ For Benchmark Analysis Mode,
   * __Print Analysis results:__ CBench prints shallow, shape and linguistic analysis results. 
 
 For QA Evaluation Mode,
-  * __Benchmark:__ The desired benchmark for the QA Evaluation must be selected. It can be a predefined benchmark, a user-defined benchmark or Properties Defined. The Properties Defined option used for the QA Evaluation Debugging Mode.
+  * __Benchmark:__ The desired benchmark for the QA Evaluation must be selected. It can be a predefined benchmark, a user-defined benchmark or Properties Defined benchmark. The Properties Defined option used for the QA Evaluation Debugging Mode.
     * __Properties Defined Benchmark:__ For this option, the CBench asks the user about the required properties and based on the targeted KG, It will collect the questions from the benchmarks that target the selected KG and achieve the user-defined properties. 
-  * __Evaluation Mode:__ CBench
+Afetr the Benchmark Preparation, CBench will do the following
   * __Collecting Correct answers and Systems answers:__ CBench collects gold answers, feeds QA system with the questions and collects system answers. CBench prints the results per question while it is running.
   * __Final Report:__ CBench prints the evaluated questions then print them again categorized by queries shapes. The values are separated by tabs to be easy for you to paste them in a spreadsheet for your own analysis. After that, it prints the performance scores defined in the paper.
   * __Data Visualization:__ A Python script generates the fine-grained analysis visualization. To do so, you have to setup python on your machine and these libraries: Numpy, Pandas, Matplotlib, Spacy, Scipy and Statistics. CBench asks you for the python3 setup location; for example, if you use anaconda on an ubuntu machine, the path usually is ``` /home/username/anaconda3/bin ```.
