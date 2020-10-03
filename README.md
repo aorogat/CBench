@@ -6,7 +6,9 @@ based on popular single-number metrics, but also gives a detailed analysis of th
 ### Features
 * __Benchmarks Fine-grained Analysis:__ CBench studies several syntactical and linguistic features of a predefined benchmark or a new benchmark to be added by the user.
 * __Predefined Benchmarks:__ The currecnt version of CBench supports 17 Benchmarks, 12 of them have their crossponding SPARQL queries.
+* __Benchmarks Analysis:__ CBench enables you to analyize one of the predefined benchmarks or your own benchmark. The analysis includes the shallow nd shape analysis for the SPARQL quries and the natural language aanalysis.
 * __Detailed QA system Evaluation:__ CBench is not support single number evaluation but rather F1-Macro, Micro and Global(With different thresholds) scores. Theses scores are defined in the paper.
+* __QA system Evaluation Debugging Mode:__ Within the QA Evaluation Mode the user can control CBench's output questions based on any of the linguistic, syntactical, or structural features of all the questions and queries in CBench.
 * __Fine-grained Evaluation Analysis:__ CBench is able to identify the queries properties of the quetsions that are correctly and incorrectly answered.
 * __Qualitative Evaluation of Linguistic Features:__ CBench is able to find the *k* linguistically closest questions to a chosen question *q*.
 
