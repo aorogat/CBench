@@ -7,12 +7,14 @@ This document shows you how to configure CBench to evaluate a QA system and what
 ![Image](Images/Preprosessing.png)
 * The System then prints some statistics as shown.
 ![Image](Images/Statistics.png)
-* CBench system collects the QA system answers. For every question, CBench prints the NLQ, Correct answers list and System answers list. s in the second imges, ot is better to unwrap tet as some answers are very long.
+* CBench system collects the QA system answers. For every question, CBench prints the NLQ, Correct answers list and System answers list. As in the second image, it is better to unwrap text as some answers are very long.
 ![Image](Images/collect.png)
 ![Image](Images/qaquestions.png)
 
 ## User-Defined Benchmark
-If you would like to analyze your own benchmark, Open the ```usrDefined.json``` file from the ```data``` folder on your project and replace the questions inside it with your questions using the same format.
+If you would like to evaluate he QA system based on your own benchmark, Open the ```usrDefined.json``` file from the ```data``` folder on your project and replace the questions inside it with your questions using the same format.
 ![Image](Images/userdefined.png)
  Do not forget, choose option 19 when configuring CBench.
  ![Image](Images/BenchmarkAnalysis.png)
+ 
+ ## Debugging Benchmark Mode
