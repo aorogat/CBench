@@ -4,6 +4,8 @@ import ShapeAnalysis.QueryShapeType;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Scanner;
+import static systemstesting.SystemEvaluation.in;
 import visualization.FineGrained;
 
 public class BenchmarkEval {
@@ -40,63 +42,106 @@ public class BenchmarkEval {
             threshold = 0.00000001;
         }
 
-        System.out.println("\n============== " + benchmarkName + " All Questions ====================");
-        for (QuestionEval q : evaluatedQuestions) {
-            System.out.println(q.toString());
+        Scanner in = new Scanner(System.in);
+        System.out.println("       +");
+        System.out.println("       +");
+        System.out.println("       +");
+        System.out.println("       +");
+        System.out.println("       ++++> Would you like to see the individual questions evaluation (y/n)?");
+        System.out.print("               Enter  [y/n]: ");
+        String update = in.next().toLowerCase().trim();
+        switch (update.charAt(0)) {
+            case 'y':
+                System.out.println("\n============== " + benchmarkName + " All Questions ====================");
+                for (QuestionEval q : evaluatedQuestions) {
+                    System.out.println(q.toString());
+                }
+                break;
+            case 'n':
+                break;
+            default:
+                break;
         }
 
-        System.out.println("\n\n\n\n============== " + benchmarkName + " SingleEdge Questions ====================");
-        getSingleEdgeEvaluatedQuestions();
-        for (QuestionEval q : singleEdgeEvaluatedQuestions) {
-            System.out.println(q.toString());
-            int ans = 0;
-            if (q.F_q >= threshold) {
-                ans = 1;
-            }
+        System.out.println("       +");
+        System.out.println("       +");
+        System.out.println("       +");
+        System.out.println("       +");
+        System.out.println("       ++++> Would you like to see the individual questions evaluation");
+        System.out.println("       ++++> categorized by their shape (y/n)?");
+        System.out.print("               Enter  [y/n]: ");
+        update = in.next().toLowerCase().trim();
+        switch (update.charAt(0)) {
+            case 'y':
+                System.out.println("\n\n\n\n============== " + benchmarkName + " SingleEdge Questions ====================");
+                getSingleEdgeEvaluatedQuestions();
+                for (QuestionEval q : singleEdgeEvaluatedQuestions) {
+                    System.out.println(q.toString());
+                    int ans = 0;
+                    if (q.F_q >= threshold) {
+                        ans = 1;
+                    }
+                }
+
+                System.out.println("\n\n\n\n============== " + benchmarkName + " Chain Questions ====================");
+                getChainEvaluatedQuestions();
+                for (QuestionEval q : chainEvaluatedQuestions) {
+                    System.out.println(q.toString());
+                }
+
+                System.out.println("\n\n\n\n============== " + benchmarkName + " Chain Set Questions ====================");
+                getChainSetEvaluatedQuestions();
+                for (QuestionEval q : chainSetEvaluatedQuestions) {
+                    System.out.println(q.toString());
+                }
+
+                System.out.println("\n\n\n\n============== " + benchmarkName + " Star Questions ====================");
+                getStarEvaluatedQuestions();
+                for (QuestionEval q : starEvaluatedQuestions) {
+                    System.out.println(q.toString());
+                }
+
+                System.out.println("\n\n\n\n============== " + benchmarkName + " Tree Questions ====================");
+                getTreeEvaluatedQuestions();
+                for (QuestionEval q : treeEvaluatedQuestions) {
+                    System.out.println(q.toString());
+                }
+
+                System.out.println("\n\n\n\n============== " + benchmarkName + " Forest Questions ====================");
+                getForestEvaluatedQuestions();
+                for (QuestionEval q : forestEvaluatedQuestions) {
+                    System.out.println(q.toString());
+                }
+
+                System.out.println("\n\n\n\n============== " + benchmarkName + " Flower Questions ====================");
+                getFlowerEvaluatedQuestions();
+                for (QuestionEval q : flowerEvaluatedQuestions) {
+                    System.out.println(q.toString());
+                }
+
+                System.out.println("\n\n\n\n============== " + benchmarkName + " Flower Set Questions ====================");
+                getFlowerSetEvaluatedQuestions();
+                for (QuestionEval q : flowerSetEvaluatedQuestions) {
+                    System.out.println(q.toString());
+                }
+
+                break;
+            case 'n':
+                break;
+            default:
+                break;
         }
 
-        System.out.println("\n\n\n\n============== " + benchmarkName + " Chain Questions ====================");
-        getChainEvaluatedQuestions();
-        for (QuestionEval q : chainEvaluatedQuestions) {
-            System.out.println(q.toString());
-        }
+        
+         System.out.println("       +");
+        System.out.println("       +");
+        System.out.println("       +");
+        System.out.println("       +");
+        System.out.println("       ++++> Final Scores, Press 's' then Enter to show");
+        update = in.next();
+        
 
-        System.out.println("\n\n\n\n============== " + benchmarkName + " Chain Set Questions ====================");
-        getChainSetEvaluatedQuestions();
-        for (QuestionEval q : chainSetEvaluatedQuestions) {
-            System.out.println(q.toString());
-        }
-
-        System.out.println("\n\n\n\n============== " + benchmarkName + " Star Questions ====================");
-        getStarEvaluatedQuestions();
-        for (QuestionEval q : starEvaluatedQuestions) {
-            System.out.println(q.toString());
-        }
-
-        System.out.println("\n\n\n\n============== " + benchmarkName + " Tree Questions ====================");
-        getTreeEvaluatedQuestions();
-        for (QuestionEval q : treeEvaluatedQuestions) {
-            System.out.println(q.toString());
-        }
-
-        System.out.println("\n\n\n\n============== " + benchmarkName + " Forest Questions ====================");
-        getForestEvaluatedQuestions();
-        for (QuestionEval q : forestEvaluatedQuestions) {
-            System.out.println(q.toString());
-        }
-
-        System.out.println("\n\n\n\n============== " + benchmarkName + " Flower Questions ====================");
-        getFlowerEvaluatedQuestions();
-        for (QuestionEval q : flowerEvaluatedQuestions) {
-            System.out.println(q.toString());
-        }
-
-        System.out.println("\n\n\n\n============== " + benchmarkName + " Flower Set Questions ====================");
-        getFlowerSetEvaluatedQuestions();
-        for (QuestionEval q : flowerSetEvaluatedQuestions) {
-            System.out.println(q.toString());
-        }
-
+        
         System.out.println("\n================================ " + benchmarkName + " ================================");
         System.out.println("All Questions: " + allQuestions);
         System.out.println("System Answered: " + answered);

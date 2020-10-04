@@ -208,7 +208,8 @@ public class SystemEvaluation {
             System.out.println("        |");
             System.out.println("        ++++> What is your KG endpoint URL?");
             System.out.print("               Endpoint is: ");
-            CuratedAnswer.endpoint = in.nextLine().trim().toLowerCase();
+            CuratedAnswer.endpoint = in.next();
+            CuratedAnswer.endpoint = CuratedAnswer.endpoint.trim().toLowerCase();
         }
 
         System.out.println("+");
@@ -217,6 +218,10 @@ public class SystemEvaluation {
         System.out.println("+       ++++++++++++++++++++++++++++++++++++++++++++++++");
         System.out.println("++++++> Collecting Correct answers and Systems answers +");
         System.out.println("        ++++++++++++++++++++++++++++++++++++++++++++++++");
+        System.out.println("                CBench will communicate your QA");
+        System.out.println("");
+        System.out.print("             Press 's' then Enter to Start ...");
+        in.next();
         for (Question question : questions) {
             corectAnswersList = new ArrayList<>();
             counter++;
@@ -266,7 +271,7 @@ public class SystemEvaluation {
             //for (int i = 0; i < 3; i++) {
             String q = question.getQuestionString().replace('?', ' ').replace(" ", "%20");
             System.out.println();
-            System.out.println("               Question number:  " + counter);
+//            System.out.println("               Question number:  " + counter);
             System.out.println("               Question: " + question.getQuestionString());
             System.out.println("               Correct Answer = " + corectAnswersList.toString());
 
@@ -311,7 +316,7 @@ public class SystemEvaluation {
             JSONObject json = readJsonFromUrl(url + "?query=" + question.replace(" ", "%20")
                     + "&kb=" + KB);
 
-            System.out.println("               System JSON Answer: " + json.toString());
+            //System.out.println("               System JSON Answer: " + json.toString());
             try {
 
                 JSONArray bindings = json.getJSONArray("questions").getJSONObject(0)

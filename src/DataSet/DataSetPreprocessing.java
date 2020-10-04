@@ -20,14 +20,13 @@ public class DataSetPreprocessing {
     public static String currentDirectory;
 
     public static ArrayList getQueriesWithoutDuplicates(int benchmark) {
+
         Scanner in = new Scanner(System.in);
         System.out.println("        |");
         System.out.println("        ++++> Enter the main project directory path; the path of the folder that contains the CBench.jar.");
         System.out.print("               Your answer is: ");
         currentDirectory = in.next();
-
         questions.clear();
-        //Dataset
         if (benchmark == Benchmark.QALD_1 || benchmark == Benchmark.QALD_ALL || benchmark == Benchmark.PropertiesDefined) {
             questions.addAll(Parser.parseQald1(currentDirectory + "/data/DBpedia/SPARQL/QALD-master/1/data/dbpedia-test.xml", "QALD-1", "dbpedia", false));
             questions.addAll(Parser.parseQald1(currentDirectory + "/data/DBpedia/SPARQL/QALD-master/1/data/dbpedia-train.xml", "QALD-1", "dbpedia", false));
@@ -102,7 +101,7 @@ public class DataSetPreprocessing {
         if (benchmark == Benchmark.LC_QUAD || benchmark == Benchmark.PropertiesDefined) {
             questions.addAll(JSONParser.parseQuADFile(currentDirectory + "/data/DBpedia/SPARQL/LC-QuAD-data/test-data.json", "QUAD", "dbpedia"));
             questions.addAll(JSONParser.parseQuADFile(currentDirectory + "/data/DBpedia/SPARQL/LC-QuAD-data/train-data.json", "QUAD", "dbpedia"));
-
+            
             //questions.addAll(JSONParser.parseNo(currentDirectory+"/data/DBpedia/No_SPARQL/V1/train.json", "QUAD", "dbpedia"));
             //questions.addAll(JSONParser.parseNo(currentDirectory+"/data/DBpedia/No_SPARQL/V1/test.json", "QUAD", "dbpedia"));
             //questions.addAll(JSONParser.parseNo(currentDirectory+"/data/DBpedia/No_SPARQL/V1/valid.json", "QUAD", "dbpedia"));
@@ -117,38 +116,30 @@ public class DataSetPreprocessing {
             questions.addAll(JSONParser.parseWeb(currentDirectory + "/data/Freebase/SPARQL/WebQuestionsSP/WebQSP.train.json", "Freebase_Web", "freebase"));
             questions.addAll(JSONParser.parseWeb(currentDirectory + "/data/Freebase/SPARQL/WebQuestionsSP/WebQSP.train.partial.json", "Freebase_Web", "freebase"));
         }
-
-        //Every Question has some other questions with the same answer
         if (benchmark == Benchmark.ComQA) {
             questions.addAll(JSONParser.parseComQA(currentDirectory + "/data/Freebase/No_SPARQL/ComQA/comqa_train.json", "ComQA", "freebase"));
             questions.addAll(JSONParser.parseComQA(currentDirectory + "/data/Freebase/No_SPARQL/ComQA/comqa_dev.json", "ComQA", "freebase"));
             questions.addAll(JSONParser.parseFreeNo2(currentDirectory + "/data/Freebase/No_SPARQL/ComQA/comqa_test.json", "ComQA", "freebase"));
         }
-
         if (benchmark == Benchmark.ComplexQuestions) {
             questions.addAll(JSONParser.parseFreeNo(currentDirectory + "/data/Freebase/No_SPARQL/Complex_Questions/questions.json", "ComplexQuestions", "freebase"));
         }
-
-        //No Answers available in the Benchmarks. Only Lamda Calculas Expresions assoiated with questions.
         if (benchmark == Benchmark.Free917) {
             questions.addAll(JSONParser.parseFree917(currentDirectory + "/data/Freebase/No_SPARQL/Free917/free917.train.examples.canonicalized.json", "Free917", "freebase"));
             questions.addAll(JSONParser.parseFree917(currentDirectory + "/data/Freebase/No_SPARQL/Free917/free917.test.examples.canonicalized.json", "Free917", "freebase"));
         }
-
         if (benchmark == Benchmark.SimpleDBpediaQA) {
             questions.addAll(JSONParser.parseSimpleDB(currentDirectory + "/data/DBpedia/No_SPARQL/SimpleDBpediaQA-master/V1/train.json", "SimpleDBpediaQA", "dbpediaa"));
             questions.addAll(JSONParser.parseSimpleDB(currentDirectory + "/data/DBpedia/No_SPARQL/SimpleDBpediaQA-master/V1/test.json", "SimpleDBpediaQA", "dbpediaa"));
             questions.addAll(JSONParser.parseSimpleDB(currentDirectory + "/data/DBpedia/No_SPARQL/SimpleDBpediaQA-master/V1/valid.json", "SimpleDBpediaQA", "dbpediaa"));
         }
-
         if (benchmark == Benchmark.TempQuestions) {
             questions.addAll(JSONParser.parseTemp(currentDirectory + "/data/Freebase/No_SPARQL/TempQuestions/TempQuestions.json", "TempQuestions", "freebase"));
         }
-
         if (benchmark == Benchmark.UserDefined) {
             questions.addAll(JSONParser.parseQald9File(currentDirectory + "/data/userDefinied.json", "UserDefined", "dbpedia"));
         }
-
+        
         //Reverse List to remain most recent
         Collections.reverse(questions);
 
@@ -158,10 +149,13 @@ public class DataSetPreprocessing {
         System.out.println("+       +++++++++++++++++++++++++");
         System.out.println("++++++> Questions Preprocessing +");
         System.out.println("        +++++++++++++++++++++++++");
+        System.out.println("           CBench will");
         System.out.println("              . Read data from benchmark files");
         System.out.println("              . Remove Dublicates");
         System.out.println("              . Exclude Queries that are not valid SPARQL 1.1");
-        System.out.println(".");
+        System.out.println("");
+        System.out.print("             Press 's' then Enter to Start ...");
+        in.next();
         String format = "%-10s%-10s%-20s%-30s%-70s%-50s%n";
         System.out.format(format, "#", "Status", "Source", "File name", "Question", "File Answers");
         System.out.format(format, "======", "======", "======", "=========", "========", "==============");

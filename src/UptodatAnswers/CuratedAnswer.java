@@ -34,20 +34,15 @@ public class CuratedAnswer {
             return null;
     }
     
-    public static ArrayList upToDateAnswerFreebase(String query, String kg)
+    public static ArrayList upToDateAnswerFreebase(String query, String kg) throws UnsupportedEncodingException
     {
-        ArrayList<String> answersList = new ArrayList<>();
-        //Fill the up to date answers
-        
-        return answersList;
+        return upToDateAnswerDBpedia(query, kg);
     }
     
-    public static ArrayList upToDateAnswerWikidata(String query, String kg)
+    public static ArrayList upToDateAnswerWikidata(String query, String kg) throws UnsupportedEncodingException
     {
-        ArrayList<String> answersList = new ArrayList<>();
-        //Fill the up to date answers
         
-        return answersList;
+        return upToDateAnswerDBpedia(query, kg);
     }
 
     public static ArrayList upToDateAnswerDBpedia(String query, String kg) throws UnsupportedEncodingException {

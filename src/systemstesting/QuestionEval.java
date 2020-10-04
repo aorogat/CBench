@@ -52,15 +52,15 @@ public class QuestionEval {
             properties.keywords = "---";
         }
         String q = question.getQuestionString() 
-                + "\t" + "Gold Answer : " + G.toString()
-                + "\t" + "System Answer : " + A.toString()
-                + "\t" + "R : " + R_q + " \t " + 
+                + "\n" + "Gold Answer : " + G.toString()
+                + "\n" + "System Answer : " + A.toString()
+                + "\n" + "R : " + R_q + " \t " + 
                          "P : " + P_q + " \t " + 
-                         "F1 : " + F_q + " \t " +
-                         question.getQuestionQuery().replace("\n", "").replace("\r", "") + " \t " +
-                         properties.type + " \t " +
-                         properties.keywords + " \t " +
-                         properties.triples;
+                         "F1 : " + F_q + " \n " ;
+//                         question.getQuestionQuery().replace("\n", "").replace("\r", "") + " \t " +
+//                         properties.type + " \t " +
+//                         properties.keywords + " \t " +
+//                         properties.triples;
         return q;
     }
     
