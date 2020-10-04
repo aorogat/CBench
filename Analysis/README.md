@@ -1,4 +1,4 @@
-# CBench: Benchmark AAnalysis Mode
+# CBench: Benchmark Analysis Mode
 This document shows to you how to configure CBench to analyze a benchmark and what is expected from CBench.
 * __Run CBench.jar__
 * __Configure CBench__ This is the first step after running CBench. You have to configure the syste as shown
@@ -8,7 +8,7 @@ This document shows to you how to configure CBench to analyze a benchmark and wh
 * The System then print some statistics as shown
 ![Image](Images/Analysis - Statistics.png)
 * At the end the system prints the queries (if any) analysis and the NLQ analysis.
-![Image](Images/Analysis - Keywords.png)
-![Image](Images/Analysis - Operators.png)
-![Image](Images/Analysis - Shpes.png)
-![Image](Images/Analysis - NLTK.png)
+![Image](Images/Keywords.png)
+![Image](Images/Operators.png)
+![Image](Images/Shpes.png)
+![Image](Images/NLTK.png)
