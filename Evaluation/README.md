@@ -18,7 +18,8 @@ Please select `yes` if you would like to take (Copy/Paste in Spreadsheet) these 
 ![Image](Images/yes-no2.png)
 In that case, as some spahes are subsume others, we prints questions for every shape that are not belong to other shapes.
 ![Image](Images/individualCategorizzed.png)
-
+* Then the final scores are reported
+![Image](Images/finlScores.png)
 
 
 ## User-Defined Benchmark
