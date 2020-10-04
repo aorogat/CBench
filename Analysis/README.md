@@ -5,7 +5,7 @@ This document shows you how to configure CBench to analyze a benchmark and what 
 ![Image](Images/BenchmarkAnalysis.png)
 * The System then preprocess the questions and print all of them as in the figure below
 ![Image](Images/Preprosessing.png)
-* The System then print some statistics as shown
+* The System then print some statistics as shown. QALD-1 has 100 questions, just 3 of them are shown.
 ![Image](Images/Statistics.png)
 * In the end, the system prints the queries (if any) analysis and the NLQ analysis.
 ![Image](Images/Keywords.png)
