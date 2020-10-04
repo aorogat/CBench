@@ -14,5 +14,7 @@ This document shows you how to configure CBench to analyze a benchmark and what 
 ![Image](Images/NLTK.png)
 
 ## User-Defined Benchmark
-If you would like to analyze your own benchmark, Open the usrDefined.json file from the data folder on your project and replace the questions inside it with your questions using the same format.
+If you would like to analyze your own benchmark, Open the ```usrDefined.json``` file from the ```data``` folder on your project and replace the questions inside it with your questions using the same format.
 ![Image](Images/userdefined.png)
+ Do not forget, choose option 19 when configuring CBench.
+ ![Image](Images/BenchmarkAnalysis.png)
