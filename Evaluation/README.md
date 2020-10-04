@@ -22,7 +22,7 @@ In that case, as some shapes are subsuming others, we print questions for every 
 ![Image](Images/finlScores.png)
 * Then you can visualize the properties of the questions that are correctly/incorrectly answered.
 ![Image](Images/visulize.png)
-Then the dt will be visualized by Matplotlib as shown. The images will ppear one by one. To see the next imge please close the current one.
+Then the data will be visualized by Matplotlib as shown. The images will appear one by one. To see the next image please close the current one.
 ![Image](Images/single.png)
 ![Image](Images/chain.png)
 ![Image](Images/chainset.png)
