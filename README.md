@@ -65,7 +65,7 @@ Afetr the Benchmark Preparation, CBench will do the following
   * __Final Report:__ CBench prints the evaluated questions then print them again categorized by queries shapes. The values are separated by tabs to be easy for you to paste them in a spreadsheet for your own analysis. After that, it prints the performance scores defined in the paper.
   * __Data Visualization:__ A Python script generates the fine-grained analysis visualization. To do so, you have to setup python on your machine and these libraries: Numpy, Pandas, Matplotlib, Spacy, Scipy and Statistics. CBench asks you for the python3 setup location; for example, if you use anaconda on an ubuntu machine, the path usually is ``` /home/username/anaconda3/bin ```.
 
-### Run CBench in Netbeans
+### Edit CBench in Netbeans
 * Download the *src* folder which contains the java source code.
 * Using Netbeans, create a new Java Project with Existing Sources as in the image and add the folders inside it to your project in the next step.
 ![Image of Tracks](images/netbeans.png)
