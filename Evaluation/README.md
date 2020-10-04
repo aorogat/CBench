@@ -10,7 +10,9 @@ This document shows you how to configure CBench to evaluate a QA system and what
 * CBench system collects the QA system answers. For every question, CBench prints the NLQ, Correct answers list and System answers list. It is better to unwrap text as some answers are very long as in the second image.
 ![Image](Images/collect.png)
 ![Image](Images/qaquestions.png)
-* After CBench feeding the QA system with all questions, It will ask you if you would like to see the evaluation of the individual questions. Please select `yes` if you would like to take (Copy/Paste in Spreadsheet) these questions for your own analysis. If `yes` is selected, you will see a list of questions as in the image
+* After CBench feeding the QA system with all questions, It will ask you if you would like to see the evaluation of the individual questions. 
+![Image](Images/yes-no.png)
+Please select `yes` if you would like to take (Copy/Paste in Spreadsheet) these questions for your own analysis. If `yes` is selected, you will see a list of questions as in the image
 ![Image](Images/individual.png)
 
 
