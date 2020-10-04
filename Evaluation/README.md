@@ -12,8 +12,12 @@ This document shows you how to configure CBench to evaluate a QA system and what
 ![Image](Images/qaquestions.png)
 * After CBench feeding the QA system with all questions, It will ask you if you would like to see the evaluation of the individual questions. 
 ![Image](Images/yes-no.png)
-Please select `yes` if you would like to take (Copy/Paste in Spreadsheet) these questions for your own analysis. If `yes` is selected, you will see a list of questions as in the image
+Please select `yes` if you would like to take (Copy/Paste in Spreadsheet) these questions for your own analysis. If `yes` is selected, you will see a list of questions as in the image. (R:Recall, P: Precision and F1: F1 score for each quesion).
 ![Image](Images/individual.png)
+* CBench will ask you if you would like to see the evaluation of the individual questions categorized by their queries' shapes. Please select `yes` if you would like. 
+![Image](Images/yes-no2.png)
+In that case, as some spahes are subsume others, we prints questions for every shape that are not belong to other shapes.
+![Image](Images/individualCategorizzed.png)
 
 
 
