@@ -34,8 +34,8 @@ Then the data will be visualized by Matplotlib as shown. The images will appear 
 
 ## User-Defined Benchmark
 If you would like to evaluate the QA system based on your own benchmark, Open the ```usrDefined.json``` file from the ```data``` folder on your project and replace the questions inside it with your questions using the same format.
-![Image](Images/userdefined2.png)
+![Image](Images/userdefined.png)
  Do not forget, choose option 19 when configuring CBench.
- ![Image](Images/BenchmarkAnalysis.png)
+![Image](Images/userdefined2.png)
  
  ## Debugging Benchmark Mode
