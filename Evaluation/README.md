@@ -10,9 +10,13 @@ This document shows you how to configure CBench to evaluate a QA system and what
 * CBench system collects the QA system answers. For every question, CBench prints the NLQ, Correct answers list and System answers list. It is better to unwrap text as some answers are very long as in the second image.
 ![Image](Images/collect.png)
 ![Image](Images/qaquestions.png)
+* After CBench feeding the QA system with all questions, It will ask you if you would like to see the evaluation of the individual questions. Please select `yes` if you would like to take (Copy/Paste in Spreadsheet) these questions for your own analysis. If `yes` is selected, you will see a list of questions as in the image
+![Image](Images/individual.png)
+
+
 
 ## User-Defined Benchmark
-If you would like to evaluate he QA system based on your own benchmark, Open the ```usrDefined.json``` file from the ```data``` folder on your project and replace the questions inside it with your questions using the same format.
+If you would like to evaluate the QA system based on your own benchmark, Open the ```usrDefined.json``` file from the ```data``` folder on your project and replace the questions inside it with your questions using the same format.
 ![Image](Images/userdefined.png)
  Do not forget, choose option 19 when configuring CBench.
  ![Image](Images/BenchmarkAnalysis.png)
