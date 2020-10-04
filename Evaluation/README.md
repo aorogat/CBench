@@ -12,15 +12,15 @@ This document shows you how to configure CBench to evaluate a QA system and what
 ![Image](Images/qaquestions.png)
 * After CBench feeding the QA system with all questions, It will ask you if you would like to see the evaluation of the individual questions. 
 ![Image](Images/yes-no.png)
-Please select `yes` if you would like to take (Copy/Paste in Spreadsheet) these questions for your own analysis. If `yes` is selected, you will see a list of questions as in the image. (R:Recall, P: Precision and F1: F1 score for each quesion).
+Please select `yes` if you would like to take (Copy/Paste in Spreadsheet) these questions for your own analysis. If `yes` is selected, you will see a list of questions as in the image. (R: Recall, P: Precision and F1: F1 score for each question).
 ![Image](Images/individual.png)
 * CBench will ask you if you would like to see the evaluation of the individual questions categorized by their queries' shapes. Please select `yes` if you would like. 
 ![Image](Images/yes-no2.png)
-In that case, as some spahes are subsume others, we prints questions for every shape that are not belong to other shapes.
+In that case, as some shapes are subsuming others, we print questions for every shape that does not belong to other shapes.
 ![Image](Images/individualCategorizzed.png)
 * Then the final scores are reported
 ![Image](Images/finlScores.png)
-
+* Then you can visualize the properties of the questions that are correctly/incorrectly answered.
 
 ## User-Defined Benchmark
 If you would like to evaluate the QA system based on your own benchmark, Open the ```usrDefined.json``` file from the ```data``` folder on your project and replace the questions inside it with your questions using the same format.
