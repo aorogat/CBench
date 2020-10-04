@@ -7,7 +7,7 @@ This document shows you how to configure CBench to evaluate a QA system and what
 ![Image](Images/Preprosessing.png)
 * The System then prints some statistics as shown.
 ![Image](Images/Statistics.png)
-* CBench system collects the QA system answers. For every question, CBench prints the NLQ, Correct answers list and System answers list. As in the second image, it is better to unwrap text as some answers are very long.
+* CBench system collects the QA system answers. For every question, CBench prints the NLQ, Correct answers list and System answers list. It is better to unwrap text as some answers are very long as in the second image.
 ![Image](Images/collect.png)
 ![Image](Images/qaquestions.png)
 
