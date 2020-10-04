@@ -21,6 +21,16 @@ In that case, as some shapes are subsuming others, we print questions for every 
 * Then the final scores are reported
 ![Image](Images/finlScores.png)
 * Then you can visualize the properties of the questions that are correctly/incorrectly answered.
+![Image](Images/visulize.png)
+Then the dt will be visualized by Matplotlib as shown. The images will ppear one by one. To see the next imge please close the current one.
+![Image](Images/single.png)
+![Image](Images/chain.png)
+![Image](Images/chainset.png)
+![Image](Images/tree.png)
+![Image](Images/star.png)
+![Image](Images/forest.png)
+![Image](Images/flower.png)
+![Image](Images/flowerset.png)
 
 ## User-Defined Benchmark
 If you would like to evaluate the QA system based on your own benchmark, Open the ```usrDefined.json``` file from the ```data``` folder on your project and replace the questions inside it with your questions using the same format.
