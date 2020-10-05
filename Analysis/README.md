@@ -1,3 +1,4 @@
+[Home](https://github.com/aelroby/CBench/)
 # CBench: Benchmark Analysis Mode
 This document shows you how to configure CBench to analyze a benchmark and what you expect from CBench.
 * __Run CBench.jar__ Using the command ``` java -jar "PATH/TO/projectFolder/CBench.jar" ```, run the project or change the current directory in the terminal to the directory where CBench located and run this command ``` java -jar CBench.jar ```.
