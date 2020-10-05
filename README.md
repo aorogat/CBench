@@ -46,7 +46,7 @@ projectFolder
 ```
 *  __Run CBench.jar:__ Using the command ``` java -jar "PATH/TO/projectFolder/CBench.jar" ```, run the project.
 * __Configure the System:__ While the system is running, it asks you about some parameters. Theses parameters are
-  * __Mode:__ You can select between two modes: (1)[Benchmarks Analysis](https://github.com/aelroby/CBench/blob/master/Analysis/README.md) or (2)[QA system Evaluation]().
+  * __Mode:__ You can select between two modes: (1)[Benchmarks Analysis](https://github.com/aelroby/CBench/blob/master/Analysis/README.md) or (2)[QA system Evaluation](https://github.com/aelroby/CBench/blob/master/Evaluation/README.md).
   * __KG:__ The desired knowledge graph.
   * __Project Directory Path:__ The path of the project must be as follow ``` PATH/TO/projectFolder ```. Please replace it by the correct path.
 * __Start the System:__ After you configured the system, it starts and does the following. __(It is prefered to unwrap the text)__
