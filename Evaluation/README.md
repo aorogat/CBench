@@ -40,3 +40,6 @@ If you would like to evaluate the QA system based on your own benchmark, Open th
 ![Image](Images/userdefined2.png)
  
  ## Debugging Benchmark Mode
+ If you would like to select a set of questions that have specific properties, select option `20- Properties Defined` while configuring the system. Then, CBench will ask you about the properties of the targeted questions as shown.
+ ![Image](Images/properties.png)
+
