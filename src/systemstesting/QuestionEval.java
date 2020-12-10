@@ -51,12 +51,10 @@ public class QuestionEval {
             properties.triples = -1;
             properties.keywords = "---";
         }
-        String q = question.getQuestionString() 
-                + "\n" + "Gold Answer : " + G.toString()
-                + "\n" + "System Answer : " + A.toString()
-                + "\n" + "R : " + R_q + " \t " + 
+        String q = "R : " + R_q + " \t " + 
                          "P : " + P_q + " \t " + 
-                         "F1 : " + F_q + " \n " ;
+                         "F1 : " + F_q + " \t " 
+                + question.getQuestionString();
 //                         question.getQuestionQuery().replace("\n", "").replace("\r", "") + " \t " +
 //                         properties.type + " \t " +
 //                         properties.keywords + " \t " +

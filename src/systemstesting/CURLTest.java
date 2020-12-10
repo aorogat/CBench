@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import org.apache.commons.io.IOUtils;
 import org.json.JSONArray;
 import org.json.JSONObject;
-import static systemstesting.WDAqua.systemAnswersList;
+import static systemstesting.Evaluator_WDAqua.systemAnswersList;
 
 
 public class CURLTest {

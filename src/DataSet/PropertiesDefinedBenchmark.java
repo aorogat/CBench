@@ -6,7 +6,7 @@ import ShapeAnalysis.QuestionByQuestionAnalysis;
 import java.util.ArrayList;
 import java.util.Scanner;
 import qa.dataStructures.Question;
-import systemstesting.SystemEvaluation;
+import systemstesting.Evaluator_WebServiceBased;
 
 public class PropertiesDefinedBenchmark {
 
@@ -105,12 +105,12 @@ public class PropertiesDefinedBenchmark {
             Question question = questions.get(i);
 
             //Remove unsupported KG
-            if (SystemEvaluation.KB.toLowerCase().equals("dbpedia")
+            if (Evaluator_WebServiceBased.KB.toLowerCase().equals("dbpedia")
                     && !question.getDatabase().toLowerCase().startsWith("dbpedia")) {
                 unwantedQuestions.add(question);
                 continue;
             }
-            if (SystemEvaluation.KB.toLowerCase().equals("freebase")
+            if (Evaluator_WebServiceBased.KB.toLowerCase().equals("freebase")
                     && !question.getDatabase().toLowerCase().startsWith("freebase")) {
                 unwantedQuestions.add(question);
                 continue;

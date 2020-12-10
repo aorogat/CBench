@@ -1,0 +1,12 @@
+{
+    "questions": [{
+            "answers": [{
+                    "head": {
+                        "link": []
+                    },
+                    "boolean": true
+                }],
+            "Other keys": "Other values"
+        }],
+    "Other keys": "Other values"
+}

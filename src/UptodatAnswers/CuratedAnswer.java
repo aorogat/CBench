@@ -16,7 +16,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 public class CuratedAnswer {
-    public static String endpoint = "http://134.117.101.79:8890/sparql/?";
+    public static String endpoint = "http://dbpedia.org/sparql?";
 
     public static void main(String[] args) throws UnsupportedEncodingException {
         upToDateAnswerDBpedia("ASK WHERE { <http://dbpedia.org/resource/Ganymede_(moon)> <http://dbpedia.org/property/discoverer> <http://dbpedia.org/resource/Galileo_Galilei> }", "dbpedia");
@@ -70,8 +70,7 @@ public class CuratedAnswer {
                                     .trim().replace('_', ' '));
 
                         } catch (Exception ex) {
-
-                            ex.printStackTrace();
+                            return answersList;
                         }
                     }
                 }
@@ -86,11 +85,9 @@ public class CuratedAnswer {
                     }
 
                 } catch (Exception et) {
-                    et.printStackTrace();
                 }
             }
         } catch (Exception ee) {
-            ee.printStackTrace();
         }
         try {
         } catch (Exception e) {

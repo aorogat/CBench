@@ -5,7 +5,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
-import static systemstesting.SystemEvaluation.in;
+import static systemstesting.Evaluator_WebServiceBased.in;
 import visualization.FineGrained;
 
 public class BenchmarkEval {

@@ -39,7 +39,8 @@ public class OperatorDistribution
                     OPT = q.toString().toLowerCase().replaceAll(" ", "").
                     replace("\n", "").replace("\r", "").contains("optional{"),
                     
-                    GRAPH = q.toString().toLowerCase().contains("graph"), 
+                    GRAPH = q.toString().toLowerCase().
+                            replaceAll(" ", "").contains("graph{"), 
                     
                     UNION = q.toString().toLowerCase().replaceAll(" ", "").
                     replace("\n", "").replace("\r", "").contains("union{");

@@ -2,11 +2,11 @@ package mainClass;
 
 import java.util.Scanner;
 import org.json.JSONException;
-import systemstesting.SystemEvaluation;
+import systemstesting.Evaluator_WebServiceBased;
 
 public class CBench 
 {
-    
+    static Evaluator_WebServiceBased evaluator = new Evaluator_WebServiceBased();
     public static void main(String[] args) throws JSONException, Exception {
         run();
     }
@@ -28,7 +28,7 @@ public class CBench
         int purpose = in.nextInt();
         
         if(purpose==1)
-            SystemEvaluation.evaluate();
+            Evaluator_WebServiceBased.evaluate(evaluator);
         else if (purpose == 2)
             BenchmarkAnalysis.analyze();
         else

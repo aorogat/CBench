@@ -4,6 +4,7 @@ import javax.net.ssl.HttpsURLConnection;
 import java.io.BufferedReader;
 import java.io.DataOutputStream;
 import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
 import java.net.URL;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -29,16 +30,15 @@ public class HttpURLConnectionExample {
 
     private void sendPost() throws Exception {
 
-        String url = "https://qanswer-core1.univ-st-etienne.fr/api/gerbil";
-
-        HttpsURLConnection httpClient = (HttpsURLConnection) new URL(url).openConnection();
+        String url = "http://localhost:8080/startquestionansweringwithtextquestion";
+        HttpURLConnection httpClient = (HttpURLConnection) new URL(url).openConnection();
 
         //add reuqest header
         httpClient.setRequestMethod("POST");
         //httpClient.setRequestProperty("User-Agent", "Mozilla/5.0");
         httpClient.setRequestProperty("Accept-Language", "en-US,en;q=0.5");
 
-        String urlParameters = "query=Who is the wife of Barack Obama";
+        String urlParameters = "question=What is the real name of Carling?";
 
         // Send post request
         httpClient.setDoOutput(true);
