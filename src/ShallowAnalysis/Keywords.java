@@ -17,7 +17,7 @@ public class Keywords {
 
     public static void main(String[] args) {
         
-        Keywords k = new Keywords(DataSetPreprocessing.getQueriesWithoutDuplicates(Benchmark.QALD_9));
+        Keywords k = new Keywords(DataSetPreprocessing.getQueriesWithoutDuplicates(Benchmark.WebQuestions));
         k.keywordsAnalysis();
     }
 
@@ -71,15 +71,18 @@ public class Keywords {
                     replace("\n", "").replace("\r", "").contains("optional{")) {
                 opt++;
             }
-            if (q.toString().toLowerCase().contains("graph")) {
+            if (q.toString().toLowerCase().replaceAll(" ", "").contains("graph{")) {
                 graph++;
             }
-            if (q.toString().toLowerCase().contains("not exists")) {
+            if (q.toString().toLowerCase().replaceAll(" ", "").contains("notexists{")) {
+                System.out.println("not exists ==="+q.toString());
                 notExists++;
-            } else if (q.toString().toLowerCase().contains("exists")) {
+            } else if (q.toString().toLowerCase().replaceAll(" ", "").contains("exists{")) {
+                System.out.println("exists ==="+q.toString());
                 exists++;
             }
             if (q.toString().toLowerCase().contains("minus")) {
+                System.out.println("minus ==="+q.toString());
                 minus++;
             }
 

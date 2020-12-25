@@ -1,0 +1,17 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<sparql xmlns='http://www.w3.org/2005/sparql-results#'>
+    <head>
+        <variable name='s'/>
+        <variable name='resultAsSparqlQuery'/>
+    </head>
+    <results>
+        <result>
+            <binding name='s'>
+                <uri>tag:stardog:api:0.7669428435542457</uri>
+            </binding>
+            <binding name='resultAsSparqlQuery'>
+                <literal>SELECT DISTINCT ?uri WHERE { &lt;http://dbpedia.org/resource/Natalie_Portman&gt; &lt;http://dbpedia.org/ontology/product&gt; ?x . ?x &lt;http://dbpedia.org/ontology/starring&gt; ?uri . }</literal>
+            </binding>
+        </result>
+    </results>
+</sparql>

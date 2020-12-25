@@ -39,7 +39,7 @@ import org.xml.sax.InputSource;
 public class TestGet {
 
     public static void main(String[] args) throws MalformedURLException, IOException, SAXException {
-        String outGraph = "urn:graph:ae461ba3-54e0-4cc7-bf0b-57dd30540d48";
+        String outGraph = "urn:graph:931a5ea4-7e35-443a-b768-7fdd5a0c1e06";
         String sparqlURL = "http://admin:admin@localhost:5820/qanary/query?reasoning=false&query=PREFIX%20oa%3A%20%3Chttp%3A%2F%2Fwww.w3.org%2Fns%2Fopenannotation%2Fcore%2F%3E%0APREFIX%20rdf%3A%20%3Chttp%3A%2F%2Fwww.w3.org%2F1999%2F02%2F22-rdf-syntax-ns%23%3E%0APREFIX%20qa%3A%20%3Chttp%3A%2F%2Fwww.wdaqua.eu%2Fqa%23%3E%0ASELECT%20*%0AFROM%20%3C"
                 + outGraph.replaceAll(":", "%3A") + "%3E%0AWHERE%20%7B%0A%20%20%20%20%3Fs%20rdf%3Atype%20qa%3AAnnotationOfAnswerSPARQL.%0A%20%20%20%20%3Fs%20oa%3AhasBody%20%3FresultAsSparqlQuery.%0A%7D%0A";
         System.out.println(sparqlURL);

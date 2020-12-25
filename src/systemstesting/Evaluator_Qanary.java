@@ -47,18 +47,24 @@ public class Evaluator_Qanary extends Evaluator {
             //httpClient.setRequestProperty("User-Agent", "Mozilla/5.0");
             httpClient.setRequestProperty("Accept-Language", "en-US,en;q=0.5");
 
-            String urlParameters = "question=What is the real name of Carling?";
+            String urlParameters = "question=" + question
+                    + "&componentlist[]="
+                    + "TagmeNED"
+                    + ",DiambiguationProperty"
+                    //+ ",RelNliodRel"
+                    //+ ",RelationLinker1" //This component is not complete
+                    + ",QueryBuilder";
 
             // Send post request
             httpClient.setDoOutput(true);
             try (DataOutputStream wr = new DataOutputStream(httpClient.getOutputStream())) {
                 wr.writeBytes(urlParameters);
                 wr.flush();
-            }
-
-            int responseCode = httpClient.getResponseCode();
-
-            StringBuilder response;
+            }catch(Exception e){}
+            try{
+                int responseCode = httpClient.getResponseCode();
+            }catch(Exception e){}
+            StringBuilder response = null;
             try (BufferedReader in = new BufferedReader(
                     new InputStreamReader(httpClient.getInputStream()))) {
 
@@ -69,7 +75,7 @@ public class Evaluator_Qanary extends Evaluator {
                     response.append(line);
                 }
 
-            }
+            }catch(Exception e){}
             JSONObject json = new JSONObject(response.toString());
             String outGraph = json.getString("outGraph");
 
@@ -98,19 +104,29 @@ public class Evaluator_Qanary extends Evaluator {
             Document doc = convertStringToXMLDocument(content.toString());
 
             //Verify XML document is build correctly
-            String sparqlQuery = doc.getElementsByTagName("results").item(0).getNodeValue(); 
-            if(sparqlQuery==null)
-                sparqlQuery="";
-            //System.out.println(sparqlQuery);
+            String sparqlQuery = "";
+            try {
+                sparqlQuery = doc.getElementsByTagName("literal").item(0).getTextContent();
+            } catch (Exception e) {
+                sparqlQuery = "";
+            }
+            if (sparqlQuery == null) {
+                sparqlQuery = "";
+            }
 
-            
-            
+            sparqlQuery = sparqlQuery.replaceAll("&lt;", "<").replaceAll("&gt;", ">");
+
+            System.out.println("               "+sparqlQuery);
+
             //3- Get Answer from DBpedia
-            systemAnswersList = CuratedAnswer.upToDateAnswerDBpedia(sparqlQuery, "dbpedia");;
+            if (!sparqlQuery.equals("")) {
+                systemAnswersList = CuratedAnswer.upToDateAnswerDBpedia(sparqlQuery, "dbpedia");
+            } else {
+                systemAnswersList = new ArrayList<>();
+            }
 
-            
         } catch (Exception eex) {
-            eex.printStackTrace();
+            //eex.printStackTrace();
         }
         return systemAnswersList;
     }

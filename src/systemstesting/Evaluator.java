@@ -1,4 +1,3 @@
-
 package systemstesting;
 
 import DataSet.Benchmark;
@@ -18,9 +17,9 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import qa.dataStructures.Question;
 
-public abstract class Evaluator 
-{
-        static ArrayList<Query> qs;
+public abstract class Evaluator {
+
+    static ArrayList<Query> qs;
     static ArrayList<Question> questions = DataSetPreprocessing.questions;
 
     public static String KB = "dbpedia";
@@ -35,8 +34,7 @@ public abstract class Evaluator
     static ArrayList<QuestionEval> evaluatedQuestions;
 
     static Scanner in = new Scanner(System.in);
-    
-    
+
     public static JSONObject readJsonFromUrl(String url) throws IOException, JSONException {
         InputStream is = new URL(url).openStream();
         try {
@@ -48,9 +46,8 @@ public abstract class Evaluator
             is.close();
         }
     }
-    
-    
-     private static String readAll(Reader rd) throws IOException {
+
+    private static String readAll(Reader rd) throws IOException {
         StringBuilder sb = new StringBuilder();
         int cp;
         while ((cp = rd.read()) != -1) {
@@ -58,8 +55,8 @@ public abstract class Evaluator
         }
         return sb.toString();
     }
-     
-     public static void evaluate(Evaluator evaluator) throws IOException, JSONException, Exception {
+
+    public static void evaluate(Evaluator evaluator) throws IOException, JSONException, Exception {
         //Read required data     
         System.out.println("        |");
         System.out.println("        ++++> Select the KG from [default, dbpedia, wikidata, freebase]");
@@ -221,7 +218,7 @@ public abstract class Evaluator
 
         if (curated) {
             System.out.println("        |");
-            System.out.println("        ++++> What is your KG endpoint URL?");
+            System.out.println("        ++++> What is your KG endpoint URL (ex http://dbpedia.org/sparql?)?");
             System.out.print("               Endpoint is: ");
             CuratedAnswer.endpoint = in.next();
             CuratedAnswer.endpoint = CuratedAnswer.endpoint.trim().toLowerCase();
@@ -263,31 +260,33 @@ public abstract class Evaluator
                 }
                 try {
                     if (corectAnswersList != null) {
-                        if (corectAnswersList.size() > 0) {
-                            qsWithAnswers++;
-                        } else {
+                        if (corectAnswersList.size() == 1
+                                && (corectAnswersList.get(0) == null
+                                || corectAnswersList.get(0).equals(""))) {
                             continue;
                         }
 
-                        if (corectAnswersList.size() == 1 && corectAnswersList.get(0).equals("null")) {
-                            continue;
-                        }
                     } else {
-                        corectAnswersList = new ArrayList<>();
+                        continue;
                     }
                 } catch (Exception e) {
-                    corectAnswersList = new ArrayList<>();
+                    continue;
                 }
             }
             if (corectAnswersList == null) {
-                corectAnswersList = new ArrayList<>();
+                continue;
+            }
+            if (corectAnswersList.size() > 0) {
+                qsWithAnswers++;
+            } else {
+                continue;
             }
             //2- Determine systemAnswersList
             //for (int i = 0; i < 3; i++) {
             String q = question.getQuestionString().replace('?', ' ').replace(" ", "%20");
             System.out.println();
 //            System.out.println("               Question number:  " + counter);
-            System.out.println("               Question: " + question.getQuestionString());
+            System.out.println("              " + counter + "- Question: " + question.getQuestionString());
             System.out.println("               Correct Answer = " + corectAnswersList.toString());
 
             //////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -325,8 +324,6 @@ public abstract class Evaluator
 
     }
 
-     
-     
-     public abstract ArrayList<String> answer(String question) throws IOException, JSONException;
+    public abstract ArrayList<String> answer(String question) throws IOException, JSONException;
 
 }
