@@ -17,7 +17,7 @@ public class Keywords {
 
     public static void main(String[] args) {
         
-        Keywords k = new Keywords(DataSetPreprocessing.getQueriesWithoutDuplicates(Benchmark.WebQuestions));
+        Keywords k = new Keywords(DataSetPreprocessing.getQueriesWithoutDuplicates(Benchmark.QALD_2));
         k.keywordsAnalysis();
     }
 
@@ -63,25 +63,26 @@ public class Keywords {
                     || q.toString().toLowerCase().contains(";")) {
                 and++;
             }
-            if (q.toString().toLowerCase().replaceAll(" ", "").
+            if (q.toString().toLowerCase().replace("\n", "").replaceAll(" ", "").
                     replace("\n", "").replace("\r", "").contains("union{")) {
                 union++;
             }
-            if (q.toString().toLowerCase().replaceAll(" ", "").
+            if (q.toString().toLowerCase().replace("\n", "").replaceAll(" ", "").
                     replace("\n", "").replace("\r", "").contains("optional{")) {
                 opt++;
             }
-            if (q.toString().toLowerCase().replaceAll(" ", "").contains("graph{")) {
+            if (q.toString().toLowerCase().replaceAll(" ", "").
+                    replace("\n", "").replace("\r", "").contains("graph{")) {
                 graph++;
             }
-            if (q.toString().toLowerCase().replaceAll(" ", "").contains("notexists{")) {
+            if (q.toString().toLowerCase().replace("\n", "").replaceAll(" ", "").contains("notexists{")) {
                 System.out.println("not exists ==="+q.toString());
                 notExists++;
-            } else if (q.toString().toLowerCase().replaceAll(" ", "").contains("exists{")) {
+            } else if (q.toString().toLowerCase().replace("\n", "").replaceAll(" ", "").contains("exists{")) {
                 System.out.println("exists ==="+q.toString());
                 exists++;
             }
-            if (q.toString().toLowerCase().contains("minus")) {
+            if (q.toString().toLowerCase().replace("\n", "").replaceAll(" ", "").contains("minus{")) {
                 System.out.println("minus ==="+q.toString());
                 minus++;
             }

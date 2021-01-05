@@ -283,7 +283,11 @@ public abstract class Evaluator {
             }
             //2- Determine systemAnswersList
             //for (int i = 0; i < 3; i++) {
-            String q = question.getQuestionString().replace('?', ' ').replace(" ", "%20");
+            String q="";
+            if(evaluator instanceof Evaluator_QAsparql)
+                q = question.getQuestionString();
+            else 
+                q = question.getQuestionString().replace('?', ' ').replace(" ", "%20");
             System.out.println();
 //            System.out.println("               Question number:  " + counter);
             System.out.println("              " + counter + "- Question: " + question.getQuestionString());

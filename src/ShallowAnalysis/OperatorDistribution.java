@@ -22,7 +22,7 @@ public class OperatorDistribution
     }
 
     public static void main(String[] args) {
-        OperatorDistribution k = new OperatorDistribution(DataSetPreprocessing.getQueriesWithoutDuplicates(Benchmark.WebQuestions));
+        OperatorDistribution k = new OperatorDistribution(DataSetPreprocessing.getQueriesWithoutDuplicates(Benchmark.QALD_ALL));
         k.analysis();
     }
 
@@ -39,10 +39,10 @@ public class OperatorDistribution
                     OPT = q.toString().toLowerCase().replaceAll(" ", "").
                     replace("\n", "").replace("\r", "").contains("optional{"),
                     
-                    GRAPH = q.toString().toLowerCase().
-                            replaceAll(" ", "").contains("graph{"), 
+                    GRAPH = q.toString().toLowerCase().replaceAll(" ", "").
+                    replace("\n", "").replace("\r", "").contains("graph{"), 
                     
-                    UNION = q.toString().toLowerCase().replaceAll(" ", "").
+                    UNION = q.toString().toLowerCase().replace("\n", "").replaceAll(" ", "").
                     replace("\n", "").replace("\r", "").contains("union{");
             
             if(FILTER && !AND && !OPT && !GRAPH && !UNION)F++;
