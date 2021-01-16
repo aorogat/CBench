@@ -237,6 +237,7 @@ public abstract class Evaluator {
         for (Question question : questions) {
             corectAnswersList = new ArrayList<>();
             counter++;
+
             //1- Determine CorectAnswerList
             if (curated) {
                 if (KB.equals("default")) {
@@ -273,6 +274,11 @@ public abstract class Evaluator {
                     continue;
                 }
             }
+
+            if (!KB.equals(question.getDatabase())) {
+                continue;
+            }
+
             if (corectAnswersList == null) {
                 continue;
             }
@@ -283,11 +289,14 @@ public abstract class Evaluator {
             }
             //2- Determine systemAnswersList
             //for (int i = 0; i < 3; i++) {
-            String q="";
-            if(evaluator instanceof Evaluator_QAsparql)
+            String q = "";
+            if (evaluator instanceof Evaluator_QAsparql
+                || evaluator instanceof Evaluator_AskNow
+                || evaluator instanceof Evaluator_File_Based) {
                 q = question.getQuestionString();
-            else 
+            } else {
                 q = question.getQuestionString().replace('?', ' ').replace(" ", "%20");
+            }
             System.out.println();
 //            System.out.println("               Question number:  " + counter);
             System.out.println("              " + counter + "- Question: " + question.getQuestionString());

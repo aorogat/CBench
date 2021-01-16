@@ -81,10 +81,10 @@ public class DataSetPreprocessing {
             questions.addAll(JSONParser.parseQald7File6(currentDirectory + "/data/DBpedia/SPARQL/QALD-master/6/data/qald-6-test-hybrid.json", "QALD-6", "dbpedia"));
         }
         if (benchmark == Benchmark.QALD_7 || benchmark == Benchmark.QALD_ALL || benchmark == Benchmark.PropertiesDefined) {
-//            questions.addAll(JSONParser.parseQald7File2(currentDirectory+"/data/DBpedia/SPARQL/QALD-master/7/data/qald-7-test-en-wikidata.json", "QALD-7", "wikidata"));
+            questions.addAll(JSONParser.parseQald7File2(currentDirectory+"/data/DBpedia/SPARQL/QALD-master/7/data/qald-7-test-en-wikidata.json", "QALD-7", "wikidata"));
             questions.addAll(JSONParser.parseQald7File2(currentDirectory + "/data/DBpedia/SPARQL/QALD-master/7/data/qald-7-train-largescale.json", "QALD-7", "dbpedia"));
             questions.addAll(JSONParser.parseQald7File1(currentDirectory + "/data/DBpedia/SPARQL/QALD-master/7/data/qald-7-train-multilingual-extended-json.json", "QALD-7", "dbpedia"));
-//            questions.addAll(JSONParser.parseQald7File2(currentDirectory+"/data/DBpedia/SPARQL/QALD-master/7/data/qald-7-train-en-wikidata.json", "QALD-7", "wikidata"));
+            questions.addAll(JSONParser.parseQald7File2(currentDirectory+"/data/DBpedia/SPARQL/QALD-master/7/data/qald-7-train-en-wikidata.json", "QALD-7", "wikidata"));
             questions.addAll(JSONParser.parseQald7File3(currentDirectory + "/data/DBpedia/SPARQL/QALD-master/7/data/qald-7-train-hybrid-extended-json.json", "QALD-7", "dbpedia"));
             questions.addAll(JSONParser.parseQald7File4(currentDirectory + "/data/DBpedia/SPARQL/QALD-master/7/data/qald-7-train-hybrid.json", "QALD-7", "dbpedia"));
             questions.addAll(JSONParser.parseQald7File3(currentDirectory + "/data/DBpedia/SPARQL/QALD-master/7/data/qald-7-train-multilingual-extended-json.json", "QALD-7", "dbpedia"));
@@ -93,7 +93,7 @@ public class DataSetPreprocessing {
         if (benchmark == Benchmark.QALD_8 || benchmark == Benchmark.QALD_ALL || benchmark == Benchmark.PropertiesDefined) {
             questions.addAll(JSONParser.parseQald8File(currentDirectory + "/data/DBpedia/SPARQL/QALD-master/8/data/qald-8-test-multilingual.json", "QALD-8", "dbpedia"));
             questions.addAll(JSONParser.parseQald8File(currentDirectory + "/data/DBpedia/SPARQL/QALD-master/8/data/qald-8-train-multilingual.json", "QALD-8", "dbpedia"));
-//            questions.addAll(JSONParser.parseQald7File2(currentDirectory+"/data/DBpedia/SPARQL/QALD-master/8/data/wikidata-train-7.json", "QALD-8", "wikidata"));
+            questions.addAll(JSONParser.parseQald7File2(currentDirectory+"/data/DBpedia/SPARQL/QALD-master/8/data/wikidata-train-7.json", "QALD-8", "wikidata"));
         }
         if (benchmark == Benchmark.QALD_9 || benchmark == Benchmark.QALD_ALL || benchmark == Benchmark.PropertiesDefined) {
             questions.addAll(JSONParser.parseQald9File(currentDirectory + "/data/DBpedia/SPARQL/QALD-master/9/data/qald-9-train-multilingual.json", "QALD-9", "dbpedia"));

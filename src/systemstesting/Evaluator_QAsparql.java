@@ -33,7 +33,7 @@ public class Evaluator_QAsparql extends Evaluator {
             
             JSONParser parser = new JSONParser();
             try {
-                Object obj = parser.parse(new FileReader("qald_4_answer_output.json"));
+                Object obj = parser.parse(new FileReader("qald_1_answer_output.json"));
                 //Object obj = parser.parse(new FileReader("LCQuad_All_answer_output.json"));
 
                 JSONArray jsonObject = new JSONArray(obj.toString());
