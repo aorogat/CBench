@@ -1,2 +1,0 @@
-Paper: Automated template generation for question answering over knowledge graphs
-Data: http://qa.mpi-inf.mpg.de/complex-questions-wikianswers-150.json
