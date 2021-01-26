@@ -76,12 +76,6 @@ Afetr the Benchmark Preparation, CBench will do the following
   * __Data Visualization:__ A Python script generates the fine-grained analysis visualization. To do so, you have to setup python on your machine and these libraries: Numpy, Pandas, Matplotlib, Spacy, Scipy and Statistics. CBench asks you for the python3 setup location; for example, if you use anaconda on an ubuntu machine, the path usually is ``` /home/username/anaconda3/bin ```.
 
 
-### Add a New Benchmark
-* Open the `userDefinied.json` file in the `data` folder, edit it and add all the questions of your benchmark with the given format.
-* While you are running the project, select the `19- UserDefined` option.
-
-
-
 ## Support
 Please raise potential bugs on github. If you have a research related question, please send it to this email(abdelghny.orogat@carleton.ca)
 
