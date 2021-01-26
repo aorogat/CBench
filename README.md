@@ -17,7 +17,8 @@ based on popular single-number metrics, but also gives a detailed analysis of th
   * Getting Started
   * [Benchmarks Analysis](https://github.com/aelroby/CBench/blob/master/Analysis/README.md)
   * [QA system Evaluation](https://github.com/aelroby/CBench/tree/master/Evaluation)
-    * [QA Evaluation by http requests](https://github.com/aorogat/CBench/blob/master/Evaluation/httpEvaluation.md)
+    * [QA Online Evaluation by http requests](https://github.com/aorogat/CBench/blob/master/Evaluation/httpEvaluation.md)
+    * [QA Offline Evaluation by a benchmark file]()
 * [Edit CBench](https://github.com/aorogat/CBench/blob/master/editCBench.md)
 
 
