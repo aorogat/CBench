@@ -12,6 +12,11 @@ based on popular single-number metrics, but also gives a detailed analysis of th
 * __Fine-grained Evaluation Analysis:__ CBench is able to identify the queries properties of the quetsions that are correctly and incorrectly answered.
 * __Qualitative Evaluation of Linguistic Features:__ CBench is able to find the *k* linguistically closest questions to a chosen question *q*.
 
+## Table of Content
+* Run CBench
+** [Benchmarks Analysis](https://github.com/aelroby/CBench/blob/master/Analysis/README.md)
+** [QA system Evaluation](https://github.com/aelroby/CBench/tree/master/Evaluation)
+* Edit CBench
 
 
 ## Getting Started
