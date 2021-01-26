@@ -19,7 +19,7 @@ based on popular single-number metrics, but also gives a detailed analysis of th
   * [QA system Evaluation](https://github.com/aelroby/CBench/tree/master/Evaluation)
     * [QA Online Evaluation by http requests](https://github.com/aorogat/CBench/blob/master/Evaluation/httpEvaluation.md)
     * [QA Offline Evaluation by a benchmark file]()
-  * [Add a new Benchmark]()
+  * [Add a new Benchmark](https://github.com/aorogat/CBench/edit/master/newBenchmark.md)
   * [Add a Knowledge Graph]()
 * [Edit CBench](https://github.com/aorogat/CBench/blob/master/editCBench.md)
 
