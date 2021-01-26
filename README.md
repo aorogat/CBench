@@ -14,8 +14,8 @@ based on popular single-number metrics, but also gives a detailed analysis of th
 
 ## Table of Content
 * Run CBench
-** [Benchmarks Analysis](https://github.com/aelroby/CBench/blob/master/Analysis/README.md)
-** [QA system Evaluation](https://github.com/aelroby/CBench/tree/master/Evaluation)
+ * [Benchmarks Analysis](https://github.com/aelroby/CBench/blob/master/Analysis/README.md)
+ * [QA system Evaluation](https://github.com/aelroby/CBench/tree/master/Evaluation)
 * Edit CBench
 
 
