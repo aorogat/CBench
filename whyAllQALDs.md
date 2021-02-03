@@ -2,5 +2,6 @@ First,  we  would  like  to  highlight  that  CBench  is  a  test  suite  that  
 
 
 ## References
-[Cui et al., 2017]  Cui, W., Xiao, Y., Wang, H., Song, Y., Hwang, S.-w., and Wang, W. (2017).Kbqa:   Learning  question  answering  over  qa  corpora  and  knowledge  bases.Proc.VLDBEndow., 10(5):565–576.
-[Zheng et al., 2018]  Zheng, W., Yu, J. X., Zou, L., and Cheng, H. (2018).  Question answeringover knowledge graphs:  question understanding via template decomposition.ProceedingsoftheVLDBEndowment, 11(11):1373–1386.
+*[Cui et al., 2017]*  Cui, W., Xiao, Y., Wang, H., Song, Y., Hwang, S.-w., and Wang, W. (2017).Kbqa:   Learning  question  answering  over  qa  corpora  and  knowledge  bases.Proc.VLDBEndow., 10(5):565–576.
+
+*[Zheng et al., 2018]*  Zheng, W., Yu, J. X., Zou, L., and Cheng, H. (2018).  Question answeringover knowledge graphs:  question understanding via template decomposition.ProceedingsoftheVLDBEndowment, 11(11):1373–1386.
