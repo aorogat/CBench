@@ -2,7 +2,7 @@
 # CBench: QA Evaluation Mode
 This document shows you how to configure CBench to evaluate a QA system and what you expect from CBench.
 * __Run CBench.jar__ Using the command ``` java -jar "PATH/TO/projectFolder/CBench.jar" ```, run the project or change the current directory in the terminal to the directory where CBench located and run this command ``` java -jar CBench.jar ```.
-* __Configure CBench__ This is the first step after running CBench. You have to configure the system as shown
+* __Configure CBench__ This is the first step after running CBench. You have to configure the system as shown. *You can use the same answers used in the benchmark file to compare to other system by bypassing the update module and select no. In this case it is your responsability to the select the correct version of KG in your QA system.*
 ![Image](Images/conf.png)
 * The System then preprocess the questions and print all of them as in the figure below.  QALD-1 has 100 questions, just 3 of them are shown.
 ![Image](Images/Preprosessing.png)
