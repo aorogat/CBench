@@ -19,3 +19,9 @@ Now, CBench generated a file like this
 As you can see, the `answer` fields are empty. Please fill them with you generated answers for each question. CBench use such answers to compute your QA scores.
 
 * Return the updated files to CBench to calculate the scores
+
+Please return the file to the same place (the main directory) then run CBench as follow
+
+![Image](Images/read_file.png)
+
+Note: you must select the same benchmark you selcted for the generated file.
