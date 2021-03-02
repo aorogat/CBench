@@ -24,7 +24,7 @@ based on popular single-number metrics, but also gives a detailed analysis of th
   * [Add a Knowledge Graph](https://github.com/aorogat/CBench/blob/master/addKG.md)
 * [Edit CBench](https://github.com/aorogat/CBench/blob/master/editCBench.md)
 * [Examples for Shapes used by CBench](https://github.com/aorogat/CBench/tree/master/Shapes)
-* [Why all versions of QALD?](https://github.com/aorogat/CBench/edit/master/whyAllQALDs.md)
+* [Why all versions of QALD?](https://github.com/aorogat/CBench/blob/master/whyAllQALDs.md)
 
 
 
