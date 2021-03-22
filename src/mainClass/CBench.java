@@ -6,13 +6,15 @@ import java.util.Scanner;
 import static mainClass.BenchmarkAnalysis.analyze;
 import static mainClass.BenchmarkAnalysis.benchmark;
 import org.json.JSONException;
+import static systemstesting.Evaluator.evaluate;
+import systemstesting.Evaluator_AskNow;
 import systemstesting.Evaluator_File_Based;
 import systemstesting.Evaluator_WebServiceBased;
 import systemstesting.GenerateBenchmarkFile;
 
 public class CBench {
 
-    static Evaluator_WebServiceBased evaluator = new Evaluator_WebServiceBased();
+    static Evaluator_WebServiceBased evaluator;
 
     public static void main(String[] args) throws JSONException, Exception {
         run();
@@ -41,6 +43,7 @@ public class CBench {
             System.out.print("                Your answer is: ");
             int eval = in.nextInt();
             if (eval == 1) {
+                evaluator = new Evaluator_WebServiceBased();
                 Evaluator_WebServiceBased.evaluate(evaluator);
             } else if (eval == 2) {
                 System.out.println("        |");
@@ -49,7 +52,8 @@ public class CBench {
                 System.out.print("                Your answer is: ");
                 int f = in.nextInt();
                 if (f == 1) {
-                    Evaluator_File_Based.evaluate(evaluator);
+                    Evaluator_File_Based ev= new Evaluator_File_Based();
+                    Evaluator_File_Based.evaluate(ev);
                 } else if (eval == 2) {
                     System.out.println("        |");
                     System.out.println("        ++++> Select the Benchmark (Enter the integer value) from");

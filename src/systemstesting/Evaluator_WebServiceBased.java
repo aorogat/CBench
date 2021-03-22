@@ -19,6 +19,15 @@ public class Evaluator_WebServiceBased extends Evaluator{
         evaluate(evaluator);
     }
 
+    public Evaluator_WebServiceBased() {
+        System.out.println("        |");
+        System.out.println("        ++++> What is your system URL? (e.g. http://ganswer.gstore-pku.com/api/qald.jsp)]");
+        System.out.print("               URL is: ");
+        url = in.nextLine().trim().toLowerCase();
+    }
+
+    
+    
     
     @Override
      public ArrayList<String> answer(String question) throws IOException, JSONException {

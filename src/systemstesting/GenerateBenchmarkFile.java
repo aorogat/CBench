@@ -34,8 +34,8 @@ public class GenerateBenchmarkFile
         
         for (Question q : questions) {
             JSONObject qStringObj = new JSONObject();
-            qStringObj.put("question", q.getQuestionString());
-            qStringObj.put("answer", new JSONArray());
+            qStringObj.put("questionString", q.getQuestionString());
+            qStringObj.put("generatedSparql", "");
             qStringObjs.add(qStringObj);
         }
         root.put("questions", qStringObjs);
@@ -58,7 +58,7 @@ public class GenerateBenchmarkFile
             }
         }
         System.out.println("CBench generated a file called 'Generated_Benchmark.json' in the root directory of the project.");
-        System.out.println("Please fill the answers fileds in this file by your QA system then return it to CBench.");
+        System.out.println("Please fill the 'generatedSparql' fileds in this file by your QA system then return it to CBench and rename the file to QA.json.");
         System.out.println("Select 'benchmark file is ready' when CBench asks you again.");
         System.out.println("Write s then press Enter to run CBench again.");
         Scanner in = new Scanner(System.in);
