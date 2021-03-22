@@ -20,7 +20,7 @@ As you can see, the `answer` fields are empty. Please fill them with you generat
 
 * Return the updated files to CBench to calculate the scores
 
-Please return the file to the same place (the main directory) then run CBench as follow
+Please return the file to the same place with the name ```QA.json``` (the main directory) then run CBench as follow
 
 ![Image](Images/read_file.png)
 
