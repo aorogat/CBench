@@ -16,7 +16,7 @@ public class ShapeAnalysis {
     }
 
     public static void main(String[] args) {
-        ShapeAnalysis analysis = new ShapeAnalysis(DataSetPreprocessing.getQueriesWithoutDuplicates(Benchmark.QALD_1));
+        ShapeAnalysis analysis = new ShapeAnalysis(DataSetPreprocessing.getQueriesWithoutDuplicates(Benchmark.QALD_ALL));
 
         System.out.println("This Program is to analyze the queries shapes for total"
                 + " queries = " + analysis.qs.size());
@@ -188,6 +188,11 @@ public class ShapeAnalysis {
                 forest_CQ, formatter.format((forest_CQ / (double) CQ) * 100),  
                 forest_CQf, formatter.format((forest_CQf / (double) CQf) * 100), 
                 forest_CQof, formatter.format((forest_CQof / (double) CQof) * 100));
+        
+        System.out.format(format, "Cycle" , 
+                cycle_CQ, formatter.format((cycle_CQ / (double) CQ) * 100),  
+                cycle_CQf, formatter.format((cycle_CQf / (double) CQf) * 100), 
+                cycle_CQof, formatter.format((cycle_CQof / (double) CQof) * 100));
         
         System.out.format(format, "Flower" , 
                 flower_CQ, formatter.format((flower_CQ / (double) CQ) * 100),  

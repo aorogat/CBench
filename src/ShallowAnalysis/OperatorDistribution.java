@@ -22,7 +22,7 @@ public class OperatorDistribution
     }
 
     public static void main(String[] args) {
-        OperatorDistribution k = new OperatorDistribution(DataSetPreprocessing.getQueriesWithoutDuplicates(Benchmark.QALD_ALL));
+        OperatorDistribution k = new OperatorDistribution(DataSetPreprocessing.getQueriesWithoutDuplicates(Benchmark.GraphQuestions));
         k.analysis();
     }
 

@@ -11,8 +11,6 @@ import java.net.URLEncoder;
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -63,7 +61,7 @@ public class CuratedAnswer {
             BufferedReader rd = new BufferedReader(new InputStreamReader(is, Charset.forName("UTF-8")));
 
             xmlText = readAll(rd);
-            System.out.println(xmlText);
+            //System.out.println(xmlText);
         } catch (IOException ex) {
             ex.printStackTrace();
             System.out.println("Communication Failed");
@@ -75,28 +73,28 @@ public class CuratedAnswer {
         try {
             doc = loadXMLFromString(xmlText);
             root = doc.getDocumentElement();
-            System.out.println("root:: " + root.toString());
+            //System.out.println("root:: " + root.toString());
             NodeList all = root.getElementsByTagName("uri");
-            System.out.println("uris:: " + all.toString());
+            //System.out.println("uris:: " + all.toString());
 
             for (int i = 0; i < all.getLength(); i++) {
                 String c = all.item(i).getTextContent()
                         .replace("https://en.wikipedia.org/wiki/", "")
                         .replace("http://www.wikidata.org/entity/", "");
                 answersList.add(c);
-                System.out.println("c:: " + c);
+                //System.out.println("c:: " + c);
             }
         } catch (Exception ex) {
             try {
                 NodeList all = root.getElementsByTagName("literal");
-                System.out.println("literals:: " + all.toString());
+                //System.out.println("literals:: " + all.toString());
 
                 for (int i = 0; i < all.getLength(); i++) {
                     String c = all.item(i).getTextContent()
                             .replace("https://en.wikipedia.org/wiki/", "")
                             .replace("http://www.wikidata.org/entity/", "");
                     answersList.add(c);
-                    System.out.println("c:: " + c);
+                    //System.out.println("c:: " + c);
                 }
             } catch (Exception e) {
                 System.out.println("Cannot parse xml");

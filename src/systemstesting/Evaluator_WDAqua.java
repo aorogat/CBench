@@ -13,6 +13,8 @@ import java.net.URL;
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
 import org.apache.commons.io.IOUtils;
 import org.apache.jena.query.Query;
 import org.apache.jena.query.QueryFactory;
@@ -118,6 +120,9 @@ public class Evaluator_WDAqua {
             //Loading indicator
             System.out.println("System Answer = " + systemAnswersList.toString());
 
+            systemAnswersList = new ArrayList<String>(new HashSet<String>(systemAnswersList));
+            corectAnswersList = new ArrayList<String>(new HashSet<String>(corectAnswersList));
+            
             //3- List of Questions and their (R, P, F1)
             evaluatedBenchmark.evaluatedQuestions.add(new QuestionEval(question.getQuestionString(), question, corectAnswersList, systemAnswersList));
             

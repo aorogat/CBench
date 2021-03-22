@@ -17,7 +17,7 @@ public class Keywords {
 
     public static void main(String[] args) {
         
-        Keywords k = new Keywords(DataSetPreprocessing.getQueriesWithoutDuplicates(Benchmark.QALD_2));
+        Keywords k = new Keywords(DataSetPreprocessing.getQueriesWithoutDuplicates(Benchmark.QALD_9));
         k.keywordsAnalysis();
     }
 

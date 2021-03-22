@@ -8,21 +8,24 @@ import org.json.simple.JSONObject;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Scanner;
+import mainClass.CBench;
 import org.apache.jena.query.Query;
 import qa.dataStructures.Question;
 
 public class GenerateBenchmarkFile
 {
-    static int benchmark = Benchmark.LC_QUAD;
+    //static int benchmark = Benchmark.LC_QUAD;
     //static String BenchPrefix= "qlad_"+ benchmark;
-    static String BenchPrefix= "lcquad";
-    static ArrayList<Query> qs = DataSetPreprocessing.getQueriesWithoutDuplicates(benchmark);
-    static ArrayList<Question> questions = DataSetPreprocessing.questions;
+    //static String BenchPrefix= "lcquad";
+    //static ArrayList<Query> qs = DataSetPreprocessing.getQueriesWithoutDuplicates(benchmark);
+    static ArrayList<Question> questions;
 
-        private static FileWriter file;
+    private static FileWriter file;
  
-    @SuppressWarnings("unchecked")
-    public static void generateFile() {
+    public static void generateFile(int benchmark) throws Exception {
+        DataSetPreprocessing.getQueriesWithoutDuplicates(benchmark);
+        questions = DataSetPreprocessing.questions;
         // JSON object. Key value pairs are unordered. JSONObject supports java.util.Map interface.
         JSONObject root = new JSONObject();
 
@@ -32,15 +35,13 @@ public class GenerateBenchmarkFile
         for (Question q : questions) {
             JSONObject qStringObj = new JSONObject();
             qStringObj.put("question", q.getQuestionString());
-            qStringObj.put("generated_sparql", "");
+            qStringObj.put("answer", new JSONArray());
             qStringObjs.add(qStringObj);
         }
         root.put("questions", qStringObjs);
         
         try {
- 
-            // Constructs a FileWriter given a file name, using the platform's default charset
-            file = new FileWriter(BenchPrefix+".json");
+            file = new FileWriter("Generated_Benchmark.json");
             file.write(root.toJSONString()
             .replaceAll("\\n", " ").replaceAll("\\r", " ").replace("\\/", "/"));
  
@@ -53,15 +54,21 @@ public class GenerateBenchmarkFile
                 file.flush();
                 file.close();
             } catch (IOException e) {
-                // TODO Auto-generated catch block
                 e.printStackTrace();
             }
         }
+        System.out.println("CBench generated a file called 'Generated_Benchmark.json' in the root directory of the project.");
+        System.out.println("Please fill the answers fileds in this file by your QA system then return it to CBench.");
+        System.out.println("Select 'benchmark file is ready' when CBench asks you again.");
+        System.out.println("Write s then press Enter to run CBench again.");
+        Scanner in = new Scanner(System.in);
+        in.next();
+        CBench.run();
     }
     
     
-    public static void main(String[] args) {
-        generateFile();
+    public static void main(String[] args) throws Exception {
+        generateFile(Benchmark.QALD_1);
     }
  
     static public void CrunchifyLog(String str) {

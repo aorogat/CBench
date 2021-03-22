@@ -82,7 +82,7 @@ public class PropertiesDefinedBenchmark {
         System.out.println("        ++++> Select the question type for the questions to be used (Enter the integer value) from");
         System.out.println("                [1- YES_NO, \t\t2- REQUEST, \t\t3- HOW,");
         System.out.println("                 4- WHAT, \t\t5- WHO, \t\t6- WHICH, ");
-        System.out.println("                 7- WHERE, \t\t8- WHEN, \t\t9- WHY]");
+        System.out.println("                 7- WHERE, \t\t8- WHEN]");
         System.out.println("               If you would like to select multiple shapes just enter all their numbers.");
         System.out.println("               For example to select WHAT, WHEN and YES_NO, enter 481.");
         System.out.print("               queries shapes are: ");

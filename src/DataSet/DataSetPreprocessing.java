@@ -22,24 +22,25 @@ public class DataSetPreprocessing {
     public static ArrayList getQueriesWithoutDuplicates(int benchmark) {
 
         Scanner in = new Scanner(System.in);
-        System.out.println("        |");
-        System.out.println("        ++++> Enter the main project directory path; the path of the folder that contains the CBench.jar.");
-        System.out.print("               Your answer is: ");
-        currentDirectory = in.next();
+        //System.out.println("        |");
+        //System.out.println("        ++++> Enter the main project directory path; the path of the folder that contains the CBench.jar.");
+        //System.out.print("               Your answer is: ");
+        //currentDirectory = in.next();
+        currentDirectory = System.getProperty("user.dir");
         questions.clear();
         if (benchmark == Benchmark.QALD_1 || benchmark == Benchmark.QALD_ALL || benchmark == Benchmark.PropertiesDefined) {
             questions.addAll(Parser.parseQald1(currentDirectory + "/data/DBpedia/SPARQL/QALD-master/1/data/dbpedia-test.xml", "QALD-1", "dbpedia", false));
             questions.addAll(Parser.parseQald1(currentDirectory + "/data/DBpedia/SPARQL/QALD-master/1/data/dbpedia-train.xml", "QALD-1", "dbpedia", false));
-//            questions.addAll(Parser.parseQald1(currentDirectory+"/data/DBpedia/SPARQL/QALD-master/1/data/musicbrainz-test.xml", "QALD-1", "dbpedia", false));
-//            questions.addAll(Parser.parseQald1(currentDirectory+"/data/DBpedia/SPARQL/QALD-master/1/data/musicbrainz-train.xml", "QALD-1", "dbpedia", false));
+            questions.addAll(Parser.parseQald1(currentDirectory+"/data/DBpedia/SPARQL/QALD-master/1/data/musicbrainz-test.xml", "QALD-1", "musicbrainz", false));
+            questions.addAll(Parser.parseQald1(currentDirectory+"/data/DBpedia/SPARQL/QALD-master/1/data/musicbrainz-train.xml", "QALD-1", "musicbrainz", false));
         }
         if (benchmark == Benchmark.QALD_2 || benchmark == Benchmark.QALD_ALL || benchmark == Benchmark.PropertiesDefined) {
             questions.addAll(Parser.parseQald1(currentDirectory + "/data/DBpedia/SPARQL/QALD-master/2/data/dbpedia-test.xml", "QALD-2", "dbpedia", false));
             questions.addAll(Parser.parseQald1(currentDirectory + "/data/DBpedia/SPARQL/QALD-master/2/data/dbpedia-train.xml", "QALD-2", "dbpedia", false));
             questions.addAll(Parser.parseQald1(currentDirectory + "/data/DBpedia/SPARQL/QALD-master/2/data/dbpedia-train-answers.xml", "QALD-2", "dbpedia", false));
-//            questions.addAll(Parser.parseQald1(currentDirectory+"/data/DBpedia/SPARQL/QALD-master/2/data/musicbrainz-test.xml", "QALD-2", "dbpedia", false));
-//            questions.addAll(Parser.parseQald1(currentDirectory+"/data/DBpedia/SPARQL/QALD-master/2/data/musicbrainz-train.xml", "QALD-2", "dbpedia", false));
-//            questions.addAll(Parser.parseQald1(currentDirectory+"/data/DBpedia/SPARQL/QALD-master/2/data/musicbrainz-train-answers.xml", "QALD-2", "dbpedia", false));
+            questions.addAll(Parser.parseQald1(currentDirectory+"/data/DBpedia/SPARQL/QALD-master/2/data/musicbrainz-test.xml", "QALD-2", "musicbrainz", false));
+            questions.addAll(Parser.parseQald1(currentDirectory+"/data/DBpedia/SPARQL/QALD-master/2/data/musicbrainz-train.xml", "QALD-2", "musicbrainz", false));
+            questions.addAll(Parser.parseQald1(currentDirectory+"/data/DBpedia/SPARQL/QALD-master/2/data/musicbrainz-train-answers.xml", "QALD-2", "musicbrainz", false));
             questions.addAll(Parser.parseQald1(currentDirectory + "/data/DBpedia/SPARQL/QALD-master/2/data/participants-challenge.xml", "QALD-2", "dbpedia", false));
             questions.addAll(Parser.parseQald1(currentDirectory + "/data/DBpedia/SPARQL/QALD-master/2/data/participants-challenge-answers.xml", "QALD-2", "dbpedia", false));
         }
@@ -52,10 +53,10 @@ public class DataSetPreprocessing {
             questions.addAll(XMLParser.parseQald4(currentDirectory + "/data/DBpedia/SPARQL/QALD-master/3/data/esdbpedia-test-answers.xml", "QALD-3", "dbpedia", true));
             questions.addAll(XMLParser.parseQald4(currentDirectory + "/data/DBpedia/SPARQL/QALD-master/3/data/esdbpedia-train.xml", "QALD-3", "dbpedia", true));
             questions.addAll(XMLParser.parseQald4(currentDirectory + "/data/DBpedia/SPARQL/QALD-master/3/data/esdbpedia-train-answers.xml", "QALD-3", "dbpedia", true));
-//            questions.addAll(XMLParser.parseQald4(currentDirectory+"/data/DBpedia/SPARQL/QALD-master/3/data/musicbrainz-test.xml", "QALD-3", "dbpedia", true));
-//            questions.addAll(XMLParser.parseQald4(currentDirectory+"/data/DBpedia/SPARQL/QALD-master/3/data/musicbrainz-test-answers.xml", "QALD-3", "dbpedia", true));
-//            questions.addAll(XMLParser.parseQald4(currentDirectory+"/data/DBpedia/SPARQL/QALD-master/3/data/musicbrainz-train.xml", "QALD-3", "dbpedia", true));
-//            questions.addAll(XMLParser.parseQald4(currentDirectory+"/data/DBpedia/SPARQL/QALD-master/3/data/musicbrainz-train-answers.xml", "QALD-3", "dbpedia", true));
+            questions.addAll(XMLParser.parseQald4(currentDirectory+"/data/DBpedia/SPARQL/QALD-master/3/data/musicbrainz-test.xml", "QALD-3", "musicbrainz", true));
+            questions.addAll(XMLParser.parseQald4(currentDirectory+"/data/DBpedia/SPARQL/QALD-master/3/data/musicbrainz-test-answers.xml", "QALD-3", "musicbrainz", true));
+            questions.addAll(XMLParser.parseQald4(currentDirectory+"/data/DBpedia/SPARQL/QALD-master/3/data/musicbrainz-train.xml", "QALD-3", "musicbrainz", true));
+            questions.addAll(XMLParser.parseQald4(currentDirectory+"/data/DBpedia/SPARQL/QALD-master/3/data/musicbrainz-train-answers.xml", "QALD-3", "musicbrainz", true));
         }
         if (benchmark == Benchmark.QALD_4 || benchmark == Benchmark.QALD_ALL || benchmark == Benchmark.PropertiesDefined) {
             questions.addAll(XMLParser.parseQald4(currentDirectory + "/data/DBpedia/SPARQL/QALD-master/4/data/qald-4_multilingual_test.xml", "QALD-4", "dbpedia", true));
@@ -154,8 +155,8 @@ public class DataSetPreprocessing {
         System.out.println("              . Remove Dublicates");
         System.out.println("              . Exclude Queries that are not valid SPARQL 1.1");
         System.out.println("");
-        System.out.print("             Press 's' then Enter to Start ...");
-        in.next();
+        //System.out.print("             Press 's' then Enter to Start ...");
+        //in.next();
         String format = "%-10s%-10s%-20s%-30s%-70s%-50s%n";
         System.out.format(format, "#", "Status", "Source", "File name", "Question", "File Answers");
         System.out.format(format, "======", "======", "======", "=========", "========", "==============");
@@ -249,6 +250,13 @@ public class DataSetPreprocessing {
     public static void main(String[] args) {
         //Select the required benchmark by changing the constant variable that represent the benchmark.
         //All Constants values are in the Benchmark class.
-        getQueriesWithoutDuplicates(Benchmark.QALD_1);
+        getQueriesWithoutDuplicates(Benchmark.QALD_ALL);
+        for (Question q : questionsWithoutDuplicates) {
+            System.out.print(q.getDatabase()+"\t");
+            System.out.print(q.getFilepath()+"\t");
+            System.out.print(q.getQuestionString()+"\t");
+            System.out.print(q.getQuestionQuery().replaceAll("\n", " ").replaceAll("\t", " ")+"\t");
+            System.out.println("");
+        }
     }
 }
