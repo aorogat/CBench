@@ -14,7 +14,7 @@ CBench generated a file called `Generated_Benchmark.json` in the root directory 
 
 Now, CBench generated a file like this
 
-![Image](Images/empty_questions.png)
+![Image](Images/empty_file.png)
 
 As you can see, the `answer` fields are empty. Please fill them with you generated answers for each question. CBench use such answers to compute your QA scores.
 
