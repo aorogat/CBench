@@ -12,6 +12,8 @@ based on popular single-number metrics, but also gives a detailed analysis of th
 * __Fine-grained Evaluation Analysis:__ CBench is able to identify the queries properties of the quetsions that are correctly and incorrectly answered.
 * __Qualitative Evaluation of Linguistic Features:__ CBench is able to find the *k* linguistically closest questions to a chosen question *q*.
 
+
+
 ## Table of Content
 * Run CBench
   * Getting Started
@@ -26,7 +28,10 @@ based on popular single-number metrics, but also gives a detailed analysis of th
 * [Examples for Shapes used by CBench](https://github.com/aorogat/CBench/tree/master/Shapes)
 * [Why all versions of QALD?](https://github.com/aorogat/CBench/blob/master/whyAllQALDs.md)
 
-
+Paper: [Abdelghny Orogat, Isabelle Liu, and Ahmed El-Roby. CBench: Towards
+Better Evaluation of Question Answering Over Knowledge Graphs. PVLDB,
+14(8): 1325 - 1337, 2021.](https://vldb.org/pvldb/vol14/p1325-orogat.pdf)
+We also encourage you to read the long version paper on arXiv [here](https://arxiv.org/abs/2105.00811)
 
 ## Getting Started
 
