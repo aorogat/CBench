@@ -81,7 +81,8 @@ public class QABenchmark {
     static ArrayList<ArrayList<String>> whHowQues(ArrayList<ArrayList<String>> qlst, String start) {
         ArrayList<ArrayList<String>> result = new ArrayList<>();
         for (int i = 0; i < qlst.size(); i++) {
-            if (qlst.get(i).get(1).startsWith("\"" + start) || qlst.get(i).get(1).startsWith(start, qlst.get(i).get(1).indexOf(" ") + 1)) {
+            final String question =  qlst.get(i).get(1).toLowerCase();
+            if (question.startsWith("\"" + start) || question.startsWith(start, qlst.get(i).get(1).indexOf(" ") + 1)) {
                 result.add(qlst.get(i));
                 qlst.get(i).add(1, start);
             }
@@ -102,9 +103,10 @@ public class QABenchmark {
     static ArrayList<ArrayList<String>> yesNoQues(ArrayList<ArrayList<String>> qlst) {
         ArrayList<ArrayList<String>> result = new ArrayList<>();
         for (int i = 0; i < qlst.size(); i++) {
-            if (qlst.get(i).get(1).startsWith("\"is ") || qlst.get(i).get(1).startsWith("\"was") || qlst.get(i).get(1).startsWith("\"are ")
-                    || qlst.get(i).get(1).startsWith("\"were") || qlst.get(i).get(1).startsWith("\"do ") || qlst.get(i).get(1).startsWith("\"does")
-                    || qlst.get(i).get(1).startsWith("\"did")) {
+            final String question =  qlst.get(i).get(1).toLowerCase();
+            if (question.startsWith("\"is ") || question.startsWith("\"was") || question.startsWith("\"are ")
+                    || question.startsWith("\"were") || question.startsWith("\"do ") || question.startsWith("\"does")
+                    || question.startsWith("\"did")) {
                 result.add(qlst.get(i));
                 qlst.get(i).add(1, "yes/no");
             }
@@ -115,13 +117,14 @@ public class QABenchmark {
     static ArrayList<ArrayList<String>> request(ArrayList<ArrayList<String>> qlst) {
         ArrayList<ArrayList<String>> result = new ArrayList<>();
         for (int i = 0; i < qlst.size(); i++) {
-            if (qlst.get(i).get(1).startsWith("\"name") || qlst.get(i).get(1).startsWith("\"list") || qlst.get(i).get(1).startsWith("\"find")
-                    || qlst.get(i).get(1).startsWith("\"identify") || qlst.get(i).get(1).startsWith("\"search") || qlst.get(i).get(1).startsWith("\"locate")
-                    || qlst.get(i).get(1).startsWith("\"enumerate") || qlst.get(i).get(1).startsWith("\"look for") || qlst.get(i).get(1).startsWith("\"return")
-                    || qlst.get(i).get(1).startsWith("\"give") || qlst.get(i).get(1).startsWith("\"show") || qlst.get(i).get(1).startsWith("\"tell")
-                    || qlst.get(i).get(1).startsWith("\"can you") || qlst.get(i).get(1).startsWith("\"could you") || qlst.get(i).get(1).startsWith("\"describe")
-                    || qlst.get(i).get(1).startsWith("\"make") || qlst.get(i).get(1).startsWith("\"please") || qlst.get(i).get(1).startsWith("\"count")
-                    || qlst.get(i).get(1).startsWith("\"state")) {
+            final String question =  qlst.get(i).get(1).toLowerCase();
+            if (question.startsWith("\"name") || question.startsWith("\"list") || question.startsWith("\"find")
+                    || question.startsWith("\"identify") || question.startsWith("\"search") || question.startsWith("\"locate")
+                    || question.startsWith("\"enumerate") || question.startsWith("\"look for") || question.startsWith("\"return")
+                    || question.startsWith("\"give") || question.startsWith("\"show") || question.startsWith("\"tell")
+                    || question.startsWith("\"can you") || question.startsWith("\"could you") || question.startsWith("\"describe")
+                    || question.startsWith("\"make") || question.startsWith("\"please") || question.startsWith("\"count")
+                    || question.startsWith("\"state")) {
                 result.add(qlst.get(i));
                 qlst.get(i).add(1, "request");
             }
