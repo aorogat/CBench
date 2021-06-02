@@ -17,12 +17,16 @@ import org.json.JSONObject;
 import org.w3c.dom.*;
 import javax.xml.parsers.*;
 import java.io.*;
+import java.net.HttpURLConnection;
+import java.text.MessageFormat;
+import java.util.HashSet;
+import java.util.Set;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 
 public class CuratedAnswer {
 
-    public static String endpoint = "http://dbpedia.org/sparql?";
+    public static String endpoint = "https://dbpedia.org/sparql?";
     public static String wikidataEndpoint = "https://query.wikidata.org/bigdata/namespace/wdq/sparql?query=";
 
     public static void main(String[] args) throws UnsupportedEncodingException {
@@ -145,9 +149,11 @@ public class CuratedAnswer {
                     }
 
                 } catch (Exception et) {
+                    et.printStackTrace();
                 }
             }
         } catch (Exception ee) {
+            ee.printStackTrace();
         }
         try {
         } catch (Exception e) {
@@ -164,11 +170,40 @@ public class CuratedAnswer {
         return sb.toString();
     }
 
-    public static JSONObject readJsonFromUrl(String url) throws IOException, JSONException {
-        InputStream is = new URL(url).openStream();
+    public static JSONObject readJsonFromUrl(String urlString) throws IOException, JSONException {
+        //InputStream is = new URL(urlString).openStream();
+        
+        //dbpedia used https instead of http
+        URL url = new URL(urlString);
+        HttpURLConnection c = (HttpURLConnection) url.openConnection();
+        Set<String> visitedUrls = new HashSet<>();
+        boolean doneRedirecting = false;
+        while (!doneRedirecting) {
+            switch (c.getResponseCode()) {
+                case HttpURLConnection.HTTP_MOVED_PERM:
+                case HttpURLConnection.HTTP_MOVED_TEMP:
+                    // Follow redirect if not already visisted
+                    String newLocation = c.getHeaderField("Location");
+                    if (visitedUrls.contains(newLocation)) {
+                        throw new RuntimeException(MessageFormat.format(
+                                "Infinite redirect loop detected for URL", ""));
+                    }
+                    visitedUrls.add(newLocation);
+
+                    url = new URL(newLocation);
+                    c = (HttpURLConnection) url.openConnection();
+                    break;
+                default:
+                    doneRedirecting = true;
+                    break;
+            }
+        }
+
+        InputStream is = c.getInputStream();
         try {
             BufferedReader rd = new BufferedReader(new InputStreamReader(is, Charset.forName("UTF-8")));
             String jsonText = readAll(rd);
+            System.out.println(jsonText);
             JSONObject json = new JSONObject(jsonText);
             return json;
         } finally {
