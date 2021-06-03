@@ -50,29 +50,29 @@ public class QALDAnalysis {
         System.out.println("Qald 9:" + Qald_9.size());
         
         ArrayList<Question> old = new ArrayList<>();
-        old.addAll(Qald_8);
-        old.addAll(Qald_7);
-        old.addAll(Qald_6);
-        old.addAll(Qald_5);
-        old.addAll(Qald_4);
-        old.addAll(Qald_3);
-        old.addAll(Qald_2);
+//        old.addAll(Qald_8);
+//        old.addAll(Qald_7);
+//        old.addAll(Qald_6);
+//        old.addAll(Qald_5);
+//        old.addAll(Qald_4);
+//        old.addAll(Qald_3);
+//        old.addAll(Qald_2);
         old.addAll(Qald_1);
         
-        ArrayList<Question> Qald_t = Qald_9;
+        ArrayList<Question> Qald_t = Qald_2;
         
         intersect(Qald_t, old);
         System.out.println("Qald length: " + Qald_t.size());
         System.out.println("Q&Q Intersect: " + intersectList_Questions_and_Queries.size());
         System.out.println("Q only Intersect length: " + intersectList_Questions_Only.size());
         
-        for (QuestionWithOldQuery qq : intersectList_Questions_Only) {
-            System.out.println(qq.question.getQuestionString());
-            System.out.println("New Query " + qq.question.getFilepath());
-            System.out.println(qq.question.getQuestionQuery());
-            System.out.println("OLD Query" + qq.oldQueryDatabase);
-            System.out.println(qq.oldQuery);
-        }
+//        for (QuestionWithOldQuery qq : intersectList_Questions_Only) {
+//            System.out.println(qq.question.getQuestionString());
+//            System.out.println("New Query " + qq.question.getFilepath());
+//            System.out.println(qq.question.getQuestionQuery());
+//            System.out.println("OLD Query" + qq.oldQueryDatabase);
+//            System.out.println(qq.oldQuery);
+//        }
         
     }
 

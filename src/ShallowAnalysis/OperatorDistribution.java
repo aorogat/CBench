@@ -22,7 +22,7 @@ public class OperatorDistribution
     }
 
     public static void main(String[] args) {
-        OperatorDistribution k = new OperatorDistribution(DataSetPreprocessing.getQueriesWithoutDuplicates(Benchmark.GraphQuestions));
+        OperatorDistribution k = new OperatorDistribution(DataSetPreprocessing.getQueriesWithoutDuplicates(Benchmark.QALD_9));
         k.analysis();
     }
 
@@ -80,29 +80,29 @@ public class OperatorDistribution
         
         System.out.println("\n\n\nOperator Distribution Analysis ----->");
         String format = "%-30s%-20s%-20s%n";
-        System.out.format(format, "Operators", "#Queries", "Relative%");
+        System.out.format(format, "Operators"+"\t", "#Queries"+"\t", "Relative%");
         System.out.format(format, "=======", "========", "=========");
         
-         System.out.format(format, "none", none ,  formatter.format((double) none/qs.size()*100) );
-         System.out.format(format, "F" , F ,   formatter.format((double) F/qs.size()*100) );
-         System.out.format(format, "A" , A ,   formatter.format((double) A/qs.size()*100) );
-         System.out.format(format, "A, F" , AF ,   formatter.format((double) AF/qs.size()*100) );
-         System.out.format(format, "CPF" , CPF ,   formatter.format((double) CPF/qs.size()*100) );
+         System.out.format(format, "None" +"\t", none +"\t",   formatter.format((double) none/qs.size()*100) +"%");
+         System.out.format(format, "F" +"\t", F +"\t",   formatter.format((double) F/qs.size()*100) +"%");
+         System.out.format(format, "A" +"\t", A +"\t",   formatter.format((double) A/qs.size()*100) +"%");
+         System.out.format(format, "A, F" +"\t", AF +"\t",   formatter.format((double) AF/qs.size()*100) +"%");
+         System.out.format(format, "CPF" +"\t", CPF +"\t",   formatter.format((double) CPF/qs.size()*100) +"%");
         
-         System.out.format(format, "O" , O ,   formatter.format((double) O/qs.size()*100) );
-         System.out.format(format, "O, F" , OF ,   formatter.format((double) OF/qs.size()*100) );
-         System.out.format(format, "A, O" , AO ,   formatter.format((double) AO/qs.size()*100) );
-         System.out.format(format, "A, O, F" , AOF ,   formatter.format((double) AOF/qs.size()*100) );
-         System.out.format(format, "CPF + O " , CPF_O ,  formatter.format((double) CPF_O/qs.size()*100) );
+         System.out.format(format, "O" +"\t", O +"\t",   formatter.format((double) O/qs.size()*100) +"%");
+         System.out.format(format, "O, F" +"\t", OF +"\t",   formatter.format((double) OF/qs.size()*100) +"%");
+         System.out.format(format, "A, O" +"\t", AO +"\t",   formatter.format((double) AO/qs.size()*100) +"%");
+         System.out.format(format, "A, O, F" +"\t", AOF +"\t",   formatter.format((double) AOF/qs.size()*100) +"%");
+         System.out.format(format, "CPF + O " +"\t", CPF_O +"\t",  formatter.format((double) CPF_O/qs.size()*100) +"%");
         
-         System.out.format(format, "G" , G ,   formatter.format((double) G/qs.size()*100) );
-         System.out.format(format, "CPF + G" , CPF_G , formatter.format((double) CPF_G/qs.size()*100) );
+         //System.out.format(format, "G" , G ,   formatter.format((double) G/qs.size()*100) );
+         //System.out.format(format, "CPF + G" , CPF_G , formatter.format((double) CPF_G/qs.size()*100) );
         
-         System.out.format(format, "U" , U ,   formatter.format((double) U/qs.size()*100) );
-         System.out.format(format, "UF" , UF ,   formatter.format((double) UF/qs.size()*100) );
-         System.out.format(format, "AU" , AU ,   formatter.format((double) AU/qs.size()*100) );
-         System.out.format(format, "AUF" , AUF ,   formatter.format((double) AUF/qs.size()*100) );
-         System.out.format(format, "CPF + U" , CPF_U , formatter.format((double) CPF_U/qs.size()*100) );
+         System.out.format(format, "U" +"\t", U +"\t",   formatter.format((double) U/qs.size()*100) +"%");
+         System.out.format(format, "UF" +"\t", UF +"\t",   formatter.format((double) UF/qs.size()*100) +"%");
+         System.out.format(format, "AU" +"\t", AU +"\t",   formatter.format((double) AU/qs.size()*100) +"%");
+         System.out.format(format, "AUF" +"\t", AUF +"\t",   formatter.format((double) AUF/qs.size()*100) +"%");
+         System.out.format(format, "CPF + U" +"\t", CPF_U +"\t", formatter.format((double) CPF_U/qs.size()*100) +"%");
              
     }
 

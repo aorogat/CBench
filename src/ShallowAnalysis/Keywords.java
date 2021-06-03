@@ -127,57 +127,57 @@ public class Keywords {
         
         System.out.println("\n\n\nKeywords Analysis ----->");
         String format = "%-30s%-20s%-20s%n";
-        System.out.format(format, "Element", "#Queries", "Relative%");
+        System.out.format(format, "Element" + "\t", "#Queries" + "\t", "Relative%");
         System.out.format(format, "=======", "========", "=========");
-        System.out.format(format, "Select ", select + "    ",
+        System.out.format(format, "Select " + "\t", select + "    " + "\t",
                 formatter.format(((double) select / (double) qs.size()) * 100) + "%");
-        System.out.format(format, "Ask ", ask + "    ",
+        System.out.format(format, "Ask " + "\t", ask + "    " + "\t",
                 formatter.format(((double) ask / (double) qs.size()) * 100) + "%");
-        System.out.format(format, "Describe ", describe + "    ",
+        System.out.format(format, "Describe " + "\t", describe + "    " + "\t",
                 formatter.format(((double) describe / (double) qs.size()) * 100) + "%");
-        System.out.format(format, "Construct ", construct + "    ",
+        System.out.format(format, "Construct " + "\t", construct + "    " + "\t",
                 formatter.format(((double) construct / (double) qs.size()) * 100) + "% ");
-        System.out.format(format, "Distinct ", distinct + "    ",
+        System.out.format(format, "Distinct " + "\t", distinct + "    " + "\t",
                 formatter.format(((double) distinct / (double) qs.size()) * 100) + "%");
-        System.out.format(format, "Limit ", limit + "    ",
+        System.out.format(format, "Limit " + "\t", limit + "    " + "\t",
                 formatter.format(((double) limit / (double) qs.size()) * 100) + "%");
-        System.out.format(format, "Offset ", offset + "    ",
+        System.out.format(format, "Offset " + "\t", offset + "    " + "\t",
                 formatter.format(((double) offset / (double) qs.size()) * 100) + "%");
-        System.out.format(format, "Order By ", orderBy + "    ",
+        System.out.format(format, "Order By " + "\t", orderBy + "    " + "\t",
                 formatter.format(((double) orderBy / (double) qs.size()) * 100) + "% ");
-        System.out.format(format, "Filter ", filter + "    ",
+        System.out.format(format, "Filter " + "\t", filter + "    " + "\t",
                 formatter.format(((double) filter / (double) qs.size()) * 100) + "%");
-        System.out.format(format, "And ", and + "    ",
+        System.out.format(format, "And " + "\t", and + "    " + "\t",
                 formatter.format(((double) and / (double) qs.size()) * 100) + "%");
-        System.out.format(format, "Union ", union + "    ",
+        System.out.format(format, "Union " + "\t", union + "    " + "\t",
                 formatter.format(((double) union / (double) qs.size()) * 100) + "%");
-        System.out.format(format, "Opt ", opt + "    ",
+        System.out.format(format, "Opt " + "\t", opt + "    " + "\t",
                 formatter.format(((double) opt / (double) qs.size()) * 100) + "%");
-        System.out.format(format, "Not Exists ", notExists + "    ",
+        System.out.format(format, "Not Exists " + "\t", notExists + "    " + "\t",
                 formatter.format(((double) notExists / (double) qs.size()) * 100) + "%");
-        System.out.format(format, "Minus ", minus + "    ",
+        System.out.format(format, "Minus " + "\t", minus + "    " + "\t",
                 formatter.format(((double) minus / (double) qs.size()) * 100) + "%");
-        System.out.format(format, "Exists ", exists + "    ",
+        System.out.format(format, "Exists " + "\t", exists + "    " + "\t",
                 formatter.format(((double) exists / (double) qs.size()) * 100) + "% ");
-        System.out.format(format, "Count ", count + "    ",
+        System.out.format(format, "Count " + "\t", count + "    " + "\t",
                 formatter.format(((double) count / (double) qs.size()) * 100) + "%");
-        System.out.format(format, "Min ", min + "    ",
+        System.out.format(format, "Min " + "\t", min + "    " + "\t",
                 formatter.format(((double) min / (double) qs.size()) * 100) + "%");
-        System.out.format(format, "Max ", max + "    ",
+        System.out.format(format, "Max " + "\t", max + "    " + "\t",
                 formatter.format(((double) max / (double) qs.size()) * 100) + "%");
-        System.out.format(format, "Sum ", sum + "    ",
+        System.out.format(format, "Sum " + "\t", sum + "    " + "\t",
                 formatter.format(((double) sum / (double) qs.size()) * 100) + "%");
-        System.out.format(format, "Avg ", avg + "    ",
+        System.out.format(format, "Avg " + "\t", avg + "    " + "\t",
                 formatter.format(((double) avg / (double) qs.size()) * 100) + "%");
-        System.out.format(format, "Groupconcat ", groupconcat + "    ",
+        System.out.format(format, "Groupconcat " + "\t", groupconcat + "    " + "\t",
                 formatter.format(((double) groupconcat / (double) qs.size()) * 100) + "%");
-        System.out.format(format, "Sample ", sample + "    ",
+        System.out.format(format, "Sample " + "\t", sample + "    " + "\t",
                 formatter.format(((double) sample / (double) qs.size()) * 100) + "%");
-        System.out.format(format, "Aggregators ", aggregators + "    ",
+        System.out.format(format, "Aggregators " + "\t", aggregators + "    " + "\t",
                 formatter.format(((double) aggregators / (double) qs.size()) * 100) + "%");
-        System.out.format(format, "Group By ", groupBy + "    ",
+        System.out.format(format, "Group By " + "\t", groupBy + "    " + "\t",
                 formatter.format(((double) groupBy / (double) qs.size()) * 100) + "%");
-        System.out.format(format, "Having ", having + "    ",
+        System.out.format(format, "Having " + "\t", having + "    " + "\t",
                 formatter.format(((double) having / (double) qs.size()) * 100) + "%");
         
 

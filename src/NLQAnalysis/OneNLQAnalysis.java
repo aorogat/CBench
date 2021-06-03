@@ -23,27 +23,27 @@ public class OneNLQAnalysis {
     
     public static boolean whatQuestion(String question) {
         question = question.toLowerCase();
-        return question.trim().startsWith("what");
+        return question.trim().matches("^(.{0,8})what.*$");
     }
     
     public static boolean whoQuestion(String question) {
         question = question.toLowerCase();
-        return question.trim().startsWith("who");
+        return question.trim().matches("^(.{0,8})who.*$");
     }
     
     public static boolean whichQuestion(String question) {
         question = question.toLowerCase();
-        return question.trim().startsWith("which");
+        return question.trim().matches("^(.{0,8})which.*$");
     }
     
     public static boolean whereQuestion(String question) {
         question = question.toLowerCase();
-        return question.trim().startsWith("where");
+        return question.trim().matches("^(.{0,8})where.*$");
     }
     
     public static boolean whenQuestion(String question) {
         question = question.toLowerCase();
-        return question.trim().startsWith("when");
+        return question.trim().matches("^(.{0,8})when.*$");
     }
     
     public static boolean whyQuestion(String question) {
@@ -51,9 +51,26 @@ public class OneNLQAnalysis {
         return question.trim().startsWith("why");
     }
     
+    public static boolean whoseQuestion(String question) {
+        question = question.toLowerCase();
+        return question.trim().matches("^(.{0,8})whose.*$");
+    }
+    
+    public static boolean whomQuestion(String question) {
+        question = question.toLowerCase();
+        return question.trim().matches("^(.{0,8})whom.*$");
+    }
+    
+    
     public static boolean howQuestion(String question) {
         question = question.toLowerCase();
-        return question.trim().startsWith("how");
+        return question.trim().matches("^(.{0,8})\\show.*$")
+             ||question.trim().matches("how.*$");
     }
 
+    public static void main(String[] args) {
+        if (whichQuestion("in which country Ahmed  fbvjklg"))
+            System.out.println("yes");
+    }
+    
 }
