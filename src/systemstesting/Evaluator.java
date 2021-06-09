@@ -271,6 +271,7 @@ public abstract class Evaluator {
                         continue;
                     }
                 } catch (Exception e) {
+                    e.printStackTrace();
                     continue;
                 }
             }

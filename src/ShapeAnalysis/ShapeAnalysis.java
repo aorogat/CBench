@@ -16,7 +16,7 @@ public class ShapeAnalysis {
     }
 
     public static void main(String[] args) {
-        ShapeAnalysis analysis = new ShapeAnalysis(DataSetPreprocessing.getQueriesWithoutDuplicates(Benchmark.QALD_ALL));
+        ShapeAnalysis analysis = new ShapeAnalysis(DataSetPreprocessing.getQueriesWithoutDuplicates(Benchmark.GraphQuestions));
 
         System.out.println("This Program is to analyze the queries shapes for total"
                 + " queries = " + analysis.qs.size());
@@ -157,52 +157,52 @@ public class ShapeAnalysis {
         
         System.out.println("\n\n\nShape Analysis ----->");
         String format = "%-20s%-20s%-20s%-20s%-20s%-20s%-20s%n";
-        System.out.format(format, "Shape", "#CQ_Queries", "Relative%", "#CQ_f_Queries", "Relative%", "#CQ_of_Queries", "Relative%");
-        System.out.format(format, "=======", "========", "=========", "========", "=========", "========", "=========");
-        System.out.format(format, "Single Edge" , 
-                singleShape_CQ, formatter.format((singleShape_CQ / (double) CQ) * 100),  
-                singleShape_CQf, formatter.format((singleShape_CQf / (double) CQf) * 100), 
-                singleShape_CQof, formatter.format((singleShape_CQof / (double) CQof) * 100));
+        System.out.format(format, "Shape" +"\t", "#CQ_Queries" +"\t", "Relative%" +"\t", "#CQ_f_Queries" +"\t", "Relative%" +"\t", "#CQ_of_Queries" +"\t", "Relative%");
+        System.out.format(format, "=======" +"\t", "========" +"\t", "=========" +"\t", "========" +"\t", "=========" +"\t", "========" +"\t", "=========");
+        System.out.format(format, "Single Edge"  +"\t", 
+                singleShape_CQ  +"\t", formatter.format((singleShape_CQ / (double) CQ) * 100) +"\t",  
+                singleShape_CQf  +"\t", formatter.format((singleShape_CQf / (double) CQf) * 100) +"\t", 
+                singleShape_CQof  +"\t", formatter.format((singleShape_CQof / (double) CQof) * 100));
         
-        System.out.format(format, "Chain" , 
-                chain_CQ, formatter.format((chain_CQ / (double) CQ) * 100),  
-                chain_CQf, formatter.format((chain_CQf / (double) CQf) * 100), 
-                chain_CQof, formatter.format((chain_CQof / (double) CQof) * 100));
+        System.out.format(format, "Chain"  +"\t", 
+                chain_CQ  +"\t", formatter.format((chain_CQ / (double) CQ) * 100) +"\t",  
+                chain_CQf  +"\t", formatter.format((chain_CQf / (double) CQf) * 100) +"\t", 
+                chain_CQof  +"\t", formatter.format((chain_CQof / (double) CQof) * 100));
         
-        System.out.format(format, "Chain Set" , 
-                chainSet_CQ, formatter.format((chainSet_CQ / (double) CQ) * 100),  
-                chainSet_CQf, formatter.format((chainSet_CQf / (double) CQf) * 100), 
-                chainSet_CQof, formatter.format((chainSet_CQof / (double) CQof) * 100));
+        System.out.format(format, "Chain Set" +"\t", 
+                chainSet_CQ  +"\t", formatter.format((chainSet_CQ / (double) CQ) * 100) +"\t",  
+                chainSet_CQf  +"\t", formatter.format((chainSet_CQf / (double) CQf) * 100) +"\t", 
+                chainSet_CQof  +"\t", formatter.format((chainSet_CQof / (double) CQof) * 100));
         
-        System.out.format(format, "Star" , 
-                star_CQ, formatter.format((star_CQ / (double) CQ) * 100),  
-                star_CQf, formatter.format((star_CQf / (double) CQf) * 100), 
-                star_CQof, formatter.format((star_CQof / (double) CQof) * 100));
+        System.out.format(format, "Star"  +"\t", 
+                star_CQ  +"\t", formatter.format((star_CQ / (double) CQ) * 100) +"\t",  
+                star_CQf  +"\t", formatter.format((star_CQf / (double) CQf) * 100) +"\t", 
+                star_CQof  +"\t", formatter.format((star_CQof / (double) CQof) * 100));
         
-        System.out.format(format, "Tree" , 
-                tree_CQ, formatter.format((tree_CQ / (double) CQ) * 100),  
-                tree_CQf, formatter.format((tree_CQf / (double) CQf) * 100), 
-                tree_CQof, formatter.format((tree_CQof / (double) CQof) * 100));
+        System.out.format(format, "Tree"  +"\t", 
+                tree_CQ  +"\t", formatter.format((tree_CQ / (double) CQ) * 100) +"\t",  
+                tree_CQf  +"\t", formatter.format((tree_CQf / (double) CQf) * 100) +"\t", 
+                tree_CQof  +"\t", formatter.format((tree_CQof / (double) CQof) * 100));
         
-        System.out.format(format, "Forest" , 
-                forest_CQ, formatter.format((forest_CQ / (double) CQ) * 100),  
-                forest_CQf, formatter.format((forest_CQf / (double) CQf) * 100), 
-                forest_CQof, formatter.format((forest_CQof / (double) CQof) * 100));
+        System.out.format(format, "Forest"  +"\t", 
+                forest_CQ  +"\t", formatter.format((forest_CQ / (double) CQ) * 100) +"\t",  
+                forest_CQf  +"\t", formatter.format((forest_CQf / (double) CQf) * 100) +"\t", 
+                forest_CQof  +"\t", formatter.format((forest_CQof / (double) CQof) * 100));
         
-        System.out.format(format, "Cycle" , 
-                cycle_CQ, formatter.format((cycle_CQ / (double) CQ) * 100),  
-                cycle_CQf, formatter.format((cycle_CQf / (double) CQf) * 100), 
-                cycle_CQof, formatter.format((cycle_CQof / (double) CQof) * 100));
+        System.out.format(format, "Cycle"  +"\t", 
+                cycle_CQ  +"\t", formatter.format((cycle_CQ / (double) CQ) * 100) +"\t",  
+                cycle_CQf  +"\t", formatter.format((cycle_CQf / (double) CQf) * 100) +"\t", 
+                cycle_CQof  +"\t", formatter.format((cycle_CQof / (double) CQof) * 100));
         
-        System.out.format(format, "Flower" , 
-                flower_CQ, formatter.format((flower_CQ / (double) CQ) * 100),  
-                flower_CQf, formatter.format((flower_CQf / (double) CQf) * 100), 
-                flower_CQof, formatter.format((flower_CQof / (double) CQof) * 100));
+        System.out.format(format, "Flower"  +"\t", 
+                flower_CQ  +"\t", formatter.format((flower_CQ / (double) CQ) * 100) +"\t",  
+                flower_CQf  +"\t", formatter.format((flower_CQf / (double) CQf) * 100) +"\t", 
+                flower_CQof  +"\t", formatter.format((flower_CQof / (double) CQof) * 100));
         
-        System.out.format(format, "Flower Set" , 
-                flowerSet_CQ, formatter.format((flowerSet_CQ / (double) CQ) * 100),  
-                flowerSet_CQf, formatter.format((flowerSet_CQf / (double) CQf) * 100), 
-                flowerSet_CQof, formatter.format((flowerSet_CQof / (double) CQof) * 100));
+        System.out.format(format, "Flower Set"  +"\t", 
+                flowerSet_CQ  +"\t", formatter.format((flowerSet_CQ / (double) CQ) * 100) +"\t",  
+                flowerSet_CQf  +"\t", formatter.format((flowerSet_CQf / (double) CQf) * 100) +"\t", 
+                flowerSet_CQof  +"\t", formatter.format((flowerSet_CQof / (double) CQof) * 100));
         
         
         

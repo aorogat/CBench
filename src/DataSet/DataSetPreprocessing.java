@@ -103,9 +103,9 @@ public class DataSetPreprocessing {
             questions.addAll(JSONParser.parseQuADFile(currentDirectory + "/data/DBpedia/SPARQL/LC-QuAD-data/test-data.json", "QUAD", "dbpedia"));
             questions.addAll(JSONParser.parseQuADFile(currentDirectory + "/data/DBpedia/SPARQL/LC-QuAD-data/train-data.json", "QUAD", "dbpedia"));
             
-            //questions.addAll(JSONParser.parseNo(currentDirectory+"/data/DBpedia/No_SPARQL/V1/train.json", "QUAD", "dbpedia"));
-            //questions.addAll(JSONParser.parseNo(currentDirectory+"/data/DBpedia/No_SPARQL/V1/test.json", "QUAD", "dbpedia"));
-            //questions.addAll(JSONParser.parseNo(currentDirectory+"/data/DBpedia/No_SPARQL/V1/valid.json", "QUAD", "dbpedia"));
+            questions.addAll(JSONParser.parseNo(currentDirectory+"/data/DBpedia/No_SPARQL/V1/train.json", "QUAD", "dbpedia"));
+            questions.addAll(JSONParser.parseNo(currentDirectory+"/data/DBpedia/No_SPARQL/V1/test.json", "QUAD", "dbpedia"));
+            questions.addAll(JSONParser.parseNo(currentDirectory+"/data/DBpedia/No_SPARQL/V1/valid.json", "QUAD", "dbpedia"));
         }
         if (benchmark == Benchmark.GraphQuestions || benchmark == Benchmark.PropertiesDefined) {
             questions.addAll(JSONParser.parseGra(currentDirectory + "/data/Freebase/SPARQL/GraphQuestions-master/freebase13/graphquestions.testing.json", "Freebase_Graph", "freebase"));
