@@ -17,19 +17,23 @@ Better Evaluation of Question Answering Over Knowledge Graphs. PVLDB,
 14(8): 1325 - 1337, 2021.](https://vldb.org/pvldb/vol14/p1325-orogat.pdf)
 #### Citation 
 ```
-@article{orogatcbench,
-  title={{CB}ench: Towards Better Evaluation of Question Answering Over Knowledge Graphs},
-  author={Orogat, Abdelghny and Liu, Isabelle and El-Roby, Ahmed}
+@Article{Orogat2021,
+  Title                    = {{CBench}: {T}owards {B}etter {E}valuation of {Q}uestion {A}nswering {O}ver {K}nowledge {G}raphs},
+  Author                   = {Orogat, Abdelghny and Liu, Isabelle and El-Roby, Ahmed},
+  Journal                  = {Proceedings of the VLDB Endowment (PVLDB)},
+  Year                     = {2021},
+  volume                   = {14},
+  number                    = {8}
 }
 ```
 We also encourage you to read the long version paper on arXiv from [here](https://arxiv.org/abs/2105.00811).
 #### Citation 
 ```
 @article{orogat2021cbench,
-  title={CBench: Towards Better Evaluation of Question Answering Over Knowledge Graphs},
-  author={Orogat, Abdelghny and Liu, Isabelle and El-Roby, Ahmed},
-  journal={arXiv preprint arXiv:2105.00811},
-  year={2021}
+  Title                    = {{CBench}: {T}owards {B}etter {E}valuation of {Q}uestion {A}nswering {O}ver {K}nowledge {G}raphs},
+  Author                   = {Orogat, Abdelghny and Liu, Isabelle and El-Roby, Ahmed},
+  journal                  = {arXiv preprint arXiv:2105.00811},
+  year                     = {2021}
 }
 ```
 
