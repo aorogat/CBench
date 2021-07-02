@@ -15,8 +15,23 @@ based on popular single-number metrics, but also gives a detailed analysis of th
 *Paper*: [Abdelghny Orogat, Isabelle Liu, and Ahmed El-Roby. CBench: Towards
 Better Evaluation of Question Answering Over Knowledge Graphs. PVLDB,
 14(8): 1325 - 1337, 2021.](https://vldb.org/pvldb/vol14/p1325-orogat.pdf)
+#### Citation 
+```
+@article{orogatcbench,
+  title={{CB}ench: Towards Better Evaluation of Question Answering Over Knowledge Graphs},
+  author={Orogat, Abdelghny and Liu, Isabelle and El-Roby, Ahmed}
+}
+```
 We also encourage you to read the long version paper on arXiv from [here](https://arxiv.org/abs/2105.00811).
-
+#### Citation 
+```
+@article{orogat2021cbench,
+  title={CBench: Towards Better Evaluation of Question Answering Over Knowledge Graphs},
+  author={Orogat, Abdelghny and Liu, Isabelle and El-Roby, Ahmed},
+  journal={arXiv preprint arXiv:2105.00811},
+  year={2021}
+}
+```
 
 ## Table of Content
 * Run CBench
