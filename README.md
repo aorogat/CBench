@@ -4,7 +4,7 @@ based on popular single-number metrics, but also gives a detailed analysis of th
 
 * The web verion is available [here](https://github.com/aorogat/CBench-Web-Interface)
 * Talk: [https://www.youtube.com/watch?v=_zbUbDTMgbI](https://www.youtube.com/watch?v=_zbUbDTMgbI)
-* Demo talk: [https://www.youtube.com/watch?v=QT-q53jPhMc](https://www.youtube.com/watch?v=_zbUbDTMgbI)
+* Demo talk: [https://www.youtube.com/watch?v=QT-q53jPhMc](https://www.youtube.com/watch?v=QT-q53jPhMc)
 
 ### Features
 * __Benchmarks Fine-grained Analysis:__ CBench studies several syntactical and linguistic features of a predefined benchmark or a new benchmark to be added by the user.
