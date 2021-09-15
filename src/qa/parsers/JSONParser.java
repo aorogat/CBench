@@ -163,6 +163,30 @@ public class JSONParser {
         }
         return questionsList;
     }
+    
+    public static ArrayList<Question> parseQuAD2File(String fileDirectory, String sourceString, String endpoint) throws JSONException {
+        ArrayList<Question> questionsList = new ArrayList<Question>();
+        String fileContents = FileManager.readWholeFile(fileDirectory);
+        JSONArray arr = new JSONArray(fileContents);
+        for (int i = 0; i < arr.length(); i++) {
+
+            Question question = new Question();
+            question.setDatabase(endpoint);
+            question.setFilepath(fileDirectory);
+            // The source is predefined
+            question.setQuestionSource(sourceString);
+
+            JSONObject currentQuestionObject = arr.getJSONObject(i);
+            question.setQuestionString(currentQuestionObject.get("paraphrased_question").toString().replace("\n", ""));
+
+            // The question's SPARQL Query
+            question.setQuestionQuery(currentQuestionObject.get("sparql_wikidata").toString());
+            if (question.getQuestionQuery() != null || question.getQuestionString()!=null && !question.getQuestionString().equals("")) {
+                questionsList.add(question);
+            }
+        }
+        return questionsList;
+    }
 
     public static ArrayList<Question> parseNo(String fileDirectory, String sourceString, String endpoint) throws JSONException {
         ArrayList<Question> questionsList = new ArrayList<Question>();

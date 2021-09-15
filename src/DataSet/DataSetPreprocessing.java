@@ -6,6 +6,7 @@ import java.util.Collections;
 import java.util.Scanner;
 import org.apache.jena.query.Query;
 import org.apache.jena.query.QueryFactory;
+import org.apache.jena.sys.JenaSystem;
 import qa.dataStructures.Question;
 import qa.parsers.JSONParser;
 import qa.parsers.Parser;
@@ -107,6 +108,14 @@ public class DataSetPreprocessing {
             questions.addAll(JSONParser.parseNo(currentDirectory+"/data/DBpedia/No_SPARQL/V1/test.json", "QUAD", "dbpedia"));
             questions.addAll(JSONParser.parseNo(currentDirectory+"/data/DBpedia/No_SPARQL/V1/valid.json", "QUAD", "dbpedia"));
         }
+        
+        if (benchmark == Benchmark.LC_QUAD_2 || benchmark == Benchmark.PropertiesDefined) {
+            //questions.addAll(JSONParser.parseQuAD2File(currentDirectory + "/data/DBpedia/SPARQL/LC-QuAD2-data/test.json", "QUAD2", "wikidata"));
+            //questions.addAll(JSONParser.parseQuAD2File(currentDirectory + "/data/DBpedia/SPARQL/LC-QuAD2-data/train.json", "QUAD2", "wikidata"));
+            questions.addAll(JSONParser.parseQuAD2File(currentDirectory + "/data/DBpedia/SPARQL/LC-QuAD2-data/lcquad_2_0.json", "QUAD2", "wikidata"));
+            
+        }
+        
         if (benchmark == Benchmark.GraphQuestions || benchmark == Benchmark.PropertiesDefined) {
             questions.addAll(JSONParser.parseGra(currentDirectory + "/data/Freebase/SPARQL/GraphQuestions-master/freebase13/graphquestions.testing.json", "Freebase_Graph", "freebase"));
             questions.addAll(JSONParser.parseGra(currentDirectory + "/data/Freebase/SPARQL/GraphQuestions-master/freebase13/graphquestions.training.json", "Freebase_Graph", "freebase"));
@@ -219,6 +228,8 @@ public class DataSetPreprocessing {
          Note that even with this turned on there are still lots of non-standard SPARQL syntactic 
          constructs that Virtuoso supports that ARQ will still reject.
          */
+        JenaSystem.init();
+        org.apache.jena.query.ARQ.init();
         for (int i = 0; i < questions.size(); i++) {
             String queryString = questions.get(i).getQuestionQuery();
             try {

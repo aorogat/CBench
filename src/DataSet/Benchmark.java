@@ -23,6 +23,7 @@ public class Benchmark {
     
     public final static int QALD_ALL = 100;
     public final static int LC_QUAD = 101;
+    public final static int LC_QUAD_2 = 111;
     public final static int GraphQuestions = 102;
     public final static int WebQuestions = 103;
     public final static int SimpleQuestions = 104;

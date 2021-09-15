@@ -27,7 +27,7 @@ public class BenchmarkAnalysis {
         System.out.println("                 11- LC-QUAD, \t\t12- WebQuestions, \t\t13- GraphQuestions, ");
         System.out.println("                 14- ComplexQuestions, \t15- ComQA, \t\t\t16- TempQuestions, ");
         System.out.println("                 17- SimpleDBpediaQA, \t18- SimpleQuestions, ");
-        System.out.println("                 19- User Defined]");
+        System.out.println("                 19- User Defined, \t20- LC-QuAD_2]");
         System.out.print("               Benchmark is: ");
         
         benchmark = in.nextInt();
@@ -53,6 +53,7 @@ public class BenchmarkAnalysis {
            case 17: benchmark = Benchmark.SimpleDBpediaQA; break;
            case 18: benchmark = Benchmark.SimpleQuestions; break;
            case 19: benchmark = Benchmark.UserDefined; break;
+           case 20: benchmark = Benchmark.LC_QUAD_2; break;
            default: analyze();
        }
         
@@ -62,20 +63,20 @@ public class BenchmarkAnalysis {
         //Shallow Anlysis
         //===============
         //1- Keyword Analysis
-        Keywords k = new Keywords(qs);
-        k.keywordsAnalysis();
-        
-        //2- Number of triples analysis
-        NoOfTriples triples = new NoOfTriples(qs);
-        triples.triplesAnalysis();
-        
-        //3- Operator Distribution
-        OperatorDistribution distribution = new OperatorDistribution(qs);
-        distribution.analysis();
-        
-        //Shape Analysis
-        ShapeAnalysis shapes = new ShapeAnalysis(qs);
-        shapes.analysis();
+//        Keywords k = new Keywords(qs);
+//        k.keywordsAnalysis();
+//        
+//        //2- Number of triples analysis
+//        NoOfTriples triples = new NoOfTriples(qs);
+//        triples.triplesAnalysis();
+//        
+//        //3- Operator Distribution
+//        OperatorDistribution distribution = new OperatorDistribution(qs);
+//        distribution.analysis();
+//        
+//        //Shape Analysis
+//        ShapeAnalysis shapes = new ShapeAnalysis(qs);
+//        shapes.analysis();
         
         //NLQ Analysis
         QABenchmark.NLQAnalyze();
