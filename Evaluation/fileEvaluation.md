@@ -1,4 +1,6 @@
 [<< Home](https://github.com/aorogat/CBench/)
+# [Video](https://www.youtube.com/watch?v=JCy023Tdh4I&list=PLCFktcVimvewPhVBa2KyAnAK57rCKXXcs&index=3)
+
 
 # QA Offline Evaluation by a benchmark file
 You can use this mode if your QA  system does not support HTTP requests. In this mode,  CBench outputs a file that includes the questions from the benchmark selected by you with empty fields corresponding to the your generated queries for each question.Your QA system must update this file with the generated queries. Then CBench can calculate the quality scores and generate the interactive evaluation report for you.
