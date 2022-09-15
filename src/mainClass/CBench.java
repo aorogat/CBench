@@ -1,13 +1,10 @@
 package mainClass;
 
 import DataSet.Benchmark;
-import DataSet.DataSetPreprocessing;
 import java.util.Scanner;
 import static mainClass.BenchmarkAnalysis.analyze;
 import static mainClass.BenchmarkAnalysis.benchmark;
 import org.json.JSONException;
-import static systemstesting.Evaluator.evaluate;
-import systemstesting.Evaluator_AskNow;
 import systemstesting.Evaluator_File_Based;
 import systemstesting.Evaluator_WebServiceBased;
 import systemstesting.GenerateBenchmarkFile;
@@ -52,7 +49,7 @@ public class CBench {
                 System.out.print("                Your answer is: ");
                 int f = in.nextInt();
                 if (f == 1) {
-                    Evaluator_File_Based ev= new Evaluator_File_Based();
+                    Evaluator_File_Based ev = new Evaluator_File_Based();
                     Evaluator_File_Based.evaluate(ev);
                 } else if (eval == 2) {
                     System.out.println("        |");
@@ -61,7 +58,10 @@ public class CBench {
                     System.out.println("                 11- LC-QUAD, \t\t12- WebQuestions, \t\t13- GraphQuestions, ");
                     System.out.println("                 14- ComplexQuestions, \t15- ComQA, \t\t\t16- TempQuestions, ");
                     System.out.println("                 17- SimpleDBpediaQA, \t18- SimpleQuestions, ");
-                    System.out.println("                 19- User Defined, \t20- Properties Defined]");
+                    System.out.println("                 19- User Defined, \t20- Properties Defined");
+                    System.out.println("                [21- SMART_1, \t\t2- SMART_2, ..., \t\t29- SMART_9");
+                    System.out.println("                 30- WebQSP");
+                    System.out.println("]");
                     System.out.print("               Benchmark is: ");
 
                     benchmark = in.nextInt();
@@ -126,6 +126,36 @@ public class CBench {
                             break;
                         case 20:
                             benchmark = Benchmark.PropertiesDefined;
+                            break;
+                        case 21:
+                            benchmark = Benchmark.SMART_1;
+                            break;
+                        case 22:
+                            benchmark = Benchmark.SMART_2;
+                            break;
+                        case 23:
+                            benchmark = Benchmark.SMART_3;
+                            break;
+                        case 24:
+                            benchmark = Benchmark.SMART_4;
+                            break;
+                        case 25:
+                            benchmark = Benchmark.SMART_5;
+                            break;
+                        case 26:
+                            benchmark = Benchmark.SMART_6;
+                            break;
+                        case 27:
+                            benchmark = Benchmark.SMART_7;
+                            break;
+                        case 28:
+                            benchmark = Benchmark.SMART_8;
+                            break;
+                        case 29:
+                            benchmark = Benchmark.SMART_9;
+                            break;
+                        case 30:
+                            benchmark = Benchmark.WebQSP;
                             break;
                         default:
                             analyze();

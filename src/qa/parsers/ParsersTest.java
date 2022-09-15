@@ -1,13 +1,5 @@
 package qa.parsers;
 
-import org.junit.Test;
-
-import qa.dataStructures.Question;
-
-import static org.junit.Assert.assertEquals;
-
-import java.util.ArrayList;
-
 public class ParsersTest {
 	
 	/*

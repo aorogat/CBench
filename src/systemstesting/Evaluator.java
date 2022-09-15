@@ -199,7 +199,6 @@ public abstract class Evaluator {
         if (BenchmarkEval.threshold < 0 || BenchmarkEval.threshold > 1) {
             evaluate(evaluator);
         }
-
         performance(benchmark, benchmarkString, updateBenchmark, evaluator);
     }
 

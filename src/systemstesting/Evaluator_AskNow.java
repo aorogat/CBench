@@ -10,9 +10,6 @@ import org.json.JSONObject;
 import org.json.simple.parser.JSONParser;
 import static systemstesting.Evaluator.evaluate;
 import static systemstesting.Evaluator.systemAnswersList;
-import static systemstesting.Evaluator_QAsparql.ASK_QUERY;
-import static systemstesting.Evaluator_QAsparql.COUNT_QUERY;
-import static systemstesting.Evaluator_QAsparql.OTHER_QUERY;
 
 /**
  *

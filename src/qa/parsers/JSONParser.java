@@ -11,7 +11,50 @@ import qa.dataStructures.Question;
 
 public class JSONParser {
 
-    
+    public static ArrayList<Question> parseSmart(String fileDirectory, String sourceString, String endpoint) throws JSONException {
+        ArrayList<Question> questionsList = new ArrayList<Question>();
+        String fileContents = FileManager.readWholeFile(fileDirectory);
+        JSONArray arr = new JSONArray(fileContents);
+        for (int i = 0; i < arr.length(); i++) {
+
+            Question question = new Question();
+            question.setDatabase(endpoint);
+            question.setFilepath(fileDirectory);
+            // The source is predefined
+            question.setQuestionSource(sourceString);
+
+            JSONObject currentQuestionObject = arr.getJSONObject(i);
+            question.setQuestionString(currentQuestionObject.get("questionString").toString().replace("\n", ""));
+
+            // The question's SPARQL Query
+            question.setQuestionQuery("PREFIX rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\n "
+                    + "PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>\n "
+                    + currentQuestionObject.get("query").toString());
+
+            //Answers
+            try {
+                JSONArray answers = currentQuestionObject.getJSONArray("answers");
+                for (int j = 0; j < answers.length(); j++) {
+                    // The question's answers
+                    String answer = null;
+                    try {
+                        answer = (String) answers.get(j);
+                    } catch (Exception e) {
+                        answer = null;
+                    }
+
+                    question.addAnswer(answer);
+                }
+            } catch (Exception e) {
+            }
+
+            if (question.getQuestionQuery() != null || question.getQuestionString() != null && !question.getQuestionString().equals("")) {
+                questionsList.add(question);
+            }
+        }
+        return questionsList;
+    }
+
     public static ArrayList<Question> parseSimpleDB(String fileDirectory, String sourceString, String endpoint) throws JSONException {
         ArrayList<Question> questionsList = new ArrayList<Question>();
         String fileContents = FileManager.readWholeFile(fileDirectory);
@@ -33,7 +76,6 @@ public class JSONParser {
         return questionsList;
     }
 
-    
     public static ArrayList<Question> parseFree917(String fileDirectory, String sourceString, String endpoint) throws JSONException {
         ArrayList<Question> questionsList = new ArrayList<Question>();
         String fileContents = FileManager.readWholeFile(fileDirectory);
@@ -54,8 +96,6 @@ public class JSONParser {
         return questionsList;
     }
 
-    
-    
     public static ArrayList<Question> parseComQA(String fileDirectory, String sourceString, String endpoint) throws JSONException {
         ArrayList<Question> questionsList = new ArrayList<Question>();
         String fileContents = FileManager.readWholeFile(fileDirectory);
@@ -64,19 +104,18 @@ public class JSONParser {
         for (int i = 0; i < arr.length(); i++) {
 
             JSONObject currentQuestionObject = arr.getJSONObject(i);
-            
-            
+
             //Question
             JSONArray questionVersions = currentQuestionObject.getJSONArray("questions");
             for (int k = 0; k < questionVersions.length(); k++) {
                 Question question = new Question();
-            question.setDatabase(endpoint);
-            question.setFilepath(fileDirectory);
-            // The source is predefined
-            question.setQuestionSource(sourceString);
+                question.setDatabase(endpoint);
+                question.setFilepath(fileDirectory);
+                // The source is predefined
+                question.setQuestionSource(sourceString);
 
-            //Answers
-            try {
+                //Answers
+                try {
                     JSONArray answers = currentQuestionObject.getJSONArray("answers");
                     for (int j = 0; j < answers.length(); j++) {
                         // The question's answers
@@ -91,10 +130,8 @@ public class JSONParser {
                     }
                 } catch (Exception e) {
                 }
-            
-                question.setQuestionString(questionVersions.get(k).toString().replace("\n", ""));
 
-                
+                question.setQuestionString(questionVersions.get(k).toString().replace("\n", ""));
 
                 questionsList.add(question);
             }
@@ -163,7 +200,7 @@ public class JSONParser {
         }
         return questionsList;
     }
-    
+
     public static ArrayList<Question> parseQuAD2File(String fileDirectory, String sourceString, String endpoint) throws JSONException {
         ArrayList<Question> questionsList = new ArrayList<Question>();
         String fileContents = FileManager.readWholeFile(fileDirectory);
@@ -181,7 +218,7 @@ public class JSONParser {
 
             // The question's SPARQL Query
             question.setQuestionQuery(currentQuestionObject.get("sparql_wikidata").toString());
-            if (question.getQuestionQuery() != null || question.getQuestionString()!=null && !question.getQuestionString().equals("")) {
+            if (question.getQuestionQuery() != null || question.getQuestionString() != null && !question.getQuestionString().equals("")) {
                 questionsList.add(question);
             }
         }
@@ -402,6 +439,50 @@ public class JSONParser {
         }
         return questionsList;
     }
+    
+    public static ArrayList<Question> parseWebQSP(String fileDirectory, String sourceString, String endpoint) throws JSONException {
+        ArrayList<Question> questionsList = new ArrayList<Question>();
+        String fileContents = FileManager.readWholeFile(fileDirectory);
+        JSONObject obj = new JSONObject(fileContents);
+        JSONArray arr = obj.getJSONArray("Questions");
+        for (int i = 0; i < arr.length(); i++) {
+
+            Question question = new Question();
+            question.setDatabase(endpoint);
+            question.setFilepath(fileDirectory);
+            // The source is predefined
+            question.setQuestionSource(sourceString);
+
+            JSONObject currentQuestionObject = arr.getJSONObject(i);
+            question.setQuestionString(currentQuestionObject.getString("RawQuestion").replace("\n", ""));
+            // The question's SPARQL Query
+            try {
+                question.setQuestionQuery(((JSONObject) currentQuestionObject.getJSONArray("Parses").get(0)).getString("Sparql"));
+            } catch (Exception e) {
+                question.setQuestionQuery(null);
+            }
+
+            try {
+                JSONArray answers = ((JSONObject) currentQuestionObject.getJSONArray("Parses").get(0)).getJSONArray("Answers");
+                for (int j = 0; j < answers.length(); j++) {
+                    // The question's answers
+                    String answer = null;
+                    try {
+                        answer = ((JSONObject) (answers.get(j))).getString("EntityName");
+                    } catch (Exception e) {
+                        answer = null;
+                    }
+
+                    question.addAnswer(answer);
+                }
+            } catch (Exception e) {
+            }
+
+            questionsList.add(question);
+
+        }
+        return questionsList;
+    }
 
     public static ArrayList<Question> parseQald9File(String fileDirectory, String sourceString, String endpoint) {
         ArrayList<Question> questionsList = new ArrayList<Question>();
@@ -457,7 +538,7 @@ public class JSONParser {
         }
         return questionsList;
     }
-    
+
     public static ArrayList<Question> parseQald8File(String fileDirectory, String sourceString, String endpoint) {
         return parseQald9File(fileDirectory, sourceString, endpoint);
     }

@@ -203,7 +203,7 @@ public class CuratedAnswer {
         try {
             BufferedReader rd = new BufferedReader(new InputStreamReader(is, Charset.forName("UTF-8")));
             String jsonText = readAll(rd);
-            System.out.println(jsonText);
+//            System.out.println(jsonText);
             JSONObject json = new JSONObject(jsonText);
             return json;
         } finally {

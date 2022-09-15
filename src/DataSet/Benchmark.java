@@ -33,8 +33,20 @@ public class Benchmark {
     public final static int ComQA = 108;
     public final static int ComplexQuestions = 109;
     public final static int UserDefined = 110;
+    public final static int WebQSP = 112;
     
     public final static int PropertiesDefined = 1000;
+    
+    
+    public final static int SMART_1 = 201;
+    public final static int SMART_2 = 202;
+    public final static int SMART_3 = 203;
+    public final static int SMART_4 = 204;
+    public final static int SMART_5 = 205;
+    public final static int SMART_6 = 206;
+    public final static int SMART_7 = 207;
+    public final static int SMART_8 = 208;
+    public final static int SMART_9 = 209;
     
     
     

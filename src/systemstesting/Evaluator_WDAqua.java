@@ -15,6 +15,9 @@ import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.concurrent.TimeUnit;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import org.apache.commons.io.IOUtils;
 import org.apache.jena.query.Query;
 import org.apache.jena.query.QueryFactory;
@@ -42,7 +45,7 @@ public class Evaluator_WDAqua {
     public static void main(String[] args) throws IOException, JSONException, Exception {
         KB = "dbpedia";
 //        performance(Benchmark.LC_QUAD, "LC_QUAD", true);
-        performance(Benchmark.QALD_1, "QALD_1",false);
+//        performance(Benchmark.QALD_1, "QALD_1",false);
 //        performance(Benchmark.QALD_2, "QALD_2");
 //        performance(Benchmark.QALD_3, "QALD_3");
 //        performance(Benchmark.QALD_4, "QALD_4");
@@ -50,6 +53,11 @@ public class Evaluator_WDAqua {
 //        performance(Benchmark.QALD_6, "QALD_6");
 //        performance(Benchmark.QALD_7, "QALD_7");
 //        performance(Benchmark.QALD_8, "QALD_8");
+//        performance(Benchmark.QALD_9, "QALD_9", true);
+//        performance(Benchmark.SMART_6, "SMART_6", false);
+//        performance(Benchmark.SMART_7, "SMART_7", false);
+//        performance(Benchmark.SMART_8, "SMART_8", false);
+        performance(Benchmark.SMART_9, "SMART_9", false);
 //        performance(Benchmark.TempQuestions, "TempQuestions", false);
     }
 
@@ -122,10 +130,10 @@ public class Evaluator_WDAqua {
 
             systemAnswersList = new ArrayList<String>(new HashSet<String>(systemAnswersList));
             corectAnswersList = new ArrayList<String>(new HashSet<String>(corectAnswersList));
-            
+
             //3- List of Questions and their (R, P, F1)
             evaluatedBenchmark.evaluatedQuestions.add(new QuestionEval(question.getQuestionString(), question, corectAnswersList, systemAnswersList));
-            
+
         }
 
         //4- Calculate parameters
@@ -145,16 +153,30 @@ public class Evaluator_WDAqua {
         //////////////////
         String command
                 = "curl -X POST http://qanswer-core1.univ-st-etienne.fr/api/gerbil?"
-                + "query=" + question;// + "&kb=" + KB;
+                + "query=" + question
+                + "&kb=" + KB;
+        
+        
+  
         ProcessBuilder processBuilder = new ProcessBuilder(command.split(" "));
         Process process = processBuilder.start();
+        try {
+            process.waitFor(5, TimeUnit.SECONDS);  // let the process run for 5 seconds
+            process.destroy();                     // tell the process to stop
+            process.waitFor(10, TimeUnit.SECONDS); // give it a chance to stop
+            process.destroyForcibly();             // tell the OS to kill the process
+            process.waitFor();                     // the process is now dead
+        } catch (InterruptedException ex) {
+            Logger.getLogger(Evaluator_WDAqua.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
         InputStream inputStream = process.getInputStream();
         String result = IOUtils.toString(inputStream, StandardCharsets.UTF_8);
         /////////////////
 
         result = result.replace("\\n", " ").replace("\\{", "{").replace("\\}", "}").replace("\\", "")
                 .replace("\"{", "{").replace("\"}", "}").replace("}\"", "}");
-        System.out.println(result);
+//        System.out.println(result);
 
         try {
             systemAnswersList = new ArrayList<>();
@@ -167,25 +189,23 @@ public class Evaluator_WDAqua {
                     .getJSONObject("question").getJSONObject("answers")
                     .getJSONObject("head").getJSONArray("vars").getString(0);
 
-            System.out.println(varName);
-
+//            System.out.println(varName);
             for (int i = 0; i < bindings.length(); i++) {
                 JSONObject binding = (JSONObject) bindings.getJSONObject(i);
                 JSONObject o1 = (JSONObject) binding.getJSONObject(varName);
                 String value = (String) o1.get("value");
-
                 //For wikidata with Freebase benchmarks
-                if (value.startsWith("http")) {
-                    org.jsoup.nodes.Document doc = Jsoup.connect(value).get();
-                    Elements div = doc.select(".wikibase-title-label");
-                    Element e = div.get(0);
-                    value = e.text();
-                    systemAnswersList.add(value.replace('_', ' '));
-                }
-//                systemAnswersList.add(value.replace('_', ' ')
-//                        .replace("http://dbpedia.org/resource/", "")
-//                        .replace("https://en.wikipedia.org/wiki/", "")
-//                        .replace("http://www.wikidata.org/entity/", ""));
+//                if (value.startsWith("http")) {
+//                    org.jsoup.nodes.Document doc = Jsoup.connect(value).get();
+//                    Elements div = doc.select(".wikibase-title-label");
+//                    Element e = div.get(0);
+//                    value = e.text();
+//                    systemAnswersList.add(value.replace('_', ' '));
+//                }
+                systemAnswersList.add(value.replace('_', ' ')
+                        .replace("http://dbpedia.org/resource/", "")
+                        .replace("https://en.wikipedia.org/wiki/", "")
+                        .replace("http://www.wikidata.org/entity/", ""));
             }
         } catch (Exception e) {
             try {
@@ -199,7 +219,7 @@ public class Evaluator_WDAqua {
                     systemAnswersList.add("No");
                 }
             } catch (Exception ex) {
-                ex.printStackTrace();
+//                ex.printStackTrace();
             }
         }
 

@@ -17,7 +17,7 @@ import qa.dataStructures.Question;
 
 public final class NoOfTriples {
 
-    ArrayList<String> results = new ArrayList<>();
+    public ArrayList<String> results = new ArrayList<>();
     ArrayList<Query> qs;
     Set<String> uniqueQueries = new HashSet<>();
     String s;

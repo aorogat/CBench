@@ -1,12 +1,8 @@
 package NLQAnalysis;
 
 import DataSet.DataSetPreprocessing;
-import ShapeAnalysis.QueryShapeType;
 import java.io.IOException;
 import java.util.ArrayList;
-import org.apache.jena.query.Query;
-import org.apache.jena.query.QueryFactory;
-import org.apache.jena.query.Syntax;
 import qa.dataStructures.Question;
 
 /**
@@ -29,23 +25,7 @@ public class NLQCategoraizer {
     
     
     public NLQCategoraizer() throws IOException {
-    what_Qs = new ArrayList<Question>();
-    when_Qs = new ArrayList<Question>();
-    where_Qs = new ArrayList<Question>();
-    which_Qs = new ArrayList<Question>();
-    who_Qs = new ArrayList<Question>();
-    whom_Qs = new ArrayList<Question>();
-    whose_Qs = new ArrayList<Question>();
-    how_Qs = new ArrayList<Question>();
-    yes_no_Qs = new ArrayList<Question>();
-    request_Qs = new ArrayList<Question>();
-    Topical_Qs = new ArrayList<Question>();
-
-       
-        
-        
         for (Question q : DataSetPreprocessing.questionsWithoutDuplicates) {
-            String queryString = q.getQuestionQuery();
             try {
                 if (OneNLQAnalysis.whatQuestion(q.getQuestionString())) {
                     what_Qs.add(q);
@@ -85,6 +65,7 @@ public class NLQCategoraizer {
                 //System.out.println(queryString);
             }
         }
+        
         
       
     }
@@ -135,5 +116,22 @@ public class NLQCategoraizer {
     }
 
     
-    
+    public void print(){
+        System.out.println("\n\n\nNLQ Analysis ----->");
+        String format = "%-30s%-20s%-20s%n";
+        System.out.format(format, "Type\t", "#Questions\t", "Relative%\t");
+        System.out.format(format, "=======", "========", "=========");
+        System.out.format(format, "what-questions \t", what_Qs.size() + "    \t", 100*(float) what_Qs.size() / DataSetPreprocessing.questionsWithoutDuplicates.size() + "%");
+        System.out.format(format, "when-questions \t", when_Qs.size() + "    \t", 100*(float) when_Qs.size() / DataSetPreprocessing.questionsWithoutDuplicates.size() + "%");
+        System.out.format(format, "where-questions \t", where_Qs.size() + "    \t", 100*(float) where_Qs.size() / DataSetPreprocessing.questionsWithoutDuplicates.size() + "%");
+        System.out.format(format, "which-questions \t", which_Qs.size() + "    \t", 100*(float) which_Qs.size() / DataSetPreprocessing.questionsWithoutDuplicates.size() + "%");
+        System.out.format(format, "who-questions \t", who_Qs.size() + "    \t", 100*(float) who_Qs.size() / DataSetPreprocessing.questionsWithoutDuplicates.size() + "%");
+        System.out.format(format, "whom-questions \t", whom_Qs.size() + "    \t", 100*(float) whom_Qs.size() / DataSetPreprocessing.questionsWithoutDuplicates.size() + "%");
+        System.out.format(format, "whose-questions \t", whose_Qs.size() + "    \t", 100*(float) whose_Qs.size() / DataSetPreprocessing.questionsWithoutDuplicates.size() + "%");
+        System.out.format(format, "how-questions \t", how_Qs.size() + "    \t", 100*(float) how_Qs.size() / DataSetPreprocessing.questionsWithoutDuplicates.size() + "%");
+        System.out.format(format, "yes-no-questions \t",yes_no_Qs.size() + "    \t", 100*(float) yes_no_Qs.size() / DataSetPreprocessing.questionsWithoutDuplicates.size() + "%");
+        System.out.format(format, "request-questions \t", request_Qs.size() + "    \t", 100*(float) request_Qs.size() / DataSetPreprocessing.questionsWithoutDuplicates.size() + "%");
+        System.out.format(format, "Topical-questions \t", Topical_Qs.size() + "    \t", 100*(float) Topical_Qs.size() / DataSetPreprocessing.questionsWithoutDuplicates.size() + "%");
+        
+    }
 }

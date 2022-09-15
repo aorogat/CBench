@@ -86,13 +86,20 @@ public class Keywords {
                 System.out.println("minus ==="+q.toString());
                 minus++;
             }
-
-            if (q.hasGroupBy()) {
+            if (q.toString().toLowerCase().replace("\n", "").replaceAll(" ", "").contains("groupby")) {
                 groupBy++;
             }
-            if (q.hasHaving()) {
+            if (q.toString().toLowerCase().replace("\n", "").replaceAll(" ", "").contains("having")) {
                 having++;
             }
+
+//            if (q.hasGroupBy()) {
+//                groupBy++;
+//                System.out.println(q);
+//            }
+//            if (q.hasHaving()) {
+//                having++;
+//            }
 
             if (q.toString().toLowerCase().contains("count(")) {
                 count++;

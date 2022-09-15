@@ -1,25 +1,24 @@
-
 package mainClass;
 
 import DataSet.Benchmark;
 import DataSet.DataSetPreprocessing;
+import NLQAnalysis.NLQCategoraizer;
 import NLQAnalysis.QABenchmark;
 import ShallowAnalysis.Keywords;
 import ShallowAnalysis.NoOfTriples;
 import ShallowAnalysis.OperatorDistribution;
 import ShapeAnalysis.ShapeAnalysis;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 import org.apache.jena.query.Query;
-
 
 public class BenchmarkAnalysis {
 
     public static ArrayList<Query> qs;
     public static int benchmark;
-    
-    public static void analyze()
-    {
+
+    public static void analyze() throws IOException {
         Scanner in = new Scanner(System.in);
         System.out.println("        |");
         System.out.println("        ++++> Select the Benchmark (Enter the integer value) from");
@@ -28,58 +27,134 @@ public class BenchmarkAnalysis {
         System.out.println("                 14- ComplexQuestions, \t15- ComQA, \t\t\t16- TempQuestions, ");
         System.out.println("                 17- SimpleDBpediaQA, \t18- SimpleQuestions, ");
         System.out.println("                 19- User Defined, \t20- LC-QuAD_2]");
+        System.out.println("                [21- SMART_1, \t\t22- SMART_2, ..., \t\t29- SMART_9");
+        System.out.println("                 30- WebQSP");
+        System.out.println("]");
         System.out.print("               Benchmark is: ");
-        
+        System.out.print("               Benchmark is: ");
+
         benchmark = in.nextInt();
-        
-       switch(benchmark)
-       {
-           case 1: benchmark = Benchmark.QALD_1; break;
-           case 2: benchmark = Benchmark.QALD_2; break;
-           case 3: benchmark = Benchmark.QALD_3; break;
-           case 4: benchmark = Benchmark.QALD_4; break;
-           case 5: benchmark = Benchmark.QALD_5; break;
-           case 6: benchmark = Benchmark.QALD_6; break;
-           case 7: benchmark = Benchmark.QALD_7; break;
-           case 8: benchmark = Benchmark.QALD_8; break;
-           case 9: benchmark = Benchmark.QALD_9; break;
-           case 10: benchmark = Benchmark.QALD_ALL; break;
-           case 11: benchmark = Benchmark.LC_QUAD; break;
-           case 12: benchmark = Benchmark.WebQuestions; break;
-           case 13: benchmark = Benchmark.GraphQuestions; break;
-           case 14: benchmark = Benchmark.ComplexQuestions; break;
-           case 15: benchmark = Benchmark.ComQA; break;
-           case 16: benchmark = Benchmark.TempQuestions; break;
-           case 17: benchmark = Benchmark.SimpleDBpediaQA; break;
-           case 18: benchmark = Benchmark.SimpleQuestions; break;
-           case 19: benchmark = Benchmark.UserDefined; break;
-           case 20: benchmark = Benchmark.LC_QUAD_2; break;
-           default: analyze();
-       }
-        
-        
-       qs = DataSetPreprocessing.getQueriesWithoutDuplicates(benchmark);
-        
+
+        switch (benchmark) {
+            case 1:
+                benchmark = Benchmark.QALD_1;
+                break;
+            case 2:
+                benchmark = Benchmark.QALD_2;
+                break;
+            case 3:
+                benchmark = Benchmark.QALD_3;
+                break;
+            case 4:
+                benchmark = Benchmark.QALD_4;
+                break;
+            case 5:
+                benchmark = Benchmark.QALD_5;
+                break;
+            case 6:
+                benchmark = Benchmark.QALD_6;
+                break;
+            case 7:
+                benchmark = Benchmark.QALD_7;
+                break;
+            case 8:
+                benchmark = Benchmark.QALD_8;
+                break;
+            case 9:
+                benchmark = Benchmark.QALD_9;
+                break;
+            case 10:
+                benchmark = Benchmark.QALD_ALL;
+                break;
+            case 11:
+                benchmark = Benchmark.LC_QUAD;
+                break;
+            case 12:
+                benchmark = Benchmark.WebQuestions;
+                break;
+            case 13:
+                benchmark = Benchmark.GraphQuestions;
+                break;
+            case 14:
+                benchmark = Benchmark.ComplexQuestions;
+                break;
+            case 15:
+                benchmark = Benchmark.ComQA;
+                break;
+            case 16:
+                benchmark = Benchmark.TempQuestions;
+                break;
+            case 17:
+                benchmark = Benchmark.SimpleDBpediaQA;
+                break;
+            case 18:
+                benchmark = Benchmark.SimpleQuestions;
+                break;
+            case 19:
+                benchmark = Benchmark.UserDefined;
+                break;
+            case 20:
+                benchmark = Benchmark.LC_QUAD_2;
+                break;
+            case 21:
+                benchmark = Benchmark.SMART_1;
+                break;
+            case 22:
+                benchmark = Benchmark.SMART_2;
+                break;
+            case 23:
+                benchmark = Benchmark.SMART_3;
+                break;
+            case 24:
+                benchmark = Benchmark.SMART_4;
+                break;
+            case 25:
+                benchmark = Benchmark.SMART_5;
+                break;
+            case 26:
+                benchmark = Benchmark.SMART_6;
+                break;
+            case 27:
+                benchmark = Benchmark.SMART_7;
+                break;
+            case 28:
+                benchmark = Benchmark.SMART_8;
+                break;
+            case 29:
+                benchmark = Benchmark.SMART_9;
+                break;
+            case 30:
+                benchmark = Benchmark.WebQSP;
+                break;
+            default:
+                analyze();
+        }
+
+        qs = DataSetPreprocessing.getQueriesWithoutDuplicates(benchmark);
+
         //Shallow Anlysis
         //===============
         //1- Keyword Analysis
-//        Keywords k = new Keywords(qs);
-//        k.keywordsAnalysis();
-//        
-//        //2- Number of triples analysis
-//        NoOfTriples triples = new NoOfTriples(qs);
-//        triples.triplesAnalysis();
-//        
-//        //3- Operator Distribution
-//        OperatorDistribution distribution = new OperatorDistribution(qs);
-//        distribution.analysis();
-//        
-//        //Shape Analysis
-//        ShapeAnalysis shapes = new ShapeAnalysis(qs);
-//        shapes.analysis();
-        
+        Keywords k = new Keywords(qs);
+        k.keywordsAnalysis();
+
+        //2- Number of triples analysis
+        NoOfTriples triples = new NoOfTriples(qs);
+        triples.triplesAnalysis();
+        System.out.println(triples.results);
+
+        //3- Operator Distribution
+        OperatorDistribution distribution = new OperatorDistribution(qs);
+        distribution.analysis();
+
+        //Shape Analysis
+        ShapeAnalysis shapes = new ShapeAnalysis(qs);
+        shapes.analysis();
+
         //NLQ Analysis
-        QABenchmark.NLQAnalyze();
+        //QABenchmark.NLQAnalyze();
+        NLQCategoraizer categoraizer = new NLQCategoraizer();
+        categoraizer.print();
     }
-    
+
 }
